@@ -1,0 +1,72 @@
+{
+ "title": "Settings — Memory",
+ "height": 900,
+ "tree": {
+  "t": "row",
+  "i": "root",
+  "gap": "none",
+  "clip": true,
+  "children": [
+   {
+    "c": "main-nav",
+    "i": "nav",
+    "p": {
+     "types": "collapsed"
+    },
+    "fill": "y"
+   },
+   {
+    "t": "stack",
+    "i": "main",
+    "grow": true,
+    "fill": "y",
+    "align": "center",
+    "justify": "end",
+    "gap": "xl",
+    "pb": "2xl",
+    "bg": "bg-secondary",
+    "children": [
+     {
+      "c": "banner-carousel",
+      "i": "banner"
+     }
+    ]
+   },
+   {
+    "t": "stack",
+    "i": "scrim",
+    "w": 1440,
+    "h": 900,
+    "bg": "bg-base-dark",
+    "opacity": 0.3,
+    "abs": {
+     "x": 0,
+     "y": 0
+    },
+    "why": "modal overlay dims the page"
+   },
+   {
+    "c": "modal-settings",
+    "i": "modal",
+    "abs": {
+     "x": 240,
+     "y": 90
+    },
+    "why": "modal centered over the page: (1440-960)/2, (900-720)/2",
+    "ops": [
+     {
+      "nodes": [
+       {
+        "name": "Adding-Memory-Alert",
+        "nth": 0,
+        "props": {
+         "Property 1": "Reading"
+        }
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ }
+}
