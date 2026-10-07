@@ -4849,6 +4849,77 @@
    "default": null,
    "props": {},
    "texts": []
+  },
+  {
+   "key": "split-button-brand",
+   "name": "Buttons/Split Button Brand",
+   "lib": true,
+   "setKey": "6bb17cc37906ce807e023763679a0a22abf29cc1",
+   "variantKey": "970eefcc97710e78aa86dbe82e31902a28f242e1",
+   "variant": "Size=xs, Hierarchy=Primary, Icon=Default, State=Default, Side=Both",
+   "default": "Size=sm, Hierarchy=Primary, Icon=Default, State=Default, Side=Both",
+   "props": {
+    "⬅️ Icon leading": "BOOLEAN",
+    "🔀 Icon leading swap": "INSTANCE_SWAP",
+    "Split Icon": "INSTANCE_SWAP",
+    "Size": [
+     "xs",
+     "sm",
+     "md",
+     "lg"
+    ],
+    "Hierarchy": [
+     "Primary",
+     "Secondary"
+    ],
+    "Icon": [
+     "Default",
+     "Dot leading"
+    ],
+    "State": [
+     "Default",
+     "Hover",
+     "Focused",
+     "Disabled"
+    ],
+    "Side": [
+     "Left",
+     "Both",
+     "Right"
+    ]
+   },
+   "texts": [
+    "Button"
+   ]
+  },
+  {
+   "key": "dropdown-menu",
+   "name": "Dropdown Menu",
+   "lib": true,
+   "setKey": "9ff851ba06c173eaab718ea4d736bad7e91fb9ec",
+   "variantKey": "8a50e5497015830472f105567d30002a573381e3",
+   "variant": "Type=Full",
+   "default": "Type=Small",
+   "props": {
+    "Scroll bar": "BOOLEAN",
+    "Type": [
+     "Full",
+     "Small"
+    ]
+   },
+   "texts": [
+    "menu items, in order"
+   ]
+  },
+  {
+   "key": "logo-ms-teams",
+   "name": "ms-teams",
+   "lib": true,
+   "variantKey": "7651b45063cd95500b6b214736d1acdaa96fe51d",
+   "variant": "ms-teams",
+   "default": null,
+   "props": {},
+   "texts": []
   }
  ]
 }

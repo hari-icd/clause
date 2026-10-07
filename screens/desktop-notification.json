@@ -1,0 +1,1071 @@
+{
+ "title": "Desktop Notification",
+ "page": "10773:588882",
+ "height": 860,
+ "tree": {
+  "t": "stack",
+  "i": "root",
+  "gap": "5xl",
+  "pad": "5xl",
+  "bg": "bg-secondary",
+  "children": [
+   {
+    "t": "row",
+    "i": "row-0",
+    "gap": "5xl",
+    "align": "start",
+    "children": [
+     {
+      "t": "stack",
+      "i": "v-5",
+      "gap": "xs",
+      "children": [
+       {
+        "t": "row",
+        "i": "card-6",
+        "gap": "md",
+        "py": "sm",
+        "pl": "md",
+        "pr": "sm",
+        "align": "center",
+        "bg": "bg-primary",
+        "border": "border-secondary",
+        "radius": "2xl",
+        "children": [
+         {
+          "c": "logo-ms-teams",
+          "i": "logo-7",
+          "w": 36,
+          "h": 36
+         },
+         {
+          "t": "stack",
+          "i": "copy-1",
+          "gap": "xxs",
+          "w": 200,
+          "children": [
+           {
+            "t": "text",
+            "i": "t-2",
+            "content": "Record this meeting?",
+            "style": "Text sm/Medium",
+            "color": "text-primary",
+            "maxLines": 1
+           },
+           {
+            "t": "text",
+            "i": "t-3",
+            "content": "Teams is using your microphone",
+            "style": "Text xs/Regular",
+            "color": "text-tertiary",
+            "maxLines": 1
+           }
+          ]
+         },
+         {
+          "t": "row",
+          "i": "acts-8",
+          "gap": "xs",
+          "align": "center",
+          "children": [
+           {
+            "c": "split-button-brand",
+            "i": "split-4",
+            "p": {
+             "Size": "sm",
+             "Hierarchy": "Secondary",
+             "Side": "Both"
+            },
+            "text": [
+             "Record"
+            ]
+           }
+          ]
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "t": "stack",
+      "i": "v-13",
+      "gap": "xs",
+      "children": [
+       {
+        "t": "row",
+        "i": "card-14",
+        "gap": "md",
+        "py": "sm",
+        "pl": "md",
+        "pr": "sm",
+        "align": "center",
+        "bg": "bg-primary",
+        "border": "border-secondary",
+        "radius": "2xl",
+        "children": [
+         {
+          "c": "small-icon-button",
+          "i": "close-15",
+          "p": {
+           "Size": "xs",
+           "Icon swap": "@icon-close"
+          }
+         },
+         {
+          "c": "logo-ms-teams",
+          "i": "logo-16",
+          "w": 36,
+          "h": 36
+         },
+         {
+          "t": "stack",
+          "i": "copy-9",
+          "gap": "xxs",
+          "w": 200,
+          "children": [
+           {
+            "t": "text",
+            "i": "t-10",
+            "content": "Record this meeting?",
+            "style": "Text sm/Medium",
+            "color": "text-primary",
+            "maxLines": 1
+           },
+           {
+            "t": "text",
+            "i": "t-11",
+            "content": "Teams is using your microphone",
+            "style": "Text xs/Regular",
+            "color": "text-tertiary",
+            "maxLines": 1
+           }
+          ]
+         },
+         {
+          "t": "row",
+          "i": "acts-17",
+          "gap": "xs",
+          "align": "center",
+          "children": [
+           {
+            "c": "split-button-brand",
+            "i": "split-12",
+            "p": {
+             "Size": "sm",
+             "Hierarchy": "Secondary",
+             "Side": "Both"
+            },
+            "text": [
+             "Record"
+            ]
+           }
+          ]
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "t": "stack",
+      "i": "v-22",
+      "gap": "xs",
+      "children": [
+       {
+        "t": "row",
+        "i": "card-23",
+        "gap": "md",
+        "py": "sm",
+        "pl": "md",
+        "pr": "sm",
+        "align": "center",
+        "bg": "bg-primary",
+        "border": "border-secondary",
+        "radius": "2xl",
+        "children": [
+         {
+          "c": "logo-ms-teams",
+          "i": "logo-24",
+          "w": 36,
+          "h": 36
+         },
+         {
+          "t": "stack",
+          "i": "copy-18",
+          "gap": "xxs",
+          "w": 200,
+          "children": [
+           {
+            "t": "text",
+            "i": "t-19",
+            "content": "Record this meeting?",
+            "style": "Text sm/Medium",
+            "color": "text-primary",
+            "maxLines": 1
+           },
+           {
+            "t": "text",
+            "i": "t-20",
+            "content": "Teams is using your microphone",
+            "style": "Text xs/Regular",
+            "color": "text-tertiary",
+            "maxLines": 1
+           }
+          ]
+         },
+         {
+          "t": "row",
+          "i": "acts-25",
+          "gap": "xs",
+          "align": "center",
+          "children": [
+           {
+            "c": "split-button-brand",
+            "i": "split-21",
+            "p": {
+             "Size": "sm",
+             "Hierarchy": "Secondary",
+             "Side": "Both"
+            },
+            "text": [
+             "Record"
+            ]
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "c": "dropdown-menu",
+        "i": "menu-26",
+        "p": {
+         "Type": "Small",
+         "Scroll bar": "false"
+        },
+        "w": 200,
+        "text": [
+         "Not now",
+         "Don’t ask for Teams",
+         "Stop asking about any app"
+        ],
+        "ops": [
+         {
+          "nodes": [
+           {
+            "name": "placeholder",
+            "nth": 0,
+            "hide": true
+           },
+           {
+            "name": "placeholder",
+            "nth": 1,
+            "hide": true
+           },
+           {
+            "name": "placeholder",
+            "nth": 2,
+            "hide": true
+           },
+           {
+            "name": "placeholder",
+            "nth": 3,
+            "hide": true
+           },
+           {
+            "name": "placeholder",
+            "nth": 4,
+            "hide": true
+           },
+           {
+            "name": "log-out-01",
+            "nth": 0,
+            "hide": true
+           },
+           {
+            "has": "Log out",
+            "hide": true
+           }
+          ]
+         }
+        ]
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "t": "row",
+    "i": "row-1",
+    "gap": "5xl",
+    "align": "start",
+    "children": [
+     {
+      "t": "stack",
+      "i": "v-31",
+      "gap": "xs",
+      "children": [
+       {
+        "t": "row",
+        "i": "card-32",
+        "gap": "md",
+        "py": "sm",
+        "pl": "md",
+        "pr": "sm",
+        "align": "center",
+        "bg": "bg-primary",
+        "border": "border-secondary",
+        "radius": "2xl",
+        "children": [
+         {
+          "t": "stack",
+          "i": "copy-27",
+          "gap": "xxs",
+          "w": 200,
+          "children": [
+           {
+            "t": "text",
+            "i": "t-28",
+            "content": "Weekly design review",
+            "style": "Text sm/Medium",
+            "color": "text-primary",
+            "maxLines": 1
+           },
+           {
+            "t": "text",
+            "i": "t-29",
+            "content": "3:00 PM - 3:30 PM",
+            "style": "Text xs/Regular",
+            "color": "text-tertiary",
+            "maxLines": 1
+           }
+          ]
+         },
+         {
+          "t": "row",
+          "i": "acts-33",
+          "gap": "xs",
+          "align": "center",
+          "children": [
+           {
+            "c": "split-button-brand",
+            "i": "split-30",
+            "p": {
+             "Size": "sm",
+             "Hierarchy": "Secondary",
+             "Side": "Both"
+            },
+            "text": [
+             "Record Meeting"
+            ]
+           }
+          ]
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "t": "stack",
+      "i": "v-38",
+      "gap": "xs",
+      "children": [
+       {
+        "t": "row",
+        "i": "card-39",
+        "gap": "md",
+        "py": "sm",
+        "pl": "md",
+        "pr": "sm",
+        "align": "center",
+        "bg": "bg-primary",
+        "border": "border-secondary",
+        "radius": "2xl",
+        "children": [
+         {
+          "c": "small-icon-button",
+          "i": "close-40",
+          "p": {
+           "Size": "xs",
+           "Icon swap": "@icon-close"
+          }
+         },
+         {
+          "t": "stack",
+          "i": "copy-34",
+          "gap": "xxs",
+          "w": 200,
+          "children": [
+           {
+            "t": "text",
+            "i": "t-35",
+            "content": "Weekly design review",
+            "style": "Text sm/Medium",
+            "color": "text-primary",
+            "maxLines": 1
+           },
+           {
+            "t": "text",
+            "i": "t-36",
+            "content": "3:00 PM - 3:30 PM",
+            "style": "Text xs/Regular",
+            "color": "text-tertiary",
+            "maxLines": 1
+           }
+          ]
+         },
+         {
+          "t": "row",
+          "i": "acts-41",
+          "gap": "xs",
+          "align": "center",
+          "children": [
+           {
+            "c": "split-button-brand",
+            "i": "split-37",
+            "p": {
+             "Size": "sm",
+             "Hierarchy": "Secondary",
+             "Side": "Both"
+            },
+            "text": [
+             "Record Meeting"
+            ]
+           }
+          ]
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "t": "stack",
+      "i": "v-46",
+      "gap": "xs",
+      "children": [
+       {
+        "t": "row",
+        "i": "card-47",
+        "gap": "md",
+        "py": "sm",
+        "pl": "md",
+        "pr": "sm",
+        "align": "center",
+        "bg": "bg-primary",
+        "border": "border-secondary",
+        "radius": "2xl",
+        "children": [
+         {
+          "t": "stack",
+          "i": "copy-42",
+          "gap": "xxs",
+          "w": 200,
+          "children": [
+           {
+            "t": "text",
+            "i": "t-43",
+            "content": "Weekly design review",
+            "style": "Text sm/Medium",
+            "color": "text-primary",
+            "maxLines": 1
+           },
+           {
+            "t": "text",
+            "i": "t-44",
+            "content": "3:00 PM - 3:30 PM",
+            "style": "Text xs/Regular",
+            "color": "text-tertiary",
+            "maxLines": 1
+           }
+          ]
+         },
+         {
+          "t": "row",
+          "i": "acts-48",
+          "gap": "xs",
+          "align": "center",
+          "children": [
+           {
+            "c": "split-button-brand",
+            "i": "split-45",
+            "p": {
+             "Size": "sm",
+             "Hierarchy": "Secondary",
+             "Side": "Both"
+            },
+            "text": [
+             "Record Meeting"
+            ]
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "c": "dropdown-menu",
+        "i": "menu-49",
+        "p": {
+         "Type": "Small",
+         "Scroll bar": "false"
+        },
+        "w": 200,
+        "text": [
+         "Join without recording",
+         "Open brief",
+         "Not now",
+         "Turn off reminders"
+        ],
+        "ops": [
+         {
+          "nodes": [
+           {
+            "name": "placeholder",
+            "nth": 0,
+            "hide": true
+           },
+           {
+            "name": "placeholder",
+            "nth": 1,
+            "hide": true
+           },
+           {
+            "name": "placeholder",
+            "nth": 2,
+            "hide": true
+           },
+           {
+            "name": "placeholder",
+            "nth": 3,
+            "hide": true
+           },
+           {
+            "name": "placeholder",
+            "nth": 4,
+            "hide": true
+           },
+           {
+            "name": "log-out-01",
+            "nth": 0,
+            "hide": true
+           },
+           {
+            "has": "Turn off reminders",
+            "props": {
+             "Divider": "False"
+            }
+           }
+          ]
+         }
+        ]
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "t": "row",
+    "i": "row-2",
+    "gap": "5xl",
+    "align": "start",
+    "children": [
+     {
+      "t": "stack",
+      "i": "v-54",
+      "gap": "xs",
+      "children": [
+       {
+        "t": "row",
+        "i": "card-55",
+        "gap": "md",
+        "py": "sm",
+        "pl": "md",
+        "pr": "sm",
+        "align": "center",
+        "bg": "bg-primary",
+        "border": "border-secondary",
+        "radius": "2xl",
+        "children": [
+         {
+          "t": "stack",
+          "i": "copy-50",
+          "gap": "xxs",
+          "w": 200,
+          "children": [
+           {
+            "t": "text",
+            "i": "t-51",
+            "content": "Planning (in person)",
+            "style": "Text sm/Medium",
+            "color": "text-primary",
+            "maxLines": 1
+           },
+           {
+            "t": "text",
+            "i": "t-52",
+            "content": "11:00 AM - 12:00 PM",
+            "style": "Text xs/Regular",
+            "color": "text-tertiary",
+            "maxLines": 1
+           }
+          ]
+         },
+         {
+          "t": "row",
+          "i": "acts-56",
+          "gap": "xs",
+          "align": "center",
+          "children": [
+           {
+            "c": "split-button-brand",
+            "i": "split-53",
+            "p": {
+             "Size": "sm",
+             "Hierarchy": "Secondary",
+             "Side": "Both"
+            },
+            "text": [
+             "Record Meeting"
+            ]
+           }
+          ]
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "t": "stack",
+      "i": "v-61",
+      "gap": "xs",
+      "children": [
+       {
+        "t": "row",
+        "i": "card-62",
+        "gap": "md",
+        "py": "sm",
+        "pl": "md",
+        "pr": "sm",
+        "align": "center",
+        "bg": "bg-primary",
+        "border": "border-secondary",
+        "radius": "2xl",
+        "children": [
+         {
+          "t": "stack",
+          "i": "copy-57",
+          "gap": "xxs",
+          "w": 200,
+          "children": [
+           {
+            "t": "text",
+            "i": "t-58",
+            "content": "Planning (in person)",
+            "style": "Text sm/Medium",
+            "color": "text-primary",
+            "maxLines": 1
+           },
+           {
+            "t": "text",
+            "i": "t-59",
+            "content": "11:00 AM - 12:00 PM",
+            "style": "Text xs/Regular",
+            "color": "text-tertiary",
+            "maxLines": 1
+           }
+          ]
+         },
+         {
+          "t": "row",
+          "i": "acts-63",
+          "gap": "xs",
+          "align": "center",
+          "children": [
+           {
+            "c": "split-button-brand",
+            "i": "split-60",
+            "p": {
+             "Size": "sm",
+             "Hierarchy": "Secondary",
+             "Side": "Both"
+            },
+            "text": [
+             "Record Meeting"
+            ]
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "c": "dropdown-menu",
+        "i": "menu-64",
+        "p": {
+         "Type": "Small",
+         "Scroll bar": "false"
+        },
+        "w": 200,
+        "text": [
+         "Open brief",
+         "Not now",
+         "Turn off reminders"
+        ],
+        "ops": [
+         {
+          "nodes": [
+           {
+            "name": "placeholder",
+            "nth": 0,
+            "hide": true
+           },
+           {
+            "name": "placeholder",
+            "nth": 1,
+            "hide": true
+           },
+           {
+            "name": "placeholder",
+            "nth": 2,
+            "hide": true
+           },
+           {
+            "name": "placeholder",
+            "nth": 3,
+            "hide": true
+           },
+           {
+            "name": "placeholder",
+            "nth": 4,
+            "hide": true
+           },
+           {
+            "name": "log-out-01",
+            "nth": 0,
+            "hide": true
+           },
+           {
+            "has": "Log out",
+            "hide": true
+           }
+          ]
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "t": "stack",
+      "i": "v-70",
+      "gap": "xs",
+      "children": [
+       {
+        "t": "row",
+        "i": "card-71",
+        "gap": "md",
+        "py": "sm",
+        "pl": "md",
+        "pr": "sm",
+        "align": "center",
+        "bg": "bg-primary",
+        "border": "border-secondary",
+        "radius": "2xl",
+        "children": [
+         {
+          "t": "stack",
+          "i": "copy-65",
+          "gap": "xxs",
+          "w": 200,
+          "children": [
+           {
+            "t": "text",
+            "i": "t-66",
+            "content": "Still in the meeting?",
+            "style": "Text sm/Medium",
+            "color": "text-primary",
+            "maxLines": 1
+           },
+           {
+            "t": "text",
+            "i": "t-67",
+            "content": "Recording stops in 30 seconds.",
+            "style": "Text xs/Regular",
+            "color": "text-tertiary",
+            "maxLines": 1
+           }
+          ]
+         },
+         {
+          "t": "row",
+          "i": "acts-72",
+          "gap": "xs",
+          "align": "center",
+          "children": [
+           {
+            "c": "button-neutral",
+            "i": "btn-68",
+            "p": {
+             "Size": "sm",
+             "Hierarchy": "Tertiary",
+             "Icon leading": "false",
+             "Icon trailing": "false"
+            },
+            "text": {
+             "Button": "Stop"
+            }
+           },
+           {
+            "c": "button-neutral",
+            "i": "btn-69",
+            "p": {
+             "Size": "sm",
+             "Hierarchy": "Secondary",
+             "Icon leading": "false",
+             "Icon trailing": "false"
+            },
+            "text": {
+             "Button": "Keep recording"
+            }
+           }
+          ]
+         }
+        ]
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "t": "row",
+    "i": "row-3",
+    "gap": "5xl",
+    "align": "start",
+    "children": [
+     {
+      "t": "stack",
+      "i": "v-78",
+      "gap": "xs",
+      "children": [
+       {
+        "t": "row",
+        "i": "card-79",
+        "gap": "md",
+        "py": "sm",
+        "pl": "md",
+        "pr": "sm",
+        "align": "center",
+        "bg": "bg-primary",
+        "border": "border-secondary",
+        "radius": "2xl",
+        "children": [
+         {
+          "c": "small-icon-button",
+          "i": "close-80",
+          "p": {
+           "Size": "xs",
+           "Icon swap": "@icon-close"
+          }
+         },
+         {
+          "t": "stack",
+          "i": "copy-73",
+          "gap": "xxs",
+          "w": 200,
+          "children": [
+           {
+            "t": "text",
+            "i": "t-74",
+            "content": "Still in the meeting?",
+            "style": "Text sm/Medium",
+            "color": "text-primary",
+            "maxLines": 1
+           },
+           {
+            "t": "text",
+            "i": "t-75",
+            "content": "Recording stops in 30 seconds.",
+            "style": "Text xs/Regular",
+            "color": "text-tertiary",
+            "maxLines": 1
+           }
+          ]
+         },
+         {
+          "t": "row",
+          "i": "acts-81",
+          "gap": "xs",
+          "align": "center",
+          "children": [
+           {
+            "c": "button-neutral",
+            "i": "btn-76",
+            "p": {
+             "Size": "sm",
+             "Hierarchy": "Tertiary",
+             "Icon leading": "false",
+             "Icon trailing": "false"
+            },
+            "text": {
+             "Button": "Stop"
+            }
+           },
+           {
+            "c": "button-neutral",
+            "i": "btn-77",
+            "p": {
+             "Size": "sm",
+             "Hierarchy": "Secondary",
+             "Icon leading": "false",
+             "Icon trailing": "false"
+            },
+            "text": {
+             "Button": "Keep recording"
+            }
+           }
+          ]
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "t": "stack",
+      "i": "v-86",
+      "gap": "xs",
+      "children": [
+       {
+        "t": "row",
+        "i": "card-87",
+        "gap": "md",
+        "py": "sm",
+        "pl": "md",
+        "pr": "sm",
+        "align": "center",
+        "bg": "bg-primary",
+        "border": "border-secondary",
+        "radius": "2xl",
+        "children": [
+         {
+          "t": "stack",
+          "i": "copy-82",
+          "gap": "xxs",
+          "w": 200,
+          "children": [
+           {
+            "t": "text",
+            "i": "t-83",
+            "content": "Recording stopped",
+            "style": "Text sm/Medium",
+            "color": "text-primary",
+            "maxLines": 1
+           },
+           {
+            "t": "text",
+            "i": "t-84",
+            "content": "Looks like your call ended.",
+            "style": "Text xs/Regular",
+            "color": "text-tertiary",
+            "maxLines": 1
+           }
+          ]
+         },
+         {
+          "t": "row",
+          "i": "acts-88",
+          "gap": "xs",
+          "align": "center",
+          "children": [
+           {
+            "c": "button-neutral",
+            "i": "btn-85",
+            "p": {
+             "Size": "sm",
+             "Hierarchy": "Secondary",
+             "Icon leading": "false",
+             "Icon trailing": "false"
+            },
+            "text": {
+             "Button": "Resume"
+            }
+           }
+          ]
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "t": "stack",
+      "i": "v-93",
+      "gap": "xs",
+      "children": [
+       {
+        "t": "row",
+        "i": "card-94",
+        "gap": "md",
+        "py": "sm",
+        "pl": "md",
+        "pr": "sm",
+        "align": "center",
+        "bg": "bg-primary",
+        "border": "border-secondary",
+        "radius": "2xl",
+        "children": [
+         {
+          "c": "small-icon-button",
+          "i": "close-95",
+          "p": {
+           "Size": "xs",
+           "Icon swap": "@icon-close"
+          }
+         },
+         {
+          "t": "stack",
+          "i": "copy-89",
+          "gap": "xxs",
+          "w": 200,
+          "children": [
+           {
+            "t": "text",
+            "i": "t-90",
+            "content": "Recording stopped",
+            "style": "Text sm/Medium",
+            "color": "text-primary",
+            "maxLines": 1
+           },
+           {
+            "t": "text",
+            "i": "t-91",
+            "content": "Looks like your call ended.",
+            "style": "Text xs/Regular",
+            "color": "text-tertiary",
+            "maxLines": 1
+           }
+          ]
+         },
+         {
+          "t": "row",
+          "i": "acts-96",
+          "gap": "xs",
+          "align": "center",
+          "children": [
+           {
+            "c": "button-neutral",
+            "i": "btn-92",
+            "p": {
+             "Size": "sm",
+             "Hierarchy": "Secondary",
+             "Icon leading": "false",
+             "Icon trailing": "false"
+            },
+            "text": {
+             "Button": "Resume"
+            }
+           }
+          ]
+         }
+        ]
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ }
+}

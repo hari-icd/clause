@@ -36,3 +36,5 @@ Living list of the tricks that make the loop fast. Every time we find a loophole
 - `npm run clean` wipes `.clause/`, drafts, out, stale exports; `--all` also regenerated files. `npm run setup` on a new machine.
 - Nothing in the repo depends on npm packages; Node 18+ only.
 - `ops.nodes` `align: right|center|left` right-aligns a text inside a component (sets textAlignHorizontal + parent MAX). Needed for table numeric columns.
+- `ops.nodes` `has: "<text>"` selects the nearest instance that contains that text (hide/props it) — use when layer names repeat (menu items, list rows).
+- Molecules exist for most "atom stacks": Split Button Brand (`split-button-brand`), Dropdown Menu (`dropdown-menu`). Check the catalog for *-menu / split-* before composing from atoms.
