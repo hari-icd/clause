@@ -25,7 +25,7 @@ writeFileSync(resolve(dir, "manifest.json"), JSON.stringify({
   editorType: ["figma"],
   documentAccess: "dynamic-page",
   permissions: ["teamlibrary"],
-  menu: [{ name: "Start (silent)", command: "start" }, { name: "Open Clause Assist", command: "panel" }, { name: "Extract components & tokens", command: "extract" }],
+  menu: [{ name: "Open Clause Assist", command: "panel" }, { name: "Start (silent)", command: "start" }, { name: "Extract components & tokens", command: "extract" }],
   networkAccess: { allowedDomains: ["none"], devAllowedDomains: [`http://localhost:${PORT}`] },
 }, null, 2));
 
@@ -57,8 +57,11 @@ figma.ui.onmessage = async (msg) => {
   const t0 = Date.now();
   let page = null, before = new Set();
   try {
-    page = await figma.getNodeByIdAsync(S.PAGE_ID);
-    if (!page) throw new Error("canvas page " + S.PAGE_ID + " not found in this file (" + figma.root.name + ") — open the file named in ds/config.md");
+    // page rule: a screen pinned with "page" in its JSON → that page; a screen already built somewhere → that page; otherwise the page the user is on.
+    const hasTag = pg => pg.children.some(n => n.getPluginData && n.getPluginData("es-screen") === msg.name);
+    if (S.PINNED_PAGE) page = await figma.getNodeByIdAsync(S.PINNED_PAGE);
+    if (!page) { const cur = figma.currentPage; if (hasTag(cur)) page = cur; else { for (const pg of figma.root.children) { if (pg === cur) continue; await pg.loadAsync(); if (hasTag(pg)) { page = pg; break; } } } if (!page) page = cur; }
+    S.PAGE_ID = page.id;
     await figma.setCurrentPageAsync(page);
     before = new Set(page.children.map(n => n.id));
     const old = page.children.filter(n => n.getPluginData("es-screen") === msg.name);

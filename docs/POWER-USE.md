@@ -23,15 +23,16 @@ Living list of the tricks that make the loop fast. Every time we find a loophole
 - Readback warnings: `prop not applied …` and `variant not matched …` — a warning is a bug, never ignore.
 - `bg: "none"` on any node (instances too) clears its fill — the only way to strip a component's background.
 - Instances can't be dashed/outlined differently; need a plain frame for that (record `why`).
-- Big library component sets import slowly once (minutes for large sets), then cached per plugin session.
+- Big library sets import slowly once (~2 min for copilot-input-box), then cached per plugin session.
 
 ## New design system
 - Plugin ⚙ → **Extract components & tokens** (or the menu item): walks every page + enabled libraries → `ds/components.json`, `variable-keys.json`, `tokens/*`, `tokens.css`, a starter `config.md`. With an existing catalog it writes a preview under `.clause/` and Claude (listener on) compares and recommends the merge. One click replaces the day of manual harvesting.
 
 ## Catalog growth
-- A component the catalog lacks → add it by main component id (2 lines in `ds/components.json`), or re-run Extract. Prefer list-item / header / card components over primitives.
-- Page-level specs learned from reference frames live in `ds/design-rules.md`. Add one block per new pattern.
+- A component the catalog lacks → add it by main component id (`project-header` was added this way in 2 lines). Prefer `list-item*`, `form-header`, `add-source`, `container`, `featured-icon` over primitives.
+- Page-level specs learned from senior frames live in `ds/design-rules.md` (Meetings, Settings pattern). Add one block per new pattern.
 
 ## Hygiene
 - `npm run clean` wipes `.clause/`, drafts, out, stale exports; `--all` also regenerated files. `npm run setup` on a new machine.
 - Nothing in the repo depends on npm packages; Node 18+ only.
+- `ops.nodes` `align: right|center|left` right-aligns a text inside a component (sets textAlignHorizontal + parent MAX). Needed for table numeric columns.

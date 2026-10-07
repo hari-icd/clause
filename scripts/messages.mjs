@@ -33,7 +33,7 @@ export function createStore(root) {
     discardQueued: () => { const n = db.messages.filter(m => m.s === db.current && m.status === "queued").length; db.messages = db.messages.filter(m => !(m.s === db.current && m.status === "queued")); if (n) save(); return n; },
     unread: () => db.messages.filter(m => m.status === "sent"),
     markRead: () => { const u = db.messages.filter(m => m.status === "sent"); for (const m of u) { m.status = "read"; m.readAt = Date.now(); } if (u.length) { lastReadSession = u[u.length - 1].s; save(); } return u; },
-    reply: text => { for (const m of db.messages) if (m.status === "read") m.status = "done"; const sid = lastReadSession || db.current; const m = { n: ++seq, id: "m" + seq, t: Date.now(), s: sid, from: "claude", kind: "msg", text: String(text).slice(0, 20000), status: "done" }; db.messages.push(m); touch(sid); save(); return m; },
+    reply: text => { const answered = db.messages.filter(m => m.status === "read"); for (const m of answered) m.status = "done"; const sid = lastReadSession || db.current; const since = answered.length ? Math.min(...answered.map(m => m.sentAt || m.t)) : null; const m = { n: ++seq, id: "m" + seq, t: Date.now(), s: sid, from: "claude", kind: "msg", text: String(text).slice(0, 20000), status: "done", took: since ? Date.now() - since : undefined, answers: answered.map(m => m.id) }; db.messages.push(m); touch(sid); save(); return m; },
     clear: () => { db.messages = db.messages.filter(m => m.s !== db.current); save(); },
   };
 }
