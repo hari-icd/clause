@@ -13,12 +13,12 @@
   ],
   "menu": [
     {
-      "name": "Start (silent)",
-      "command": "start"
-    },
-    {
       "name": "Open Clause Assist",
       "command": "panel"
+    },
+    {
+      "name": "Start (silent)",
+      "command": "start"
     },
     {
       "name": "Extract components & tokens",
