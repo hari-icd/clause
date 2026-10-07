@@ -1,77 +1,71 @@
 # Clause
 
-Prompt or reference → developer-ready screens in Figma, built from your **real** design-system components and tokens. Zero style drift, ~2 s per rebuild, and a Figma plugin that lets you talk back to Claude without leaving the canvas.
+Describe a screen (or point at a reference) → it appears in Figma, built from your **real** design-system components with every spacing, colour and text style bound to a variable. Then annotate it in Figma and send the notes to Claude from inside the file. No code, no CSS, no manual cleanup.
 
-Clause is a small control plane for Claude Code: you describe a screen (or point at a reference frame), Claude writes a JSON composition, a builder turns it into Figma frames made of real library instances with every spacing, color and text style bound to a variable or style. The same scene is exported as a real token-driven HTML page.
+Works for designers who have never opened a terminal. Claude does the setup; you do four clicks in Figma.
 
-## How it works
+---
 
-```
-you / reference frame ──▶ Claude ──▶ screens/<name>.json ──▶ live server ──▶ Clause Assist plugin ──▶ Figma frame
-                                                            │                                    │
-                                                            └──▶ exports/<name>.html ◀───────────┘  (real DOM, tokens as CSS vars)
-```
+## Start here (10 minutes, once per computer)
 
-- `ds/` is the only design-system-specific folder: component catalog, variable keys, token exports, design rules. Swap it to retarget another DS.
-- `screens/*.json` is the whole spec. Node names are IDs, props use the Figma axis names, spacing/colors are token names. Lint rejects raw values without a reason.
-- The plugin (**Clause Assist**) rebuilds on every save, exports HTML, and gives you a chat pane: select layers, write what should change, queue, send. Claude reads the inbox, edits the JSON, replies in the pane.
+### Part A — install two apps (you)
 
-## Getting started (you do 4 things, Claude does the rest)
+1. **Figma desktop app** — https://www.figma.com/downloads/ (the browser version cannot run developer plugins).
+2. **Claude Code** — https://claude.com/claude-code. Install and sign in.
 
-Requirements: Figma desktop, [Claude Code](https://claude.com/claude-code), Node 18+.
+### Part B — open Clause in Claude Code (you)
 
-**You:**
-1. `git clone https://github.com/hari-icd/clause` and open the folder in Claude Code.
-2. In Figma desktop: Plugins → Development → **Import plugin from manifest…** → `figma-plugin/manifest.json`.
-3. Open your design-system file (team libraries enabled).
-4. Tell Claude: **"set me up"**.
+3. Open Claude Code → **Open folder** → pick this folder. (No folder yet? Paste `https://github.com/hari-icd/clause` into Claude Code and ask it to clone it for you.)
+4. In the chat, type exactly:
 
-**Claude then:** checks the machine (`npm run setup`), starts the live server, waits for you to run **Clause Assist → Open Clause Assist** once, triggers **Extract components & tokens** in the plugin (1–3 min; the pane shows progress), audits the resulting `ds/` catalog, replies in the pane with what it found and what to build first, and arms the inbox listener so your next message from Figma reaches it without a prompt.
+   ```
+   set me up
+   ```
 
-First screen: give Claude a screenshot or a Figma URL of what you want. It drafts from the reference, builds the frame on the page you're on, and shows you the screenshot.
+### Part C — Claude takes over
 
-Already have a catalog? The same extract runs as a **preview** (written under `.clause/`) and Claude tells you what changed before anything in `ds/` is touched.
+Claude checks the computer, starts Clause's local server, and tells you the only two things it cannot click for you:
 
-## Daily loop
+5. **Import the plugin into Figma** (once): Figma menu → *Plugins* → *Development* → *Import plugin from manifest…* → choose `figma-plugin/manifest.json` inside this folder.
+6. **Open your design-system file in Figma** and run *Plugins* → *Development* → **Clause Assist** → *Open Clause Assist*.
 
-| You | What happens |
-|---|---|
-| "build the meetings page" (+ screenshot or Figma URL) | Claude drafts from the reference (`npm run inspect <url>`), writes `screens/meetings.json`, the frame appears in Figma, screenshot comes back |
-| Select layers in Figma, type "use list-item here", ⏎ | Queued in the plugin pane with node ids, component, props, path |
-| **Send all** (or ⌘⏎ for send now) | Claude picks it up (`npm run inbox`), edits the JSON, rebuilds, replies in the pane with ✓✓ |
-| `npm run inspect <ref> --vs <mine>` | Numeric diff of your build vs a reference frame (w/h/gap/pad/radius/props) |
+Claude sees the plugin connect, starts **Extract components & tokens** in it (1–3 min, progress shows in the plugin pane), reads the result, and replies in the pane with what it found and what to build first.
 
-Say **"listen"** in Claude Code to have it wake on each send instead of you typing "check the inbox". Idle cost is zero.
+That is the whole setup. From now on you talk to Claude from the plugin pane or from Claude Code — whichever is open.
 
-## Commands
+> Something failed? Tell Claude Code: **"setup failed, here is what I see: …"** and paste the message. Claude fixes it or tells you the one thing to click.
 
-| | |
-|---|---|
-| `npm run setup` | machine check + generate plugin and tokens (Claude runs it for you via **/onboard**) |
-| `npm run live` | server + listing + plugin rebuild |
-| `npm run inspect <url\|nodeId> [--vs <id>] [--raw]` | reference frame → draft JSON / diff / layer dump |
-| `npm run inbox` / `npm run reply -- "…"` / `npm run status -- "…"` | what Claude uses to read, answer and show presence in the pane |
-| `npm run clean [--all]` | remove local history, drafts, stale exports (and generated files with `--all`) |
+---
 
-## Repo map
+## Every day
 
-```
-CLAUDE.md          contract Claude follows (read this to understand the rules)
-docs/POWER-USE.md  tricks that keep the loop fast — grows as we find loopholes
-ds/                design-system catalog + tokens + rules   ← swap point
-screens/           screen compositions (JSON)
-scripts/           server, compiler, lint, builder runtime, plugin generator, tools
-scripts/plugin/    the plugin's own pieces (UI, annotate, extract)
-figma-plugin/      generated — import this manifest into Figma
-exports/           generated HTML + meta.json (gitignored)
-.clause/           local chat history (gitignored)
-```
+| You want | Do this | What happens |
+|---|---|---|
+| A new screen | Tell Claude (either chat): *"build the meetings page"* — add a screenshot or a Figma link of a reference if you have one | Claude drafts the screen, it appears on the Figma page you are on, Claude shows you a screenshot |
+| Change something | In Figma, select the layer(s), type in the plugin pane what should change, press **⏎** | Claude edits, the frame rebuilds in place (~1 s), the pane shows ✓ sent → ✓✓ read → reply |
+| Several changes at once | Type each, press **⌘⏎** to queue; press **⏎** when done | They go as one batch |
+| Ask anything | Type without selecting layers | Plain message to Claude |
+| Stop Claude mid-task | Press **■ Stop** next to its "working…" bubble | Claude drops the task and replies with where it stopped |
+| Claude reacting without being prompted | Say **"listen"** in Claude Code | Claude wakes on every send from the plugin (costs nothing while idle) |
+| A real web page of a screen | ☰ → *Open listing page* | Every screen as token-driven HTML; drop a page back onto the plugin to rebuild it |
 
-## Principles
+Good references make good screens: a screenshot of the real product, or a frame a senior designer built. Claude reads exact spacing and components from a Figma frame, so a Figma link beats a screenshot.
 
-- **Constrain the surface, not the intelligence.** The agent can only reach real components and real tokens; primitives are allowed but labelled with a `why`.
-- **Discipline lives in the repo, not the session.** A fresh Claude session reads `CLAUDE.md` + `ds/` and produces the same output.
-- **Never refuse, always label.** No component for a pattern? Build it as a recorded primitive, say so, move on. Catalog grows from real screens, not from documenting a whole DS up front.
-- **Every loophole gets logged** (`docs/POWER-USE.md`) and, where possible, turned into a tool.
+---
 
-`main` is design-system agnostic: `ds/` ships empty and is filled by **Extract components & tokens**. Teams keep their own DS on a private branch.
+## Switching to another design system
+
+Open that design-system file in Figma and run **Clause Assist → Extract components & tokens** (or tell Claude "new design system"). Claude rebuilds the catalog and tells you what changed. Nothing else to configure. Keep each team's catalog on its own git branch (`main` carries no design system; this team's lives on `es`).
+
+---
+
+## For Claude (and curious humans)
+
+- **Contract**: `CLAUDE.md`. Schema: `docs/SCHEMA.md`. Speed tricks and loopholes: `docs/POWER-USE.md`.
+- **Skills**: `/onboard` (the setup above), `/screen` (build from brief/reference), `/fix` (apply plugin messages).
+- **Pipeline**: `screens/<name>.json` → `scripts/compile-core.mjs` (validates against `ds/`) → `scripts/serve.mjs` (watch, SSE, HTML export, message store) → `figma-plugin/` (builder runtime inside Figma) → frame.
+- **Commands**: `npm run setup` · `npm run live` · `npm run inspect <url|id> [--vs <id>] [--raw]` · `npm run inbox` / `npm run reply -- "…"` / `npm run status -- "…"` · `npm run clean [--all]`.
+- Node 18+, zero npm dependencies. Local-only state: `.clause/` (chat history), `exports/`, `ds/tokens.css`.
+
+### Principles
+Constrain the surface, not the intelligence · discipline lives in the repo, not the session · never refuse, always label (primitives carry a `why`) · every loophole gets logged and tooled.

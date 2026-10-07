@@ -44,7 +44,17 @@
          "Routines",
          "New routine"
         ],
-        "bg": "none"
+        "bg": "none",
+        "ops": [
+         {
+          "nodes": [
+           {
+            "has": "$1.23",
+            "hide": true
+           }
+          ]
+         }
+        ]
        }
       ]
      },
@@ -83,7 +93,8 @@
             },
             "text": [
              "I want to set up a scheduled task. Briefly explain how scheduled tasks work, then ask me a few questions to figure out what I’d like you to do and when it should run."
-            ]
+            ],
+            "w": 740
            }
           ]
          },
@@ -94,11 +105,27 @@
           "gap": "lg",
           "children": [
            {
-            "c": "thoughts",
-            "i": "thoughts",
-            "p": {
-             "State": "Closed"
-            }
+            "t": "row",
+            "i": "thoughts-row",
+            "gap": "md",
+            "align": "center",
+            "children": [
+             {
+              "c": "agent-avatar",
+              "i": "thoughts-av",
+              "p": {
+               "Size": "xs",
+               "Type": "Advance"
+              }
+             },
+             {
+              "c": "thoughts",
+              "i": "thoughts",
+              "p": {
+               "State": "Closed"
+              }
+             }
+            ]
            },
            {
             "t": "text",
@@ -251,7 +278,9 @@
               "children": [
                {
                 "c": "icon-script",
-                "i": "step-ic-1"
+                "i": "step-ic-1",
+                "w": 16,
+                "h": 16
                },
                {
                 "t": "text",
@@ -271,7 +300,9 @@
               "children": [
                {
                 "c": "icon-search-md",
-                "i": "step-ic-2"
+                "i": "step-ic-2",
+                "w": 16,
+                "h": 16
                },
                {
                 "t": "text",
@@ -371,6 +402,27 @@
        {
         "has": "Log out",
         "hide": true
+       },
+       {
+        "has": "Keyboard shortcuts",
+        "props": {
+         "End Type": "Icon"
+        }
+       },
+       {
+        "has": "Settings",
+        "props": {
+         "Icon": "true"
+        },
+        "icon": "@icon-pencil"
+       },
+       {
+        "has": "Keyboard shortcuts",
+        "nth": 0,
+        "props": {
+         "Icon": "true"
+        },
+        "icon": "@icon-folder"
        }
       ]
      }

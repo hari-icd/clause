@@ -4920,6 +4920,26 @@
    "default": null,
    "props": {},
    "texts": []
+  },
+  {
+   "key": "icon-pencil",
+   "name": "pencil-02",
+   "lib": true,
+   "variantKey": "2bf028c647abf0efe46fba58cc85eeb38684ab22",
+   "variant": "pencil-02",
+   "default": null,
+   "props": {},
+   "texts": []
+  },
+  {
+   "key": "icon-chevron-right-sm",
+   "name": "chevron-right",
+   "lib": true,
+   "variantKey": "3894f5ad9bb4702e97d5da3b4f813e8817c9226a",
+   "variant": "chevron-right",
+   "default": null,
+   "props": {},
+   "texts": []
   }
  ]
 }
