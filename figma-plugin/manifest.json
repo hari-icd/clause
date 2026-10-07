@@ -1,0 +1,36 @@
+{
+  "name": "Clause Assist",
+  "id": "es-ds-live-preview-dev",
+  "api": "1.0.0",
+  "main": "code.js",
+  "ui": "ui.html",
+  "editorType": [
+    "figma"
+  ],
+  "documentAccess": "dynamic-page",
+  "permissions": [
+    "teamlibrary"
+  ],
+  "menu": [
+    {
+      "name": "Start (silent)",
+      "command": "start"
+    },
+    {
+      "name": "Open Clause Assist",
+      "command": "panel"
+    },
+    {
+      "name": "Extract components & tokens",
+      "command": "extract"
+    }
+  ],
+  "networkAccess": {
+    "allowedDomains": [
+      "none"
+    ],
+    "devAllowedDomains": [
+      "http://localhost:8787"
+    ]
+  }
+}
