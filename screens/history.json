@@ -1,0 +1,814 @@
+{
+ "title": "History",
+ "height": 900,
+ "tree": {
+  "t": "row",
+  "gap": "none",
+  "clip": true,
+  "children": [
+   {
+    "c": "main-nav",
+    "i": "nav",
+    "p": {
+     "types": "collapsed"
+    },
+    "fill": "y"
+   },
+   {
+    "t": "stack",
+    "i": "main",
+    "grow": true,
+    "fill": "y",
+    "align": "center",
+    "gap": "none",
+    "bg": "bg-secondary",
+    "children": [
+     {
+      "t": "stack",
+      "i": "column",
+      "w": 760,
+      "gap": "3xl",
+      "pt": "5xl",
+      "children": [
+       {
+        "t": "stack",
+        "i": "title-block",
+        "gap": "xs",
+        "children": [
+         {
+          "t": "text",
+          "i": "title",
+          "content": "History",
+          "style": "Display sm/Semibold",
+          "color": "text-primary"
+         },
+         {
+          "t": "text",
+          "i": "subtitle",
+          "content": "Find all your chat history here",
+          "style": "Text md/Regular",
+          "color": "text-secondary"
+         }
+        ]
+       },
+       {
+        "c": "input-field-outline",
+        "i": "search",
+        "fill": "x",
+        "p": {
+         "Size": "lg",
+         "Type": "Icon leading",
+         "Label": "false",
+         "Hint text": "false",
+         "Help icon": "false",
+         "Leading icon": "true",
+         "Encryption": "false",
+         "Icon swap": "@icon-search-md",
+         "Destructive": "False",
+         "State": "Placeholder"
+        },
+        "text": [
+         "Search..."
+        ]
+       },
+       {
+        "t": "row",
+        "i": "controls",
+        "fill": "x",
+        "justify": "between",
+        "align": "center",
+        "children": [
+         {
+          "c": "toggle-group",
+          "i": "tabs",
+          "p": {
+           "Type": "Inset",
+           "Style": "Text",
+           "Size": "md",
+           "Variant": "Default"
+          },
+          "text": [
+           "All",
+           "Yours",
+           "Shared with you"
+          ]
+         },
+         {
+          "t": "row",
+          "i": "right-controls",
+          "gap": "md",
+          "align": "center",
+          "children": [
+           {
+            "c": "button-neutral",
+            "i": "types",
+            "p": {
+             "Size": "sm",
+             "Hierarchy": "Secondary",
+             "Icon leading": "true",
+             "Icon leading swap": "@icon-layout-left",
+             "Icon trailing": "false"
+            },
+            "text": {
+             "Button CTA": "All Types"
+            }
+           },
+           {
+            "c": "button-neutral",
+            "i": "newest",
+            "p": {
+             "Size": "sm",
+             "Hierarchy": "Secondary",
+             "Icon leading": "true",
+             "Icon leading swap": "@icon-chevron-down-sm",
+             "Icon trailing": "false"
+            },
+            "text": {
+             "Button CTA": "Newest"
+            }
+           },
+           {
+            "c": "toggle-group",
+            "i": "view",
+            "p": {
+             "Type": "Inset",
+             "Style": "Icon only",
+             "Size": "sm",
+             "Variant": "Default"
+            },
+            "ops": [
+             {
+              "nodes": [
+               {
+                "name": "_Toggle group base",
+                "nth": 5,
+                "hide": true
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "t": "stack",
+        "i": "table",
+        "fill": "x",
+        "gap": "none",
+        "children": [
+         {
+          "t": "text",
+          "i": "section",
+          "content": "To Dos",
+          "style": "Text sm/Medium",
+          "color": "text-secondary",
+          "pl": "lg",
+          "pb": "xl"
+         },
+         {
+          "t": "row",
+          "i": "thead",
+          "fill": "x",
+          "align": "center",
+          "borderB": "border-secondary",
+          "children": [
+           {
+            "c": "col-header-cell",
+            "i": "th-chat",
+            "p": {
+             "Size": "md",
+             "Text": "True",
+             "Checkbox": "False",
+             "State": "Default",
+             "Data Icon": "Off"
+            },
+            "text": [
+             "CHAT"
+            ],
+            "fill": "x"
+           },
+           {
+            "t": "row",
+            "i": "th-cost",
+            "w": 140,
+            "justify": "end",
+            "children": [
+             {
+              "c": "col-header-cell",
+              "i": "th-c",
+              "p": {
+               "Size": "md",
+               "Text": "True",
+               "Checkbox": "False",
+               "State": "Default",
+               "Data Icon": "Off"
+              },
+              "text": [
+               "COST"
+              ],
+              "w": 120
+             }
+            ]
+           },
+           {
+            "t": "row",
+            "i": "th-time",
+            "w": 140,
+            "justify": "end",
+            "children": [
+             {
+              "c": "col-header-cell",
+              "i": "th-t",
+              "p": {
+               "Size": "md",
+               "Text": "True",
+               "Checkbox": "False",
+               "State": "Default",
+               "Data Icon": "Off"
+              },
+              "text": [
+               "TIME & DATE"
+              ],
+              "w": 130
+             }
+            ]
+           }
+          ]
+         },
+         {
+          "t": "row",
+          "i": "r0",
+          "fill": "x",
+          "h": 48,
+          "align": "center",
+          "borderB": "border-secondary",
+          "children": [
+           {
+            "c": "table-cell",
+            "i": "r0-name",
+            "p": {
+             "Style": "Text",
+             "Lead": "No",
+             "State": "Default",
+             "Size": "md",
+             "Supporting Text": "false",
+             "Badge": "false",
+             "Dropdown": "false"
+            },
+            "text": [
+             "Product Roadmap Sync"
+            ],
+            "fill": "x"
+           },
+           {
+            "c": "icon-file",
+            "i": "r0-ic"
+           },
+           {
+            "t": "row",
+            "i": "r0-cost",
+            "w": 140,
+            "justify": "end",
+            "children": [
+             {
+              "c": "table-cell",
+              "i": "r0-c",
+              "p": {
+               "Style": "Text",
+               "Lead": "No",
+               "State": "Default",
+               "Size": "md",
+               "Supporting Text": "false",
+               "Badge": "false",
+               "Dropdown": "false"
+              },
+              "text": [
+               "$0.70"
+              ],
+              "fill": "x"
+             }
+            ]
+           },
+           {
+            "t": "row",
+            "i": "r0-time",
+            "w": 140,
+            "justify": "end",
+            "children": [
+             {
+              "c": "table-cell",
+              "i": "r0-t",
+              "p": {
+               "Style": "Text",
+               "Lead": "No",
+               "State": "Default",
+               "Size": "md",
+               "Supporting Text": "false",
+               "Badge": "false",
+               "Dropdown": "false"
+              },
+              "text": [
+               "3h ago"
+              ],
+              "fill": "x"
+             }
+            ]
+           }
+          ]
+         },
+         {
+          "t": "row",
+          "i": "r1",
+          "fill": "x",
+          "h": 48,
+          "align": "center",
+          "borderB": "border-secondary",
+          "children": [
+           {
+            "c": "table-cell",
+            "i": "r1-name",
+            "p": {
+             "Style": "Text",
+             "Lead": "No",
+             "State": "Default",
+             "Size": "md",
+             "Supporting Text": "false",
+             "Badge": "false",
+             "Dropdown": "false"
+            },
+            "text": [
+             "Enterprise Deal Review"
+            ],
+            "fill": "x"
+           },
+           {
+            "c": "icon-file",
+            "i": "r1-ic"
+           },
+           {
+            "t": "row",
+            "i": "r1-cost",
+            "w": 140,
+            "justify": "end",
+            "children": [
+             {
+              "c": "table-cell",
+              "i": "r1-c",
+              "p": {
+               "Style": "Text",
+               "Lead": "No",
+               "State": "Default",
+               "Size": "md",
+               "Supporting Text": "false",
+               "Badge": "false",
+               "Dropdown": "false"
+              },
+              "text": [
+               "$0.70"
+              ],
+              "fill": "x"
+             }
+            ]
+           },
+           {
+            "t": "row",
+            "i": "r1-time",
+            "w": 140,
+            "justify": "end",
+            "children": [
+             {
+              "c": "table-cell",
+              "i": "r1-t",
+              "p": {
+               "Style": "Text",
+               "Lead": "No",
+               "State": "Default",
+               "Size": "md",
+               "Supporting Text": "false",
+               "Badge": "false",
+               "Dropdown": "false"
+              },
+              "text": [
+               "1h ago"
+              ],
+              "fill": "x"
+             }
+            ]
+           }
+          ]
+         },
+         {
+          "t": "row",
+          "i": "r2",
+          "fill": "x",
+          "h": 48,
+          "align": "center",
+          "borderB": "border-secondary",
+          "children": [
+           {
+            "c": "table-cell",
+            "i": "r2-name",
+            "p": {
+             "Style": "Text",
+             "Lead": "No",
+             "State": "Default",
+             "Size": "md",
+             "Supporting Text": "false",
+             "Badge": "false",
+             "Dropdown": "false"
+            },
+            "text": [
+             "QBR with Acme Corp"
+            ],
+            "fill": "x"
+           },
+           {
+            "c": "icon-file",
+            "i": "r2-ic"
+           },
+           {
+            "t": "row",
+            "i": "r2-cost",
+            "w": 140,
+            "justify": "end",
+            "children": [
+             {
+              "c": "table-cell",
+              "i": "r2-c",
+              "p": {
+               "Style": "Text",
+               "Lead": "No",
+               "State": "Default",
+               "Size": "md",
+               "Supporting Text": "false",
+               "Badge": "false",
+               "Dropdown": "false"
+              },
+              "text": [
+               "$0.70"
+              ],
+              "fill": "x"
+             }
+            ]
+           },
+           {
+            "t": "row",
+            "i": "r2-time",
+            "w": 140,
+            "justify": "end",
+            "children": [
+             {
+              "c": "table-cell",
+              "i": "r2-t",
+              "p": {
+               "Style": "Text",
+               "Lead": "No",
+               "State": "Default",
+               "Size": "md",
+               "Supporting Text": "false",
+               "Badge": "false",
+               "Dropdown": "false"
+              },
+              "text": [
+               "3h ago"
+              ],
+              "fill": "x"
+             }
+            ]
+           }
+          ]
+         },
+         {
+          "t": "row",
+          "i": "r3",
+          "fill": "x",
+          "h": 48,
+          "align": "center",
+          "borderB": "border-secondary",
+          "children": [
+           {
+            "c": "table-cell",
+            "i": "r3-name",
+            "p": {
+             "Style": "Text",
+             "Lead": "No",
+             "State": "Default",
+             "Size": "md",
+             "Supporting Text": "false",
+             "Badge": "false",
+             "Dropdown": "false"
+            },
+            "text": [
+             "Customer Success Standup"
+            ],
+            "fill": "x"
+           },
+           {
+            "c": "icon-file",
+            "i": "r3-ic"
+           },
+           {
+            "t": "row",
+            "i": "r3-cost",
+            "w": 140,
+            "justify": "end",
+            "children": [
+             {
+              "c": "table-cell",
+              "i": "r3-c",
+              "p": {
+               "Style": "Text",
+               "Lead": "No",
+               "State": "Default",
+               "Size": "md",
+               "Supporting Text": "false",
+               "Badge": "false",
+               "Dropdown": "false"
+              },
+              "text": [
+               "$0.70"
+              ],
+              "fill": "x"
+             }
+            ]
+           },
+           {
+            "t": "row",
+            "i": "r3-time",
+            "w": 140,
+            "justify": "end",
+            "children": [
+             {
+              "c": "table-cell",
+              "i": "r3-t",
+              "p": {
+               "Style": "Text",
+               "Lead": "No",
+               "State": "Default",
+               "Size": "md",
+               "Supporting Text": "false",
+               "Badge": "false",
+               "Dropdown": "false"
+              },
+              "text": [
+               "3h ago"
+              ],
+              "fill": "x"
+             }
+            ]
+           }
+          ]
+         },
+         {
+          "t": "row",
+          "i": "r4",
+          "fill": "x",
+          "h": 48,
+          "align": "center",
+          "borderB": "border-secondary",
+          "children": [
+           {
+            "c": "table-cell",
+            "i": "r4-name",
+            "p": {
+             "Style": "Text",
+             "Lead": "No",
+             "State": "Default",
+             "Size": "md",
+             "Supporting Text": "false",
+             "Badge": "false",
+             "Dropdown": "false"
+            },
+            "text": [
+             "Cross-Sell Strategy Workshop"
+            ],
+            "fill": "x"
+           },
+           {
+            "c": "icon-file",
+            "i": "r4-ic"
+           },
+           {
+            "t": "row",
+            "i": "r4-cost",
+            "w": 140,
+            "justify": "end",
+            "children": [
+             {
+              "c": "table-cell",
+              "i": "r4-c",
+              "p": {
+               "Style": "Text",
+               "Lead": "No",
+               "State": "Default",
+               "Size": "md",
+               "Supporting Text": "false",
+               "Badge": "false",
+               "Dropdown": "false"
+              },
+              "text": [
+               "$0.70"
+              ],
+              "fill": "x"
+             }
+            ]
+           },
+           {
+            "t": "row",
+            "i": "r4-time",
+            "w": 140,
+            "justify": "end",
+            "children": [
+             {
+              "c": "table-cell",
+              "i": "r4-t",
+              "p": {
+               "Style": "Text",
+               "Lead": "No",
+               "State": "Default",
+               "Size": "md",
+               "Supporting Text": "false",
+               "Badge": "false",
+               "Dropdown": "false"
+              },
+              "text": [
+               "3h ago"
+              ],
+              "fill": "x"
+             }
+            ]
+           }
+          ]
+         },
+         {
+          "t": "row",
+          "i": "r5",
+          "fill": "x",
+          "h": 48,
+          "align": "center",
+          "borderB": "border-secondary",
+          "children": [
+           {
+            "c": "table-cell",
+            "i": "r5-name",
+            "p": {
+             "Style": "Text",
+             "Lead": "No",
+             "State": "Default",
+             "Size": "md",
+             "Supporting Text": "false",
+             "Badge": "false",
+             "Dropdown": "false"
+            },
+            "text": [
+             "Eng-Product Alignment"
+            ],
+            "fill": "x"
+           },
+           {
+            "c": "icon-file",
+            "i": "r5-ic"
+           },
+           {
+            "t": "row",
+            "i": "r5-cost",
+            "w": 140,
+            "justify": "end",
+            "children": [
+             {
+              "c": "table-cell",
+              "i": "r5-c",
+              "p": {
+               "Style": "Text",
+               "Lead": "No",
+               "State": "Default",
+               "Size": "md",
+               "Supporting Text": "false",
+               "Badge": "false",
+               "Dropdown": "false"
+              },
+              "text": [
+               "$0.70"
+              ],
+              "fill": "x"
+             }
+            ]
+           },
+           {
+            "t": "row",
+            "i": "r5-time",
+            "w": 140,
+            "justify": "end",
+            "children": [
+             {
+              "c": "table-cell",
+              "i": "r5-t",
+              "p": {
+               "Style": "Text",
+               "Lead": "No",
+               "State": "Default",
+               "Size": "md",
+               "Supporting Text": "false",
+               "Badge": "false",
+               "Dropdown": "false"
+              },
+              "text": [
+               "3h ago"
+              ],
+              "fill": "x"
+             }
+            ]
+           }
+          ]
+         },
+         {
+          "t": "row",
+          "i": "r6",
+          "fill": "x",
+          "h": 48,
+          "align": "center",
+          "children": [
+           {
+            "c": "table-cell",
+            "i": "r6-name",
+            "p": {
+             "Style": "Text",
+             "Lead": "No",
+             "State": "Default",
+             "Size": "md",
+             "Supporting Text": "false",
+             "Badge": "false",
+             "Dropdown": "false"
+            },
+            "text": [
+             "Marketing Attribution Review"
+            ],
+            "fill": "x"
+           },
+           {
+            "c": "icon-file",
+            "i": "r6-ic"
+           },
+           {
+            "t": "row",
+            "i": "r6-cost",
+            "w": 140,
+            "justify": "end",
+            "children": [
+             {
+              "c": "table-cell",
+              "i": "r6-c",
+              "p": {
+               "Style": "Text",
+               "Lead": "No",
+               "State": "Default",
+               "Size": "md",
+               "Supporting Text": "false",
+               "Badge": "false",
+               "Dropdown": "false"
+              },
+              "text": [
+               "$0.70"
+              ],
+              "fill": "x"
+             }
+            ]
+           },
+           {
+            "t": "row",
+            "i": "r6-time",
+            "w": 140,
+            "justify": "end",
+            "children": [
+             {
+              "c": "table-cell",
+              "i": "r6-t",
+              "p": {
+               "Style": "Text",
+               "Lead": "No",
+               "State": "Default",
+               "Size": "md",
+               "Supporting Text": "false",
+               "Badge": "false",
+               "Dropdown": "false"
+              },
+              "text": [
+               "3h ago"
+              ],
+              "fill": "x"
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ }
+}
