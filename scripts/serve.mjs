@@ -29,7 +29,8 @@ let result = null;
 const scenes = {}, doms = {};
 const metaPath = resolve(EXPORTS, "meta.json");
 let meta = {}; try { meta = JSON.parse(readFileSync(metaPath, "utf8")); } catch {}
-const fileKey = (readFileSync(resolve(root, "ds/config.md"), "utf8").match(/File key: `(\w+)`/) || [])[1];
+const fileKey = ((existsSync(resolve(root, "ds/config.md")) ? readFileSync(resolve(root, "ds/config.md"), "utf8") : "").match(/File key: `(\w+)`/) || [])[1];
+mkdirSync(resolve(root, "screens"), { recursive: true });
 const figmaUrl = name => meta[name] && fileKey ? `https://www.figma.com/design/${fileKey}/?node-id=${meta[name].roots[0].replace(":", "-")}` : null;
 const stamp = () => new Date().toISOString().slice(11, 19);
 

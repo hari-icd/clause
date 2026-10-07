@@ -58,7 +58,7 @@ figma.ui.onmessage = async (msg) => {
   let page = null, before = new Set();
   try {
     page = await figma.getNodeByIdAsync(S.PAGE_ID);
-    if (!page) throw new Error("canvas page " + S.PAGE_ID + " not found in this file (" + figma.root.name + ") — open the Enterprise Brain Base file");
+    if (!page) throw new Error("canvas page " + S.PAGE_ID + " not found in this file (" + figma.root.name + ") — open the file named in ds/config.md");
     await figma.setCurrentPageAsync(page);
     before = new Set(page.children.map(n => n.id));
     const old = page.children.filter(n => n.getPluginData("es-screen") === msg.name);

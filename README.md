@@ -79,4 +79,4 @@ exports/           generated HTML + meta.json (gitignored)
 - **Never refuse, always label.** No component for a pattern? Build it as a recorded primitive, say so, move on. Catalog grows from real screens, not from documenting a whole DS up front.
 - **Every loophole gets logged** (`docs/POWER-USE.md`) and, where possible, turned into a tool.
 
-Built for the Enterprise Brain design system at UnifyApps; the `ds/` folder is the only thing tied to it.
+`main` is design-system agnostic: `ds/` ships empty and is filled by **Extract components & tokens**. Teams keep their own DS on a private branch.
