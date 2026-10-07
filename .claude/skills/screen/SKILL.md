@@ -1,6 +1,6 @@
 ---
 name: screen
-description: Create an Enterprise Brain screen in Figma from a brief, reference image, or Figma URL. Use when the user asks for a screen, page, state, or flow.
+description: Create a product screen in Figma from a brief, reference image, or Figma URL. Use when the user asks for a screen, page, state, or flow.
 ---
 
 # /screen

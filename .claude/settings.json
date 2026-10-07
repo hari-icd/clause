@@ -2,8 +2,7 @@
   "permissions": {
     "allow": [
       "Bash(node scripts/*)",
-      "Bash(jq *)",
-      "Bash(bash ds/tokens/_resolver.sh *)"
+      "Bash(jq *)"
     ]
   },
   "hooks": {

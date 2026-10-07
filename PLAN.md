@@ -1,4 +1,4 @@
-# Clause (was ES DS) — Screen Generation
+# Clause — ES branch notes (schema now in docs/SCHEMA.md)
 
 Brief → `screens/<name>.json` → script → Figma frame of real ES library components, variable-bound.
 Agent writes JSON only. Script places nodes. Figma is the output.
