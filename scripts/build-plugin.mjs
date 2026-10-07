@@ -38,7 +38,7 @@ ${annGlue}
 ${dsExtractSrc}
 
 const AF = Object.getPrototypeOf(async function () {}).constructor;
-let CACHE = {}, CACHE_HASH = null, exTimer = null;
+let CACHE = {}, CACHE_HASH = null, exTimer = null; const PAGE_OF = {}, RT_FN = { hash: null, fn: null }; // screen name → page id (skips the all-pages walk on rebuilds)
 
 figma.ui.onmessage = async (msg) => {
   if (await annMessage(msg)) return;
@@ -60,17 +60,19 @@ figma.ui.onmessage = async (msg) => {
     // page rule: a screen pinned with "page" in its JSON → that page; a screen already built somewhere → that page; otherwise the page the user is on.
     const hasTag = pg => pg.children.some(n => n.getPluginData && n.getPluginData("es-screen") === msg.name);
     if (S.PINNED_PAGE) page = await figma.getNodeByIdAsync(S.PINNED_PAGE);
-    if (!page) { const cur = figma.currentPage; if (hasTag(cur)) page = cur; else { for (const pg of figma.root.children) { if (pg === cur) continue; await pg.loadAsync(); if (hasTag(pg)) { page = pg; break; } } } if (!page) page = cur; }
-    S.PAGE_ID = page.id;
+    if (!page) { const cur = figma.currentPage; const known = PAGE_OF[msg.name] && await figma.getNodeByIdAsync(PAGE_OF[msg.name]); if (known && known.type === "PAGE") page = known; else if (hasTag(cur)) page = cur; else { for (const pg of figma.root.children) { if (pg === cur) continue; await pg.loadAsync(); if (hasTag(pg)) { page = pg; break; } } } if (!page) page = cur; }
+    PAGE_OF[msg.name] = page.id; const T_PAGE = Date.now() - t0;
+    S.PAGE_ID = page.id; S.RT_HASH = msg.rtHash;
     await figma.setCurrentPageAsync(page);
     before = new Set(page.children.map(n => n.id));
     const old = page.children.filter(n => n.getPluginData("es-screen") === msg.name);
-    if (old.length) { S.POS = { x: Math.min(...old.map(o => o.x)), y: old[0].y }; for (const o of old) o.remove(); }
+    // keep the previous frame alive during the build: the runtime reuses unchanged top-level nodes (e.g. the nav) from it, then removes it
+    if (old.length) { S.POS = { x: Math.min(...old.map(o => o.x)), y: old[0].y }; S.OLD_ROOTS = old.map(o => o.id); for (const o of old) o.setPluginData("es-screen", ""); }
     let fn = null;
-    if (msg.runtime) { try { fn = new AF("figma", "SCREEN", "CACHE", msg.runtime); } catch (e) { fn = null; } }
+    if (msg.runtime) { if (RT_FN.hash !== msg.rtHash) { try { RT_FN.fn = new AF("figma", "SCREEN", "CACHE", msg.runtime); RT_FN.hash = msg.rtHash; } catch (e) { RT_FN.fn = null; } } fn = RT_FN.fn; }
     const res = fn ? await fn(figma, S, CACHE) : await runScreen(S);
     for (const id of res.roots) { const n = await figma.getNodeByIdAsync(id); if (n) n.setPluginData("es-screen", msg.name); }
-    res.ms = Date.now() - t0;
+    res.ms = Date.now() - t0; res.timing.page = T_PAGE; res.timing.wrapper = res.ms - res.timing.totalMs;
     figma.ui.postMessage({ type: "result", ok: true, name: msg.name, res });
     // HTML export: wait until saves go quiet, then extract once
     exTimer = setTimeout(async () => {
