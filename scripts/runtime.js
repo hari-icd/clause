@@ -96,7 +96,7 @@ async function applyOps(inst, ops) {
       if (sp.has) { const tx = inst.findAll(n => n.type === "TEXT" && n.characters.includes(sp.has))[sp.nth || 0]; if (tx) { hit = tx; let up = tx.parent; while (up && up !== inst) { if (up.type === "INSTANCE" && (!sp.name || up.name === sp.name)) { hit = up; break; } up = up.parent; } } }
       else hit = inst.findAll(n => n.name === sp.name)[sp.nth || 0];
       if (!hit) { warnings.push("nodes: no #" + (sp.nth || 0) + " " + (sp.name || ("has:" + sp.has))); continue; }
-      if (sp.hide) hit.visible = false;
+      if (sp.hide) hit.visible = false; if (sp.show) hit.visible = true;
       if (sp.swap) { const comp = await component(sp.swap.slice(1)); try { hit.swapComponent(comp); } catch (e) { warnings.push("nodes swap " + sp.name + ": " + e.message); } }
       if (sp.props) { const tgt = hit.type === "INSTANCE" ? hit : hit.findOne(n => n.type === "INSTANCE"); try { tgt.setProperties(sp.props); } catch (e) { warnings.push("nodes props " + sp.name + ": " + e.message); } }
       if (sp.maxLines) { const t = hit.type === "TEXT" ? hit : hit.findOne(n => n.type === "TEXT"); if (t) { t.textAutoResize = "HEIGHT"; try { if (t.parent.layoutMode) t.parent.layoutSizingHorizontal = "FILL"; t.layoutSizingHorizontal = "FILL"; } catch (e) { warnings.push("maxLines fill: " + e.message); } t.textTruncation = "ENDING"; t.maxLines = sp.maxLines; } }
