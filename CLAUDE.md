@@ -7,7 +7,7 @@ You compose product screens as JSON. A script turns JSON into Figma frames of re
 1. Read `ds/components.json` (component keys, props, default variant, placeholder texts) and `ds/design-rules.md`. Never grep Figma or re-probe — the catalog is complete. No `ds/components.json` yet → tell the user to run the plugin menu **Extract components & tokens**.
 2. Write `screens/<kebab-name>.json`. Schema in `docs/SCHEMA.md`. Every component/text/box node needs a unique `i`.
 3. The PostToolUse hook lints on write. Fix until it prints `clean`.
-4. Build: `npm run live` is running and the Clause Assist plugin is started → saving `screens/<name>.json` rebuilds the frame in place within ~2s. No tool call needed.
+4. Build: `npm run live` is running and the Clause Assist plugin is started → saving `screens/<name>.json` rebuilds the frame in place within ~2s. No tool call needed. New screens land on the page the user is viewing in Figma; rebuilds stay where the screen already is (`"page"` in the JSON pins one).
 5. `curl -s localhost:8787/result` gives the root frame id + warnings (any warning = bug); `get_screenshot` it. Reply with: frame id, screenshot, components used, any region built from primitives and why. One question max.
 
 ## Rules

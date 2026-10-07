@@ -162,14 +162,21 @@ async function pump() {
   await loadSrc(job.rtHash); $("name").textContent = job.name; log("building " + job.name + "…");
   post({ type: "build", name: job.name, screen: job.screen, runtime: rtText, extract: exText, rtHash });
 }
-async function fromServer() { try { const j = await (await fetch(BASE + "/scene")).json(); if (j.screen) request({ name: j.name, screen: j.screen, rtHash: j.rtHash }); } catch (e) {} }
+// only build scenes that are NEWER than what this panel has already seen — opening the plugin must never rebuild the last screen
+let seenVersion = null;
+async function fromServer(sync) {
+  try { const j = await (await fetch(BASE + "/scene")).json();
+    if (sync || seenVersion === null) { seenVersion = j.version; if (j.name) $("name").textContent = j.name; return; }
+    if (j.version > seenVersion && j.screen) { seenVersion = j.version; request({ name: j.name, screen: j.screen, rtHash: j.rtHash }); }
+  } catch (e) {}
+}
 const es = new EventSource(BASE + "/events");
-es.onopen = () => { $("dot2").className = "dot2 on"; $("dot3").className = "dot3 on"; setTip("srv", "Clause server live · localhost:__PORT__"); $("conn").textContent = "live · localhost:__PORT__"; fromServer(); loadMsgs(); };
+es.onopen = () => { $("dot2").className = "dot2 on"; $("dot3").className = "dot3 on"; setTip("srv", "Clause server live · localhost:__PORT__"); $("conn").textContent = "live · localhost:__PORT__"; fromServer(true); loadMsgs(); };
 es.onerror = () => { $("dot2").className = "dot2"; $("dot3").className = "dot3"; setTip("srv", "Server offline — run: npm run live"); $("conn").textContent = "offline — npm run live"; };
 es.onmessage = async e => {
   const m = JSON.parse(e.data);
   if (m.type === "state") { if (m.error) { log(m.error); post({ type: "notify", error: true, text: "Clause: " + m.error.split("\n")[0] }); return; } fromServer(); }
-  else if (m.type === "rt") { await loadSrc(m.rtHash, true); fromServer(); }
+  else if (m.type === "rt") { await loadSrc(m.rtHash, true); seenVersion = -1; fromServer(); }
   else if (m.type === "term" || m.type === "agent") loadMsgs();
 };
 const slug = s => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");

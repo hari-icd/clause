@@ -18,7 +18,7 @@ export function loadCatalog() {
     : { id: x.id, set: x.set, def: x.default, props: x.props || {} };
   const fonts = {}; for (const s of ts) if (keys.textStyles[s.name]) fonts[s.name] = [s.fontFamily, s.fontStyle];
   return {
-    page: (config.match(/`(\d+:\d+)`[^\n]*\*\*test\*\*/) || [])[1] || (() => { throw new Error("ds/config.md: mark the canvas page with **test** (e.g. `123:456` My page **test**)"); })(),
+    page: (config.match(/`(\d+:\d+)`[^\n]*\*\*test\*\*/) || [])[1] || null, // fallback only; the plugin builds on the user's current page
     vars: { spacing: keys.spacing, radius: keys.radius, colors: Object.assign({}, keys.colors, keys.colorAliases) },
     styles: keys.textStyles, fonts, comps: c,
   };

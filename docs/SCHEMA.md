@@ -34,6 +34,7 @@ One file per screen in `screens/<kebab-name>.json`. The compiler validates it ag
 - **Text** `{ "t": "text", "content" | "runs": [{"x":"…","b":true,"i":true,"code":true}], "style": "<text style>", "color": "<alias>", "maxLines": 2 }`. `size`/`lh` overrides need a `why`.
 - Raw numbers for spacing/radius are allowed only with a `why` on the node (recorded exception).
 - Multi-state: `"screens": [{ "name", "tree" }]` instead of `tree`.
+- Page: new screens are built on the page the user is on in Figma; a rebuild goes to the page where that screen already exists. `"page": "<pageId>"` pins it.
 
 ## Lint (hard fail)
 Unknown `c` key · prop not on that component / value not in its axis · unknown token or alias · raw hex · raw px without `why` · duplicate or missing `i` · unknown text style.
