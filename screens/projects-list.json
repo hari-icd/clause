@@ -1,0 +1,309 @@
+{
+ "title": "Projects — List",
+ "height": 900,
+ "tree": {
+  "t": "row",
+  "gap": "none",
+  "children": [
+   {
+    "c": "main-nav",
+    "i": "nav",
+    "p": {
+     "types": "Expanded"
+    },
+    "fill": "y",
+    "ops": [
+     {
+      "hide": [
+       "11595:113583",
+       "292:88496"
+      ]
+     },
+     {
+      "icons": [
+       [
+        "419:152022",
+        "419:152024"
+       ],
+       [
+        "1061:192323",
+        "419:152022"
+       ],
+       [
+        "419:152024",
+        "1061:192323"
+       ]
+      ]
+     },
+     {
+      "set": [
+       [
+        "419:152019",
+        {
+         "State": "Default"
+        }
+       ]
+      ]
+     }
+    ],
+    "text": [
+     "New Chat",
+     "Projects",
+     "Artifacts",
+     "Routines",
+     "Meetings",
+     "Agents",
+     "Access Desk",
+     "Meridian Holdings",
+     "Agent Optimiser V3 | Accuracy",
+     "I",
+     "icd@unifyapps.com"
+    ]
+   },
+   {
+    "t": "stack",
+    "i": "main",
+    "grow": true,
+    "fill": "y",
+    "align": "center",
+    "gap": "none",
+    "pt": "7xl",
+    "pb": "4xl",
+    "bg": "bg-secondary",
+    "children": [
+     {
+      "t": "stack",
+      "i": "column",
+      "w": 880,
+      "gap": "3xl",
+      "children": [
+       {
+        "t": "row",
+        "i": "header",
+        "fill": "x",
+        "justify": "between",
+        "align": "start",
+        "children": [
+         {
+          "t": "stack",
+          "i": "title-block",
+          "gap": "xs",
+          "children": [
+           {
+            "t": "text",
+            "i": "title",
+            "content": "Projects",
+            "style": "Display sm/Semibold",
+            "color": "text-primary"
+           },
+           {
+            "t": "text",
+            "i": "subtitle",
+            "content": "Workspaces for deals, audits, launches and reviews — chats, files and routines in one place",
+            "style": "Text md/Regular",
+            "color": "text-secondary"
+           }
+          ]
+         },
+         {
+          "c": "button-brand",
+          "i": "btn-create",
+          "p": {
+           "Size": "md",
+           "Hierarchy": "Primary",
+           "Icon leading": "true",
+           "Icon leading swap": "@icon-plus",
+           "Icon trailing": "false"
+          },
+          "text": {
+           "Button CTA": "New project"
+          }
+         }
+        ]
+       },
+       {
+        "c": "input-field-outline",
+        "i": "search",
+        "fill": "x",
+        "p": {
+         "Size": "lg",
+         "Type": "Icon leading",
+         "Label": "false",
+         "Hint text": "false",
+         "Help icon": "false",
+         "Leading icon": "true",
+         "Encryption": "false",
+         "Icon swap": "@icon-search-md",
+         "Destructive": "False",
+         "State": "Placeholder"
+        },
+        "text": [
+         "Search projects, owners or files"
+        ]
+       },
+       {
+        "t": "row",
+        "i": "controls",
+        "fill": "x",
+        "justify": "between",
+        "align": "center",
+        "children": [
+         {
+          "c": "toggle-group",
+          "i": "tabs",
+          "p": {
+           "Type": "Inset",
+           "Style": "Text",
+           "Size": "md",
+           "Variant": "Default"
+          },
+          "text": [
+           "All projects",
+           "Shared with me"
+          ],
+          "ops": [
+           {
+            "hide": [
+             "15359:31728"
+            ]
+           }
+          ]
+         },
+         {
+          "c": "button-neutral",
+          "i": "sort",
+          "p": {
+           "Size": "md",
+           "Hierarchy": "Secondary",
+           "Icon trailing": "true",
+           "Icon trailing swap": "@icon-chevron-down-sm",
+           "Icon leading": "false"
+          },
+          "text": {
+           "Button CTA": "Sort by: Recently Updated"
+          }
+         }
+        ]
+       },
+       {
+        "t": "row",
+        "i": "grid",
+        "fill": "x",
+        "wrap": true,
+        "gap": "xl",
+        "rowGap": "xl",
+        "children": [
+         {
+          "c": "project-card-1",
+          "i": "card-banking",
+          "p": {
+           "Property 1": "shared"
+          },
+          "text": {
+           "Banking Issues": "Acme Corp Renewal — FY27",
+           "12 items": "14 items",
+           "Ajeetabh Narayan": "Ajeetabh Narayan",
+           "12.04.2026": "12.04.2026"
+          },
+          "w": 282,
+          "why": "3-up grid in the 880 column: (880-2*16)/3"
+         },
+         {
+          "c": "project-card-1",
+          "i": "card-renewal",
+          "p": {
+           "Property 1": "private"
+          },
+          "text": {
+           "Banking Issues": "SOC 2 Evidence Collection",
+           "12 items": "31 items",
+           "Ajeetabh Narayan": "Meera Iyer",
+           "12.04.2026": "28.09.2026"
+          },
+          "w": 282,
+          "why": "3-up grid in the 880 column: (880-2*16)/3"
+         },
+         {
+          "c": "project-card-1",
+          "i": "card-greif",
+          "p": {
+           "Property 1": "shared"
+          },
+          "text": {
+           "Banking Issues": "Salesforce → HubSpot Migration",
+           "12 items": "22 items",
+           "Ajeetabh Narayan": "Rohan Desai",
+           "12.04.2026": "03.10.2026"
+          },
+          "w": 282,
+          "why": "3-up grid in the 880 column: (880-2*16)/3"
+         },
+         {
+          "c": "project-card-1",
+          "i": "card-vendor",
+          "p": {
+           "Property 1": "private"
+          },
+          "text": {
+           "Banking Issues": "Enterprise Pricing Revamp",
+           "12 items": "9 items",
+           "Ajeetabh Narayan": "Anurag Kashyap",
+           "12.04.2026": "01.10.2026"
+          },
+          "w": 282,
+          "why": "3-up grid in the 880 column: (880-2*16)/3"
+         },
+         {
+          "c": "project-card-1",
+          "i": "card-onboarding",
+          "p": {
+           "Property 1": "shared"
+          },
+          "text": {
+           "Banking Issues": "Q4 Pipeline Review",
+           "12 items": "17 items",
+           "Ajeetabh Narayan": "Priya Nair",
+           "12.04.2026": "06.10.2026"
+          },
+          "w": 282,
+          "why": "3-up grid in the 880 column: (880-2*16)/3"
+         },
+         {
+          "c": "project-card-1",
+          "i": "card-qbr",
+          "p": {
+           "Property 1": "private"
+          },
+          "text": {
+           "Banking Issues": "Vendor Security Reviews",
+           "12 items": "12 items",
+           "Ajeetabh Narayan": "Kabir Shah",
+           "12.04.2026": "05.10.2026"
+          },
+          "w": 282,
+          "why": "3-up grid in the 880 column: (880-2*16)/3"
+         }
+        ]
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "t": "text",
+    "i": "nav-empty-state",
+    "content": "Your chats will show up here",
+    "style": "Text md/Regular",
+    "color": "text-quaternary",
+    "w": 280,
+    "align": "center",
+    "abs": {
+     "x": 0,
+     "y": 410
+    },
+    "why": "Library nav has no empty-state for chat history; text overlays the nav's vacated history area"
+   }
+  ]
+ },
+ "replace": "14393:28993"
+}

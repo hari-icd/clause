@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node scripts/*)",
+      "Bash(jq *)",
+      "Bash(bash ds/tokens/_resolver.sh *)"
+    ]
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "f=$(jq -r '.tool_input.file_path // empty'); case \"$f\" in */screens/*.json) node \"$CLAUDE_PROJECT_DIR/scripts/lint.mjs\" \"$f\" 2>&1;; esac"
+          }
+        ]
+      }
+    ]
+  }
+}

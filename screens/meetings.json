@@ -1,0 +1,326 @@
+{
+ "title": "Meetings",
+ "height": 900,
+ "tree": {
+  "t": "row",
+  "gap": "none",
+  "clip": true,
+  "children": [
+   {
+    "c": "main-nav",
+    "i": "nav",
+    "p": {
+     "types": "Expanded"
+    },
+    "fill": "y",
+    "ops": [
+     {
+      "hide": [
+       "11595:113583",
+       "292:88496"
+      ]
+     },
+     {
+      "icons": [
+       [
+        "419:152022",
+        "419:152024"
+       ],
+       [
+        "1061:192323",
+        "419:152022"
+       ],
+       [
+        "419:152024",
+        "1061:192323"
+       ]
+      ]
+     },
+     {
+      "set": [
+       [
+        "419:152019",
+        {
+         "State": "Default"
+        }
+       ],
+       [
+        "419:152024",
+        {
+         "State": "Selected"
+        }
+       ]
+      ]
+     }
+    ],
+    "text": [
+     "New Chat",
+     "Projects",
+     "Artifacts",
+     "Routines",
+     "Meetings",
+     "Agents",
+     "Access Desk",
+     "Meridian Holdings",
+     "Agent Optimiser V3 | Accuracy",
+     "I",
+     "icd@unifyapps.com"
+    ]
+   },
+   {
+    "t": "stack",
+    "i": "main",
+    "grow": true,
+    "fill": "y",
+    "align": "center",
+    "gap": "none",
+    "pt": "6xl",
+    "pb": "4xl",
+    "bg": "bg-secondary",
+    "children": [
+     {
+      "t": "stack",
+      "i": "column",
+      "w": 760,
+      "gap": "4xl",
+      "children": [
+       {
+        "t": "row",
+        "i": "header",
+        "fill": "x",
+        "align": "center",
+        "gap": "lg",
+        "children": [
+         {
+          "t": "text",
+          "i": "title",
+          "content": "Meetings",
+          "style": "Display md/Semibold",
+          "color": "text-primary",
+          "w": 285,
+          "why": "ref spec: title block is 285px wide so the date control sits 153px after the text"
+         },
+         {
+          "t": "row",
+          "i": "date",
+          "align": "center",
+          "gap": "md",
+          "children": [
+           {
+            "t": "text",
+            "i": "date-label",
+            "runs": [
+             {
+              "x": "Today "
+             },
+             {
+              "x": "7 Oct"
+             }
+            ],
+            "style": "Text md/Medium",
+            "color": "text-primary"
+           },
+           {
+            "c": "icon-chevron-down-sm",
+            "i": "date-caret"
+           },
+           {
+            "c": "icon-chevron-right",
+            "i": "date-next"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "t": "row",
+        "i": "ask",
+        "fill": "x",
+        "align": "center",
+        "gap": "md",
+        "px": "md",
+        "py": "md",
+        "bg": "bg-primary",
+        "border": "border-secondary",
+        "radius": "full",
+        "children": [
+         {
+          "c": "icon-plus",
+          "i": "ask-plus",
+          "p": {
+           "Size": "md"
+          }
+         },
+         {
+          "t": "text",
+          "i": "ask-placeholder",
+          "content": "Ask about an upcoming or a previous meeting",
+          "style": "Text md/Regular",
+          "color": "text-placeholder",
+          "fill": "x"
+         },
+         {
+          "c": "button-neutral",
+          "i": "ask-send",
+          "p": {
+           "Size": "sm",
+           "Hierarchy": "Secondary",
+           "Icon": "Only",
+           "Icon leading": "true",
+           "Icon leading swap": "@icon-chevron-right",
+           "Icon trailing": "false"
+          }
+         }
+        ],
+        "h": 50,
+        "why": "ref spec: 50px pill with 9px inner padding"
+       },
+       {
+        "t": "row",
+        "i": "notetaker",
+        "fill": "x",
+        "align": "center",
+        "justify": "between",
+        "pad": "2xl",
+        "bg": "bg-primary",
+        "border": "border-secondary",
+        "radius": "3xl",
+        "children": [
+         {
+          "t": "stack",
+          "i": "nt-copy",
+          "w": 520,
+          "gap": "xxs",
+          "children": [
+           {
+            "t": "text",
+            "i": "nt-title",
+            "content": "AI Meeting Notetaker",
+            "style": "Text xl/Regular",
+            "color": "text-primary"
+           },
+           {
+            "t": "text",
+            "i": "nt-desc",
+            "content": "Connect Google Calendar or Microsoft Calendar. Every meeting on it gets a pre-brief, notes and a summary.",
+            "style": "Text md/Regular",
+            "color": "text-secondary",
+            "fill": "x"
+           },
+           {
+            "t": "row",
+            "i": "nt-btns",
+            "gap": "xl",
+            "pt": "md",
+            "children": [
+             {
+              "c": "button-neutral",
+              "i": "btn-google",
+              "p": {
+               "Size": "md",
+               "Hierarchy": "Secondary",
+               "Icon": "Default",
+               "Icon leading": "false",
+               "Icon trailing": "false"
+              },
+              "text": {
+               "Button CTA": "Google Calendar"
+              }
+             },
+             {
+              "c": "button-neutral",
+              "i": "btn-ms",
+              "p": {
+               "Size": "md",
+               "Hierarchy": "Secondary",
+               "Icon": "Default",
+               "Icon leading": "false",
+               "Icon trailing": "false"
+              },
+              "text": {
+               "Button CTA": "Microsoft Calendar"
+              }
+             }
+            ]
+           }
+          ]
+         },
+         {
+          "t": "row",
+          "i": "nt-tiles",
+          "gap": "xl",
+          "children": [
+           {
+            "c": "featured-icon",
+            "i": "tile-a",
+            "p": {
+             "Size": "xl",
+             "Color": "White framed",
+             "Icon swap": "@icon-calendar"
+            }
+           },
+           {
+            "c": "featured-icon",
+            "i": "tile-b",
+            "p": {
+             "Size": "xl",
+             "Color": "White framed",
+             "Icon swap": "@icon-calendar"
+            }
+           }
+          ]
+         }
+        ],
+        "h": 158,
+        "why": "ref spec: card 158px tall"
+       },
+       {
+        "t": "stack",
+        "i": "empty",
+        "fill": "x",
+        "align": "center",
+        "gap": "xl",
+        "pt": 120,
+        "children": [
+         {
+          "c": "featured-icon",
+          "i": "empty-icon",
+          "p": {
+           "Size": "xl",
+           "Color": "White framed",
+           "Icon swap": "@icon-calendar"
+          }
+         },
+         {
+          "t": "text",
+          "i": "empty-text",
+          "content": "Nothing in the calendar on Wednesday, 7 Oct.",
+          "style": "Text lg/Regular",
+          "color": "text-secondary",
+          "align": "center"
+         }
+        ],
+        "why": "ref spec: illustration sits 152px below card (32 is the column gap)"
+       }
+      ],
+      "pt": "lg"
+     }
+    ]
+   },
+   {
+    "t": "text",
+    "i": "nav-empty-state",
+    "content": "Your chats will show up here",
+    "style": "Text md/Regular",
+    "color": "text-quaternary",
+    "w": 280,
+    "align": "center",
+    "abs": {
+     "x": 0,
+     "y": 410
+    },
+    "why": "Library nav has no empty-state for chat history; text overlays the nav's vacated history area"
+   }
+  ]
+ }
+}

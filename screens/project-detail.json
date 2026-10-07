@@ -1,0 +1,396 @@
+{
+ "title": "Project detail",
+ "height": 1000,
+ "tree": {
+  "t": "row",
+  "gap": "none",
+  "clip": true,
+  "children": [
+   {
+    "c": "main-nav",
+    "i": "nav",
+    "p": {
+     "types": "Expanded"
+    },
+    "fill": "y",
+    "ops": [
+     {
+      "hide": [
+       "11595:113583",
+       "292:88496"
+      ]
+     },
+     {
+      "icons": [
+       [
+        "419:152022",
+        "419:152024"
+       ],
+       [
+        "1061:192323",
+        "419:152022"
+       ],
+       [
+        "419:152024",
+        "1061:192323"
+       ]
+      ]
+     },
+     {
+      "set": [
+       [
+        "419:152019",
+        {
+         "State": "Default"
+        }
+       ]
+      ]
+     }
+    ],
+    "text": [
+     "New Chat",
+     "Projects",
+     "Artifacts",
+     "Routines",
+     "Meetings",
+     "Agents",
+     "Access Desk",
+     "Meridian Holdings",
+     "Agent Optimiser V3 | Accuracy",
+     "I",
+     "icd@unifyapps.com"
+    ]
+   },
+   {
+    "t": "stack",
+    "i": "main",
+    "grow": true,
+    "fill": "y",
+    "align": "center",
+    "gap": "none",
+    "bg": "bg-secondary",
+    "children": [
+     {
+      "c": "es-breadcrumb",
+      "i": "crumb",
+      "fill": "x",
+      "p": {
+       "Variant": "with Icon",
+       "Actions": "false",
+       "AI assist button": "false",
+       "Avatar Group": "false"
+      },
+      "text": [
+       "Projects",
+       "New Project Name"
+      ]
+     },
+     {
+      "t": "stack",
+      "i": "column",
+      "w": 760,
+      "gap": "4xl",
+      "pt": 60,
+      "children": [
+       {
+        "c": "project-header",
+        "i": "head",
+        "text": {
+         "Client Onboarding": "Client Onboarding",
+         "Tracking Q1 close activities": "Tracking Q1 close activities"
+        }
+       },
+       {
+        "c": "horizontal-tabs",
+        "i": "tabs",
+        "p": {
+         "Style": "Default",
+         "Start Icon Style": "Icon",
+         "Size": "sm",
+         "Add New Icon": "false"
+        },
+        "text": [
+         "Chats",
+         "Routines",
+         "Artifacts",
+         "Context",
+         "Settings"
+        ],
+        "ops": [
+         {
+          "nodes": [
+           {
+            "name": "Tab",
+            "nth": 0,
+            "props": {
+             "Current": "False"
+            }
+           },
+           {
+            "name": "Tab 6",
+            "nth": 0,
+            "hide": true
+           },
+           {
+            "name": "Tab 7",
+            "nth": 0,
+            "hide": true
+           },
+           {
+            "name": "Tab 8",
+            "nth": 0,
+            "hide": true
+           },
+           {
+            "name": "Tab 9",
+            "nth": 0,
+            "hide": true
+           },
+           {
+            "name": "Tab",
+            "nth": 4,
+            "props": {
+             "Current": "True"
+            }
+           },
+           {
+            "name": "Tab",
+            "nth": 0,
+            "icon": "@icon-clock-fast-forward"
+           },
+           {
+            "name": "Tab",
+            "nth": 1,
+            "icon": "@icon-clock"
+           },
+           {
+            "name": "Tab",
+            "nth": 2,
+            "icon": "@icon-cube"
+           },
+           {
+            "name": "Tab",
+            "nth": 3,
+            "icon": "@icon-upload"
+           },
+           {
+            "name": "Tab",
+            "nth": 4,
+            "icon": "@icon-settings"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "t": "stack",
+        "i": "settings",
+        "fill": "x",
+        "gap": "3xl",
+        "children": [
+         {
+          "t": "stack",
+          "i": "s-mem",
+          "fill": "x",
+          "gap": "md",
+          "children": [
+           {
+            "c": "form-header",
+            "i": "mem-h",
+            "p": {
+             "Level": "Level 2",
+             "Supporting text": "false",
+             "Actions": "false",
+             "Divider": "false",
+             "Help Icon": "false",
+             "Search": "false",
+             "More Horizontal": "false",
+             "Badge": "false",
+             "More Vertical": "true",
+             "Toggle": "false"
+            },
+            "text": [
+             "Memory",
+             "Updated 8 hrs ago"
+            ],
+            "fill": "x",
+            "ops": [
+             {
+              "hideNames": [
+               "_Header icon"
+              ]
+             }
+            ]
+           },
+           {
+            "c": "list-item-cardified",
+            "i": "mem-li",
+            "p": {
+             "Size": "md",
+             "Type": "Icon simple",
+             "Action Buttons": "true",
+             "Actions": "true",
+             "Icon": "false",
+             "Supporting Text": "false",
+             "Subtext": "false",
+             "Badge": "false"
+            },
+            "text": [
+             "EventPass AI Assistant — System Prompt. You are the in-app AI assistant for EventPass, a platform that helps users discover, manage, and attend events. Your role is to help users find events, answer questions about tickets, schedules and venues."
+            ],
+            "fill": "x",
+            "ops": [
+             {
+              "nodes": [
+               {
+                "name": "Text",
+                "nth": 0,
+                "maxLines": 2,
+                "style": "Text sm/Regular",
+                "color": "text-secondary"
+               },
+               {
+                "name": "Buttons/Button Neutral",
+                "nth": 1,
+                "hide": true
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         },
+         {
+          "t": "stack",
+          "i": "s-ins",
+          "fill": "x",
+          "gap": "md",
+          "children": [
+           {
+            "c": "form-header",
+            "i": "ins-h",
+            "p": {
+             "Level": "Level 2",
+             "Supporting text": "false",
+             "Actions": "false",
+             "Divider": "false",
+             "Help Icon": "false",
+             "Search": "false",
+             "More Horizontal": "false",
+             "Badge": "false",
+             "More Vertical": "false",
+             "Toggle": "false"
+            },
+            "text": [
+             "Instructions"
+            ],
+            "fill": "x",
+            "ops": [
+             {
+              "hideNames": [
+               "_Header icon"
+              ]
+             }
+            ]
+           },
+           {
+            "c": "list-item-cardified",
+            "i": "ins-li",
+            "p": {
+             "Size": "md",
+             "Type": "Icon simple",
+             "Action Buttons": "true",
+             "Actions": "true",
+             "Icon": "false",
+             "Supporting Text": "false",
+             "Subtext": "false",
+             "Badge": "false"
+            },
+            "text": [
+             "##Who are you##You are a QBR (Quarterly Business Review) Expert Agent. Your job is to help account managers, AEs, and CSMs prepare for high-quality QBR meetings with their customers and prospects. You synthesize live deal and usage data."
+            ],
+            "fill": "x",
+            "ops": [
+             {
+              "nodes": [
+               {
+                "name": "Text",
+                "nth": 0,
+                "maxLines": 2,
+                "style": "Text sm/Regular",
+                "color": "text-secondary"
+               },
+               {
+                "name": "Buttons/Button Neutral",
+                "nth": 1,
+                "hide": true
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         },
+         {
+          "t": "stack",
+          "i": "s-ctx",
+          "fill": "x",
+          "gap": "md",
+          "children": [
+           {
+            "c": "form-header",
+            "i": "ctx-h",
+            "p": {
+             "Level": "Level 2",
+             "Supporting text": "false",
+             "Actions": "false",
+             "Divider": "false",
+             "Help Icon": "false",
+             "Search": "false",
+             "More Horizontal": "false",
+             "Badge": "false",
+             "More Vertical": "false",
+             "Toggle": "false"
+            },
+            "text": [
+             "Context Files"
+            ],
+            "fill": "x",
+            "ops": [
+             {
+              "hideNames": [
+               "_Header icon"
+              ]
+             }
+            ]
+           },
+           {
+            "c": "add-source",
+            "i": "add-source"
+           }
+          ]
+         }
+        ]
+       }
+      ],
+      "why": "ref spec: 60px between breadcrumb and page title (no 60 token)"
+     }
+    ]
+   },
+   {
+    "t": "text",
+    "i": "nav-empty-state",
+    "content": "Your chats will show up here",
+    "style": "Text md/Regular",
+    "color": "text-quaternary",
+    "w": 280,
+    "align": "center",
+    "abs": {
+     "x": 0,
+     "y": 410
+    },
+    "why": "Library nav has no empty-state for chat history; text overlays the nav's vacated history area"
+   }
+  ]
+ }
+}

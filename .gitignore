@@ -1,0 +1,10 @@
+# machine-local / generated — recreated by `npm run setup`
+.clause/
+notes/
+drafts/
+out/
+figma-plugin/
+ds/tokens.css
+exports/
+node_modules/
+.DS_Store

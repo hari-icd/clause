@@ -1,0 +1,1504 @@
+{
+ "title": "Skill Detail — Modal",
+ "height": 900,
+ "tree": {
+  "t": "row",
+  "gap": "none",
+  "clip": true,
+  "children": [
+   {
+    "c": "main-nav",
+    "i": "nav",
+    "p": {
+     "types": "Expanded"
+    },
+    "fill": "y",
+    "ops": [
+     {
+      "hide": [
+       "11595:113583",
+       "292:88496"
+      ]
+     },
+     {
+      "icons": [
+       [
+        "419:152022",
+        "419:152024"
+       ],
+       [
+        "1061:192323",
+        "419:152022"
+       ],
+       [
+        "419:152024",
+        "1061:192323"
+       ]
+      ]
+     },
+     {
+      "set": [
+       [
+        "419:152019",
+        {
+         "State": "Default"
+        }
+       ]
+      ]
+     }
+    ],
+    "text": [
+     "New Chat",
+     "Projects",
+     "Artifacts",
+     "Routines",
+     "Meetings",
+     "Agents",
+     "Access Desk",
+     "Meridian Holdings",
+     "Agent Optimiser V3 | Accuracy",
+     "I",
+     "icd@unifyapps.com"
+    ]
+   },
+   {
+    "t": "stack",
+    "i": "main",
+    "grow": true,
+    "fill": "y",
+    "gap": "none",
+    "bg": "bg-secondary",
+    "children": [
+     {
+      "t": "row",
+      "i": "topbar",
+      "fill": "x",
+      "h": 40,
+      "align": "center",
+      "justify": "between",
+      "gap": "md",
+      "borderB": "border-secondary",
+      "children": [
+       {
+        "c": "es-breadcrumb",
+        "i": "crumb",
+        "p": {
+         "Variant": "with Icon",
+         "Actions": "false",
+         "AI assist button": "false",
+         "Avatar Group": "false"
+        },
+        "text": [
+         "Agents",
+         "Untitled Agent"
+        ],
+        "grow": true
+       },
+       {
+        "t": "row",
+        "i": "top-actions",
+        "gap": "md",
+        "align": "center",
+        "children": [
+         {
+          "t": "row",
+          "i": "run-toggle",
+          "w": 48,
+          "h": 28,
+          "align": "center",
+          "bg": "bg-tertiary",
+          "radius": "full",
+          "children": [
+           {
+            "t": "row",
+            "i": "run-knob",
+            "w": 24,
+            "h": 24,
+            "align": "center",
+            "justify": "center",
+            "bg": "bg-primary",
+            "radius": "full",
+            "children": [
+             {
+              "c": "icon-play-solid",
+              "i": "run-icon"
+             }
+            ]
+           }
+          ],
+          "pad": "xxs",
+          "justify": "start"
+         },
+         {
+          "c": "button-brand",
+          "i": "btn-save",
+          "p": {
+           "Size": "sm",
+           "Hierarchy": "Primary",
+           "Icon leading": "false",
+           "Icon trailing": "false"
+          },
+          "text": {
+           "Button CTA": "Save"
+          }
+         }
+        ]
+       }
+      ],
+      "pl": "xl",
+      "pr": "md"
+     },
+     {
+      "t": "stack",
+      "i": "body",
+      "fill": "x",
+      "align": "center",
+      "gap": "none",
+      "pt": "3xl",
+      "children": [
+       {
+        "t": "stack",
+        "i": "column",
+        "w": 768,
+        "gap": "4xl",
+        "children": [
+         {
+          "t": "stack",
+          "i": "instructions",
+          "fill": "x",
+          "gap": "xl",
+          "children": [
+           {
+            "c": "form-header",
+            "i": "h-instructions",
+            "p": {
+             "Level": "Level 2",
+             "Supporting text": "true",
+             "Actions": "false",
+             "Divider": "false",
+             "Help Icon": "false",
+             "Search": "false",
+             "More Horizontal": "false",
+             "Badge": "false",
+             "More Vertical": "false",
+             "Toggle": "false"
+            },
+            "text": [
+             "Instructions",
+             "Define your agent's role, tone, and behaviour"
+            ],
+            "fill": "x",
+            "ops": [
+             {
+              "hideNames": [
+               "_Header icon"
+              ]
+             }
+            ]
+           },
+           {
+            "t": "row",
+            "i": "instructions-card",
+            "fill": "x",
+            "h": 60,
+            "align": "center",
+            "gap": "md",
+            "px": "xl",
+            "bg": "bg-primary",
+            "border": "border-secondary",
+            "radius": "3xl",
+            "children": [
+             {
+              "t": "text",
+              "i": "instructions-text",
+              "content": "Add instructions to tailor the response",
+              "style": "Text md/Regular",
+              "color": "text-tertiary",
+              "grow": true
+             },
+             {
+              "c": "icon-edit",
+              "i": "instructions-edit"
+             }
+            ]
+           }
+          ]
+         },
+         {
+          "t": "stack",
+          "i": "knowledge",
+          "fill": "x",
+          "gap": "xl",
+          "children": [
+           {
+            "c": "form-header",
+            "i": "h-knowledge",
+            "p": {
+             "Level": "Level 2",
+             "Supporting text": "true",
+             "Actions": "false",
+             "Divider": "false",
+             "Help Icon": "false",
+             "Search": "false",
+             "More Horizontal": "false",
+             "Badge": "false",
+             "More Vertical": "false",
+             "Toggle": "false"
+            },
+            "text": [
+             "Knowledge sources",
+             "Upload files the agent can reference when responding"
+            ],
+            "fill": "x",
+            "ops": [
+             {
+              "hideNames": [
+               "_Header icon"
+              ]
+             }
+            ]
+           },
+           {
+            "t": "row",
+            "i": "knowledge-card",
+            "fill": "x",
+            "h": 60,
+            "align": "center",
+            "gap": "md",
+            "px": "xl",
+            "border": "border-secondary",
+            "radius": "3xl",
+            "children": [
+             {
+              "c": "icon-book-open",
+              "i": "knowledge-icon"
+             },
+             {
+              "t": "text",
+              "i": "knowledge-text",
+              "content": "Add Knowledge",
+              "style": "Text md/Regular",
+              "color": "text-secondary",
+              "grow": true
+             },
+             {
+              "c": "icon-plus-circle",
+              "i": "knowledge-add"
+             }
+            ],
+            "dash": true
+           }
+          ]
+         },
+         {
+          "t": "stack",
+          "i": "skills",
+          "fill": "x",
+          "gap": "xl",
+          "children": [
+           {
+            "c": "form-header",
+            "i": "h-skills",
+            "p": {
+             "Level": "Level 2",
+             "Supporting text": "true",
+             "Actions": "false",
+             "Divider": "false",
+             "Help Icon": "false",
+             "Search": "false",
+             "More Horizontal": "false",
+             "Badge": "false",
+             "More Vertical": "false",
+             "Toggle": "false"
+            },
+            "text": [
+             "Skills",
+             "Extend what your agent can do with ready-made processing skills"
+            ],
+            "fill": "x",
+            "ops": [
+             {
+              "hideNames": [
+               "_Header icon"
+              ]
+             }
+            ]
+           },
+           {
+            "t": "row",
+            "i": "skills-card",
+            "fill": "x",
+            "h": 60,
+            "align": "center",
+            "gap": "md",
+            "px": "xl",
+            "border": "border-secondary",
+            "radius": "3xl",
+            "children": [
+             {
+              "c": "icon-folder-plus",
+              "i": "skills-icon"
+             },
+             {
+              "t": "text",
+              "i": "skills-text",
+              "content": "Add Skills",
+              "style": "Text md/Regular",
+              "color": "text-secondary",
+              "grow": true
+             },
+             {
+              "c": "icon-plus-circle",
+              "i": "skills-add"
+             }
+            ],
+            "dash": true
+           }
+          ]
+         },
+         {
+          "t": "stack",
+          "i": "capabilities",
+          "fill": "x",
+          "gap": "xl",
+          "children": [
+           {
+            "t": "row",
+            "i": "cap-head",
+            "fill": "x",
+            "align": "center",
+            "gap": "md",
+            "children": [
+             {
+              "c": "form-header",
+              "i": "h-capabilities",
+              "p": {
+               "Level": "Level 2",
+               "Supporting text": "true",
+               "Actions": "false",
+               "Divider": "false",
+               "Help Icon": "false",
+               "Search": "false",
+               "More Horizontal": "false",
+               "Badge": "false",
+               "More Vertical": "false",
+               "Toggle": "false"
+              },
+              "text": [
+               "Capabilities",
+               "Enable built-in capabilities like web search or image generation"
+              ],
+              "grow": true,
+              "ops": [
+               {
+                "hideNames": [
+                 "_Header icon"
+                ]
+               }
+              ]
+             },
+             {
+              "t": "stack",
+              "i": "cap-add-wrap",
+              "pr": "lg",
+              "children": [
+               {
+                "c": "icon-plus-circle",
+                "i": "cap-add"
+               }
+              ]
+             }
+            ]
+           },
+           {
+            "t": "stack",
+            "i": "cap-list",
+            "fill": "x",
+            "bg": "bg-primary",
+            "border": "border-secondary",
+            "radius": "3xl",
+            "gap": "none",
+            "children": [
+             {
+              "t": "row",
+              "i": "cap-chart",
+              "fill": "x",
+              "h": 49,
+              "align": "center",
+              "gap": "lg",
+              "px": "xl",
+              "children": [
+               {
+                "c": "icon-bar-chart",
+                "i": "ic-cap-chart"
+               },
+               {
+                "t": "text",
+                "i": "tx-cap-chart",
+                "content": "Generate Chart",
+                "style": "Text md/Regular",
+                "color": "text-primary",
+                "grow": true
+               }
+              ],
+              "borderB": "border-secondary"
+             },
+             {
+              "t": "row",
+              "i": "cap-ingest",
+              "fill": "x",
+              "h": 49,
+              "align": "center",
+              "gap": "lg",
+              "px": "xl",
+              "children": [
+               {
+                "c": "icon-upload-cloud",
+                "i": "ic-cap-ingest"
+               },
+               {
+                "t": "text",
+                "i": "tx-cap-ingest",
+                "content": "Ingest Knowledge",
+                "style": "Text md/Regular",
+                "color": "text-primary",
+                "grow": true
+               }
+              ],
+              "borderB": "border-secondary"
+             },
+             {
+              "t": "row",
+              "i": "cap-analyse",
+              "fill": "x",
+              "h": 49,
+              "align": "center",
+              "gap": "lg",
+              "px": "xl",
+              "children": [
+               {
+                "c": "icon-file-search",
+                "i": "ic-cap-analyse"
+               },
+               {
+                "t": "text",
+                "i": "tx-cap-analyse",
+                "content": "Analyse File",
+                "style": "Text md/Regular",
+                "color": "text-primary",
+                "grow": true
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         },
+         {
+          "t": "stack",
+          "i": "starters",
+          "fill": "x",
+          "gap": "xl",
+          "children": [
+           {
+            "c": "form-header",
+            "i": "h-starters",
+            "p": {
+             "Level": "Level 2",
+             "Supporting text": "true",
+             "Actions": "false",
+             "Divider": "false",
+             "Help Icon": "false",
+             "Search": "false",
+             "More Horizontal": "false",
+             "Badge": "false",
+             "More Vertical": "false",
+             "Toggle": "false"
+            },
+            "text": [
+             "Conversation Starters",
+             "Add up to 4 prompts to help users get started quickly"
+            ],
+            "fill": "x",
+            "ops": [
+             {
+              "hideNames": [
+               "_Header icon"
+              ]
+             }
+            ]
+           },
+           {
+            "t": "row",
+            "i": "starter-input",
+            "fill": "x",
+            "h": 52,
+            "align": "center",
+            "gap": "md",
+            "px": "xl",
+            "bg": "bg-primary",
+            "border": "border-secondary",
+            "radius": "3xl",
+            "children": [
+             {
+              "t": "text",
+              "i": "starter-placeholder",
+              "content": "Start typing…",
+              "style": "Text md/Regular",
+              "color": "text-placeholder",
+              "grow": true
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "t": "text",
+    "i": "nav-empty-state",
+    "content": "Your chats will show up here",
+    "style": "Text md/Regular",
+    "color": "text-quaternary",
+    "w": 280,
+    "align": "center",
+    "abs": {
+     "x": 0,
+     "y": 410
+    },
+    "why": "Library nav has no empty-state for chat history; text overlays the nav's vacated history area"
+   },
+   {
+    "t": "stack",
+    "i": "skill-drawer",
+    "w": 560,
+    "h": 900,
+    "gap": "none",
+    "bg": "bg-primary",
+    "borderL": "border-secondary",
+    "abs": {
+     "x": 880,
+     "y": 0
+    },
+    "why": "Overlay drawer: absolutely positioned over the page at the right edge",
+    "children": [
+     {
+      "t": "row",
+      "i": "drawer-head",
+      "fill": "x",
+      "h": 60,
+      "px": "xl",
+      "align": "center",
+      "justify": "between",
+      "borderB": "border-secondary",
+      "children": [
+       {
+        "t": "row",
+        "i": "drawer-title",
+        "gap": "lg",
+        "align": "center",
+        "children": [
+         {
+          "t": "row",
+          "i": "drawer-icon-tile",
+          "w": 32,
+          "h": 32,
+          "align": "center",
+          "justify": "center",
+          "bg": "bg-brand-secondary",
+          "border": "border-secondary",
+          "radius": "lg",
+          "children": [
+           {
+            "c": "icon-script",
+            "i": "drawer-icon"
+           }
+          ]
+         },
+         {
+          "t": "text",
+          "i": "drawer-title-text",
+          "content": "Add skill",
+          "style": "Text md/Semibold",
+          "color": "text-primary"
+         }
+        ]
+       },
+       {
+        "c": "icon-close",
+        "i": "drawer-close",
+        "w": 18,
+        "h": 18
+       }
+      ]
+     },
+     {
+      "t": "stack",
+      "i": "drawer-body",
+      "fill": "x",
+      "pad": "xl",
+      "gap": "xl",
+      "children": [
+       {
+        "t": "row",
+        "i": "drawer-search",
+        "fill": "x",
+        "h": 36,
+        "px": "lg",
+        "gap": "md",
+        "align": "center",
+        "bg": "bg-secondary",
+        "radius": "lg",
+        "children": [
+         {
+          "c": "icon-search-md",
+          "i": "drawer-search-icon",
+          "w": 18,
+          "h": 18
+         },
+         {
+          "t": "text",
+          "i": "drawer-search-text",
+          "content": "Search",
+          "style": "Text md/Regular",
+          "color": "text-placeholder"
+         }
+        ]
+       },
+       {
+        "t": "stack",
+        "i": "skill-list",
+        "fill": "x",
+        "bg": "bg-primary",
+        "border": "border-secondary",
+        "radius": "3xl",
+        "gap": "none",
+        "children": [
+         {
+          "t": "row",
+          "i": "skill-0",
+          "fill": "x",
+          "px": "xl",
+          "py": "xl",
+          "gap": "xl",
+          "align": "center",
+          "children": [
+           {
+            "t": "stack",
+            "i": "skill-0-text",
+            "grow": true,
+            "gap": "xxs",
+            "children": [
+             {
+              "t": "text",
+              "i": "skill-0-name",
+              "content": "dialect-code",
+              "style": "Text md/Semibold",
+              "color": "text-primary",
+              "fill": "x"
+             },
+             {
+              "t": "text",
+              "i": "skill-0-desc",
+              "content": "Code-app (testSubject 'interface-code') locator hooks, durability ladder, strategy order, generated-id bans, Radix/shadcn specifics, selector fallbacks and retry policies for flaky locators",
+              "style": "Text sm/Regular",
+              "color": "text-tertiary",
+              "fill": "x",
+              "maxLines": 2
+             }
+            ]
+           },
+           {
+            "c": "button-neutral",
+            "i": "skill-0-add",
+            "p": {
+             "Size": "sm",
+             "Hierarchy": "Secondary",
+             "Icon": "Only",
+             "Icon leading": "true",
+             "Icon leading swap": "@icon-plus"
+            }
+           }
+          ],
+          "borderB": "border-secondary"
+         },
+         {
+          "t": "row",
+          "i": "skill-1",
+          "fill": "x",
+          "px": "xl",
+          "py": "xl",
+          "gap": "xl",
+          "align": "center",
+          "children": [
+           {
+            "t": "stack",
+            "i": "skill-1-text",
+            "grow": true,
+            "gap": "xxs",
+            "children": [
+             {
+              "t": "text",
+              "i": "skill-1-name",
+              "content": "docx",
+              "style": "Text md/Semibold",
+              "color": "text-primary",
+              "fill": "x"
+             },
+             {
+              "t": "text",
+              "i": "skill-1-desc",
+              "content": "\"Use this skill whenever the user wants to create, read, edit, or manipulate Word documents (.docx files). Triggers include: any mention of Word doc, .docx, report, memo or letter\"",
+              "style": "Text sm/Regular",
+              "color": "text-tertiary",
+              "fill": "x",
+              "maxLines": 2
+             }
+            ]
+           },
+           {
+            "c": "button-neutral",
+            "i": "skill-1-add",
+            "p": {
+             "Size": "sm",
+             "Hierarchy": "Secondary",
+             "Icon": "Only",
+             "Icon leading": "true",
+             "Icon leading swap": "@icon-plus"
+            }
+           }
+          ],
+          "borderB": "border-secondary"
+         },
+         {
+          "t": "row",
+          "i": "skill-2",
+          "fill": "x",
+          "px": "xl",
+          "py": "xl",
+          "gap": "xl",
+          "align": "center",
+          "children": [
+           {
+            "t": "stack",
+            "i": "skill-2-text",
+            "grow": true,
+            "gap": "xxs",
+            "children": [
+             {
+              "t": "text",
+              "i": "skill-2-name",
+              "content": "Tech HR",
+              "style": "Text md/Semibold",
+              "color": "text-primary",
+              "fill": "x"
+             },
+             {
+              "t": "text",
+              "i": "skill-2-desc",
+              "content": "{ \"role\": \"Expert HR Technical Recruiter AI Agent for Optum\", \"objective\": \"Evaluate candidate resumes for Technical / ML / Data Science roles against the job description\" }",
+              "style": "Text sm/Regular",
+              "color": "text-tertiary",
+              "fill": "x",
+              "maxLines": 2
+             }
+            ]
+           },
+           {
+            "c": "button-neutral",
+            "i": "skill-2-add",
+            "p": {
+             "Size": "sm",
+             "Hierarchy": "Secondary",
+             "Icon": "Only",
+             "Icon leading": "true",
+             "Icon leading swap": "@icon-plus"
+            }
+           }
+          ]
+         }
+        ]
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "t": "stack",
+    "i": "scrim",
+    "w": 1440,
+    "h": 900,
+    "bg": "bg-base-dark",
+    "opacity": 0.55,
+    "bgBlur": 10,
+    "abs": {
+     "x": 0,
+     "y": 0
+    },
+    "why": "modal scrim over the whole page"
+   },
+   {
+    "t": "stack",
+    "i": "modal",
+    "w": 1144,
+    "h": 744,
+    "gap": "none",
+    "bg": "bg-primary",
+    "radius": "4xl",
+    "clip": true,
+    "abs": {
+     "x": 148,
+     "y": 20
+    },
+    "why": "modal centred over the page, 148px side margins",
+    "children": [
+     {
+      "t": "row",
+      "i": "modal-head",
+      "fill": "x",
+      "px": "3xl",
+      "pt": "3xl",
+      "pb": "2xl",
+      "gap": "3xl",
+      "align": "start",
+      "justify": "between",
+      "borderB": "border-secondary",
+      "children": [
+       {
+        "t": "stack",
+        "i": "modal-title-block",
+        "grow": true,
+        "gap": "xs",
+        "children": [
+         {
+          "t": "text",
+          "i": "modal-title",
+          "content": "dialect-code",
+          "style": "Text md/Semibold",
+          "color": "text-primary",
+          "size": 20,
+          "lh": 26,
+          "why": "reference title is 20px sans (DS Text xl is serif)"
+         },
+         {
+          "t": "text",
+          "i": "modal-desc",
+          "content": "Code-app (testSubject 'interface-code') locator hooks, durability ladder, strategy order, generated-id bans, Radix/shadcn specifics, and client-side race rules. Load in T1, batched with the open, on every code-app run that opens the browser — never on management-only or clear runs.",
+          "style": "Text sm/Regular",
+          "color": "text-secondary",
+          "fill": "x",
+          "maxLines": 2
+         }
+        ]
+       },
+       {
+        "t": "row",
+        "i": "modal-meta",
+        "gap": "xl",
+        "align": "center",
+        "children": [
+         {
+          "t": "text",
+          "i": "modal-updated",
+          "content": "Updated: October 5, 2026",
+          "style": "Text sm/Regular",
+          "color": "text-tertiary"
+         },
+         {
+          "c": "icon-close",
+          "i": "modal-close",
+          "w": 18,
+          "h": 18
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "t": "stack",
+      "i": "modal-body",
+      "fill": "both",
+      "pad": "xl",
+      "gap": "none",
+      "children": [
+       {
+        "t": "row",
+        "i": "skill-card",
+        "fill": "both",
+        "bg": "bg-primary",
+        "border": "border-secondary",
+        "radius": "3xl",
+        "clip": true,
+        "gap": "none",
+        "children": [
+         {
+          "t": "stack",
+          "i": "file-tree",
+          "w": 257,
+          "fill": "y",
+          "pad": "xl",
+          "gap": "xxs",
+          "borderR": "border-secondary",
+          "children": [
+           {
+            "t": "text",
+            "i": "files-label",
+            "content": "Files",
+            "style": "Text md/Medium",
+            "color": "text-tertiary"
+           },
+           {
+            "t": "row",
+            "i": "f-skill",
+            "fill": "x",
+            "h": 32,
+            "px": "lg",
+            "gap": "md",
+            "align": "center",
+            "radius": "lg",
+            "children": [
+             {
+              "c": "icon-file",
+              "i": "f-skill-icon",
+              "w": 18,
+              "h": 18
+             },
+             {
+              "t": "text",
+              "i": "f-skill-label",
+              "content": "SKILL.md",
+              "style": "Text sm/Regular",
+              "color": "text-secondary",
+              "grow": true
+             }
+            ],
+            "bg": "bg-tertiary"
+           },
+           {
+            "t": "row",
+            "i": "f-assets",
+            "fill": "x",
+            "h": 32,
+            "px": "lg",
+            "gap": "md",
+            "align": "center",
+            "radius": "lg",
+            "children": [
+             {
+              "c": "icon-folder",
+              "i": "f-assets-icon",
+              "w": 18,
+              "h": 18
+             },
+             {
+              "t": "text",
+              "i": "f-assets-label",
+              "content": "assets",
+              "style": "Text sm/Regular",
+              "color": "text-secondary",
+              "grow": true
+             },
+             {
+              "c": "icon-chevron-right",
+              "i": "f-assets-chev",
+              "w": 18,
+              "h": 18
+             }
+            ]
+           },
+           {
+            "t": "row",
+            "i": "f-refs",
+            "fill": "x",
+            "h": 32,
+            "px": "lg",
+            "gap": "md",
+            "align": "center",
+            "radius": "lg",
+            "children": [
+             {
+              "c": "icon-folder",
+              "i": "f-refs-icon",
+              "w": 18,
+              "h": 18
+             },
+             {
+              "t": "text",
+              "i": "f-refs-label",
+              "content": "references",
+              "style": "Text sm/Regular",
+              "color": "text-secondary",
+              "grow": true
+             },
+             {
+              "c": "icon-chevron-right",
+              "i": "f-refs-chev",
+              "w": 18,
+              "h": 18
+             }
+            ]
+           },
+           {
+            "t": "row",
+            "i": "f-scripts",
+            "fill": "x",
+            "h": 32,
+            "px": "lg",
+            "gap": "md",
+            "align": "center",
+            "radius": "lg",
+            "children": [
+             {
+              "c": "icon-folder",
+              "i": "f-scripts-icon",
+              "w": 18,
+              "h": 18
+             },
+             {
+              "t": "text",
+              "i": "f-scripts-label",
+              "content": "scripts",
+              "style": "Text sm/Regular",
+              "color": "text-secondary",
+              "grow": true
+             },
+             {
+              "c": "icon-chevron-right",
+              "i": "f-scripts-chev",
+              "w": 18,
+              "h": 18
+             }
+            ]
+           }
+          ]
+         },
+         {
+          "t": "stack",
+          "i": "viewer",
+          "fill": "both",
+          "gap": "none",
+          "children": [
+           {
+            "t": "row",
+            "i": "viewer-head",
+            "fill": "x",
+            "h": 48,
+            "px": "lg",
+            "align": "center",
+            "justify": "between",
+            "bg": "bg-secondary",
+            "children": [
+             {
+              "t": "row",
+              "i": "viewer-title",
+              "gap": "lg",
+              "align": "center",
+              "children": [
+               {
+                "t": "row",
+                "i": "viewer-icon-tile",
+                "w": 32,
+                "h": 32,
+                "align": "center",
+                "justify": "center",
+                "bg": "bg-primary",
+                "border": "border-secondary",
+                "radius": "md",
+                "children": [
+                 {
+                  "c": "icon-script",
+                  "i": "viewer-icon"
+                 }
+                ]
+               },
+               {
+                "t": "text",
+                "i": "viewer-name",
+                "content": "SKILL.md",
+                "style": "Text lg/Semibold",
+                "color": "text-primary"
+               }
+              ]
+             },
+             {
+              "t": "row",
+              "i": "viewer-actions",
+              "gap": "md",
+              "align": "center",
+              "children": [
+               {
+                "c": "icon-dots-horizontal",
+                "i": "viewer-more"
+               },
+               {
+                "c": "toggle-group",
+                "i": "viewer-mode",
+                "p": {
+                 "Type": "Inset",
+                 "Style": "Icon only",
+                 "Size": "sm",
+                 "Variant": "Default"
+                },
+                "ops": [
+                 {
+                  "nodes": [
+                   {
+                    "name": "_Toggle group base",
+                    "nth": 2,
+                    "hide": true
+                   },
+                   {
+                    "name": "_Toggle group base",
+                    "nth": 0,
+                    "icon": "@icon-eye"
+                   },
+                   {
+                    "name": "_Toggle group base",
+                    "nth": 1,
+                    "icon": "@icon-code"
+                   }
+                  ]
+                 }
+                ]
+               }
+              ]
+             }
+            ]
+           },
+           {
+            "t": "stack",
+            "i": "doc-area",
+            "fill": "both",
+            "clip": true,
+            "children": [
+             {
+              "t": "stack",
+              "i": "doc-scroll",
+              "w": 695,
+              "gap": "md",
+              "abs": {
+               "x": 31,
+               "y": -16
+              },
+              "why": "the document is scrolled mid-way, so the first paragraph is cut off",
+              "children": [
+               {
+                "t": "text",
+                "i": "p0",
+                "runs": [
+                 {
+                  "x": "with empty amounts\") — "
+                 },
+                 {
+                  "x": "this rung is banned outright",
+                  "b": true
+                 },
+                 {
+                  "x": ": an identifier harvested from the walk is not the scenario's identifier, and the mandatory form is positional or the property doctrine ("
+                 },
+                 {
+                  "x": "The scenario names the anchor",
+                  "i": true
+                 },
+                 {
+                  "x": ", main instructions)."
+                 }
+                ],
+                "style": "Text md/Regular",
+                "color": "text-secondary",
+                "fill": "x",
+                "size": 16,
+                "lh": 27,
+                "why": "reference body type 16/27 (no matching DS style)"
+               },
+               {
+                "t": "text",
+                "i": "p1",
+                "runs": [
+                 {
+                  "x": "5. "
+                 },
+                 {
+                  "x": "NTH_CHILD",
+                  "code": true
+                 },
+                 {
+                  "x": " — last resort, per the main rules."
+                 }
+                ],
+                "style": "Text md/Regular",
+                "color": "text-secondary",
+                "fill": "x",
+                "size": 16,
+                "lh": 27,
+                "why": "reference body type 16/27 (no matching DS style)"
+               },
+               {
+                "t": "text",
+                "i": "p2",
+                "runs": [
+                 {
+                  "x": "Never, with extra force here:",
+                  "b": true
+                 },
+                 {
+                  "x": " auto-generated ids. "
+                 },
+                 {
+                  "x": "radix-_r_5_",
+                  "code": true
+                 },
+                 {
+                  "x": ", "
+                 },
+                 {
+                  "x": "recharts-bar-_r_7_",
+                  "code": true
+                 },
+                 {
+                  "x": ", any "
+                 },
+                 {
+                  "x": "_r_N_",
+                  "code": true
+                 },
+                 {
+                  "x": " / "
+                 },
+                 {
+                  "x": "useId",
+                  "code": true
+                 },
+                 {
+                  "x": " pattern — "
+                 },
+                 {
+                  "x": "the pattern list is illustrative; the test is whether the id would survive a re-render, a remount, and a redeploy",
+                  "b": true
+                 },
+                 {
+                  "x": " (an id you can't explain as human-authored won't) — these sit on exactly the buttons a test wants and change every render/deploy. "
+                 },
+                 {
+                  "x": "ELEMENT_ID",
+                  "code": true
+                 },
+                 {
+                  "x": " is valid only for a human-authored literal id, which these apps rarely have — an id-shaped string is a trap until proven otherwise. "
+                 },
+                 {
+                  "x": "DATA_BLOCK_ID",
+                  "code": true
+                 },
+                 {
+                  "x": " / "
+                 },
+                 {
+                  "x": "RUNTIME_BLOCK_ID",
+                  "code": true
+                 },
+                 {
+                  "x": " / "
+                 },
+                 {
+                  "x": "BLOCK_TYPE",
+                  "code": true
+                 },
+                 {
+                  "x": " match "
+                 },
+                 {
+                  "x": "nothing",
+                  "b": true
+                 },
+                 {
+                  "x": " on a code app — never author them there."
+                 }
+                ],
+                "style": "Text md/Regular",
+                "color": "text-secondary",
+                "fill": "x",
+                "size": 16,
+                "lh": 27,
+                "why": "reference body type 16/27 (no matching DS style)"
+               },
+               {
+                "t": "text",
+                "i": "p3",
+                "runs": [
+                 {
+                  "x": "Content-derived accessible names are never hooks",
+                  "b": true
+                 },
+                 {
+                  "x": " — a surface whose role+name is its children's labels concatenated recomputes when contents change and dies mid-run; portal surfaces anchor by their attribute hook ("
+                 },
+                 {
+                  "x": "data-slot",
+                  "code": true
+                 },
+                 {
+                  "x": ", "
+                 },
+                 {
+                  "x": "data-radix-*",
+                  "code": true
+                 },
+                 {
+                  "x": ", an id), targets as semantic children."
+                 }
+                ],
+                "style": "Text md/Regular",
+                "color": "text-secondary",
+                "fill": "x",
+                "size": 16,
+                "lh": 27,
+                "why": "reference body type 16/27 (no matching DS style)"
+               },
+               {
+                "t": "text",
+                "i": "p4",
+                "runs": [
+                 {
+                  "x": "Strategy order",
+                  "b": true
+                 },
+                 {
+                  "x": ": 1. "
+                 },
+                 {
+                  "x": "ROLE",
+                  "code": true
+                 },
+                 {
+                  "x": " / "
+                 },
+                 {
+                  "x": "LABEL",
+                  "code": true
+                 },
+                 {
+                  "x": ", name-first — including text-anchored repeated items ("
+                 },
+                 {
+                  "x": "ROLE",
+                  "code": true
+                 },
+                 {
+                  "x": " role "
+                 },
+                 {
+                  "x": "row",
+                  "code": true
+                 },
+                 {
+                  "x": " / "
+                 },
+                 {
+                  "x": "listitem",
+                  "code": true
+                 },
+                 {
+                  "x": " + business-identifier name, subject to rung 4's classification). 2. "
+                 },
+                 {
+                  "x": "HTML_ATTRIBUTE",
+                  "code": true
+                 },
+                 {
+                  "x": " on "
+                 },
+                 {
+                  "x": "aria-label",
+                  "code": true
+                 },
+                 {
+                  "x": " / "
+                 },
+                 {
+                  "x": "placeholder",
+                  "code": true
+                 },
+                 {
+                  "x": " / "
+                 },
+                 {
+                  "x": "data-slot",
+                  "code": true
+                 },
+                 {
+                  "x": ", scoped via "
+                 },
+                 {
+                  "x": "children",
+                  "code": true
+                 },
+                 {
+                  "x": " where a type marker needs narrowing;"
+                 }
+                ],
+                "style": "Text md/Regular",
+                "color": "text-secondary",
+                "fill": "x",
+                "size": 16,
+                "lh": 27,
+                "why": "reference body type 16/27 (no matching DS style)"
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "t": "row",
+      "i": "modal-foot",
+      "fill": "x",
+      "px": "3xl",
+      "h": 64,
+      "gap": "md",
+      "align": "center",
+      "justify": "end",
+      "borderT": "border-secondary",
+      "children": [
+       {
+        "c": "button-neutral",
+        "i": "btn-cancel",
+        "p": {
+         "Size": "md",
+         "Hierarchy": "Secondary",
+         "Icon leading": "false",
+         "Icon trailing": "false"
+        },
+        "text": {
+         "Button CTA": "Cancel"
+        }
+       },
+       {
+        "c": "button-brand",
+        "i": "btn-add",
+        "p": {
+         "Size": "md",
+         "Hierarchy": "Primary",
+         "Icon leading": "false",
+         "Icon trailing": "false"
+        },
+        "text": {
+         "Button CTA": "Add skill"
+        }
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ }
+}

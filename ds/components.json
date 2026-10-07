@@ -1,0 +1,4804 @@
+{
+ "_source": "lqKjNjyifEXCeywg69Knr2 📦 Components page (local) + ❖ Unify2026 library (lib:true, import by variantKey)",
+ "local": [
+  {
+   "key": "feature-banner",
+   "id": "387:149413",
+   "name": "Feature Banner",
+   "section": "Nav Compos",
+   "set": true,
+   "props": {
+    "Feature name": [
+     "Connect Tools",
+     "Enable memory",
+     "Custom Instructions"
+    ],
+    "State": [
+     "Default",
+     "Hovered"
+    ]
+   },
+   "default": "Feature name=Connect Tools, State=Default",
+   "size": [
+    520,
+    76
+   ],
+   "texts": [
+    "Connect apps",
+    "Connect apps you already…",
+    "Instructions",
+    "Communication style…"
+   ],
+   "nested": [
+    "hubspot",
+    "salesforce",
+    "slack",
+    "Pill Squared",
+    "Small Icon Button"
+   ]
+  },
+  {
+   "key": "banner-carousel",
+   "id": "387:149552",
+   "name": "Banner carousel",
+   "section": "Nav Compos",
+   "set": true,
+   "props": {
+    "Property 1": [
+     "Three apps",
+     "Variant2",
+     "Variant3",
+     "Two Apps"
+    ]
+   },
+   "default": "Property 1=Two Apps",
+   "size": [
+    520,
+    102
+   ],
+   "texts": [
+    "Connect apps",
+    "…"
+   ],
+   "nested": [
+    "Feature Banner"
+   ]
+  },
+  {
+   "key": "nav-menu-main",
+   "id": "19:22757",
+   "name": "Nav_menu/Main",
+   "section": "Nav Compos",
+   "set": true,
+   "props": {
+    "dots": "BOOLEAN",
+    "Variant": [
+     "Collapsed",
+     "Expanded"
+    ],
+    "State": [
+     "Default",
+     "Hover",
+     "Selected",
+     "Selected_hover"
+    ]
+   },
+   "default": "Variant=Collapsed, State=Default",
+   "size": [
+    32,
+    32
+   ],
+   "texts": [],
+   "nested": [
+    "plus"
+   ]
+  },
+  {
+   "key": "nav-menu-main-light-mode",
+   "id": "9721:306141",
+   "name": "Nav_menu/Main light mode",
+   "section": "Nav Compos",
+   "set": true,
+   "props": {
+    "dots": "BOOLEAN",
+    "Variant": [
+     "Collapsed",
+     "Expanded"
+    ],
+    "State": [
+     "Default",
+     "Hover",
+     "Selected",
+     "Selected_hover"
+    ]
+   },
+   "default": "Variant=Collapsed, State=Default",
+   "size": [
+    32,
+    32
+   ],
+   "texts": [],
+   "nested": [
+    "plus"
+   ]
+  },
+  {
+   "key": "nav-menu-agent",
+   "id": "19:22789",
+   "name": "Nav_menu/Agent",
+   "section": "Nav Compos",
+   "set": true,
+   "props": {
+    "dots": "BOOLEAN",
+    "Property 1": [
+     "Default",
+     "Hover",
+     "Selected",
+     "Selected_hover"
+    ]
+   },
+   "default": "Property 1=Default",
+   "size": [
+    262,
+    32
+   ],
+   "texts": [
+    "Agent Name"
+   ],
+   "nested": [
+    "chevron-right",
+    "Agent_Avatar",
+    "AI Avatar",
+    "Small Icon Button"
+   ]
+  },
+  {
+   "key": "nav-menu-agent-light-mode",
+   "id": "9721:594834",
+   "name": "Nav_menu/Agent Light Mode",
+   "section": "Nav Compos",
+   "set": true,
+   "props": {
+    "dots": "BOOLEAN",
+    "Property 1": [
+     "Default",
+     "Hover",
+     "Selected",
+     "Selected_hover"
+    ]
+   },
+   "default": "Property 1=Default",
+   "size": [
+    256,
+    32
+   ],
+   "texts": [
+    "Agent Name"
+   ],
+   "nested": [
+    "chevron-right",
+    "Agent_Avatar",
+    "AI Avatar",
+    "Small Icon Button"
+   ]
+  },
+  {
+   "key": "nav-menu-subheader",
+   "id": "19:22810",
+   "name": "Nav_menu/Subheader",
+   "section": "Nav Compos",
+   "set": true,
+   "props": {
+    "State": [
+     "Default",
+     "Hover",
+     "Selected"
+    ]
+   },
+   "default": "State=Default",
+   "size": [
+    256,
+    32
+   ],
+   "texts": [
+    "Agents"
+   ],
+   "nested": [
+    "explore-ai-agents",
+    "chevron-right",
+    "Small Icon",
+    "Small Icon Button",
+    "chevron-right-sm"
+   ]
+  },
+  {
+   "key": "nav-menu-subheader-light-mode",
+   "id": "9721:594868",
+   "name": "Nav_menu/Subheader light mode",
+   "section": "Nav Compos",
+   "set": true,
+   "props": {
+    "State": [
+     "Default",
+     "Hover",
+     "Selected"
+    ]
+   },
+   "default": "State=Default",
+   "size": [
+    256,
+    32
+   ],
+   "texts": [
+    "Agents"
+   ],
+   "nested": [
+    "explore-ai-agents",
+    "chevron-right",
+    "Small Icon",
+    "Small Icon Button",
+    "chevron-right-sm"
+   ]
+  },
+  {
+   "key": "nav-menu-chat-history",
+   "id": "19:22848",
+   "name": "Nav_menu/Chat_history",
+   "section": "Nav Compos",
+   "set": true,
+   "props": {
+    "Time": "BOOLEAN",
+    "Dot": "BOOLEAN",
+    "State": [
+     "Default",
+     "Hover",
+     "Selected",
+     "Selected_hover"
+    ]
+   },
+   "default": "State=Default",
+   "size": [
+    262,
+    32
+   ],
+   "texts": [
+    "Excel Formula Help From Main Doc"
+   ],
+   "nested": [
+    "Dot",
+    "chevron-right",
+    "Small Icon Button"
+   ]
+  },
+  {
+   "key": "nav-menu-chat-history-light-mode",
+   "id": "9721:594904",
+   "name": "Nav_menu/Chat_history Light mode",
+   "section": "Nav Compos",
+   "set": true,
+   "props": {
+    "Three dots": "BOOLEAN",
+    "Time": "BOOLEAN",
+    "State": [
+     "Default",
+     "Hover",
+     "Selected",
+     "Selected_hover"
+    ]
+   },
+   "default": "State=Default",
+   "size": [
+    256,
+    32
+   ],
+   "texts": [
+    "Excel Formula Help From Main Doc",
+    "2h"
+   ],
+   "nested": [
+    "Dot",
+    "chevron-right",
+    "Small Icon Button",
+    "dots-horizontal"
+   ]
+  },
+  {
+   "key": "nav-menu-header",
+   "id": "19:22869",
+   "name": "Nav_menu/Header",
+   "section": "Nav Compos",
+   "set": true,
+   "props": {
+    "Type": [
+     "Collapsed",
+     "Expanded"
+    ],
+    "State": [
+     "Default",
+     "LT Default"
+    ]
+   },
+   "default": "Type=Expanded, State=Default",
+   "size": [
+    264,
+    46
+   ],
+   "texts": [
+    "Enterprise AI Operating System"
+   ],
+   "nested": [
+    "chevron-right",
+    "Buttons/Button Neutral",
+    "layout-left"
+   ]
+  },
+  {
+   "key": "nav-menu-footer",
+   "id": "19:22883",
+   "name": "Nav_menu/Footer",
+   "section": "Nav Compos",
+   "set": true,
+   "props": {
+    "Variant": [
+     "Default",
+     "Collapsed"
+    ],
+    "State": [
+     "Default",
+     "Clicked",
+     "Hover"
+    ]
+   },
+   "default": "Variant=Default, State=Default",
+   "size": [
+    280,
+    52
+   ],
+   "texts": [
+    "A",
+    "Anurag Kashyap"
+   ],
+   "nested": [
+    "Avatar",
+    "Buttons/Button Neutral",
+    "bell-notification",
+    "chevron-up-sm"
+   ]
+  },
+  {
+   "key": "nav-menu-footer-light-mode",
+   "id": "9721:597645",
+   "name": "Nav_menu/Footer light mode",
+   "section": "Nav Compos",
+   "set": true,
+   "props": {
+    "Variant": [
+     "Default",
+     "Collapsed"
+    ],
+    "State": [
+     "Default",
+     "Clicked",
+     "Hover"
+    ]
+   },
+   "default": "Variant=Default, State=Default",
+   "size": [
+    280,
+    52
+   ],
+   "texts": [
+    "A",
+    "Anurag Kashyap"
+   ],
+   "nested": [
+    "Avatar",
+    "chevron-up-sm"
+   ]
+  },
+  {
+   "key": "dropdown-list-item",
+   "id": "19:22912",
+   "name": "Dropdown list item",
+   "section": "Nav Compos",
+   "set": true,
+   "props": {
+    "State": [
+     "Default",
+     "Selected",
+     "Disabled",
+     "Hover"
+    ],
+    "Divider": [
+     "No",
+     "Yes"
+    ],
+    "Subtitle": [
+     "No",
+     "Yes"
+    ]
+   },
+   "default": "State=Default, Divider=No, Subtitle=No",
+   "size": [
+    240,
+    36
+   ],
+   "texts": [
+    "Placeholder"
+   ],
+   "nested": [
+    "placeholder"
+   ]
+  },
+  {
+   "key": "tentant-switcher",
+   "id": "3327:359225",
+   "name": "Tentant Switcher",
+   "section": "Nav Compos",
+   "set": false,
+   "props": {},
+   "default": null,
+   "size": [
+    268,
+    156
+   ],
+   "texts": [
+    "tenant",
+    "QA",
+    "Anurag Kashyap",
+    "anurag_kasyap@unifyapps.com",
+    "Notifications",
+    "Settings",
+    "Log Out"
+   ],
+   "nested": [
+    "Buttons/Button Brand",
+    "Avatar",
+    "Pill squared"
+   ]
+  },
+  {
+   "key": "main-nav",
+   "id": "226:81201",
+   "name": "Main_nav",
+   "section": "Nav Compos",
+   "set": true,
+   "props": {
+    "types": [
+     "Expanded",
+     "collapsed",
+     "Hover"
+    ]
+   },
+   "default": "types=collapsed",
+   "size": [
+    56,
+    900
+   ],
+   "texts": [
+    "A"
+   ],
+   "nested": [
+    "Nav_menu/Header",
+    "Component 2",
+    "Nav_menu/Main",
+    "plus",
+    "search-md",
+    "folder",
+    "clock",
+    "calendar",
+    "cube-02",
+    "ai-agent",
+    "bell-notification"
+   ]
+  },
+  {
+   "key": "main-nav-light-mode",
+   "id": "9721:594965",
+   "name": "Main_nav light mode",
+   "section": "Nav Compos",
+   "set": true,
+   "props": {
+    "types": [
+     "Expanded",
+     "collapsed",
+     "Hover"
+    ]
+   },
+   "default": "types=collapsed",
+   "size": [
+    56,
+    900
+   ],
+   "texts": [
+    "A"
+   ],
+   "nested": [
+    "Nav_menu/Header",
+    "Nav_menu/Main light mode",
+    "Nav_menu/Footer light mode"
+   ]
+  },
+  {
+   "key": "component-2",
+   "id": "292:84377",
+   "name": "Component 2",
+   "section": "Nav Compos",
+   "set": true,
+   "props": {
+    "Type": [
+     "Full",
+     "Icon only"
+    ]
+   },
+   "default": "Type=Icon only",
+   "size": [
+    32,
+    40
+   ],
+   "texts": [],
+   "nested": []
+  },
+  {
+   "key": "component-2-light-mode",
+   "id": "9721:306182",
+   "name": "Component 2 light mode",
+   "section": "Nav Compos",
+   "set": true,
+   "props": {
+    "Type": [
+     "Full",
+     "Icon only"
+    ]
+   },
+   "default": "Type=Icon only",
+   "size": [
+    32,
+    40
+   ],
+   "texts": [],
+   "nested": []
+  },
+  {
+   "key": "collapse",
+   "id": "444:194758",
+   "name": "Collapse",
+   "section": "Nav Compos",
+   "set": true,
+   "props": {
+    "Property 1": [
+     "default",
+     "hover"
+    ]
+   },
+   "default": "Property 1=default",
+   "size": [
+    36,
+    36
+   ],
+   "texts": [],
+   "nested": [
+    "layout-left"
+   ]
+  },
+  {
+   "key": "collapse-light-mode",
+   "id": "9721:307751",
+   "name": "Collapse light mode",
+   "section": "Nav Compos",
+   "set": true,
+   "props": {
+    "Property 1": [
+     "default",
+     "hover"
+    ]
+   },
+   "default": "Property 1=default",
+   "size": [
+    36,
+    36
+   ],
+   "texts": [],
+   "nested": [
+    "layout-left"
+   ]
+  },
+  {
+   "key": "small-icon",
+   "id": "444:198118",
+   "name": "Small Icon",
+   "section": "Nav Compos",
+   "set": true,
+   "props": {
+    "Property 1": [
+     "Default",
+     "hover"
+    ]
+   },
+   "default": "Property 1=Default",
+   "size": [
+    20,
+    20
+   ],
+   "texts": [],
+   "nested": [
+    "Small Icon Button",
+    "plus"
+   ]
+  },
+  {
+   "key": "small-icon-light-mode",
+   "id": "9721:307760",
+   "name": "Small Icon light mode",
+   "section": "Nav Compos",
+   "set": true,
+   "props": {
+    "Property 1": [
+     "Default",
+     "hover"
+    ]
+   },
+   "default": "Property 1=Default",
+   "size": [
+    20,
+    20
+   ],
+   "texts": [],
+   "nested": [
+    "Small Icon Button",
+    "plus"
+   ]
+  },
+  {
+   "key": "bar",
+   "id": "2633:421368",
+   "name": "Bar",
+   "section": "Nav Compos",
+   "set": true,
+   "props": {
+    "Property 1": [
+     "Default",
+     "Variant2",
+     "Variant4"
+    ]
+   },
+   "default": "Property 1=Default",
+   "size": [
+    227,
+    8
+   ],
+   "texts": [],
+   "nested": []
+  },
+  {
+   "key": "filter-frame",
+   "id": "1140:145374",
+   "name": "filter frame",
+   "section": "Nav Compos",
+   "set": true,
+   "props": {
+    "Type": [
+     "Default",
+     "search click",
+     "No Tabs"
+    ]
+   },
+   "default": "Type=Default",
+   "size": [
+    760,
+    28
+   ],
+   "texts": [
+    "All",
+    "Yours",
+    "Shared with you",
+    "All Types",
+    "Newest"
+   ],
+   "nested": [
+    "Horizontal tabs",
+    "Button Tab base",
+    "Buttons/Button Neutral",
+    "search-md",
+    "Filter Tabs Base",
+    "Toggle group"
+   ]
+  },
+  {
+   "key": "eb-assistant",
+   "id": "10840:710452",
+   "name": "EB-Assistant",
+   "section": "Nav Compos",
+   "set": true,
+   "props": {
+    "Logo type": [
+     "AI",
+     "Company"
+    ]
+   },
+   "default": "Logo type=AI",
+   "size": [
+    70,
+    70
+   ],
+   "texts": [],
+   "nested": []
+  },
+  {
+   "key": "list-item-local",
+   "id": "11885:375253",
+   "name": "List Item Local",
+   "section": "Nav Compos",
+   "set": true,
+   "props": {
+    "+hover": "BOOLEAN",
+    "Property 1": [
+     "Default",
+     "hover"
+    ]
+   },
+   "default": "Property 1=Default",
+   "size": [
+    708,
+    52
+   ],
+   "texts": [
+    "Basic plan",
+    "This plan accommodates a maximum…",
+    "2h ago",
+    "·",
+    "Cost Optimizer"
+   ],
+   "nested": [
+    "Featured icon",
+    "layers-two-01",
+    "clock-rewind",
+    "ai-agent",
+    "Buttons/Button Neutral",
+    "plus",
+    "Toggle"
+   ]
+  },
+  {
+   "key": "dot",
+   "id": "13141:630640",
+   "name": "Dot",
+   "section": "Nav Compos",
+   "set": true,
+   "props": {
+    "State": [
+     "Unread",
+     "waiting for user input",
+     "progress",
+     "failed"
+    ]
+   },
+   "default": "State=progress",
+   "size": [
+    16,
+    16
+   ],
+   "texts": [],
+   "nested": [
+    "Dot"
+   ]
+  },
+  {
+   "key": "nav-menu-main-wip",
+   "id": "13340:14982",
+   "name": "Nav_menu/Main",
+   "section": "Nav-Desktop App- Sep 30 WIP",
+   "set": true,
+   "props": {
+    "dots": "BOOLEAN",
+    "Variant": [
+     "Collapsed",
+     "Expanded"
+    ],
+    "State": [
+     "Default",
+     "Hover",
+     "Selected",
+     "Selected_hover"
+    ]
+   },
+   "default": "Variant=Collapsed, State=Default",
+   "size": [
+    28,
+    28
+   ],
+   "texts": [],
+   "nested": [
+    "plus"
+   ]
+  },
+  {
+   "key": "nav-menu-main-light-mode-wip",
+   "id": "13340:15017",
+   "name": "Nav_menu/Main light mode",
+   "section": "Nav-Desktop App- Sep 30 WIP",
+   "set": true,
+   "props": {
+    "dots": "BOOLEAN",
+    "Variant": [
+     "Collapsed",
+     "Expanded"
+    ],
+    "State": [
+     "Default",
+     "Hover",
+     "Selected",
+     "Selected_hover"
+    ]
+   },
+   "default": "Variant=Collapsed, State=Default",
+   "size": [
+    28,
+    28
+   ],
+   "texts": [],
+   "nested": [
+    "plus"
+   ]
+  },
+  {
+   "key": "nav-menu-l2-wip",
+   "id": "13515:21265",
+   "name": "Nav_menu/L2",
+   "section": "Nav-Desktop App- Sep 30 WIP",
+   "set": true,
+   "props": {
+    "dots": "BOOLEAN",
+    "State": [
+     "Default",
+     "Hover",
+     "Selected",
+     "Selected_hover"
+    ]
+   },
+   "default": "State=Default",
+   "size": [
+    256,
+    28
+   ],
+   "texts": [
+    "New Chat"
+   ],
+   "nested": [
+    "plus",
+    "Small Icon Button",
+    "chevron-right"
+   ]
+  },
+  {
+   "key": "nav-menu-l2-light-mode-wip",
+   "id": "13530:627561",
+   "name": "Nav_menu/L2 light mode",
+   "section": "Nav-Desktop App- Sep 30 WIP",
+   "set": true,
+   "props": {
+    "dots": "BOOLEAN",
+    "State": [
+     "Default",
+     "Hover",
+     "Selected",
+     "Selected_hover"
+    ]
+   },
+   "default": "State=Default",
+   "size": [
+    256,
+    28
+   ],
+   "texts": [
+    "New Chat"
+   ],
+   "nested": [
+    "plus",
+    "dots-horizontal",
+    "chevron-right"
+   ]
+  },
+  {
+   "key": "nav-menu-agent-wip",
+   "id": "13340:15052",
+   "name": "Nav_menu/Agent",
+   "section": "Nav-Desktop App- Sep 30 WIP",
+   "set": true,
+   "props": {
+    "dots": "BOOLEAN",
+    "Property 1": [
+     "Default",
+     "Hover",
+     "Selected",
+     "Selected_hover"
+    ]
+   },
+   "default": "Property 1=Default",
+   "size": [
+    256,
+    28
+   ],
+   "texts": [
+    "Agent Name"
+   ],
+   "nested": [
+    "chevron-right",
+    "Agent_Avatar",
+    "AI Avatar",
+    "Small Icon Button"
+   ]
+  },
+  {
+   "key": "nav-menu-agent-light-mode-wip",
+   "id": "13340:15080",
+   "name": "Nav_menu/Agent Light Mode",
+   "section": "Nav-Desktop App- Sep 30 WIP",
+   "set": true,
+   "props": {
+    "dots": "BOOLEAN",
+    "Property 1": [
+     "Default",
+     "Hover",
+     "Selected",
+     "Selected_hover"
+    ]
+   },
+   "default": "Property 1=Default",
+   "size": [
+    256,
+    28
+   ],
+   "texts": [
+    "Agent Name"
+   ],
+   "nested": [
+    "chevron-right",
+    "Agent_Avatar",
+    "AI Avatar",
+    "Small Icon Button"
+   ]
+  },
+  {
+   "key": "nav-menu-subheader-wip",
+   "id": "13340:15108",
+   "name": "Nav_menu/Subheader",
+   "section": "Nav-Desktop App- Sep 30 WIP",
+   "set": true,
+   "props": {
+    "State": [
+     "Default",
+     "Hover",
+     "Selected"
+    ]
+   },
+   "default": "State=Default",
+   "size": [
+    256,
+    28
+   ],
+   "texts": [
+    "Pinned"
+   ],
+   "nested": [
+    "explore-ai-agents",
+    "chevron-right",
+    "Small Icon",
+    "Small Icon Button",
+    "chevron-down-sm"
+   ]
+  },
+  {
+   "key": "nav-menu-subheader-light-mode-wip",
+   "id": "13340:15132",
+   "name": "Nav_menu/Subheader light mode",
+   "section": "Nav-Desktop App- Sep 30 WIP",
+   "set": true,
+   "props": {
+    "State": [
+     "Default",
+     "Hover",
+     "Selected"
+    ]
+   },
+   "default": "State=Default",
+   "size": [
+    256,
+    28
+   ],
+   "texts": [
+    "Pinned"
+   ],
+   "nested": [
+    "explore-ai-agents",
+    "chevron-right",
+    "Small Icon",
+    "Small Icon Button",
+    "chevron-down-sm"
+   ]
+  },
+  {
+   "key": "nav-menu-chat-history-wip",
+   "id": "13340:15156",
+   "name": "Nav_menu/Chat_history",
+   "section": "Nav-Desktop App- Sep 30 WIP",
+   "set": true,
+   "props": {
+    "Time": "BOOLEAN",
+    "State": [
+     "Default",
+     "Hover",
+     "Selected",
+     "Selected_hover"
+    ],
+    "Level": [
+     "L1",
+     "L2"
+    ]
+   },
+   "default": "State=Default, Level=L1",
+   "size": [
+    256,
+    28
+   ],
+   "texts": [
+    "Get all granola notes summarized"
+   ],
+   "nested": [
+    "Dot",
+    "chevron-right",
+    "Small Icon Button"
+   ]
+  },
+  {
+   "key": "nav-menu-chat-history-light-mode-wip",
+   "id": "13340:15194",
+   "name": "Nav_menu/Chat_history Light mode",
+   "section": "Nav-Desktop App- Sep 30 WIP",
+   "set": true,
+   "props": {
+    "Three dots": "BOOLEAN",
+    "Time": "BOOLEAN",
+    "State": [
+     "Default",
+     "Hover",
+     "Selected",
+     "Selected_hover"
+    ],
+    "Level": [
+     "L1",
+     "L2"
+    ]
+   },
+   "default": "State=Default, Level=L1",
+   "size": [
+    256,
+    28
+   ],
+   "texts": [
+    "Excel Formula Help From Main Doc"
+   ],
+   "nested": [
+    "Dot",
+    "chevron-right",
+    "Small Icon Button"
+   ]
+  },
+  {
+   "key": "nav-menu-footer-wip",
+   "id": "13340:16842",
+   "name": "Nav_menu/Footer",
+   "section": "Nav-Desktop App- Sep 30 WIP",
+   "set": true,
+   "props": {
+    "Variant": [
+     "Default",
+     "Collapsed"
+    ],
+    "State": [
+     "Default",
+     "Clicked",
+     "Hover"
+    ]
+   },
+   "default": "Variant=Default, State=Default",
+   "size": [
+    280,
+    45
+   ],
+   "texts": [
+    "A",
+    "Anurag Kashyap"
+   ],
+   "nested": [
+    "Avatar",
+    "chevron-up-sm"
+   ]
+  },
+  {
+   "key": "nav-menu-footer-light-mode-wip",
+   "id": "13340:16872",
+   "name": "Nav_menu/Footer light mode",
+   "section": "Nav-Desktop App- Sep 30 WIP",
+   "set": true,
+   "props": {
+    "Variant": [
+     "Default",
+     "Collapsed"
+    ],
+    "State": [
+     "Default",
+     "Clicked",
+     "Hover"
+    ]
+   },
+   "default": "Variant=Default, State=Default",
+   "size": [
+    280,
+    45
+   ],
+   "texts": [
+    "A",
+    "Anurag Kashyap"
+   ],
+   "nested": [
+    "Avatar",
+    "chevron-up-sm"
+   ]
+  },
+  {
+   "key": "dropdown-list-item-wip",
+   "id": "13340:16901",
+   "name": "Dropdown list item",
+   "section": "Nav-Desktop App- Sep 30 WIP",
+   "set": true,
+   "props": {
+    "State": [
+     "Default",
+     "Selected",
+     "Disabled",
+     "Hover"
+    ],
+    "Divider": [
+     "No",
+     "Yes"
+    ],
+    "Subtitle": [
+     "No",
+     "Yes"
+    ]
+   },
+   "default": "State=Default, Divider=No, Subtitle=No",
+   "size": [
+    240,
+    36
+   ],
+   "texts": [
+    "Placeholder"
+   ],
+   "nested": [
+    "placeholder"
+   ]
+  },
+  {
+   "key": "main-nav-wip",
+   "id": "13340:16939",
+   "name": "Main_nav",
+   "section": "Nav-Desktop App- Sep 30 WIP",
+   "set": true,
+   "props": {
+    "types": [
+     "Expanded",
+     "collapsed",
+     "Hover"
+    ]
+   },
+   "default": "types=collapsed",
+   "size": [
+    56,
+    900
+   ],
+   "texts": [
+    "A"
+   ],
+   "nested": [
+    "Nav_menu/Header",
+    "Component 3",
+    "Nav_menu/Main",
+    "Nav_menu/Footer"
+   ]
+  },
+  {
+   "key": "main-nav-light-mode-wip",
+   "id": "13340:17071",
+   "name": "Main_nav light mode",
+   "section": "Nav-Desktop App- Sep 30 WIP",
+   "set": true,
+   "props": {
+    "types": [
+     "Expanded",
+     "collapsed",
+     "Hover"
+    ]
+   },
+   "default": "types=collapsed",
+   "size": [
+    56,
+    900
+   ],
+   "texts": [
+    "A"
+   ],
+   "nested": [
+    "Nav_menu/Header",
+    "Component 2 light mode",
+    "Nav_menu/Main light mode"
+   ]
+  },
+  {
+   "key": "component-3-wip",
+   "id": "13340:17196",
+   "name": "Component 3",
+   "section": "Nav-Desktop App- Sep 30 WIP",
+   "set": true,
+   "props": {
+    "Type": [
+     "Full",
+     "Icon only"
+    ]
+   },
+   "default": "Type=Icon only",
+   "size": [
+    32,
+    40
+   ],
+   "texts": [],
+   "nested": []
+  },
+  {
+   "key": "component-2-light-mode-wip",
+   "id": "13340:18765",
+   "name": "Component 2 light mode",
+   "section": "Nav-Desktop App- Sep 30 WIP",
+   "set": true,
+   "props": {
+    "Type": [
+     "Full",
+     "Icon only"
+    ]
+   },
+   "default": "Type=Icon only",
+   "size": [
+    32,
+    40
+   ],
+   "texts": [],
+   "nested": []
+  },
+  {
+   "key": "collapse-wip",
+   "id": "13340:20334",
+   "name": "Collapse",
+   "section": "Nav-Desktop App- Sep 30 WIP",
+   "set": true,
+   "props": {
+    "Property 1": [
+     "default",
+     "hover"
+    ]
+   },
+   "default": "Property 1=default",
+   "size": [
+    28,
+    28
+   ],
+   "texts": [],
+   "nested": [
+    "layout-left"
+   ]
+  },
+  {
+   "key": "collapse-light-mode-wip",
+   "id": "13340:20341",
+   "name": "Collapse light mode",
+   "section": "Nav-Desktop App- Sep 30 WIP",
+   "set": true,
+   "props": {
+    "Property 1": [
+     "default",
+     "hover"
+    ]
+   },
+   "default": "Property 1=default",
+   "size": [
+    28,
+    28
+   ],
+   "texts": [],
+   "nested": [
+    "layout-left"
+   ]
+  },
+  {
+   "key": "small-icon-wip",
+   "id": "13340:20348",
+   "name": "Small Icon",
+   "section": "Nav-Desktop App- Sep 30 WIP",
+   "set": true,
+   "props": {
+    "Property 1": [
+     "Default",
+     "hover"
+    ]
+   },
+   "default": "Property 1=Default",
+   "size": [
+    20,
+    20
+   ],
+   "texts": [],
+   "nested": [
+    "Small Icon Button",
+    "plus"
+   ]
+  },
+  {
+   "key": "small-icon-light-mode-wip",
+   "id": "13340:20353",
+   "name": "Small Icon light mode",
+   "section": "Nav-Desktop App- Sep 30 WIP",
+   "set": true,
+   "props": {
+    "Property 1": [
+     "Default",
+     "hover"
+    ]
+   },
+   "default": "Property 1=Default",
+   "size": [
+    20,
+    20
+   ],
+   "texts": [],
+   "nested": [
+    "Small Icon Button",
+    "plus"
+   ]
+  },
+  {
+   "key": "bar-wip",
+   "id": "13340:20389",
+   "name": "Bar",
+   "section": "Nav-Desktop App- Sep 30 WIP",
+   "set": true,
+   "props": {
+    "Property 1": [
+     "Default",
+     "Variant2",
+     "Variant4"
+    ]
+   },
+   "default": "Property 1=Default",
+   "size": [
+    227,
+    8
+   ],
+   "texts": [],
+   "nested": []
+  },
+  {
+   "key": "eb-assistant-wip",
+   "id": "13340:20418",
+   "name": "EB-Assistant",
+   "section": "Nav-Desktop App- Sep 30 WIP",
+   "set": true,
+   "props": {
+    "Logo type": [
+     "AI",
+     "Company"
+    ]
+   },
+   "default": "Logo type=AI",
+   "size": [
+    70,
+    70
+   ],
+   "texts": [],
+   "nested": []
+  },
+  {
+   "key": "dot-wip",
+   "id": "13340:20522",
+   "name": "Dot",
+   "section": "Nav-Desktop App- Sep 30 WIP",
+   "set": true,
+   "props": {
+    "State": [
+     "Unread",
+     "Unread Hover & Selected",
+     "Read"
+    ]
+   },
+   "default": "State=Read",
+   "size": [
+    16,
+    16
+   ],
+   "texts": [],
+   "nested": [
+    "Dot"
+   ]
+  },
+  {
+   "key": "meetings-brief-page",
+   "id": "8890:172834",
+   "name": "Meetings / Brief-page",
+   "section": "Artefact Comps",
+   "set": false,
+   "props": {},
+   "default": null,
+   "size": [
+    1440,
+    900
+   ],
+   "texts": [
+    "Routines",
+    "Greif — expansion pricing review",
+    "Share",
+    "Today 10:25 PM - 11:30 PM"
+   ],
+   "nested": [
+    "Main_nav",
+    "ES Breadcrumb",
+    "Brief"
+   ]
+  },
+  {
+   "key": "list",
+   "id": "1061:122008",
+   "name": "list",
+   "section": "Artefact Comps",
+   "set": true,
+   "props": {
+    "Pill": "BOOLEAN",
+    "Property 1": [
+     "Hover",
+     "Default",
+     "Selected"
+    ]
+   },
+   "default": "Property 1=Default",
+   "size": [
+    760,
+    64
+   ],
+   "texts": [
+    "13:35",
+    "45m",
+    "Weekly Eng Standup",
+    "Roger, Benny, Sara + 5 others",
+    "Brief"
+   ],
+   "nested": [
+    "Pill squared",
+    "Buttons/Button Neutral",
+    "dots-horizontal",
+    "zoom"
+   ]
+  },
+  {
+   "key": "your-meeting-status",
+   "id": "8469:228507",
+   "name": "Your-Meeting-Status",
+   "section": "Artefact Comps",
+   "set": true,
+   "props": {
+    "Your Meeting Stat": [
+     "Will Join",
+     "Declined",
+     "None"
+    ]
+   },
+   "default": "Your Meeting Stat=Will Join",
+   "size": [
+    760,
+    64
+   ],
+   "texts": [
+    "13:35",
+    "45m",
+    "Weekly Eng Standup",
+    "Roger, Benny, Sara + 5 others",
+    "Brief"
+   ],
+   "nested": [
+    "list",
+    "Buttons/Button Neutral",
+    "dots-horizontal",
+    "zoom"
+   ]
+  },
+  {
+   "key": "user-popover",
+   "id": "8890:177232",
+   "name": "User popover",
+   "section": "Artefact Comps",
+   "set": false,
+   "props": {},
+   "default": null,
+   "size": [
+    340,
+    330
+   ],
+   "texts": [
+    "R",
+    "Rachel Okafor",
+    "VP Operations · Greif",
+    "External",
+    "Owns the seat count…",
+    "rachel.okafor@greif.com",
+    "Greif",
+    "Delaware, Ohio · ET"
+   ],
+   "nested": [
+    "Avatar label group",
+    "Avatar",
+    "Pill squared",
+    "Modal actions"
+   ]
+  },
+  {
+   "key": "meetings-side-panel",
+   "id": "8836:20032",
+   "name": "Meetings / Side panel",
+   "section": "Artefact Comps",
+   "set": true,
+   "props": {
+    "Work area": "SLOT",
+    "Property 1": [
+     "Edit Details",
+     "Cues",
+     "Ask Ai",
+     "Details"
+    ]
+   },
+   "default": "Property 1=Ask Ai",
+   "size": [
+    420,
+    5901
+   ],
+   "texts": [
+    "Ask AI",
+    "Cues",
+    "Meeting Details"
+   ],
+   "nested": [
+    "Horizontal tabs",
+    "Tab",
+    "Buttons/Button Neutral",
+    "close-lg"
+   ]
+  },
+  {
+   "key": "meetings-user-info-sidepane",
+   "id": "8890:178501",
+   "name": "Meetings / User Info Sidepane",
+   "section": "Artefact Comps",
+   "set": false,
+   "props": {},
+   "default": null,
+   "size": [
+    420,
+    900
+   ],
+   "texts": [
+    "Rachel Okafor   •",
+    "3 Invitees",
+    "Friday, 11 September · 1…",
+    "R",
+    "Rachel Okafor",
+    "VP Operations · Greif",
+    "External",
+    "rachel.okafor@greif.com"
+   ],
+   "nested": [
+    "Sidepane header",
+    "Buttons/Button Neutral",
+    "Avatar label group"
+   ]
+  },
+  {
+   "key": "es-header",
+   "id": "1172:174142",
+   "name": "ES Header",
+   "section": "Artefact Comps",
+   "set": true,
+   "props": {
+    "Property 1": [
+     "Default",
+     "Variant2",
+     "Brief"
+    ]
+   },
+   "default": "Property 1=Default",
+   "size": [
+    720,
+    164
+   ],
+   "texts": [
+    "Untitled note",
+    "Copy Notes",
+    "4 people",
+    "Today, 2:27 PM",
+    "40 min",
+    "Notes",
+    "Transcript",
+    "Brief",
+    "Anurag Kashyap",
+    "Edited 4 min ago",
+    "4 versions"
+   ],
+   "nested": [
+    "Breadcrumb Bar",
+    "Buttons/Button Neutral",
+    "Avatar group",
+    "Horizontal tabs"
+   ]
+  },
+  {
+   "key": "meetings-start-buttons",
+   "id": "8890:173977",
+   "name": "Meetings / Start Buttons",
+   "section": "Artefact Comps",
+   "set": true,
+   "props": {
+    "Property 1": [
+     "Resume",
+     "Saving",
+     "Stop",
+     "Start"
+    ]
+   },
+   "default": "Property 1=Start",
+   "size": [
+    118,
+    48
+   ],
+   "texts": [
+    "Start"
+   ],
+   "nested": [
+    "Buttons/Button Success",
+    "clock",
+    "dot-tag"
+   ]
+  },
+  {
+   "key": "meetings-bottom-input-with-start-button",
+   "id": "8890:173990",
+   "name": "Meetings/ Bottom Input with start Button",
+   "section": "Artefact Comps",
+   "set": false,
+   "props": {
+    "Transcribing": "BOOLEAN",
+    "Generate btn": "BOOLEAN"
+   },
+   "default": null,
+   "size": [
+    720,
+    48
+   ],
+   "texts": [
+    "Always get consent when…",
+    "Start",
+    "Ask anything..."
+   ],
+   "nested": [
+    "Buttons/Link",
+    "Buttons/Button Brand",
+    "Meetings / Start Buttons",
+    "Copilot desktop Input Box"
+   ]
+  },
+  {
+   "key": "meeting-details-card",
+   "id": "8890:177031",
+   "name": "Meeting details card",
+   "section": "Artefact Comps",
+   "set": false,
+   "props": {},
+   "default": null,
+   "size": [
+    380,
+    575
+   ],
+   "texts": [
+    "Greif — expansion pricing review",
+    "Saturday, 12 September ·…",
+    "Join with Microsoft Teams",
+    "teams.microsoft.com/link…",
+    "3 people",
+    "Roger Bennett • Organiser",
+    "roger.bennett@unifyapps.com"
+   ],
+   "nested": [
+    "List Item Cardified",
+    "ms-teams",
+    "Section label",
+    "Avatar"
+   ]
+  },
+  {
+   "key": "brief",
+   "id": "8877:161106",
+   "name": "Brief",
+   "section": "Artefact Comps",
+   "set": false,
+   "props": {
+    "Artifacts": "BOOLEAN",
+    "Do List": "BOOLEAN",
+    "Transcript": "BOOLEAN"
+   },
+   "default": null,
+   "size": [
+    720,
+    1800
+   ],
+   "texts": [
+    "Generated today at 14:50",
+    "Regenerate",
+    "Rachel called this at a…",
+    "What they came to say"
+   ],
+   "nested": [
+    "Alert",
+    "Buttons/Button Brand",
+    "Inline Artifact Cards"
+   ]
+  },
+  {
+   "key": "artifacts",
+   "id": "3111:334057",
+   "name": "artifacts",
+   "section": "Artefact Comps",
+   "set": true,
+   "props": {
+    "Shared": "BOOLEAN",
+    "Private": "BOOLEAN",
+    "Slot": "SLOT",
+    "Property 1": [
+     "Default",
+     "hover",
+     "full image",
+     "text above",
+     "hover 2"
+    ]
+   },
+   "default": "Property 1=Default",
+   "size": [
+    288,
+    266
+   ],
+   "texts": [
+    "DOCUMENT",
+    "Q3 2026 Revenue Forecast",
+    "Ameer Khan",
+    "·",
+    "2h ago",
+    "Shared"
+   ],
+   "nested": [
+    "Icon",
+    "clock-rewind",
+    "lock-01",
+    "globe-01",
+    "users-01",
+    "Pill squared"
+   ]
+  },
+  {
+   "key": "draft-mail",
+   "id": "4731:76683",
+   "name": "Draft-Mail",
+   "section": "Artefact Comps",
+   "set": false,
+   "props": {},
+   "default": null,
+   "size": [
+    1440,
+    900
+   ],
+   "texts": [
+    "Drafting an email",
+    "$1.23",
+    "Share",
+    "Draft an email to the team…"
+   ],
+   "nested": [
+    "Main_nav",
+    "ES Breadcrumb"
+   ]
+  },
+  {
+   "key": "darft-mail",
+   "id": "4725:76306",
+   "name": "Darft-Mail",
+   "section": "Artefact Comps",
+   "set": false,
+   "props": {
+    "Cc": "BOOLEAN",
+    "Bcc": "BOOLEAN",
+    "Editing": "BOOLEAN",
+    "Input Box": "BOOLEAN",
+    "Attachment": "BOOLEAN"
+   },
+   "default": null,
+   "size": [
+    720,
+    812
+   ],
+   "texts": [
+    "To",
+    "Pavitar Singh",
+    "Sumit Nandal",
+    "Cc",
+    "Bcc"
+   ],
+   "nested": [
+    "Tag",
+    "Small Icon Button",
+    "Buttons/Link",
+    "WYSIWYG tooltip white",
+    "Buttons/Button Neutral"
+   ]
+  },
+  {
+   "key": "wysiwyg-tooltip-white",
+   "id": "6593:382571",
+   "name": "WYSIWYG tooltip white",
+   "section": "Artefact Comps",
+   "set": false,
+   "props": {},
+   "default": null,
+   "size": [
+    326,
+    38
+   ],
+   "texts": [
+    "AI edit"
+   ],
+   "nested": [
+    "Buttons/Button Neutral",
+    "_WYSIWYG button",
+    "bold",
+    "italics",
+    "strike-through",
+    "underline",
+    "list"
+   ]
+  },
+  {
+   "key": "arifact-header",
+   "id": "3805:105688",
+   "name": "Arifact Header",
+   "section": "Artefact Comps",
+   "set": false,
+   "props": {},
+   "default": null,
+   "size": [
+    943,
+    40
+   ],
+   "texts": [
+    "Untitled.xls",
+    "Edit with Chat",
+    "150%",
+    "888",
+    "v3 ",
+    "Publish"
+   ],
+   "nested": [
+    "Artifact-Icons",
+    "Buttons/Button Neutral",
+    "Button",
+    "_Toggle group base",
+    "eye",
+    "code-01"
+   ]
+  },
+  {
+   "key": "project-card-1",
+   "id": "551:132342",
+   "name": "Project card 1",
+   "section": "Artefact Comps",
+   "set": true,
+   "props": {
+    "Property 1": [
+     "private",
+     "shared",
+     "hover"
+    ]
+   },
+   "default": "Property 1=private",
+   "size": [
+    297,
+    146
+   ],
+   "texts": [
+    "Banking Issues",
+    "12 items",
+    "Ajeetabh Narayan",
+    "·",
+    "12.04.2026",
+    "Shared"
+   ],
+   "nested": [
+    "Folder-Icon-Solid",
+    "clock-rewind",
+    "pin-02-solid",
+    "lock-01",
+    "globe-01",
+    "users-01",
+    "Pill squared"
+   ]
+  },
+  {
+   "key": "add-source",
+   "id": "1504:423010",
+   "name": "Add source",
+   "section": "Artefact Comps",
+   "set": false,
+   "props": {},
+   "default": null,
+   "size": [
+    760,
+    184
+   ],
+   "texts": [
+    "Click to upload",
+    "or drag and drop",
+    "Drag and drop or Add PDF…",
+    "Add Text Input",
+    "Add Google Drive"
+   ],
+   "nested": [
+    "File Upload empty state",
+    "Buttons/Link",
+    "Buttons/Button Neutral",
+    "coloured logos"
+   ]
+  },
+  {
+   "key": "container",
+   "id": "805:171383",
+   "name": "Container",
+   "section": "Artefact Comps",
+   "set": false,
+   "props": {},
+   "default": null,
+   "size": [
+    301,
+    160
+   ],
+   "texts": [
+    "Morning inbox triage",
+    "Reads overnight mail and…",
+    "Every Friday · 4:00 PM",
+    "·"
+   ],
+   "nested": [
+    "Featured Icon_Solid",
+    "sun",
+    "clock",
+    "clock-rewind"
+   ]
+  },
+  {
+   "key": "es-breadcrumb",
+   "id": "1097:162688",
+   "name": "ES Breadcrumb",
+   "section": "Artefact Comps",
+   "set": true,
+   "props": {
+    "Actions": "BOOLEAN",
+    "AI assist button": "BOOLEAN",
+    "Avatar Group": "BOOLEAN",
+    "Variant": [
+     "Default",
+     "with Back Button",
+     "with Icon",
+     "Three level",
+     "Variant5",
+     "Variant6",
+     "Variant7"
+    ]
+   },
+   "default": "Variant=with Icon",
+   "size": [
+    1384,
+    40
+   ],
+   "texts": [
+    "Routines",
+    "New routine",
+    "$1.23",
+    "Share"
+   ],
+   "nested": [
+    "Buttons/Button Neutral",
+    "slash-divider",
+    "clock",
+    "Avatar group",
+    "cost_loader",
+    "lock-03",
+    "file-05",
+    "Button"
+   ]
+  },
+  {
+   "key": "inline-artifact-cards",
+   "id": "5288:119600",
+   "name": "Inline Artifact Cards",
+   "section": "Artefact Comps",
+   "set": true,
+   "props": {
+    "State": [
+     "Application-HTML",
+     "DOC",
+     "XLS",
+     "PPT",
+     "PDF",
+     "Markdown",
+     "CSV",
+     "Flow Diagram",
+     "JSON",
+     "State10"
+    ]
+   },
+   "default": "State=DOC",
+   "size": [
+    520,
+    60
+   ],
+   "texts": [
+    "Pipeline Command",
+    "Document • DOCX",
+    "Download"
+   ],
+   "nested": [
+    "Inline Cards",
+    "Artifact-Icons",
+    "Buttons/Button Neutral"
+   ]
+  },
+  {
+   "key": "record-popup",
+   "id": "12972:126098",
+   "name": "Record popup",
+   "section": "Artefact Comps",
+   "set": true,
+   "props": {
+    "Icon": "BOOLEAN",
+    "Type": [
+     "Google",
+     "Teams",
+     "Teams Open"
+    ]
+   },
+   "default": "Type=Google",
+   "size": [
+    424,
+    56
+   ],
+   "texts": [
+    "14:50",
+    "45m",
+    "Greif expansion pricing…",
+    "16:55 - 17:55",
+    "Record Meeting"
+   ],
+   "nested": [
+    "Pill squared",
+    "google-meet",
+    "Small Icon Button",
+    "chevron-down",
+    "x"
+   ]
+  },
+  {
+   "key": "thoughts",
+   "id": "484:125134",
+   "name": "Thoughts",
+   "section": "Chat Comps",
+   "set": true,
+   "props": {
+    "State": [
+     "Closed",
+     "Hover",
+     "Open"
+    ]
+   },
+   "default": "State=Closed",
+   "size": [
+    74,
+    20
+   ],
+   "texts": [
+    "Thoughts"
+   ],
+   "nested": [
+    "chevron-right-sm"
+   ]
+  },
+  {
+   "key": "thinking-state",
+   "id": "484:117565",
+   "name": "thinking state",
+   "section": "Chat Comps",
+   "set": true,
+   "props": {
+    "State": [
+     "1",
+     "2"
+    ]
+   },
+   "default": "State=1",
+   "size": [
+    248,
+    20
+   ],
+   "texts": [
+    "Thinking..."
+   ],
+   "nested": []
+  },
+  {
+   "key": "three-dots-animation",
+   "id": "1768:345844",
+   "name": "Three dots animation",
+   "section": "Chat Comps",
+   "set": true,
+   "props": {
+    "State": [
+     "1",
+     "2",
+     "3"
+    ]
+   },
+   "default": "State=1",
+   "size": [
+    8,
+    5
+   ],
+   "texts": [],
+   "nested": []
+  },
+  {
+   "key": "company-logo",
+   "id": "3518:226109",
+   "name": "Company Logo",
+   "section": "Chat Comps",
+   "set": false,
+   "props": {},
+   "default": null,
+   "size": [
+    70,
+    70
+   ],
+   "texts": [],
+   "nested": [
+    "Unify Logo"
+   ]
+  },
+  {
+   "key": "draft-mail-chat",
+   "id": "5949:216485",
+   "name": "Draft-Mail",
+   "section": "Chat Comps",
+   "set": false,
+   "props": {},
+   "default": null,
+   "size": [
+    440,
+    900
+   ],
+   "texts": [
+    "Drafting an email",
+    "$1.23",
+    "Share",
+    "Draft an email to the team…"
+   ],
+   "nested": [
+    "ES Breadcrumb",
+    "Copilot_User Message_Desktop full",
+    "COT",
+    "Agent_Avatar"
+   ]
+  },
+  {
+   "key": "cost-stat",
+   "id": "5975:406849",
+   "name": "cost stat",
+   "section": "Chat Comps",
+   "set": false,
+   "props": {},
+   "default": null,
+   "size": [
+    240,
+    98
+   ],
+   "texts": [
+    "This chat has cost $0.12",
+    "$0",
+    "$2",
+    "$5",
+    "Under limit - well inside…"
+   ],
+   "nested": [
+    "Featured icon",
+    "cost progress",
+    "triangle"
+   ]
+  },
+  {
+   "key": "cost-progress",
+   "id": "5975:406640",
+   "name": "cost progress",
+   "section": "Chat Comps",
+   "set": true,
+   "props": {
+    "Property 1": [
+     "ok costg",
+     "warning ocst",
+     "red cost"
+    ]
+   },
+   "default": "Property 1=ok costg",
+   "size": [
+    220,
+    28
+   ],
+   "texts": [
+    "$0",
+    "$2",
+    "$5"
+   ],
+   "nested": [
+    "triangle"
+   ]
+  },
+  {
+   "key": "text-queue-card",
+   "id": "8237:504976",
+   "name": "Text Queue Card",
+   "section": "Chat Comps",
+   "set": true,
+   "props": {
+    "Collapsed": [
+     "No",
+     "Yes"
+    ],
+    "State": [
+     "In queue",
+     "Paused"
+    ]
+   },
+   "default": "Collapsed=No, State=In queue",
+   "size": [
+    758,
+    88
+   ],
+   "texts": [
+    "Queue ",
+    "1",
+    "Keep the design minimal"
+   ],
+   "nested": [
+    "Pill solid",
+    "Small Icon Button",
+    "pause",
+    "Text",
+    "Featured icon",
+    "reorder-dots"
+   ]
+  },
+  {
+   "key": "text-queue",
+   "id": "8237:505029",
+   "name": "Text",
+   "section": "Chat Comps",
+   "set": true,
+   "props": {
+    "Image": "BOOLEAN",
+    "State": [
+     "Default",
+     "Hover"
+    ]
+   },
+   "default": "State=Default",
+   "size": [
+    758,
+    48
+   ],
+   "texts": [
+    "Keep the design minimal"
+   ],
+   "nested": [
+    "Featured icon",
+    "reorder-dots"
+   ]
+  },
+  {
+   "key": "agent-thought",
+   "id": "3138:234864",
+   "name": "Agent Thought",
+   "section": "Chat Comps",
+   "set": true,
+   "props": {
+    "Type": [
+     "Step 1",
+     "Step 2",
+     "Step 3",
+     "Step 4",
+     "Step 5",
+     "Step 6",
+     "Step 7",
+     "Complete 1",
+     "Complete 2",
+     "All  1 line thoughts",
+     "Step 7 - no pills"
+    ]
+   },
+   "default": "Type=Step 1",
+   "size": [
+    788,
+    20
+   ],
+   "texts": [
+    "Thinking..."
+   ],
+   "nested": [
+    "Agent Avatar",
+    "COT",
+    "Agent_Avatar",
+    "AI Avatar",
+    "thinking state"
+   ]
+  },
+  {
+   "key": "collaborative-chat-large",
+   "id": "8066:436040",
+   "name": "Collaborative chat-large",
+   "section": "Chat Comps",
+   "set": true,
+   "props": {
+    "State": [
+     "User Typing",
+     "Default",
+     "Agent Typing"
+    ],
+    "Users": [
+     "Default",
+     "Max Users",
+     "No"
+    ]
+   },
+   "default": "State=Default, Users=No",
+   "size": [
+    760,
+    60
+   ],
+   "texts": [
+    "Type @ to mention a participant",
+    "Assistant Replies"
+   ],
+   "nested": [
+    "clock",
+    "_Toggle base"
+   ]
+  },
+  {
+   "key": "collaborative-chat-large-narrow",
+   "id": "8085:466668",
+   "name": "Collaborative chat-large",
+   "section": "Chat Comps",
+   "set": true,
+   "props": {
+    "State": [
+     "Default",
+     "User Typing",
+     "Agent Typing"
+    ],
+    "User": [
+     "Default",
+     "Max Users",
+     "No"
+    ]
+   },
+   "default": "State=Default, User=No",
+   "size": [
+    408,
+    60
+   ],
+   "texts": [
+    "Type @ to mention a participant"
+   ],
+   "nested": [
+    "clock",
+    "_Toggle base"
+   ]
+  },
+  {
+   "key": "cost-stat-detail",
+   "id": "6027:423831",
+   "name": "cost stat",
+   "section": "Chat Comps",
+   "set": false,
+   "props": {},
+   "default": null,
+   "size": [
+    380,
+    588
+   ],
+   "texts": [
+    "This chat ",
+    "$19.12",
+    "queries",
+    "We are two-thirds through…"
+   ],
+   "nested": [
+    "Featured icon",
+    "cost_loader",
+    "Filter Bar",
+    "Col Header Cell",
+    "Table cell",
+    "cost stat",
+    "cost progress"
+   ]
+  },
+  {
+   "key": "list-item",
+   "id": "8458:249992",
+   "name": "List Item",
+   "section": "Meetings + Settings",
+   "set": false,
+   "props": {},
+   "default": null,
+   "size": [
+    560,
+    36
+   ],
+   "texts": [
+    "1 hour before",
+    "2h ago",
+    "·",
+    "Cost Optimizer"
+   ],
+   "nested": [
+    "clock-solid",
+    "clock-rewind",
+    "ai-agent",
+    "Pill squared",
+    "Checkbox"
+   ]
+  },
+  {
+   "key": "frame-2147266830",
+   "id": "6716:631613",
+   "name": "Frame 2147266830",
+   "section": "Meetings + Settings",
+   "set": false,
+   "props": {},
+   "default": null,
+   "size": [
+    306,
+    32
+   ],
+   "texts": [
+    "Crome Extenison",
+    "Ready"
+   ],
+   "nested": [
+    "Featured icon",
+    "google-chrome-solid",
+    "Pill squared",
+    "Icon"
+   ]
+  },
+  {
+   "key": "form",
+   "id": "10101:532627",
+   "name": "Form",
+   "section": "Meetings + Settings",
+   "set": false,
+   "props": {},
+   "default": null,
+   "size": [
+    740,
+    720
+   ],
+   "texts": [
+    "Memory",
+    "Role and book",
+    "Profile",
+    "Updated 13th Sept",
+    "Summary",
+    "Details"
+   ],
+   "nested": [
+    "Modal header",
+    "Buttons/Button Neutral",
+    "Form Header",
+    "List Item"
+   ]
+  },
+  {
+   "key": "details",
+   "id": "10101:533584",
+   "name": "Details",
+   "section": "Meetings + Settings",
+   "set": false,
+   "props": {},
+   "default": null,
+   "size": [
+    692,
+    236
+   ],
+   "texts": [
+    "•  Runs the mid-market r…"
+   ],
+   "nested": [
+    "List Item"
+   ]
+  },
+  {
+   "key": "modal-settings",
+   "id": "9934:223560",
+   "name": "Modal",
+   "section": "Meetings + Settings",
+   "set": false,
+   "props": {},
+   "default": null,
+   "size": [
+    960,
+    720
+   ],
+   "texts": [
+    "Settings",
+    "General",
+    "Memory",
+    "Models",
+    "Skills",
+    "Get App & Extensions",
+    "Generate memory from cha…"
+   ],
+   "nested": [
+    "Secondary navigation",
+    "_Nav Header",
+    "Script"
+   ]
+  },
+  {
+   "key": "adding-memory-alert",
+   "id": "10101:541459",
+   "name": "Adding-Memory-Alert",
+   "section": "Meetings + Settings",
+   "set": true,
+   "props": {
+    "Property 1": [
+     "Updated",
+     "Reading",
+     "No change - see why",
+     "No change - hide"
+    ]
+   },
+   "default": "Property 1=Reading",
+   "size": [
+    720,
+    40
+   ],
+   "texts": [
+    "Looking through this memory…"
+   ],
+   "nested": [
+    "Alert",
+    "loading-02"
+   ]
+  },
+  {
+   "key": "start-import-model",
+   "id": "10136:583469",
+   "name": "Start Import Model",
+   "section": "Meetings + Settings",
+   "set": false,
+   "props": {},
+   "default": null,
+   "size": [
+    600,
+    448
+   ],
+   "texts": [
+    "Import memory to Unify AI",
+    "Copy this prompt into a…",
+    "Copy",
+    "Paste your AI provider's…"
+   ],
+   "nested": [
+    "Modal header",
+    "ES Conversation",
+    "Avatar",
+    "Textarea input field",
+    "Modal actions"
+   ]
+  },
+  {
+   "key": "turn-off-memory",
+   "id": "10136:603411",
+   "name": "Turn off memory",
+   "section": "Meetings + Settings",
+   "set": false,
+   "props": {},
+   "default": null,
+   "size": [
+    440,
+    292
+   ],
+   "texts": [
+    "Turn Off Memory",
+    "Pause memory",
+    "Reset memory",
+    "Cancel"
+   ],
+   "nested": [
+    "Modal header",
+    "List Item Cardified",
+    "Checkbox",
+    "Modal actions"
+   ]
+  },
+  {
+   "key": "apps",
+   "id": "10339:422369",
+   "name": "Apps",
+   "section": "Meetings + Settings",
+   "set": true,
+   "props": {
+    "Admin Controlled": "BOOLEAN",
+    "Error Icon": "BOOLEAN",
+    "Type": [
+     "Connected",
+     "Connected Hover",
+     "Available",
+     "Available hover"
+    ]
+   },
+   "default": "Type=Connected",
+   "size": [
+    690,
+    56
+   ],
+   "texts": [
+    "Microsoft Teams",
+    "Enables team chat and me…"
+   ],
+   "nested": [
+    "ms-teams",
+    "building-05",
+    "Buttons/Button Neutral",
+    "check"
+   ]
+  },
+  {
+   "key": "project-header",
+   "id": "12085:587299",
+   "name": "Frame 2147266466",
+   "section": "Artefact Comps",
+   "set": false,
+   "props": {},
+   "default": null,
+   "size": [
+    760,
+    216
+   ],
+   "texts": [
+    "Client Onboarding",
+    "Share",
+    "Tracking Q1 close activities",
+    "Use + to connect the necessary apps.",
+    "Use @name to bring an agent or colleague",
+    "Use /skill to give your agent a capability."
+   ],
+   "nested": [
+    "title",
+    "description",
+    "Share button",
+    "copilot input"
+   ]
+  }
+ ],
+ "library": [
+  {
+   "key": "button-brand",
+   "name": "Buttons/Button Brand",
+   "lib": true,
+   "variantKey": "868eb6a10a0029aa3847bb98965033d597976d9f",
+   "variant": "Size=md, Hierarchy=Primary, State=Default",
+   "props": {
+    "Size": [
+     "xs",
+     "sm",
+     "md",
+     "lg"
+    ],
+    "Hierarchy": [
+     "Primary",
+     "Secondary",
+     "Tertiary"
+    ],
+    "Icon": [
+     "Default",
+     "Dot leading",
+     "Only"
+    ],
+    "State": [
+     "Default",
+     "Hover",
+     "Focused",
+     "Disabled",
+     "Loading"
+    ],
+    "Icon leading": "BOOLEAN",
+    "Icon trailing": "BOOLEAN",
+    "Icon leading swap": "INSTANCE_SWAP",
+    "Icon trailing swap": "INSTANCE_SWAP"
+   },
+   "texts": [
+    "Button"
+   ],
+   "setKey": "4734389538bc2d0beec7a14b6b03ea32abb43cc0",
+   "default": "Size=md, Hierarchy=Primary, Icon=Default, State=Default"
+  },
+  {
+   "key": "button-brand-lg",
+   "name": "Buttons/Button Brand",
+   "lib": true,
+   "variantKey": "64a8163a51ea4757a95afeec6d6a6cef79eb5a50",
+   "variant": "Size=lg, Hierarchy=Primary",
+   "props": {},
+   "texts": [
+    "Button"
+   ],
+   "default": "Size=lg, Hierarchy=Primary"
+  },
+  {
+   "key": "button-neutral",
+   "name": "Buttons/Button Neutral",
+   "lib": true,
+   "variantKey": "60142d11837f402e23f84d6d04c185f8f0d0be10",
+   "variant": "Size=md, Hierarchy=Secondary, State=Default",
+   "props": {
+    "Size": [
+     "xs",
+     "sm",
+     "md",
+     "lg"
+    ],
+    "Hierarchy": [
+     "Primary",
+     "Secondary",
+     "Tertiary"
+    ],
+    "Icon": [
+     "Default",
+     "Dot leading",
+     "Only"
+    ],
+    "State": [
+     "Default",
+     "Hover",
+     "Focused",
+     "Disabled",
+     "Loading"
+    ],
+    "Icon leading": "BOOLEAN",
+    "Icon trailing": "BOOLEAN",
+    "Icon leading swap": "INSTANCE_SWAP",
+    "Icon trailing swap": "INSTANCE_SWAP"
+   },
+   "texts": [
+    "Button"
+   ],
+   "setKey": "7be96c9ee274f472dead656f7d1d67120b4adaff",
+   "default": "Size=md, Hierarchy=Secondary, Icon=Default, State=Default"
+  },
+  {
+   "key": "small-icon-button",
+   "name": "Buttons/Small Icon Button",
+   "lib": true,
+   "variantKey": "55ddcfc9ab844f08681c97b2b3dcbc5c4278cece",
+   "variant": "Size=md, State=Default",
+   "props": {
+    "Size": [
+     "xxs",
+     "xs",
+     "sm",
+     "md",
+     "lg",
+     "xl",
+     "xxl"
+    ],
+    "State": [
+     "Default",
+     "Hover",
+     "Focused",
+     "Disabled"
+    ],
+    "Icon swap": "INSTANCE_SWAP"
+   },
+   "texts": [],
+   "setKey": "7b87bd5aa62908e65aa2fda0f587ac12e2e20998",
+   "default": "Size=md, State=Default"
+  },
+  {
+   "key": "page-header",
+   "name": "Header",
+   "lib": true,
+   "variantKey": "d249267fb4c905faf2a46c187e635f54f8705bd2",
+   "variant": "Level=Level 1, Tabs=False, Type=Default",
+   "props": {
+    "Level": [
+     "Level 1",
+     "Level 2",
+     "Level 3"
+    ],
+    "Tabs": [
+     "True",
+     "False"
+    ],
+    "Type": [
+     "Default",
+     "Back"
+    ],
+    "Featured Icon": "BOOLEAN",
+    "Search": "BOOLEAN",
+    "Dropdown icon": "BOOLEAN",
+    "Divider": "BOOLEAN",
+    "Badge": "BOOLEAN",
+    "Actions": "BOOLEAN",
+    "Supporting text": "BOOLEAN"
+   },
+   "texts": [
+    "Team members",
+    "Manage your…"
+   ],
+   "size": [
+    1216,
+    56
+   ],
+   "setKey": "1c3690e4d550137e49f22ce1638dbd8626ebeede",
+   "default": "Level=Level 1, Tabs=False, Type=Default"
+  },
+  {
+   "key": "page-header-tabs",
+   "name": "Header",
+   "lib": true,
+   "variantKey": "76ed3767d6342c990bad24c63783d395b7e5c590",
+   "variant": "Level=Level 1, Tabs=True, Type=Default",
+   "props": {},
+   "texts": [
+    "Team members",
+    "Manage your…"
+   ],
+   "size": [
+    1216,
+    56
+   ],
+   "default": "Level=Level 1, Tabs=True, Type=Default"
+  },
+  {
+   "key": "horizontal-tabs",
+   "name": "Horizontal tabs",
+   "lib": true,
+   "variantKey": "f1472da08f857d83f6e1602c7172ac7de1fa6065",
+   "variant": "Style=Default, Start Icon Style=None, Size=sm",
+   "props": {
+    "Style": [
+     "Default",
+     "Arrow",
+     "Double Line",
+     "Folder Tab",
+     "Rounded Folder Tab",
+     "Button Tabs"
+    ],
+    "Start Icon Style": [
+     "None",
+     "Icon",
+     "Progress Indicator"
+    ],
+    "Size": [
+     "sm",
+     "xs"
+    ],
+    "Add New Icon": "BOOLEAN"
+   },
+   "texts": [
+    "Tab ×9 — override Text in nested Tab instances"
+   ],
+   "size": [
+    1261,
+    36
+   ],
+   "setKey": "85bd5cc93ea8daefcb4cffe72f5d20693a5d0a2a",
+   "default": "Style=Default, Start Icon Style=None, Size=sm"
+  },
+  {
+   "key": "breadcrumb-bar",
+   "name": "Breadcrumb Bar",
+   "lib": true,
+   "variantKey": "20770ff9cdc34f83a031cc2e17e109cbca5b668b",
+   "variant": "Type=Default",
+   "props": {
+    "Type": [
+     "Default",
+     "With Button"
+    ]
+   },
+   "texts": [
+    "4 text slots"
+   ],
+   "size": [
+    1312,
+    28
+   ],
+   "setKey": "879824224269cd8466c18e2a5cf8601eaee58469",
+   "default": "Type=Default"
+  },
+  {
+   "key": "form-header",
+   "name": "Form Header",
+   "lib": true,
+   "variantKey": "94457bdd98af75710a6f553a532d09fdce28f52e",
+   "variant": "Level=Level 1",
+   "props": {
+    "Level": [
+     "Level 1",
+     "Level 2",
+     "Level 3",
+     "Level 3 Alt"
+    ],
+    "Supporting text": "BOOLEAN",
+    "Actions": "BOOLEAN",
+    "Divider": "BOOLEAN",
+    "Help Icon": "BOOLEAN",
+    "Search": "BOOLEAN",
+    "More Horizontal": "BOOLEAN",
+    "Badge": "BOOLEAN",
+    "More Vertical": "BOOLEAN",
+    "Toggle": "BOOLEAN"
+   },
+   "texts": [
+    "Title",
+    "Supporting text"
+   ],
+   "size": [
+    1216,
+    40
+   ],
+   "setKey": "c60a0e7f5b739ab47b2c816a2ca2f53b752d710c",
+   "default": "Level=Level 1"
+  },
+  {
+   "key": "form-header-l2",
+   "name": "Form Header",
+   "lib": true,
+   "variantKey": "a61a7b842c3c4d42103518052bbac6638b33bf50",
+   "variant": "Level=Level 2",
+   "props": {},
+   "texts": [
+    "Title"
+   ],
+   "size": [
+    1216,
+    40
+   ],
+   "default": "Level=Level 2"
+  },
+  {
+   "key": "secondary-navigation",
+   "name": "Secondary navigation",
+   "lib": true,
+   "variantKey": "c47ca83938379b4956b731f157ce38d83e5eac97",
+   "variant": "Type=Settings",
+   "props": {
+    "Type": [
+     "Settings",
+     "Copilot",
+     "Projects"
+    ]
+   },
+   "texts": [
+    "Settings",
+    "~8 nav items"
+   ],
+   "size": [
+    300,
+    1117
+   ],
+   "setKey": "acbc41600e56f44e23562e05924b6992245ba460",
+   "default": "Type=Settings"
+  },
+  {
+   "key": "platform-navigation",
+   "name": "New_Platform Navigation",
+   "lib": true,
+   "variantKey": "cf18dbf298efd915ef55c10316be2d060d4b9995",
+   "variant": "State=Closed, Sub Menu=All Collapsed",
+   "props": {},
+   "texts": [],
+   "size": [
+    52,
+    null
+   ],
+   "setKey": "6bce4f82223dcd43e942e72bfcbde45bd8d46d6e",
+   "default": "State=Closed, Sub Menu=All Collapsed"
+  },
+  {
+   "key": "toggle-group",
+   "name": "Toggle group",
+   "lib": true,
+   "setKey": "6267fc6886d9519de3bae1f4a1364dc44068428b",
+   "variantKey": "1fda30302a01baf8670592e403c480048bd639d8",
+   "variant": "Type=Default, Style=Text, Size=xs, Variant=Default",
+   "default": "Type=Inset, Style=Text, Size=md, Variant=Default",
+   "props": {
+    "Type": [
+     "Inset",
+     "Default"
+    ],
+    "Style": [
+     "Text",
+     "Icon with text",
+     "Icon only"
+    ],
+    "Size": [
+     "xs",
+     "sm",
+     "md",
+     "lg",
+     "xl"
+    ],
+    "Variant": [
+     "Default",
+     "Brand Primary",
+     "Gray"
+    ]
+   },
+   "texts": [
+    "segment labels, in order"
+   ]
+  },
+  {
+   "key": "agent-avatar",
+   "name": "Agent_Avatar",
+   "lib": true,
+   "setKey": "c48f4b15c432f0098eac9cd3352cb1d2108341f4",
+   "variantKey": "d5db19a6bf4b810eea1e88c7ec7bb95d0e22c1aa",
+   "variant": "Size=xs, Type=Advance",
+   "default": "Size=md, Type=Advance",
+   "props": {
+    "Size": [
+     "xs",
+     "sm",
+     "md",
+     "lg",
+     "xl",
+     "2xl"
+    ],
+    "Type": [
+     "Custom",
+     "Advance",
+     "Draft"
+    ]
+   },
+   "texts": []
+  },
+  {
+   "key": "avatar",
+   "name": "Avatar",
+   "lib": true,
+   "setKey": "3749c3719ae6809a979466c64049f41a08aa7234",
+   "variantKey": "424d1828ee836b1ca8d4b68a47e1f36afdbb5ad2",
+   "variant": "Size=xs, Type=Letter, Colour=Brand Solid, State=Default",
+   "default": "Size=xs, Type=Letter, Colour=Brand Solid, State=Default",
+   "props": {
+    "Size": [
+     "xxs",
+     "xs",
+     "sm",
+     "md",
+     "lg",
+     "xl",
+     "2xl"
+    ],
+    "Type": [
+     "Icon",
+     "Letter"
+    ],
+    "Colour": [
+     "Brand Solid",
+     "Gray",
+     "Brand Secondary",
+     "White"
+    ],
+    "State": [
+     "Default",
+     "Hover",
+     "Focused",
+     "Selected"
+    ],
+    "Online Indicator": "BOOLEAN",
+    "Icon swap": "INSTANCE_SWAP"
+   },
+   "texts": [
+    "letter"
+   ]
+  },
+  {
+   "key": "pill-squared",
+   "name": "Pill squared",
+   "lib": true,
+   "setKey": "abf550f75d70dc37b88be9c63cff92bb604ce097",
+   "variantKey": "1d711a4a3786dcff15bcd05ea0052fd145e6c03a",
+   "variant": "Size=xxs, Type=Pill Clear, Icon=Icon leading, Color=Gray",
+   "default": "Size=xs, Type=Pill color, Icon=False, Color=Gray",
+   "props": {
+    "Size": [
+     "xxs",
+     "xs",
+     "sm"
+    ],
+    "Type": [
+     "Pill color",
+     "Pill Clear"
+    ],
+    "Icon": [
+     "False",
+     "Dot",
+     "Country",
+     "Avatar",
+     "Icon trailing",
+     "Icon leading",
+     "Only"
+    ],
+    "Color": [
+     "Gray",
+     "Brand",
+     "Error",
+     "Warning",
+     "Success",
+     "Lime",
+     "Pigeon Blue",
+     "Terracotta"
+    ],
+    "Icon leading swap": "INSTANCE_SWAP",
+    "Icon trailing swap": "INSTANCE_SWAP"
+   },
+   "texts": [
+    "Label"
+   ]
+  },
+  {
+   "key": "icon-search-md",
+   "name": "search-md",
+   "lib": true,
+   "variantKey": "b02625de0debac67f54eb382d8b4ed2f1e41c806",
+   "variant": "search-md",
+   "default": null,
+   "props": {},
+   "texts": []
+  },
+  {
+   "key": "icon-plus",
+   "name": "plus",
+   "lib": true,
+   "setKey": "8e8e11df54fce7172471708df7b8304ac1ff1c7b",
+   "variantKey": "62866561d850ee97a8b342d8365bc142c8d6c36d",
+   "variant": "Size=md",
+   "default": "Size=md",
+   "props": {
+    "Size": [
+     "md",
+     "sm",
+     "xs"
+    ]
+   },
+   "texts": []
+  },
+  {
+   "key": "icon-chevron-down",
+   "name": "chevron-down",
+   "lib": true,
+   "variantKey": "e5d0dd551faf8f96d5b7b5ded0a1a030c5c7276b",
+   "variant": "chevron-down",
+   "default": null,
+   "props": {},
+   "texts": []
+  },
+  {
+   "key": "icon-chevron-down-sm",
+   "name": "chevron-down-sm",
+   "lib": true,
+   "variantKey": "ab7fe4ce0b067aec5e3460830b2d222c8583b602",
+   "variant": "chevron-down-sm",
+   "default": null,
+   "props": {},
+   "texts": []
+  },
+  {
+   "key": "icon-layout-left",
+   "name": "layout-left",
+   "lib": true,
+   "variantKey": "a8efef76c7a7955bb6a11ec3801540389e5b03c1",
+   "variant": "layout-left",
+   "default": null,
+   "props": {},
+   "texts": []
+  },
+  {
+   "key": "icon-edit",
+   "name": "pencil-02",
+   "lib": true,
+   "variantKey": "2bf028c647abf0efe46fba58cc85eeb38684ab22",
+   "variant": "pencil-02",
+   "default": null,
+   "props": {},
+   "texts": []
+  },
+  {
+   "key": "icon-book-open",
+   "name": "book-open-01",
+   "lib": true,
+   "variantKey": "b8adad70911a511908e42c83a85a45d0f07c51a0",
+   "variant": "book-open-01",
+   "default": null,
+   "props": {},
+   "texts": []
+  },
+  {
+   "key": "icon-plus-circle",
+   "name": "plus-circle",
+   "lib": true,
+   "variantKey": "8da763a079d5d435657db2c80d4d2d9e62af2394",
+   "variant": "plus-circle",
+   "default": null,
+   "props": {},
+   "texts": []
+  },
+  {
+   "key": "icon-bar-chart",
+   "name": "bar-chart-01",
+   "lib": true,
+   "variantKey": "6abb0625bddef7f8d40762f7a36ed7bc3068f426",
+   "variant": "bar-chart-01",
+   "default": null,
+   "props": {},
+   "texts": []
+  },
+  {
+   "key": "icon-upload-cloud",
+   "name": "upload-cloud-02",
+   "lib": true,
+   "variantKey": "23f58bd11af80f08e3e628eb576815f06f1e0155",
+   "variant": "upload-cloud-02",
+   "default": null,
+   "props": {},
+   "texts": []
+  },
+  {
+   "key": "icon-file-search",
+   "name": "file-search-02",
+   "lib": true,
+   "variantKey": "0f6a547979d03ce1efb7e470689c16f9cfcc0b17",
+   "variant": "file-search-02",
+   "default": null,
+   "props": {},
+   "texts": []
+  },
+  {
+   "key": "icon-folder-plus",
+   "name": "folder-plus",
+   "lib": true,
+   "variantKey": "949c84cd0bc0a8e22f77e181609330ca209fbc27",
+   "variant": "folder-plus",
+   "default": null,
+   "props": {},
+   "texts": []
+  },
+  {
+   "key": "icon-play-solid",
+   "name": "play-solid",
+   "lib": true,
+   "variantKey": "a611efaba3f40976fd4b23962b9ac8260cbb1509",
+   "variant": "play-solid",
+   "default": null,
+   "props": {},
+   "texts": []
+  },
+  {
+   "key": "icon-script",
+   "name": "Script",
+   "lib": true,
+   "variantKey": "e78d7f0126c802d49275f765c132f48eb8f2759b",
+   "variant": "Script",
+   "default": null,
+   "props": {},
+   "texts": []
+  },
+  {
+   "key": "icon-close",
+   "name": "close",
+   "lib": true,
+   "setKey": "7bf7402a1fa3b91672b231e656b5e43a1add7354",
+   "variantKey": null,
+   "variant": "close",
+   "default": null,
+   "props": {},
+   "texts": []
+  },
+  {
+   "key": "icon-file",
+   "name": "file-05",
+   "lib": true,
+   "variantKey": "6ecdfa5ac2d038f555b94f80ff7a8c2eb79fdbb6",
+   "variant": "file-05",
+   "default": null,
+   "props": {},
+   "texts": []
+  },
+  {
+   "key": "icon-eye",
+   "name": "eye",
+   "lib": true,
+   "variantKey": "fca2e8d11a2ac88f53e62c2c77e8a6c315b424b8",
+   "variant": "eye",
+   "default": null,
+   "props": {},
+   "texts": []
+  },
+  {
+   "key": "icon-code",
+   "name": "code-01",
+   "lib": true,
+   "variantKey": "e7a9fd613f63e12c10cafe218115dffa1ca071a3",
+   "variant": "code-01",
+   "default": null,
+   "props": {},
+   "texts": []
+  },
+  {
+   "key": "icon-chevron-right",
+   "name": "chevron-right",
+   "lib": true,
+   "variantKey": "3894f5ad9bb4702e97d5da3b4f813e8817c9226a",
+   "variant": "chevron-right",
+   "default": null,
+   "props": {},
+   "texts": []
+  },
+  {
+   "key": "icon-folder",
+   "name": "folder",
+   "lib": true,
+   "variantKey": "4cf48b44b6d5652b855c11a2e36fb06d10cc9801",
+   "variant": "folder",
+   "default": null,
+   "props": {},
+   "texts": []
+  },
+  {
+   "key": "icon-dots-horizontal",
+   "name": "dots-horizontal",
+   "lib": true,
+   "variantKey": "20316f3d4798005d70d1b15df91f4b674d5a04c3",
+   "variant": "dots-horizontal",
+   "default": null,
+   "props": {},
+   "texts": []
+  },
+  {
+   "key": "icon-sunrise",
+   "name": "sunrise",
+   "lib": true,
+   "variantKey": "bbe6ff5533b063545bfda0f7e43d9eeb0e4713aa",
+   "variant": "sunrise",
+   "default": null,
+   "props": {},
+   "texts": []
+  },
+  {
+   "key": "icon-calendar",
+   "name": "calendar",
+   "lib": true,
+   "variantKey": "62d8e6356f2bf86abe8e0330c109f3fb640700be",
+   "variant": "calendar",
+   "default": null,
+   "props": {},
+   "texts": []
+  },
+  {
+   "key": "icon-presentation-chart",
+   "name": "presentation-chart-03",
+   "lib": true,
+   "variantKey": "8143822068591f72bb446ac7948d8c41f49c80eb",
+   "variant": "presentation-chart-03",
+   "default": null,
+   "props": {},
+   "texts": []
+  },
+  {
+   "key": "icon-user-plus",
+   "name": "user-plus-01",
+   "lib": true,
+   "variantKey": "5e6a822485f557939270bcc07aa37da88423b96d",
+   "variant": "user-plus-01",
+   "default": null,
+   "props": {},
+   "texts": []
+  },
+  {
+   "key": "icon-globe",
+   "name": "globe-01",
+   "lib": true,
+   "variantKey": "d572b89953bdb2ce796d119dde91fac96c7c92c5",
+   "variant": "globe-01",
+   "default": null,
+   "props": {},
+   "texts": []
+  },
+  {
+   "key": "icon-announcement",
+   "name": "announcement-01",
+   "lib": true,
+   "variantKey": "19583a9d4d76bbe3f9360ba3e9f60801cf256cf2",
+   "variant": "announcement-01",
+   "default": null,
+   "props": {},
+   "texts": []
+  },
+  {
+   "key": "icon-clock",
+   "name": "clock",
+   "lib": true,
+   "variantKey": "2083e86e869ddf8b4d52e02dcc1b8c4ee591ffb1",
+   "variant": "clock",
+   "default": null,
+   "props": {},
+   "texts": []
+  },
+  {
+   "key": "copilot-input-box",
+   "name": "Copilot desktop Input Box",
+   "lib": true,
+   "setKey": "f9c00660003f5d1b148136e8cbe25c71d0811bee",
+   "variantKey": "6cea303e565209dc164555688afd8a174b64028b",
+   "variant": "Type=Bottom large, State=Default, Tools & Sources=Yes, Text=Placeholder, Attachment=No",
+   "default": "Type=Bottom large, State=Default, Tools & Sources=Yes, Text=Placeholder, Attachment=No",
+   "props": {
+    "Inline Skills": "BOOLEAN",
+    "Type": [
+     "Landing Page",
+     "Bottom small",
+     "Bottom large"
+    ],
+    "State": [
+     "Default",
+     "Limit exceed",
+     "Generating"
+    ],
+    "Tools & Sources": [
+     "Yes",
+     "No"
+    ],
+    "Text": [
+     "Placeholder",
+     "One line",
+     "Two line",
+     "Max line"
+    ],
+    "Attachment": [
+     "No",
+     "Yes"
+    ]
+   },
+   "texts": [
+    "Ask anything…"
+   ],
+   "size": [
+    760,
+    48
+   ]
+  },
+  {
+   "key": "copilot-user-message",
+   "name": "Copilot_User Message",
+   "lib": true,
+   "setKey": "8073803b08657ac04ba731ced017fe2d395a8102",
+   "variantKey": "5df18a28f51300c3ca26471fffb54fcc2de89425",
+   "variant": "State=Default, Type=Default",
+   "default": "State=Default, Type=Default",
+   "props": {
+    "Timestamp": "BOOLEAN",
+    "Mic": "BOOLEAN",
+    "User Avatar": "BOOLEAN",
+    "Attachment": "BOOLEAN",
+    "State": [
+     "Default",
+     "Hover"
+    ],
+    "Type": [
+     "Default",
+     "With Tag"
+    ]
+   },
+   "texts": [
+    "User message text"
+   ],
+   "size": [
+    522,
+    42
+   ]
+  },
+  {
+   "key": "copilot-user-message-desktop",
+   "name": "Copilot_User Message_Desktop full",
+   "lib": true,
+   "setKey": "35799654754ad84aa156b40d0dca4f4f3ca257ef",
+   "variantKey": "aaf7630288dbd61b154698574bc700781cb8ee48",
+   "variant": "State=Default, Type=Default",
+   "default": "State=Default, Type=Default",
+   "props": {
+    "Timestamp": "BOOLEAN",
+    "Mic": "BOOLEAN",
+    "User Avatar": "BOOLEAN",
+    "Attachment": "BOOLEAN",
+    "State": [
+     "Default",
+     "Hover"
+    ],
+    "Type": [
+     "Default",
+     "With Tag",
+     "With quote"
+    ]
+   },
+   "texts": [
+    "User message text"
+   ],
+   "size": [
+    563,
+    106
+   ]
+  },
+  {
+   "key": "agent-cot",
+   "name": "Agent COT",
+   "lib": true,
+   "setKey": "87de7cd8dbd7139f349e59685b021f070ccd6e15",
+   "variantKey": "9f4e42d6f1496d64f5eb834dd20f4414242cc6bf",
+   "variant": "Type=Step 1",
+   "default": "Type=Step 1",
+   "props": {
+    "Type": [
+     "Step 1",
+     "Step 2",
+     "Step 3",
+     "Step 4",
+     "Step 5",
+     "Step 6",
+     "Step 7",
+     "Complete 1",
+     "Complete 2",
+     "All  1 line thoughts"
+    ]
+   },
+   "texts": [
+    "Thinking..."
+   ],
+   "size": [
+    788,
+    20
+   ]
+  },
+  {
+   "key": "feedback-array",
+   "name": "Feedback Array",
+   "lib": true,
+   "setKey": "cac709d927928d86084926915f315e581af1c29b",
+   "variantKey": "e2b5a2a9adde64563d77f639efa250598f1b3d4d",
+   "variant": "Type=Full screen",
+   "default": "Type=Full screen",
+   "props": {
+    "Type": [
+     "Sidepane",
+     "Full screen",
+     "Mobile"
+    ]
+   },
+   "texts": [
+    "8 Sources"
+   ],
+   "size": [
+    760,
+    24
+   ]
+  },
+  {
+   "key": "suggested-prompts",
+   "name": "Suggested prompts",
+   "lib": true,
+   "setKey": "b08dec8dd7ab044b15720f741b375fb77756803f",
+   "variantKey": "15f78c6a8ee136eaed79129474765caf74482aea",
+   "variant": "Type=Lines",
+   "default": "Type=Lines",
+   "props": {
+    "Type": [
+     "Lines",
+     "Button"
+    ]
+   },
+   "texts": [
+    "Do you want me write a …",
+    "Do you want me estimate …"
+   ],
+   "size": [
+    760,
+    112
+   ]
+  },
+  {
+   "key": "source-pill",
+   "name": "Source Pill",
+   "lib": true,
+   "setKey": "229eb7d9eb51ab8438b7c687a22b153da5ca114b",
+   "variantKey": "d33085570d9a1fcecf205e1ba39fda3be3fd60a0",
+   "variant": "State=Default, Sources=Yes, Size=md",
+   "default": "State=Default, Sources=Yes, Size=md",
+   "props": {
+    "State": [
+     "Hover",
+     "Default"
+    ],
+    "Sources": [
+     "Yes",
+     "No"
+    ],
+    "Size": [
+     "md",
+     "sm",
+     "xs"
+    ]
+   },
+   "texts": [],
+   "size": [
+    32,
+    32
+   ]
+  },
+  {
+   "key": "tools-pill",
+   "name": "Tools Pill",
+   "lib": true,
+   "setKey": "01d72f8a39e9e89c4e55a4329ede36e4ab331676",
+   "variantKey": "02e2ca67c86ddad6948f7000e5d101637298ec00",
+   "variant": "State=Default, Size=md",
+   "default": "State=Default, Size=md",
+   "props": {
+    "Label": "BOOLEAN",
+    "State": [
+     "Default",
+     "Hover"
+    ],
+    "Size": [
+     "md",
+     "sm"
+    ]
+   },
+   "texts": [],
+   "size": [
+    32,
+    32
+   ]
+  },
+  {
+   "key": "alert",
+   "name": "Alert",
+   "lib": true,
+   "setKey": "1ff1f5385f67805edac0c9c97d9aaf327e51a362",
+   "variantKey": "9797d40ae2fc8ab6f37b4dc3d9ea52d2290153fd",
+   "variant": "Size=md, Color=Grey, Double Stack=Off",
+   "default": "Size=md, Color=Grey, Double Stack=Off",
+   "props": {
+    "Actions": "BOOLEAN",
+    "Supporting text": "BOOLEAN",
+    "Title Text": "BOOLEAN",
+    "Icon": "BOOLEAN",
+    "Size": [
+     "sm",
+     "md",
+     "lg"
+    ],
+    "Color": [
+     "Error",
+     "Warning",
+     "Brand",
+     "Default",
+     "Success",
+     "Grey",
+     "Brand Secondary"
+    ],
+    "Double Stack": [
+     "Off",
+     "On"
+    ]
+   },
+   "texts": [
+    "Memory update:",
+    "Tricon, Areas and 2 more",
+    "View Memory"
+   ],
+   "size": [
+    760,
+    48
+   ]
+  },
+  {
+   "key": "featured-icon",
+   "name": "Featured icon",
+   "lib": true,
+   "setKey": "f0706666695b6ea4097a32aabbb252d5cfddfd4d",
+   "variantKey": "b42660db3a0e8fe79b967ee581970eb57f91bc71",
+   "variant": "Size=lg, Color=Gray",
+   "default": "Size=lg, Color=Gray",
+   "props": {
+    "Icon swap": "INSTANCE_SWAP",
+    "Size": [
+     "xs",
+     "sm",
+     "md",
+     "lg",
+     "xl",
+     "2xl"
+    ],
+    "Color": [
+     "Brand",
+     "Gray",
+     "Error",
+     "Warning",
+     "Success",
+     "White framed",
+     "Clear",
+     "Lime",
+     "Warm blue",
+     "Pigeon blue",
+     "Magenta",
+     "Terracotta"
+    ]
+   },
+   "texts": [],
+   "size": [
+    24,
+    24
+   ]
+  },
+  {
+   "key": "dropdown-list-item",
+   "name": "Dropdown list item",
+   "lib": true,
+   "setKey": "9e0a147de66cbdbd450a68413b3c5ced62e4466e",
+   "variantKey": "505459e18b630c112bb8d167f81d8039829ccb55",
+   "variant": "Start Type=Default, End Type=Shortcut, Selected=Off, State=Default, Divider=False",
+   "default": "Start Type=Default, End Type=Shortcut, Selected=Off, State=Default, Divider=False",
+   "props": {
+    "Shortcut": "BOOLEAN",
+    "Badge": "BOOLEAN",
+    "Icon": "BOOLEAN",
+    "Instance": "INSTANCE_SWAP",
+    "Start Type": [
+     "Default",
+     "Avatar",
+     "Toggle",
+     "Checkbox"
+    ],
+    "End Type": [
+     "Shortcut",
+     "Reorder",
+     "Icon"
+    ],
+    "Selected": [
+     "Off",
+     "On"
+    ],
+    "State": [
+     "Default",
+     "Hover",
+     "Focus",
+     "Disabled"
+    ],
+    "Divider": [
+     "True",
+     "False"
+    ],
+    "Supporting Text": [
+     "Off",
+     "On"
+    ],
+    "Size": [
+     "md",
+     "sm"
+    ]
+   },
+   "texts": [
+    "View files in Chat"
+   ],
+   "size": [
+    190,
+    32
+   ]
+  },
+  {
+   "key": "links",
+   "name": "Links",
+   "lib": true,
+   "setKey": "1f88203400ce0513532d70be6cbcb2d4307b6941",
+   "variantKey": "a1349470efe425b3c45cd58d5789a34d0eaf11da",
+   "variant": "State=Default",
+   "default": "State=Default",
+   "props": {
+    "State": [
+     "Default",
+     "Hover",
+     "No Hover"
+    ]
+   },
+   "texts": [],
+   "size": [
+    64,
+    20
+   ]
+  },
+  {
+   "key": "inline-cards",
+   "name": "Inline Cards",
+   "lib": true,
+   "setKey": "cd9ac10fbd5e639e7dc12e9f11bcc56b5a251b17",
+   "variantKey": "1f4ad71d38b48ca5d4dc6389072a53554622a46d",
+   "variant": "State=Default",
+   "default": "State=Default",
+   "props": {
+    "State": [
+     "Default",
+     "Hover+Active"
+    ]
+   },
+   "texts": [
+    "Pipeline Command",
+    "Interactive HTML …",
+    "Download"
+   ],
+   "size": [
+    520,
+    60
+   ]
+  },
+  {
+   "key": "pill-solid",
+   "name": "Pill solid",
+   "lib": true,
+   "setKey": "1e8b0469a253a9f9290ae8ddf5ad9c0137d65546",
+   "variantKey": "b7bab40ab0790924e62b5cbe832005d7cea5fee9",
+   "variant": "Size=sm, Type=Pill color, Icon=False, Color=Gray",
+   "default": "Size=sm, Type=Pill color, Icon=False, Color=Gray",
+   "props": {
+    "Flag swap": "INSTANCE_SWAP",
+    "Icon trailing swap": "INSTANCE_SWAP",
+    "Icon leading swap": "INSTANCE_SWAP",
+    "Size": [
+     "sm",
+     "xs",
+     "xxs"
+    ],
+    "Type": [
+     "Pill color",
+     "Pill Clear"
+    ],
+    "Icon": [
+     "False",
+     "Dot",
+     "Country",
+     "Avatar",
+     "Icon trailing",
+     "Icon leading",
+     "Only"
+    ],
+    "Color": [
+     "Gray",
+     "Brand",
+     "Error",
+     "Warning",
+     "Success",
+     "Lime",
+     "Blue",
+     "Pink",
+     "Violet",
+     "Fuchsia",
+     "Cyan"
+    ]
+   },
+   "texts": [
+    "2"
+   ],
+   "size": [
+    12,
+    12
+   ]
+  },
+  {
+   "key": "file-type-icon",
+   "name": "File type icon/Label",
+   "lib": true,
+   "setKey": "49cfc15663e932b32334a5e306bda5005e149375",
+   "variantKey": "dcb2500bbde85d3c9c3fa2a695bea6fe43b7c12c",
+   "variant": "Category=Image, File type=IMG",
+   "default": "Category=Image, File type=IMG",
+   "props": {
+    "Category": [
+     "Archive",
+     "Image",
+     "Document",
+     "Design",
+     "Media",
+     "Development"
+    ],
+    "File type": [
+     "IMG",
+     "CSS",
+     "DMG",
+     "EXE",
+     "HTML",
+     "JAVA",
+     "JS",
+     "JSON",
+     "RSS",
+     "SQL",
+     "XML",
+     "RAR"
+    ]
+   },
+   "texts": [],
+   "size": [
+    35,
+    36
+   ]
+  },
+  {
+   "key": "attachments",
+   "name": "Attachments",
+   "lib": true,
+   "setKey": "033b8d80c3d748c4ec8baa845a07f3449ef34da7",
+   "variantKey": "8946c1dae9b07bfcf894a39efcf6d8dbee7db07e",
+   "variant": "Type=Image Thumbnail, Size=md, State=Default, Placement=With Message",
+   "default": "Type=Image Thumbnail, Size=md, State=Default, Placement=With Message",
+   "props": {
+    "Overflow": "BOOLEAN",
+    "Download": "BOOLEAN",
+    "x-close": "BOOLEAN",
+    "Type": [
+     "File",
+     "Image Thumbnail",
+     "Image",
+     "Video Thumbnail"
+    ],
+    "Size": [
+     "md",
+     "sm"
+    ],
+    "State": [
+     "Default",
+     "Hover",
+     "Loading"
+    ],
+    "Placement": [
+     "With Reply Box",
+     "With Message"
+    ]
+   },
+   "texts": [],
+   "size": [
+    88,
+    88
+   ]
+  },
+  {
+   "key": "tag",
+   "name": "Tag",
+   "lib": true,
+   "setKey": "3dddc40988d7e2aba1c1f37f2463088c34a5a1c1",
+   "variantKey": "ee8cbf79f0a00bebad67463dfbe26000136d123d",
+   "variant": "Icon=False, Action=X close, Checkbox=False, Size=sm, Type=Outline, State=Default",
+   "default": "Icon=False, Action=X close, Checkbox=False, Size=sm, Type=Outline, State=Default",
+   "props": {
+    "Flag swap": "INSTANCE_SWAP",
+    "Icon": [
+     "False",
+     "Country",
+     "Avatar",
+     "Dot",
+     "Icon"
+    ],
+    "Action": [
+     "X close",
+     "Text only",
+     "Count",
+     "Link"
+    ],
+    "Size": [
+     "sm",
+     "xs"
+    ],
+    "Type": [
+     "Outline",
+     "Solid"
+    ],
+    "State": [
+     "Default",
+     "Hover"
+    ]
+   },
+   "texts": [
+    "Olivia@untitled.com"
+   ],
+   "size": [
+    155,
+    24
+   ]
+  },
+  {
+   "key": "modal-header",
+   "name": "Modal header",
+   "lib": true,
+   "setKey": "127078735a604474e43303f203093d6e7fbcc935",
+   "variantKey": "1aa57b4760d9a5173c904dd9dc4e20b11ece2a6b",
+   "variant": "Type=Default, Size=xs, back=no",
+   "default": "Type=Default, Size=xs, back=no",
+   "props": {
+    "X close button": "BOOLEAN",
+    "Tabs": "BOOLEAN",
+    "Type": [
+     "Default",
+     "Subtext Single line"
+    ],
+    "Size": [
+     "sm",
+     "xs"
+    ],
+    "back": [
+     "yes",
+     "no"
+    ]
+   },
+   "texts": [
+    "Create New Project"
+   ],
+   "size": [
+    440,
+    48
+   ]
+  },
+  {
+   "key": "modal-actions",
+   "name": "Modal actions",
+   "lib": true,
+   "setKey": "11ba713e5be571ce0018a18ec82edbd5ec577e5d",
+   "variantKey": "ff723af9a98d63b377af63ecf8eed0c3ff78354a",
+   "variant": "Type=Horizontal right aligned (checkbox), Size=xs, Destructive=False",
+   "default": "Type=Horizontal right aligned (checkbox), Size=xs, Destructive=False",
+   "props": {
+    "Checkbox": "BOOLEAN",
+    "Tertiary button": "BOOLEAN",
+    "Type": [
+     "Horizontal fill container",
+     "Horizontal right aligned (checkbox)"
+    ],
+    "Size": [
+     "sm",
+     "xs"
+    ],
+    "Destructive": [
+     "False",
+     "True"
+    ]
+   },
+   "texts": [
+    "Cancel",
+    "Create Project"
+   ],
+   "size": [
+    440,
+    46
+   ]
+  },
+  {
+   "key": "section-label",
+   "name": "Section label",
+   "lib": true,
+   "setKey": "f7374d40b59bf540d709d0ea6fc6f2e16151155f",
+   "variantKey": "b4b64c49a4d5ab2e7ac425fded169b7d629c0da0",
+   "variant": "Level=Level 1",
+   "default": "Level=Level 1",
+   "props": {
+    "Supporting text": "BOOLEAN",
+    "Actions": "BOOLEAN",
+    "Level": [
+     "Level 1",
+     "Level 1(Alt)",
+     "Level 1(Alt2)",
+     "Level 2",
+     "Level 3",
+     "Level 4",
+     "Level 0"
+    ]
+   },
+   "texts": [
+    "People with Access"
+   ],
+   "size": [
+    416,
+    12
+   ]
+  },
+  {
+   "key": "list-item-cardified",
+   "name": "List Item Cardified",
+   "lib": true,
+   "setKey": "dca7729d39447f0994917e8b9fddce266717bf44",
+   "variantKey": "5e6d0ffb28b37cbe77b43e0d7e46f7833c55145d",
+   "variant": "Size=md, Type=Icon simple, Selected=False, State=Default",
+   "default": "Size=md, Type=Icon simple, Selected=False, State=Default",
+   "props": {
+    "Icon": "BOOLEAN",
+    "Supporting Text": "BOOLEAN",
+    "Subtext": "BOOLEAN",
+    "Badge": "BOOLEAN",
+    "Actions": "BOOLEAN",
+    "Action Buttons": "BOOLEAN",
+    "Size": [
+     "md",
+     "sm",
+     "xs"
+    ],
+    "Type": [
+     "Icon simple",
+     "Radio button",
+     "Checkbox",
+     "Icon + Radio button"
+    ],
+    "Selected": [
+     "False",
+     "True"
+    ],
+    "State": [
+     "Default",
+     "Hover",
+     "Focused",
+     "Disabled"
+    ]
+   },
+   "texts": [
+    "Restricted",
+    "Only the people above can…"
+   ],
+   "size": [
+    416,
+    52
+   ]
+  },
+  {
+   "key": "list-item",
+   "name": "List Item",
+   "lib": true,
+   "setKey": "08002cf14b8f0807ae9b5b0a5e8b7f0b7c65f53b",
+   "variantKey": "850288d23446b7c5e115b16677e6d8ebf05d8294",
+   "variant": "Size=md, Type=Icon simple, Selected=False, State=Default",
+   "default": "Size=md, Type=Icon simple, Selected=False, State=Default",
+   "props": {
+    "Icon": "BOOLEAN",
+    "Supporting Text": "BOOLEAN",
+    "Badge": "BOOLEAN",
+    "Action Buttons": "BOOLEAN",
+    "Size": [
+     "sm",
+     "md",
+     "xs"
+    ],
+    "Type": [
+     "Icon simple",
+     "Radio button",
+     "Checkbox",
+     "Toggle"
+    ],
+    "Selected": [
+     "False",
+     "True"
+    ],
+    "State": [
+     "Default",
+     "Hover",
+     "Focused",
+     "Disabled"
+    ]
+   },
+   "texts": [
+    "Generate memory from chats",
+    "Allow Unify's AI to remember…"
+   ],
+   "size": [
+    692,
+    52
+   ]
+  },
+  {
+   "key": "checkbox",
+   "name": "Checkbox",
+   "lib": true,
+   "setKey": "757b1b24b72a5fe60b12c4f3f46327d9cadc091f",
+   "variantKey": "0eaeedbe723d095c7098008802cf1879e0fd1d5d",
+   "variant": "Checked=False, Indeterminate=False, Size=sm, Type=Checkbox, Text=True, State=Default",
+   "default": "Checked=False, Indeterminate=False, Size=sm, Type=Checkbox, Text=True, State=Default",
+   "props": {
+    "Checked": [
+     "False",
+     "True"
+    ],
+    "Indeterminate": [
+     "False",
+     "True"
+    ],
+    "Size": [
+     "sm",
+     "xs"
+    ],
+    "Type": [
+     "Checkbox",
+     "Radio"
+    ],
+    "Text": [
+     "False",
+     "True"
+    ],
+    "State": [
+     "Default",
+     "Hover",
+     "Focused",
+     "Disabled"
+    ],
+    "Hint Text": [
+     "True",
+     "False"
+    ]
+   },
+   "texts": [
+    "Notify people"
+   ],
+   "size": [
+    105,
+    20
+   ]
+  },
+  {
+   "key": "toggle",
+   "name": "Toggle",
+   "lib": true,
+   "setKey": "5678aaffc370ce454d242b619ebd57e5ba694ab2",
+   "variantKey": "64c9a562fccf17a8fc82e1ed231da1a427178254",
+   "variant": "Pressed=False, Text=False, State=Default, Size=sm, Hint Text=False, Label Position=Left",
+   "default": "Pressed=False, Text=False, State=Default, Size=sm, Hint Text=False, Label Position=Left",
+   "props": {
+    "Pressed": [
+     "False",
+     "True"
+    ],
+    "Text": [
+     "False",
+     "True"
+    ],
+    "State": [
+     "Default",
+     "Hover",
+     "Focus",
+     "Disabled"
+    ],
+    "Size": [
+     "xxxs",
+     "xxs",
+     "xs",
+     "sm",
+     "md"
+    ],
+    "Hint Text": [
+     "False",
+     "True"
+    ],
+    "Label Position": [
+     "Left",
+     "Right"
+    ]
+   },
+   "texts": [],
+   "size": [
+    28,
+    16
+   ]
+  },
+  {
+   "key": "col-header-cell",
+   "name": "Col Header Cell",
+   "lib": true,
+   "setKey": "0db64fc3eab01c2492b3056a4459ae0423829150",
+   "variantKey": "39bcca79685ea07223e4e926807053c74ea8ff1b",
+   "variant": "Text=True, Checkbox=False, Size=sm, State=Default, Data Icon=Off",
+   "default": "Text=True, Checkbox=False, Size=sm, State=Default, Data Icon=Off",
+   "props": {
+    "Icon swap": "INSTANCE_SWAP",
+    "Text": [
+     "False",
+     "True"
+    ],
+    "Checkbox": [
+     "False",
+     "True"
+    ],
+    "Size": [
+     "md",
+     "sm",
+     "lg-double line"
+    ],
+    "State": [
+     "Default",
+     "Selected"
+    ],
+    "Data Icon": [
+     "On",
+     "Off"
+    ]
+   },
+   "texts": [
+    "queries"
+   ],
+   "size": [
+    88,
+    36
+   ]
+  },
+  {
+   "key": "table-cell",
+   "name": "Table cell",
+   "lib": true,
+   "setKey": "34c04a32c4f28853e94b647b6797a1ace1aed1d7",
+   "variantKey": "5f76926a67012d7644ce0c7ae5719eeea9456e7b",
+   "variant": "Style=Text, Lead=No, State=Default, Size=sm",
+   "default": "Style=Text, Lead=No, State=Default, Size=sm",
+   "props": {
+    "Supporting Text": "BOOLEAN",
+    "Badge": "BOOLEAN",
+    "Dropdown": "BOOLEAN",
+    "Style": [
+     "Text",
+     "Image with text",
+     "Avatar with text",
+     "Payment method",
+     "Checkbox",
+     "Radio button",
+     "Toggle",
+     "Badge single",
+     "Badges multiple",
+     "Progress bar",
+     "Avatar group",
+     "Action buttons"
+    ],
+    "Lead": [
+     "Yes",
+     "No"
+    ],
+    "State": [
+     "Default",
+     "Hover"
+    ],
+    "Size": [
+     "sm",
+     "md",
+     "lg"
+    ]
+   },
+   "texts": [
+    "cell text"
+   ],
+   "size": [
+    88,
+    36
+   ]
+  },
+  {
+   "key": "input-field-outline",
+   "name": "Input field_outline",
+   "lib": true,
+   "setKey": "62a4e15407ce55b43db72b277ff542b311726a4e",
+   "variantKey": "abb933c73d148e7e8c41bbd8ea15e61580822c5f",
+   "variant": "Size=md, Type=Default, Destructive=False, State=Placeholder",
+   "default": "Size=md, Type=Default, Destructive=False, State=Placeholder",
+   "props": {
+    "Label": "BOOLEAN",
+    "Hint text": "BOOLEAN",
+    "Help icon": "BOOLEAN",
+    "Icon swap": "INSTANCE_SWAP",
+    "Leading icon": "BOOLEAN",
+    "Encryption": "BOOLEAN",
+    "Size": [
+     "lg",
+     "md",
+     "sm",
+     "xs"
+    ],
+    "Type": [
+     "Default",
+     "Icon leading",
+     "Leading dropdown",
+     "Trailing dropdown",
+     "Leading text",
+     "Payment input",
+     "Tags",
+     "Trailing button"
+    ],
+    "Destructive": [
+     "False",
+     "True"
+    ],
+    "State": [
+     "Placeholder",
+     "Filled",
+     "Focused",
+     "Disabled",
+     "Read Only"
+    ]
+   },
+   "texts": [
+    "Project name",
+    "Name your project"
+   ],
+   "size": [
+    416,
+    62
+   ]
+  },
+  {
+   "key": "textarea-input-field",
+   "name": "Textarea input field",
+   "lib": true,
+   "setKey": "9dd4562f1a4fcf2aec4acbf17e0f5ad1a4e06add",
+   "variantKey": "85eb202936ac8aa29019384d70377af8ef8137ab",
+   "variant": "Type=Default, Destructive=False, State=Placeholder",
+   "default": "Type=Default, Destructive=False, State=Placeholder",
+   "props": {
+    "Label": "BOOLEAN",
+    "Hint text": "BOOLEAN",
+    "Character Limit": "BOOLEAN",
+    "Type": [
+     "Default",
+     "Tags"
+    ],
+    "Destructive": [
+     "False",
+     "True"
+    ],
+    "State": [
+     "Placeholder",
+     "Disabled",
+     "Filled",
+     "Focused",
+     "Read Only"
+    ]
+   },
+   "texts": [
+    "What are you trying to …",
+    "Describe your project…"
+   ],
+   "size": [
+    416,
+    122
+   ]
+  },
+  {
+   "key": "sidepane-header",
+   "name": "Sidepane header",
+   "lib": true,
+   "setKey": "754936fe4d8a8c2f2142b88ec1790e44259b430b",
+   "variantKey": "ec297c6714b01e48d471b662bce8d9e69bca2708",
+   "variant": "Level=Level 1, Type=Featured Icon, Tabs=False",
+   "default": "Level=Level 1, Type=Featured Icon, Tabs=False",
+   "props": {
+    "Supporting text": "BOOLEAN",
+    "Badge": "BOOLEAN",
+    "Icon": "BOOLEAN",
+    "Help Icon": "BOOLEAN",
+    "Level": [
+     "Level 1",
+     "Level 2",
+     "Level 3"
+    ],
+    "Type": [
+     "Featured Icon",
+     "Default",
+     "Back"
+    ],
+    "Tabs": [
+     "False",
+     "True"
+    ]
+   },
+   "texts": [
+    "Usage Details",
+    "Every query in this chat"
+   ],
+   "size": [
+    660,
+    56
+   ]
+  },
+  {
+   "key": "tab-base",
+   "name": "_Tab base",
+   "lib": true,
+   "setKey": "f6e8510153f988027f14cb2c3e8c5cac96de5315",
+   "variantKey": "96b6875c1fbf8827812c8af9e7aa79e2eb9c3e0e",
+   "variant": "Align=Horizontal, Badge=False, Current=True, State=Default, Destructive=False, Size=sm",
+   "default": "Align=Horizontal, Badge=False, Current=True, State=Default, Destructive=False, Size=sm",
+   "props": {
+    "Icon": "BOOLEAN",
+    "Icon2": "INSTANCE_SWAP",
+    "Align": [
+     "Horizontal",
+     "Vertical"
+    ],
+    "Badge": [
+     "False",
+     "True"
+    ],
+    "Current": [
+     "False",
+     "True"
+    ],
+    "State": [
+     "Default",
+     "Hover",
+     "Focus",
+     "Disabled"
+    ],
+    "Destructive": [
+     "False",
+     "True"
+    ],
+    "Size": [
+     "sm",
+     "xs"
+    ]
+   },
+   "texts": [
+    "Chats"
+   ],
+   "size": [
+    76,
+    32
+   ]
+  },
+  {
+   "key": "button-tab-base",
+   "name": "Button Tab base",
+   "lib": true,
+   "setKey": "3a9fe403a4beffc621a7a49be482b19106a35c6e",
+   "variantKey": "9a75cda6d678982190261c7ffc656f02c1c6a5aa",
+   "variant": "State=Default, Current=Yes, Size=sm, Error=No",
+   "default": "State=Default, Current=Yes, Size=sm, Error=No",
+   "props": {
+    "State": [
+     "Hover",
+     "Default",
+     "Focused",
+     "Disabled"
+    ],
+    "Current": [
+     "Yes",
+     "No"
+    ],
+    "Size": [
+     "xs",
+     "sm"
+    ],
+    "Error": [
+     "Yes",
+     "No"
+    ]
+   },
+   "texts": [
+    "All"
+   ],
+   "size": [
+    68,
+    28
+   ]
+  },
+  {
+   "key": "uploaded-file",
+   "name": "Uploaded File base",
+   "lib": true,
+   "setKey": "68b61542269d60d8535e961376e0810267f07be1",
+   "variantKey": "4a1b9d5970b3f605d1b6081043438d046e13958d",
+   "variant": "Size=md, Icon type=File type, State=Complete",
+   "default": "Size=md, Icon type=File type, State=Complete",
+   "props": {
+    "Icon": "BOOLEAN",
+    "Size": [
+     "lg",
+     "md"
+    ],
+    "Icon type": [
+     "File type",
+     "Simple",
+     "Image"
+    ],
+    "State": [
+     "In progress",
+     "Complete",
+     "Error"
+    ]
+   },
+   "texts": [
+    "Tech design requirements",
+    "PDF • Aug 26, 2026",
+    "Syncing"
+   ],
+   "size": [
+    760,
+    50
+   ]
+  },
+  {
+   "key": "button-error",
+   "name": "Buttons/Button Error",
+   "lib": true,
+   "setKey": "6ff5a392705d804427b1d87bb3017fd434f4ff57",
+   "variantKey": "c90c19e98472de1243d2c1f322d7080c6676a398",
+   "variant": "Size=md, Hierarchy=Primary, Icon=Default, State=Default",
+   "default": "Size=md, Hierarchy=Primary, Icon=Default, State=Default",
+   "props": {
+    "Size": [
+     "xs",
+     "sm",
+     "md",
+     "lg"
+    ],
+    "Hierarchy": [
+     "Primary",
+     "Secondary",
+     "Tertiary"
+    ],
+    "Icon": [
+     "Default",
+     "Dot leading",
+     "Only"
+    ],
+    "State": [
+     "Default",
+     "Hover",
+     "Focused",
+     "Disabled",
+     "Loading"
+    ],
+    "Icon leading": "BOOLEAN",
+    "Icon trailing": "BOOLEAN",
+    "Icon leading swap": "INSTANCE_SWAP",
+    "Icon trailing swap": "INSTANCE_SWAP"
+   },
+   "texts": [
+    "Delete"
+   ],
+   "size": [
+    57,
+    28
+   ]
+  },
+  {
+   "key": "button-success",
+   "name": "Buttons/Button Success",
+   "lib": true,
+   "setKey": "2df244f857811bd2defdcbdff311ba3e88d4315d",
+   "variantKey": null,
+   "variant": "Size=md, Hierarchy=Primary, Icon=Default, State=Default",
+   "default": "Size=md, Hierarchy=Primary, Icon=Default, State=Default",
+   "props": {
+    "Size": [
+     "xs",
+     "sm",
+     "md",
+     "lg"
+    ],
+    "Hierarchy": [
+     "Primary",
+     "Secondary",
+     "Tertiary"
+    ],
+    "Icon": [
+     "Default",
+     "Dot leading",
+     "Only"
+    ],
+    "State": [
+     "Default",
+     "Hover",
+     "Focused",
+     "Disabled",
+     "Loading"
+    ],
+    "Icon leading": "BOOLEAN",
+    "Icon trailing": "BOOLEAN",
+    "Icon leading swap": "INSTANCE_SWAP",
+    "Icon trailing swap": "INSTANCE_SWAP"
+   },
+   "texts": [
+    "Button CTA"
+   ],
+   "size": [
+    null,
+    null
+   ]
+  },
+  {
+   "key": "icon-clock-fast-forward",
+   "name": "clock-fast-forward",
+   "lib": true,
+   "variantKey": "38ebfa11fa318183e806ac0576541f7528a0a486",
+   "variant": "clock-fast-forward",
+   "default": null,
+   "props": {},
+   "texts": []
+  },
+  {
+   "key": "icon-cube",
+   "name": "cube-02",
+   "lib": true,
+   "variantKey": "d26d364a8b037f16a9a99967858efccdd3342540",
+   "variant": "cube-02",
+   "default": null,
+   "props": {},
+   "texts": []
+  },
+  {
+   "key": "icon-upload",
+   "name": "upload-01",
+   "lib": true,
+   "variantKey": "eea171c8f7a6f6ecafe77e1d7ea149d230bc3a9c",
+   "variant": "upload-01",
+   "default": null,
+   "props": {},
+   "texts": []
+  },
+  {
+   "key": "icon-settings",
+   "name": "settings-01",
+   "lib": true,
+   "variantKey": "31c516a2110f8d0a0cd269a0f68ffdda93d8d876",
+   "variant": "settings-01",
+   "default": null,
+   "props": {},
+   "texts": []
+  }
+ ]
+}

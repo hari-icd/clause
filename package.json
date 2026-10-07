@@ -1,0 +1,19 @@
+{
+  "name": "clause",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "setup": "node scripts/setup.mjs",
+    "live": "node scripts/tokens-css.mjs && node scripts/build-plugin.mjs && node scripts/serve.mjs --open",
+    "tokens": "node scripts/tokens-css.mjs",
+    "plugin": "node scripts/build-plugin.mjs",
+    "inspect": "node scripts/inspect.mjs",
+    "clean": "node scripts/clean.mjs",
+    "inbox": "node scripts/inbox.mjs",
+    "reply": "node scripts/reply.mjs",
+    "status": "node scripts/status.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
