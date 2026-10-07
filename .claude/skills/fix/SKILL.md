@@ -13,3 +13,4 @@ description: Apply messages and annotations sent from the Clause Assist Figma pl
 
 ## System events (kind: system)
 - **DS extracted**: audit `ds/components.json` + `ds/variable-keys.json`: duplicate/odd keys, icons without `icon-` prefix, missing `bg-primary` / `text-primary` / `border-secondary` aliases (the builder's defaults), text styles whose font differs from the body font (note the families in `ds/design-rules.md`), library components with no texts. Fix what is mechanical (rename keys in the JSON), note the rest in `ds/design-rules.md`, then `npm run reply` with 2–3 lines + "build first: <screen>" suggestion. Don't dump lists in the pane.
+- **STOP** (title "STOP"): the user pressed Stop in the plugin. Abandon the current task immediately — no further edits or rebuilds — make sure the last saved screen JSON lints, then `npm run reply -- "Stopped at: <one line>"`. Do not resume unless asked.

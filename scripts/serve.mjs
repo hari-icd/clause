@@ -164,6 +164,7 @@ http.createServer(async (req, res) => {
     else if (p === "/term/send") out.sent = b.id ? store.sendOne(b.id) : store.send();
     else if (p === "/term/reply") { out.message = store.reply(b.text || ""); setAgent(null); }
     else if (p === "/term/status") setAgent(b.state || "thinking", b.text || "");
+    else if (p === "/term/stop") { if (agent) { store.addSystem({ title: "STOP", text: "The user pressed Stop in the plugin. Abandon the current task now, leave files in a consistent state, and reply with one line saying where you stopped." }); setAgent("stopped", "Stopping…"); } }
     else if (p === "/term/discard") out.removed = store.discardQueued();
     else if (p === "/term/new") out.session = store.newSession();
     else if (p === "/term/open") out.ok = store.open(b.id);
