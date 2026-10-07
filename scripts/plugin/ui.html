@@ -23,7 +23,7 @@
   pre { white-space:pre-wrap; margin:0; padding:6px 8px; border-radius:6px; background:var(--bg2); max-height:80px; overflow:auto; font:10px/14px ui-monospace, Menlo, monospace }
   #drop.over { background:var(--accbg) }
   button.b { height:24px; padding:0 8px; border-radius:6px; border:1px solid var(--line); background:var(--bg); color:var(--fg); font:inherit; font-weight:500; cursor:pointer; white-space:nowrap; display:inline-flex; align-items:center; gap:4px } button.b:hover { background:var(--bg2) } button.b.p { background:var(--acc); border-color:var(--acc); color:#fff } button.b:disabled { opacity:.4; cursor:default }
-  #chat { flex:1; overflow:auto; padding:36px 12px 10px; display:flex; flex-direction:column; gap:6px }
+  #chat { flex:1; overflow:auto; padding:36px 12px 10px; display:flex; flex-direction:column; gap:10px }
   .msg { max-width:92%; padding:6px 8px; border-radius:8px; white-space:pre-wrap; word-break:break-word } .msg.you { align-self:flex-end; background:var(--accbg); border-bottom-right-radius:2px } .msg.claude { align-self:flex-start; background:var(--bg2); border-bottom-left-radius:2px }
   .msg .h { display:flex; gap:6px; justify-content:space-between; color:var(--fg2); font-size:10px; margin-bottom:2px } .msg .h svg { width:11px; height:11px; display:inline-block; vertical-align:-2px; color:var(--fg3) } .msg .h svg.rd { color:var(--acc) }
   .msg.you .chip { background:#0b5cad; border-color:#0b5cad; color:#fff } .msg.you .chip i { color:#bcd9f7 }
@@ -65,23 +65,24 @@
     <div class="kv"><span>server</span><b><span class="dot2" id="dot2"></span><span id="conn">connecting…</span></b></div>
     <div class="kv"><span>screen</span><b id="name">–</b></div>
     <div class="kv"><span>last build</span><b id="last">–</b></div>
+    <div class="kv"><span>last reply</span><b id="lastTook">–</b></div>
     <pre id="log">Save a file in screens/ — the frame rebuilds here.</pre>
   </div>
 </div>
 <div id="chat"></div>
 <div id="q">
-  <div class="qh" id="qh"><svg id="qchev" viewBox="0 0 16 16"><path d="M4 6l4 4 4-4"/></svg><span id="qn">0 queued</span><span class="grow"></span><button class="ib" id="qSendAll" title="Send all"><svg viewBox="0 0 16 16"><path d="M8 13V3M3.5 7.5L8 3l4.5 4.5"/></svg></button><button class="ib" id="qDiscardAll" title="Discard all"><svg viewBox="0 0 16 16"><path d="M4 4l8 8M12 4l-8 8"/></svg></button></div>
+  <div class="qh" id="qh"><svg id="qchev" viewBox="0 0 16 16"><path d="M4 6l4 4 4-4"/></svg><span id="qn">0 queued</span><span class="grow"></span><button class="ib" id="qSendAll" title="Send all [⏎]"><svg viewBox="0 0 16 16"><path d="M8 13V3M3.5 7.5L8 3l4.5 4.5"/></svg></button><button class="ib" id="qDiscardAll" title="Discard all"><svg viewBox="0 0 16 16"><path d="M4 4l8 8M12 4l-8 8"/></svg></button></div>
   <div class="ql" id="ql"></div>
 </div>
 <div id="comp">
   <div class="card">
     <div id="selrow"><span class="hint" id="selhint">Select layers on the canvas — they attach here</span></div>
-    <textarea id="box" rows="2" placeholder="Message for Claude…  ⏎ queue · ⌘⏎ send now"></textarea>
+    <textarea id="box" rows="2" placeholder="Message for Claude…  ⏎ send all · ⌘⏎ queue"></textarea>
     <div class="bar">
       <button class="ib" id="ann" title="Attach the Figma selection to this message"><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="4.5"/><path d="M8 1v2.5M8 12.5V15M1 8h2.5M12.5 8H15"/></svg></button>
       <span class="grow" id="hint"></span><span class="srv" id="srv" title="Connecting to the Clause server…"><span class="dot3" id="dot3"></span><code>:__PORT__</code></span>
-      <button class="ib" id="queue" title="Queue [⏎]"><svg viewBox="0 0 16 16"><path d="M3 4h10M3 8h10M3 12h6"/></svg></button>
-      <button class="ib" id="send" title="Send now [⌘⏎]"><svg viewBox="0 0 16 16"><path d="M8 13V3M3.5 7.5L8 3l4.5 4.5"/></svg></button>
+      <button class="ib" id="queue" title="Queue [⌘⏎]"><svg viewBox="0 0 16 16"><path d="M3 4h10M3 8h10M3 12h6"/></svg></button>
+      <button class="ib" id="send" title="Send now"><svg viewBox="0 0 16 16"><path d="M8 13V3M3.5 7.5L8 3l4.5 4.5"/></svg></button>
     </div>
   </div>
 </div>
@@ -181,6 +182,7 @@ $("open").onclick = () => { window.open(BASE + "/", "_blank"); };
 
 // ---- chat history + queue widget
 let msgs = [], queued = 0, agent = null;
+const fmtDur = ms => { const s = Math.round(ms / 1000); return s < 60 ? s + "s" : s < 3600 ? Math.floor(s / 60) + "m " + (s % 60) + "s" : Math.floor(s / 3600) + "h " + Math.floor((s % 3600) / 60) + "m"; };
 const hhmm = t => { const d = new Date(t); return d.getHours().toString().padStart(2, "0") + ":" + d.getMinutes().toString().padStart(2, "0"); };
 function chipsOf(m) { return (m.targets || []).map(t => '<span class="chip sm go" data-go="' + t.id + '"><b>' + esc(t.name) + "</b><i>" + esc(t.component || (t.type || "").toLowerCase()) + "</i></span>").join(""); }
 function render() {
@@ -194,9 +196,11 @@ function render() {
     if (m.from === "system") return '<div class="sys">' + esc(m.title || "system") + " · " + esc(String(m.text).split("\n")[0]) + "</div>";
     const tick = m.from !== "you" ? "" : m.status === "sent" ? '<svg viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7"/></svg> ' : '<svg class="rd" viewBox="0 0 16 16"><path d="M1.5 8.5l3 3 6-6M6.5 11.5l7-7"/></svg> ';
     const body = m.targets && m.targets.length ? '<div class="chips" style="display:flex;flex-wrap:wrap;gap:3px;margin-bottom:3px">' + chipsOf(m) + '</div><div class="t">' + esc(m.note || "") + "</div>" : '<div class="t">' + esc(m.text) + "</div>";
-    return '<div class="msg ' + m.from + '"><div class="h"><span>' + (m.from === "you" ? "you" : "Claude") + "</span><span>" + tick + hhmm(m.t) + "</span></div>" + body + "</div>";
+    const took = m.from === "claude" && m.took ? '<span class="took" title="From your send to this reply">' + fmtDur(m.took) + "</span> " : "";
+    return '<div class="msg ' + m.from + '"><div class="h"><span>' + (m.from === "you" ? "you" : "Claude") + "</span><span>" + took + tick + hhmm(m.t) + "</span></div>" + body + "</div>";
   }).join("");
   if (agent) { const ic = agent.state === "built" ? '<svg viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7"/></svg>' : agent.state === "error" ? '<svg viewBox="0 0 16 16"><path d="M4 4l8 8M12 4l-8 8"/></svg>' : '<span class="dots"><i></i><i></i><i></i></span>'; const label = agent.text || { thinking: "Thinking…", inspecting: "Inspecting the frame…", building: "Rebuilding…", built: "Built", error: "Something failed" }[agent.state] || "Working…"; c.insertAdjacentHTML("beforeend", '<div class="pres ' + esc(agent.state) + '">' + ic + "<span>" + esc(label) + "</span></div>"); }
+  const lr = [...hist].reverse().find(m => m.from === "claude" && m.took); $("lastTook").textContent = lr ? fmtDur(lr.took) + " · prompt → reply" : "–";
   c.scrollTop = c.scrollHeight; renderComposer();
 }
 async function loadMsgs() { try { const j = await (await fetch(BASE + "/term")).json(); msgs = j.messages; agent = j.agent || null; sessions = j.sessions || []; session = j.session || null; render(); if ($("menu").classList.contains("on")) renderSessions(); } catch (e) {} }
@@ -239,7 +243,8 @@ async function submit(sendNow) {
 }
 $("queue").onclick = () => submit(false); $("send").onclick = () => submit(true);
 $("box").oninput = () => { const b = $("box"); b.style.height = ""; b.style.height = Math.min(96, b.scrollHeight) + "px"; renderComposer(); };
-$("box").onkeydown = e => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); submit(!!(e.metaKey || e.ctrlKey)); } };
+$("box").onkeydown = e => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); if (e.metaKey || e.ctrlKey) submit(false); else sendAllWithDraft(); } };
+async function sendAllWithDraft() { if ($("box").value.trim()) { const b = await build(); if (!b) return; try { await api("/term/add", b); } catch (e) { return toast("Server offline — npm run live"); } $("box").value = ""; $("box").style.height = ""; dropped = new Set(sel.map(n => n.id)); } if (!queued && !msgs.some(m => m.status === "queued")) { await loadMsgs(); } const r = await api("/term/send"); toast(r.sent ? "Sent " + r.sent : "Nothing to send"); loadMsgs(); }
 
 onmessage = async (e) => {
   const m = e.data.pluginMessage; if (!m) return;

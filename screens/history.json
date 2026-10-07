@@ -28,18 +28,18 @@
       "i": "column",
       "w": 760,
       "gap": "3xl",
-      "pt": "5xl",
+      "pt": "7xl",
       "children": [
        {
         "t": "stack",
         "i": "title-block",
-        "gap": "xs",
+        "gap": "sm",
         "children": [
          {
           "t": "text",
           "i": "title",
           "content": "History",
-          "style": "Display sm/Semibold",
+          "style": "Display md/Semibold",
           "color": "text-primary"
          },
          {
@@ -106,7 +106,7 @@
              "Size": "sm",
              "Hierarchy": "Secondary",
              "Icon leading": "true",
-             "Icon leading swap": "@icon-layout-left",
+             "Icon leading swap": "@icon-filter-lines",
              "Icon trailing": "false"
             },
             "text": {
@@ -120,7 +120,7 @@
              "Size": "sm",
              "Hierarchy": "Secondary",
              "Icon leading": "true",
-             "Icon leading swap": "@icon-chevron-down-sm",
+             "Icon leading swap": "@icon-chevron-selector-vertical",
              "Icon trailing": "false"
             },
             "text": {
@@ -143,6 +143,16 @@
                 "name": "_Toggle group base",
                 "nth": 5,
                 "hide": true
+               },
+               {
+                "name": "_Toggle group base",
+                "nth": 0,
+                "icon": "@icon-grid"
+               },
+               {
+                "name": "_Toggle group base",
+                "nth": 1,
+                "icon": "@icon-list"
                }
               ]
              }
@@ -164,7 +174,6 @@
           "content": "To Dos",
           "style": "Text sm/Medium",
           "color": "text-secondary",
-          "pl": "lg",
           "pb": "xl"
          },
          {
@@ -193,7 +202,6 @@
             "t": "row",
             "i": "th-cost",
             "w": 140,
-            "justify": "end",
             "children": [
              {
               "c": "col-header-cell",
@@ -208,15 +216,26 @@
               "text": [
                "COST"
               ],
-              "w": 120
+              "w": 140,
+              "ops": [
+               {
+                "nodes": [
+                 {
+                  "name": "Text",
+                  "nth": 0,
+                  "align": "right"
+                 }
+                ]
+               }
+              ]
              }
-            ]
+            ],
+            "align": "center"
            },
            {
             "t": "row",
             "i": "th-time",
             "w": 140,
-            "justify": "end",
             "children": [
              {
               "c": "col-header-cell",
@@ -231,11 +250,24 @@
               "text": [
                "TIME & DATE"
               ],
-              "w": 130
+              "w": 140,
+              "ops": [
+               {
+                "nodes": [
+                 {
+                  "name": "Text",
+                  "nth": 0,
+                  "align": "right"
+                 }
+                ]
+               }
+              ]
              }
-            ]
+            ],
+            "align": "center"
            }
-          ]
+          ],
+          "h": 44
          },
          {
           "t": "row",
@@ -263,14 +295,13 @@
             "fill": "x"
            },
            {
-            "c": "icon-file",
+            "c": "icon-copy",
             "i": "r0-ic"
            },
            {
             "t": "row",
             "i": "r0-cost",
             "w": 140,
-            "justify": "end",
             "children": [
              {
               "c": "table-cell",
@@ -287,15 +318,26 @@
               "text": [
                "$0.70"
               ],
-              "fill": "x"
+              "w": 140,
+              "ops": [
+               {
+                "nodes": [
+                 {
+                  "name": "Text",
+                  "nth": 0,
+                  "align": "right"
+                 }
+                ]
+               }
+              ]
              }
-            ]
+            ],
+            "align": "center"
            },
            {
             "t": "row",
             "i": "r0-time",
             "w": 140,
-            "justify": "end",
             "children": [
              {
               "c": "table-cell",
@@ -312,9 +354,21 @@
               "text": [
                "3h ago"
               ],
-              "fill": "x"
+              "w": 140,
+              "ops": [
+               {
+                "nodes": [
+                 {
+                  "name": "Text",
+                  "nth": 0,
+                  "align": "right"
+                 }
+                ]
+               }
+              ]
              }
-            ]
+            ],
+            "align": "center"
            }
           ]
          },
@@ -344,14 +398,13 @@
             "fill": "x"
            },
            {
-            "c": "icon-file",
+            "c": "icon-copy",
             "i": "r1-ic"
            },
            {
             "t": "row",
             "i": "r1-cost",
             "w": 140,
-            "justify": "end",
             "children": [
              {
               "c": "table-cell",
@@ -368,15 +421,26 @@
               "text": [
                "$0.70"
               ],
-              "fill": "x"
+              "w": 140,
+              "ops": [
+               {
+                "nodes": [
+                 {
+                  "name": "Text",
+                  "nth": 0,
+                  "align": "right"
+                 }
+                ]
+               }
+              ]
              }
-            ]
+            ],
+            "align": "center"
            },
            {
             "t": "row",
             "i": "r1-time",
             "w": 140,
-            "justify": "end",
             "children": [
              {
               "c": "table-cell",
@@ -393,9 +457,21 @@
               "text": [
                "1h ago"
               ],
-              "fill": "x"
+              "w": 140,
+              "ops": [
+               {
+                "nodes": [
+                 {
+                  "name": "Text",
+                  "nth": 0,
+                  "align": "right"
+                 }
+                ]
+               }
+              ]
              }
-            ]
+            ],
+            "align": "center"
            }
           ]
          },
@@ -425,14 +501,13 @@
             "fill": "x"
            },
            {
-            "c": "icon-file",
+            "c": "icon-copy",
             "i": "r2-ic"
            },
            {
             "t": "row",
             "i": "r2-cost",
             "w": 140,
-            "justify": "end",
             "children": [
              {
               "c": "table-cell",
@@ -449,15 +524,26 @@
               "text": [
                "$0.70"
               ],
-              "fill": "x"
+              "w": 140,
+              "ops": [
+               {
+                "nodes": [
+                 {
+                  "name": "Text",
+                  "nth": 0,
+                  "align": "right"
+                 }
+                ]
+               }
+              ]
              }
-            ]
+            ],
+            "align": "center"
            },
            {
             "t": "row",
             "i": "r2-time",
             "w": 140,
-            "justify": "end",
             "children": [
              {
               "c": "table-cell",
@@ -474,9 +560,21 @@
               "text": [
                "3h ago"
               ],
-              "fill": "x"
+              "w": 140,
+              "ops": [
+               {
+                "nodes": [
+                 {
+                  "name": "Text",
+                  "nth": 0,
+                  "align": "right"
+                 }
+                ]
+               }
+              ]
              }
-            ]
+            ],
+            "align": "center"
            }
           ]
          },
@@ -506,14 +604,13 @@
             "fill": "x"
            },
            {
-            "c": "icon-file",
+            "c": "icon-copy",
             "i": "r3-ic"
            },
            {
             "t": "row",
             "i": "r3-cost",
             "w": 140,
-            "justify": "end",
             "children": [
              {
               "c": "table-cell",
@@ -530,15 +627,26 @@
               "text": [
                "$0.70"
               ],
-              "fill": "x"
+              "w": 140,
+              "ops": [
+               {
+                "nodes": [
+                 {
+                  "name": "Text",
+                  "nth": 0,
+                  "align": "right"
+                 }
+                ]
+               }
+              ]
              }
-            ]
+            ],
+            "align": "center"
            },
            {
             "t": "row",
             "i": "r3-time",
             "w": 140,
-            "justify": "end",
             "children": [
              {
               "c": "table-cell",
@@ -555,9 +663,21 @@
               "text": [
                "3h ago"
               ],
-              "fill": "x"
+              "w": 140,
+              "ops": [
+               {
+                "nodes": [
+                 {
+                  "name": "Text",
+                  "nth": 0,
+                  "align": "right"
+                 }
+                ]
+               }
+              ]
              }
-            ]
+            ],
+            "align": "center"
            }
           ]
          },
@@ -587,14 +707,13 @@
             "fill": "x"
            },
            {
-            "c": "icon-file",
+            "c": "icon-copy",
             "i": "r4-ic"
            },
            {
             "t": "row",
             "i": "r4-cost",
             "w": 140,
-            "justify": "end",
             "children": [
              {
               "c": "table-cell",
@@ -611,15 +730,26 @@
               "text": [
                "$0.70"
               ],
-              "fill": "x"
+              "w": 140,
+              "ops": [
+               {
+                "nodes": [
+                 {
+                  "name": "Text",
+                  "nth": 0,
+                  "align": "right"
+                 }
+                ]
+               }
+              ]
              }
-            ]
+            ],
+            "align": "center"
            },
            {
             "t": "row",
             "i": "r4-time",
             "w": 140,
-            "justify": "end",
             "children": [
              {
               "c": "table-cell",
@@ -636,9 +766,21 @@
               "text": [
                "3h ago"
               ],
-              "fill": "x"
+              "w": 140,
+              "ops": [
+               {
+                "nodes": [
+                 {
+                  "name": "Text",
+                  "nth": 0,
+                  "align": "right"
+                 }
+                ]
+               }
+              ]
              }
-            ]
+            ],
+            "align": "center"
            }
           ]
          },
@@ -668,14 +810,13 @@
             "fill": "x"
            },
            {
-            "c": "icon-file",
+            "c": "icon-copy",
             "i": "r5-ic"
            },
            {
             "t": "row",
             "i": "r5-cost",
             "w": 140,
-            "justify": "end",
             "children": [
              {
               "c": "table-cell",
@@ -692,15 +833,26 @@
               "text": [
                "$0.70"
               ],
-              "fill": "x"
+              "w": 140,
+              "ops": [
+               {
+                "nodes": [
+                 {
+                  "name": "Text",
+                  "nth": 0,
+                  "align": "right"
+                 }
+                ]
+               }
+              ]
              }
-            ]
+            ],
+            "align": "center"
            },
            {
             "t": "row",
             "i": "r5-time",
             "w": 140,
-            "justify": "end",
             "children": [
              {
               "c": "table-cell",
@@ -717,9 +869,21 @@
               "text": [
                "3h ago"
               ],
-              "fill": "x"
+              "w": 140,
+              "ops": [
+               {
+                "nodes": [
+                 {
+                  "name": "Text",
+                  "nth": 0,
+                  "align": "right"
+                 }
+                ]
+               }
+              ]
              }
-            ]
+            ],
+            "align": "center"
            }
           ]
          },
@@ -748,14 +912,13 @@
             "fill": "x"
            },
            {
-            "c": "icon-file",
+            "c": "icon-copy",
             "i": "r6-ic"
            },
            {
             "t": "row",
             "i": "r6-cost",
             "w": 140,
-            "justify": "end",
             "children": [
              {
               "c": "table-cell",
@@ -772,15 +935,26 @@
               "text": [
                "$0.70"
               ],
-              "fill": "x"
+              "w": 140,
+              "ops": [
+               {
+                "nodes": [
+                 {
+                  "name": "Text",
+                  "nth": 0,
+                  "align": "right"
+                 }
+                ]
+               }
+              ]
              }
-            ]
+            ],
+            "align": "center"
            },
            {
             "t": "row",
             "i": "r6-time",
             "w": 140,
-            "justify": "end",
             "children": [
              {
               "c": "table-cell",
@@ -797,13 +971,26 @@
               "text": [
                "3h ago"
               ],
-              "fill": "x"
+              "w": 140,
+              "ops": [
+               {
+                "nodes": [
+                 {
+                  "name": "Text",
+                  "nth": 0,
+                  "align": "right"
+                 }
+                ]
+               }
+              ]
              }
-            ]
+            ],
+            "align": "center"
            }
           ]
          }
-        ]
+        ],
+        "pl": "lg"
        }
       ]
      }

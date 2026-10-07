@@ -101,6 +101,7 @@ async function applyOps(inst, ops) {
       if (sp.style || sp.color) { const t = hit.type === "TEXT" ? hit : hit.findOne(n => n.type === "TEXT"); if (!t) warnings.push("nodes: no text in " + sp.name); else {
         if (sp.style) { const font = FONTS[sp.style]; if (font) for (const st of [font[1], font[1].replace(/([a-z])([A-Z])/g, "$1 $2"), "Regular"]) { try { await lf({ family: font[0], style: st }); break; } catch {} } try { await t.setTextStyleIdAsync((await S(sp.style)).id); } catch (e) { warnings.push("nodes style " + sp.style + ": " + e.message); } }
         if (sp.color) await bindFill(t, sp.color, "fill"); } }
+      if (sp.align) { const t = hit.type === "TEXT" ? hit : hit.findOne(n => n.type === "TEXT"); if (t) { await loadNodeFonts(t); t.textAlignHorizontal = String(sp.align).toUpperCase(); try { if (t.parent && t.parent.layoutMode) { t.parent.layoutSizingHorizontal = "FILL"; t.parent.primaryAxisAlignItems = sp.align === "right" ? "MAX" : sp.align === "center" ? "CENTER" : "MIN"; } t.layoutSizingHorizontal = "FILL"; } catch (e) {} } }
       if (sp.tint) await tintNode(hit, sp.tint);
       if (sp.icon) { const ic = hit.findOne(n => n.type === "INSTANCE"); const comp = await component(sp.icon.slice(1)); if (ic) ic.swapComponent(comp); else warnings.push("nodes: no icon inside " + sp.name); }
     }

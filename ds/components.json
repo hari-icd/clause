@@ -4799,6 +4799,56 @@
    "default": null,
    "props": {},
    "texts": []
+  },
+  {
+   "key": "icon-filter-lines",
+   "name": "filter-lines",
+   "lib": true,
+   "variantKey": "6abb6fe76ee8e414cb97dc1f633d0394bb823144",
+   "variant": "filter-lines",
+   "default": null,
+   "props": {},
+   "texts": []
+  },
+  {
+   "key": "icon-grid",
+   "name": "grid-01",
+   "lib": true,
+   "variantKey": "2c4018db57add86ca124f8a36ee5d1dd9732db52",
+   "variant": "grid-01",
+   "default": null,
+   "props": {},
+   "texts": []
+  },
+  {
+   "key": "icon-copy",
+   "name": "copy-01",
+   "lib": true,
+   "variantKey": "afe12ada75b466c44afcd1d840c57d32d173ecdd",
+   "variant": "copy-01",
+   "default": null,
+   "props": {},
+   "texts": []
+  },
+  {
+   "key": "icon-list",
+   "name": "list",
+   "lib": true,
+   "variantKey": "bf624f1213c811b94430d40993de4d93a030be9f",
+   "variant": "list",
+   "default": null,
+   "props": {},
+   "texts": []
+  },
+  {
+   "key": "icon-chevron-selector-vertical",
+   "name": "chevron-selector-vertical",
+   "lib": true,
+   "variantKey": "1cdacb24ce9802fb3db7019145ac9de984375a3f",
+   "variant": "chevron-selector-vertical",
+   "default": null,
+   "props": {},
+   "texts": []
   }
  ]
 }
