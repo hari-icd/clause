@@ -38,3 +38,4 @@ Living list of the tricks that make the loop fast. Every time we find a loophole
 - `ops.nodes` `align: right|center|left` right-aligns a text inside a component (sets textAlignHorizontal + parent MAX). Needed for table numeric columns.
 - `ops.nodes` `has: "<text>"` selects the nearest instance that contains that text (hide/props it) — use when layer names repeat (menu items, list rows).
 - Molecules exist for most "atom stacks": Split Button Brand (`split-button-brand`), Dropdown Menu (`dropdown-menu`). Check the catalog for *-menu / split-* before composing from atoms.
+- `ops.nodes` `show: true` reveals a layer the component hides by default (e.g. a 5th menu item); text arrays then include it. Ops run BEFORE text overrides, so `has:` must match the component's original text.

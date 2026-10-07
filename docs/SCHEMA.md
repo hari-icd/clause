@@ -24,7 +24,7 @@ One file per screen in `screens/<kebab-name>.json`. The compiler validates it ag
 - **Component** `{ "c": "<catalog key>", "i": "<unique id>", "p": {…}, "text": …, "ops": […] }`
   - `p`: Figma axis names and values verbatim from the catalog. Booleans `"true"`/`"false"`. INSTANCE_SWAP props take `"@icon-key"`.
   - `text`: array = override visible text layers in order; object = `{ "placeholder substring": "new text" }` (matched against the catalog `texts`).
-  - `ops`: edit layers inside the instance — `{"hideNames":[…]}`, `{"hide":[layerIds]}`, `{"set":[[layerId,{props}]]}`, `{"icons":[[targetId,sourceId]]}`, `{"nodes":[{"name":"<layer>" | "has":"<text substring>" (nearest instance containing that text), "nth":0, "hide":true | "icon":"@key" | "swap":"@key" | "props":{…} | "style":"Text sm/Regular" | "color":"text-secondary" | "maxLines":2 | "align":"right" | "tint":"icon-white"}]}`.
+  - `ops`: edit layers inside the instance — `{"hideNames":[…]}`, `{"hide":[layerIds]}`, `{"set":[[layerId,{props}]]}`, `{"icons":[[targetId,sourceId]]}`, `{"nodes":[{"name":"<layer>" | "has":"<text substring>" (nearest instance containing that text), "nth":0, "hide":true | "show":true | "icon":"@key" | "swap":"@key" | "props":{…} | "style":"Text sm/Regular" | "color":"text-secondary" | "maxLines":2 | "align":"right" | "tint":"icon-white"}]}`.
 - **Layout** `t`: `stack` (column) · `row` · `text` · `spacer` (push-apart in a row only).
   - Spacing: `gap` `rowGap` `pad` `px` `py` `pt` `pb` `pl` `pr` take token names (`"md"`, `"3xl"`). `radius` likewise.
   - Color: `bg` `border` `borderB/L/T/R` `color` `tint` take variable aliases (`bg-primary`, `border-secondary`, `text-tertiary`). `bg: "none"` clears a fill. Never hex.

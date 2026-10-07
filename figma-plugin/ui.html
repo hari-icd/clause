@@ -203,7 +203,7 @@ function render() {
   if (!hist.length) c.innerHTML = '<div class="empty">Select layers in Figma, write what should change, ⏎ to send · ⌘⏎ to queue.</div>';
   else c.innerHTML = hist.map(m => {
     if (m.from === "system") return '<div class="sys">' + esc(m.title || "system") + " · " + esc(String(m.text).split("\n")[0]) + "</div>";
-    const tick = m.from !== "you" ? "" : m.status === "sent" ? '<svg viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7"/></svg> ' : '<svg class="rd" viewBox="0 0 16 16"><path d="M1 8.5l3 3 6-6M7 11.5l7-7"/></svg> ';
+    const tick = m.from !== "you" ? "" : m.status === "sent" ? '<svg viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7"/></svg> ' : '<svg class="rd" viewBox="0 0 18 16" style="width:13px"><path d="M1 8.5l3 3 6-6M9 11.5l7-7"/></svg> ';
     const body = m.targets && m.targets.length ? '<div class="chips" style="display:flex;flex-wrap:wrap;gap:3px;margin-bottom:3px">' + chipsOf(m) + '</div><div class="t">' + esc(m.note || "") + "</div>" : '<div class="t">' + esc(m.text) + "</div>";
     const took = m.from === "claude" && m.took ? '<span class="took" title="From your send to this reply">' + fmtDur(m.took) + "</span> " : "";
     return '<div class="msg ' + m.from + '"><div class="h"><span>' + (m.from === "you" ? "you" : "Claude") + "</span><span>" + took + tick + hhmm(m.t) + "</span></div>" + body + "</div>";

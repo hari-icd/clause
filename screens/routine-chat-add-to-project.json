@@ -1,0 +1,592 @@
+{
+ "title": "Routine chat — Add to project",
+ "height": 900,
+ "tree": {
+  "t": "row",
+  "i": "root",
+  "gap": "none",
+  "clip": true,
+  "children": [
+   {
+    "c": "main-nav",
+    "i": "nav",
+    "p": {
+     "types": "collapsed"
+    },
+    "fill": "y"
+   },
+   {
+    "t": "stack",
+    "i": "main",
+    "grow": true,
+    "fill": "y",
+    "gap": "none",
+    "bg": "bg-primary",
+    "children": [
+     {
+      "t": "row",
+      "i": "topbar",
+      "fill": "x",
+      "h": 40,
+      "align": "center",
+      "children": [
+       {
+        "c": "es-breadcrumb",
+        "i": "crumb",
+        "fill": "x",
+        "p": {
+         "Variant": "with Icon",
+         "Actions": "true",
+         "AI assist button": "false",
+         "Avatar Group": "false"
+        },
+        "text": [
+         "Routines",
+         "New routine"
+        ],
+        "bg": "none"
+       }
+      ]
+     },
+     {
+      "t": "stack",
+      "i": "body",
+      "grow": true,
+      "fill": "x",
+      "align": "center",
+      "justify": "between",
+      "pt": "7xl",
+      "pb": "3xl",
+      "children": [
+       {
+        "t": "stack",
+        "i": "thread",
+        "w": 760,
+        "gap": "3xl",
+        "children": [
+         {
+          "t": "row",
+          "i": "user-row",
+          "fill": "x",
+          "justify": "end",
+          "children": [
+           {
+            "c": "copilot-user-message-desktop",
+            "i": "user-msg",
+            "p": {
+             "State": "Default",
+             "Type": "Default",
+             "Timestamp": "false",
+             "Mic": "false",
+             "User Avatar": "false",
+             "Attachment": "false"
+            },
+            "text": [
+             "I want to set up a scheduled task. Briefly explain how scheduled tasks work, then ask me a few questions to figure out what I’d like you to do and when it should run."
+            ]
+           }
+          ]
+         },
+         {
+          "t": "stack",
+          "i": "reply",
+          "fill": "x",
+          "gap": "lg",
+          "children": [
+           {
+            "c": "thoughts",
+            "i": "thoughts",
+            "p": {
+             "State": "Closed"
+            }
+           },
+           {
+            "t": "text",
+            "i": "lead",
+            "content": "Before I set this up — four things I cannot infer.",
+            "style": "Text md/Regular",
+            "color": "text-primary",
+            "pl": "3xl"
+           },
+           {
+            "t": "stack",
+            "i": "choices",
+            "fill": "x",
+            "ml": "3xl",
+            "gap": "none",
+            "bg": "bg-primary",
+            "border": "border-secondary",
+            "radius": "2xl",
+            "children": [
+             {
+              "t": "row",
+              "i": "choices-head",
+              "fill": "x",
+              "py": "lg",
+              "px": "xl",
+              "borderB": "border-secondary",
+              "children": [
+               {
+                "t": "text",
+                "i": "choices-t",
+                "content": "Your choices were",
+                "style": "Text md/Semibold",
+                "color": "text-primary"
+               }
+              ]
+             },
+             {
+              "t": "stack",
+              "i": "qa-1",
+              "fill": "x",
+              "gap": "xs",
+              "py": "lg",
+              "px": "xl",
+              "borderB": "border-secondary",
+              "children": [
+               {
+                "t": "text",
+                "i": "q-1",
+                "content": "Is this a new routine, or should I extend one you have?",
+                "style": "Text sm/Regular",
+                "color": "text-tertiary"
+               },
+               {
+                "t": "text",
+                "i": "a-1",
+                "content": "Extend “Escalation watch”",
+                "style": "Text md/Regular",
+                "color": "text-primary"
+               }
+              ]
+             },
+             {
+              "t": "stack",
+              "i": "qa-2",
+              "fill": "x",
+              "gap": "xs",
+              "py": "lg",
+              "px": "xl",
+              "borderB": "border-secondary",
+              "children": [
+               {
+                "t": "text",
+                "i": "q-2",
+                "content": "How should the escalations be presented?",
+                "style": "Text sm/Regular",
+                "color": "text-tertiary"
+               },
+               {
+                "t": "text",
+                "i": "a-2",
+                "content": "All escalations, grouped by account",
+                "style": "Text md/Regular",
+                "color": "text-primary"
+               }
+              ]
+             },
+             {
+              "t": "stack",
+              "i": "qa-3",
+              "fill": "x",
+              "gap": "xs",
+              "py": "lg",
+              "px": "xl",
+              "borderB": "border-secondary",
+              "children": [
+               {
+                "t": "text",
+                "i": "q-3",
+                "content": "Which accounts should it scan?",
+                "style": "Text sm/Regular",
+                "color": "text-tertiary"
+               },
+               {
+                "t": "text",
+                "i": "a-3",
+                "content": "Every active account",
+                "style": "Text md/Regular",
+                "color": "text-primary"
+               }
+              ]
+             },
+             {
+              "t": "stack",
+              "i": "qa-4",
+              "fill": "x",
+              "gap": "xs",
+              "py": "lg",
+              "px": "xl",
+              "children": [
+               {
+                "t": "text",
+                "i": "q-4",
+                "content": "What time on Friday should it land?",
+                "style": "Text sm/Regular",
+                "color": "text-tertiary"
+               },
+               {
+                "t": "text",
+                "i": "a-4",
+                "content": "12:00 PM PT",
+                "style": "Text md/Regular",
+                "color": "text-primary"
+               }
+              ]
+             }
+            ]
+           },
+           {
+            "t": "stack",
+            "i": "steps",
+            "gap": "md",
+            "pl": "3xl",
+            "children": [
+             {
+              "t": "row",
+              "i": "step-1",
+              "gap": "md",
+              "align": "center",
+              "pl": "xs",
+              "children": [
+               {
+                "c": "icon-script",
+                "i": "step-ic-1"
+               },
+               {
+                "t": "text",
+                "i": "step-t-1",
+                "content": "Checking your routines",
+                "style": "Text sm/Regular",
+                "color": "text-tertiary"
+               }
+              ]
+             },
+             {
+              "t": "row",
+              "i": "step-2",
+              "gap": "md",
+              "align": "center",
+              "pl": "xs",
+              "children": [
+               {
+                "c": "icon-search-md",
+                "i": "step-ic-2"
+               },
+               {
+                "t": "text",
+                "i": "step-t-2",
+                "content": "Checking connected systems",
+                "style": "Text sm/Regular",
+                "color": "text-tertiary"
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "c": "copilot-input-box",
+        "i": "input",
+        "p": {
+         "Type": "Bottom small",
+         "State": "Default",
+         "Tools & Sources": "Yes",
+         "Text": "Placeholder",
+         "Attachment": "No",
+         "Inline Skills": "false"
+        },
+        "w": 760
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "c": "dropdown-menu",
+    "i": "ctx-menu",
+    "p": {
+     "Type": "Small",
+     "Scroll bar": "false"
+    },
+    "w": 186,
+    "abs": {
+     "x": 1242,
+     "y": 40
+    },
+    "why": "context menu anchored under the ⋯ action in the top bar",
+    "text": [
+     "Pin Routine",
+     "Rename",
+     "Add to Project",
+     "Archive",
+     "Delete"
+    ],
+    "ops": [
+     {
+      "nodes": [
+       {
+        "name": "placeholder",
+        "nth": 0,
+        "hide": true
+       },
+       {
+        "name": "placeholder",
+        "nth": 1,
+        "hide": true
+       },
+       {
+        "name": "placeholder",
+        "nth": 2,
+        "hide": true
+       },
+       {
+        "name": "placeholder",
+        "nth": 3,
+        "hide": true
+       },
+       {
+        "name": "placeholder",
+        "nth": 4,
+        "hide": true
+       },
+       {
+        "name": "log-out-01",
+        "nth": 0,
+        "hide": true
+       },
+       {
+        "name": "Dropdown list item",
+        "nth": 4,
+        "show": true
+       },
+       {
+        "name": "Dropdown list item",
+        "nth": 3,
+        "show": true
+       },
+       {
+        "has": "Log out",
+        "hide": true
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "t": "stack",
+    "i": "picker",
+    "w": 236,
+    "gap": "none",
+    "bg": "bg-primary",
+    "border": "border-secondary",
+    "radius": "xl",
+    "abs": {
+     "x": 993,
+     "y": 146
+    },
+    "why": "Add to Project sub-menu, overlays the thread",
+    "children": [
+     {
+      "t": "stack",
+      "i": "picker-search",
+      "fill": "x",
+      "pad": "md",
+      "children": [
+       {
+        "c": "input-field-outline",
+        "i": "pk-search",
+        "fill": "x",
+        "p": {
+         "Size": "sm",
+         "Type": "Icon leading",
+         "Label": "false",
+         "Hint text": "false",
+         "Help icon": "false",
+         "Leading icon": "true",
+         "Encryption": "false",
+         "Icon swap": "@icon-search-md",
+         "Destructive": "False",
+         "State": "Placeholder"
+        },
+        "text": [
+         "Search"
+        ]
+       }
+      ]
+     },
+     {
+      "t": "stack",
+      "i": "picker-list",
+      "fill": "x",
+      "px": "xs",
+      "pb": "xs",
+      "gap": "none",
+      "children": [
+       {
+        "c": "dropdown-list-item",
+        "i": "pk-1",
+        "fill": "x",
+        "p": {
+         "Size": "sm",
+         "Icon": "true",
+         "Instance": "@icon-folder",
+         "Start Type": "Default",
+         "End Type": "Shortcut",
+         "Selected": "Off",
+         "State": "Default",
+         "Divider": "False",
+         "Supporting Text": "Off",
+         "Shortcut": "false",
+         "Badge": "false"
+        },
+        "text": [
+         "View profile"
+        ]
+       },
+       {
+        "c": "dropdown-list-item",
+        "i": "pk-2",
+        "fill": "x",
+        "p": {
+         "Size": "sm",
+         "Icon": "true",
+         "Instance": "@icon-folder",
+         "Start Type": "Default",
+         "End Type": "Shortcut",
+         "Selected": "Off",
+         "State": "Default",
+         "Divider": "False",
+         "Supporting Text": "Off",
+         "Shortcut": "false",
+         "Badge": "false"
+        },
+        "text": [
+         "Settings"
+        ]
+       },
+       {
+        "c": "dropdown-list-item",
+        "i": "pk-3",
+        "fill": "x",
+        "p": {
+         "Size": "sm",
+         "Icon": "true",
+         "Instance": "@icon-folder",
+         "Start Type": "Default",
+         "End Type": "Shortcut",
+         "Selected": "Off",
+         "State": "Default",
+         "Divider": "False",
+         "Supporting Text": "Off",
+         "Shortcut": "false",
+         "Badge": "false"
+        },
+        "text": [
+         "Keyboard shortcuts"
+        ]
+       },
+       {
+        "c": "dropdown-list-item",
+        "i": "pk-4",
+        "fill": "x",
+        "p": {
+         "Size": "sm",
+         "Icon": "true",
+         "Instance": "@icon-folder",
+         "Start Type": "Default",
+         "End Type": "Shortcut",
+         "Selected": "Off",
+         "State": "Default",
+         "Divider": "False",
+         "Supporting Text": "Off",
+         "Shortcut": "false",
+         "Badge": "false"
+        },
+        "text": [
+         "Keyboard shortcuts"
+        ]
+       },
+       {
+        "c": "dropdown-list-item",
+        "i": "pk-5",
+        "fill": "x",
+        "p": {
+         "Size": "sm",
+         "Icon": "true",
+         "Instance": "@icon-folder",
+         "Start Type": "Default",
+         "End Type": "Shortcut",
+         "Selected": "Off",
+         "State": "Default",
+         "Divider": "False",
+         "Supporting Text": "Off",
+         "Shortcut": "false",
+         "Badge": "false"
+        },
+        "text": [
+         "Keyboard shortcuts"
+        ]
+       },
+       {
+        "c": "dropdown-list-item",
+        "i": "pk-6",
+        "fill": "x",
+        "p": {
+         "Size": "sm",
+         "Icon": "true",
+         "Instance": "@icon-folder",
+         "Start Type": "Default",
+         "End Type": "Shortcut",
+         "Selected": "Off",
+         "State": "Default",
+         "Divider": "False",
+         "Supporting Text": "Off",
+         "Shortcut": "false",
+         "Badge": "false"
+        },
+        "text": [
+         "Company profile"
+        ]
+       }
+      ]
+     },
+     {
+      "t": "stack",
+      "i": "picker-new",
+      "fill": "x",
+      "px": "xs",
+      "py": "xs",
+      "borderT": "border-secondary",
+      "children": [
+       {
+        "c": "dropdown-list-item",
+        "i": "pk-new",
+        "fill": "x",
+        "p": {
+         "Size": "sm",
+         "Icon": "true",
+         "Instance": "@icon-plus",
+         "Start Type": "Default",
+         "End Type": "Shortcut",
+         "Selected": "Off",
+         "State": "Default",
+         "Divider": "False",
+         "Supporting Text": "Off",
+         "Shortcut": "false",
+         "Badge": "false"
+        },
+        "text": [
+         "Start a new project"
+        ]
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ }
+}
