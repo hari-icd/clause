@@ -34,6 +34,7 @@
   .sys { align-self:center; color:var(--fg3); font-size:10px; text-align:center; padding:2px 8px; max-width:95%; overflow:hidden; text-overflow:ellipsis; white-space:nowrap }
   #tip { position:fixed; z-index:20; pointer-events:none; background:#1e1e1e; color:#fff; box-shadow:0 2px 8px rgba(0,0,0,.35); font-size:10px; line-height:14px; padding:4px 7px; border-radius:5px; white-space:nowrap; opacity:0; transition:opacity .08s; max-width:260px; white-space:normal }
   #tip.on { opacity:1 } #tip kbd { font:9px/1 ui-monospace, Menlo, monospace; background:rgba(255,255,255,.16); color:#fff; padding:1px 4px; border-radius:3px; margin-left:4px }
+  .onb { margin:auto 0; border:1px dashed var(--fg3); border-radius:10px; padding:16px 14px; display:flex; flex-direction:column; gap:8px; text-align:center } .onb b { font-size:12px } .onb .steps { text-align:left; color:var(--fg2); margin:2px 0 4px; padding-left:16px } .onb .steps li { margin:2px 0 }
   .empty { color:var(--fg3); text-align:center; margin:auto; padding:24px }
   #q { flex:none; margin:0 8px 0 12px; border:1px solid var(--line); border-radius:8px; background:var(--bg2); max-height:45%; display:none; flex-direction:column } #q.on { display:flex }
   #q .qh { display:flex; align-items:center; gap:6px; padding:4px 4px 4px 8px; color:var(--fg2); cursor:pointer; user-select:none } #q .qh .grow { flex:1 } #q .qh svg { transition:transform .15s } #q.closed .qh svg { transform:rotate(-90deg) }
@@ -105,14 +106,13 @@ try { $("dsIgnore").value = localStorage.getItem("dsIgnore") || ""; } catch (e) 
 async function dsRun() {
   if (dsBusy) return; dsBusy = true; dsParts = {}; openMenu(true);
   const ignoreSections = $("dsIgnore").value.split(",").map(x => x.trim()).filter(Boolean); try { localStorage.setItem("dsIgnore", $("dsIgnore").value); } catch (e) {}
-  $("dsState").textContent = "extracting…"; log("extracting design system…");
+  $("dsState").textContent = "extracting…"; log("extracting design system…"); $("chat").innerHTML = '<div class="onb"><b>Extracting…</b><div class="s sm" id="onbProg">reading pages</div></div>';
   post({ type: "ds-extract", ignoreSections });
 }
 async function dsFinish(m) {
   dsBusy = false;
   if (m.error) { $("dsState").textContent = "failed"; log("✗ extract: " + m.error); toast("Extract failed"); return; }
   try {
-    let hasDs = false; try { hasDs = !!(await (await fetch(BASE + "/status")).json()).hasDs; } catch (e) {}
     const r = await api("/extract/ds", { ...dsParts, mode: hasDs ? "preview" : "replace" });
     $("dsState").textContent = "extracted · " + Math.round(m.ms / 1000) + "s"; log(r.summary || "extracted"); toast(hasDs ? "Preview saved — Claude is comparing it with ds/" : "ds/ written — Claude is auditing it"); loadMsgs();
   } catch (e) { $("dsState").textContent = "server offline"; log("✗ could not reach the server (npm run live)"); }
@@ -178,6 +178,7 @@ es.onmessage = async e => {
   if (m.type === "state") { if (m.error) { log(m.error); post({ type: "notify", error: true, text: "Clause: " + m.error.split("\n")[0] }); return; } fromServer(); }
   else if (m.type === "rt") { await loadSrc(m.rtHash, true); seenVersion = -1; fromServer(); }
   else if (m.type === "term" || m.type === "agent") loadMsgs();
+  else if (m.type === "extract") { if (m.ignoreSections && m.ignoreSections.length) $("dsIgnore").value = m.ignoreSections.join(", "); dsRun(); }
 };
 const slug = s => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 async function importHtml(file) { const doc = new DOMParser().parseFromString(await file.text(), "text/html"); const el = doc.getElementById("es-scene"); if (!el) { log("✗ not a Clause export (no #es-scene)"); return; } const scene = JSON.parse(el.textContent); request({ name: slug(scene.TITLE), screen: scene, rtHash }); }
@@ -188,7 +189,7 @@ drop.ondrop = e => { e.preventDefault(); drop.classList.remove("over"); if (e.da
 $("open").onclick = () => { window.open(BASE + "/", "_blank"); };
 
 // ---- chat history + queue widget
-let msgs = [], queued = 0, agent = null;
+let msgs = [], queued = 0, agent = null, hasDs = true;
 const fmtDur = ms => { const s = Math.round(ms / 1000); return s < 60 ? s + "s" : s < 3600 ? Math.floor(s / 60) + "m " + (s % 60) + "s" : Math.floor(s / 3600) + "h " + Math.floor((s % 3600) / 60) + "m"; };
 const hhmm = t => { const d = new Date(t); return d.getHours().toString().padStart(2, "0") + ":" + d.getMinutes().toString().padStart(2, "0"); };
 function chipsOf(m) { return (m.targets || []).map(t => '<span class="chip sm go" data-go="' + t.id + '"><b>' + esc(t.name) + "</b><i>" + esc(t.component || (t.type || "").toLowerCase()) + "</i></span>").join(""); }
@@ -198,7 +199,8 @@ function render() {
   $("q").classList.toggle("on", q.length > 0); $("qn").textContent = q.length + " queued";
   $("ql").innerHTML = q.map(m => '<div class="qi">' + (m.targets && m.targets.length ? '<div class="chips">' + chipsOf(m) + "</div>" : "") + '<div class="tx">' + esc(m.note || m.text) + '</div><span class="ops"><button class="ib" data-send="' + m.id + '" title="Send"><svg viewBox="0 0 16 16"><path d="M8 13V3M3.5 7.5L8 3l4.5 4.5"/></svg></button><button class="ib" data-del="' + m.id + '" title="Discard"><svg viewBox="0 0 16 16"><path d="M4 4l8 8M12 4l-8 8"/></svg></button></span></div>').join("");
   const c = $("chat");
-  if (!hist.length) c.innerHTML = '<div class="empty">Select layers in Figma, write what should change, ⏎ to queue · ⌘⏎ to send.</div>';
+  if (!hasDs && !dsBusy) { c.innerHTML = '<div class="onb"><b>Start by extracting your design system</b><div class="s sm">One click reads every page + enabled library of this file and writes the catalog Claude builds from.</div><ol class="steps sm"><li>Make sure this file\'s team libraries are enabled</li><li>Click extract (1–3 min, progress shows here)</li><li>Claude audits the result and says what to build first</li></ol><button class="b p wide" id="onbGo">Extract components &amp; tokens</button></div>'; $("onbGo").onclick = dsRun; return; }
+  if (!hist.length) c.innerHTML = '<div class="empty">Select layers in Figma, write what should change, ⏎ to send · ⌘⏎ to queue.</div>';
   else c.innerHTML = hist.map(m => {
     if (m.from === "system") return '<div class="sys">' + esc(m.title || "system") + " · " + esc(String(m.text).split("\n")[0]) + "</div>";
     const tick = m.from !== "you" ? "" : m.status === "sent" ? '<svg viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7"/></svg> ' : '<svg class="rd" viewBox="0 0 16 16"><path d="M1.5 8.5l3 3 6-6M6.5 11.5l7-7"/></svg> ';
@@ -210,7 +212,7 @@ function render() {
   const lr = [...hist].reverse().find(m => m.from === "claude" && m.took); $("lastTook").textContent = lr ? fmtDur(lr.took) + " · prompt → reply" : "–";
   c.scrollTop = c.scrollHeight; renderComposer();
 }
-async function loadMsgs() { try { const j = await (await fetch(BASE + "/term")).json(); msgs = j.messages; agent = j.agent || null; sessions = j.sessions || []; session = j.session || null; render(); if ($("menu").classList.contains("on")) renderSessions(); } catch (e) {} }
+async function loadMsgs() { try { try { hasDs = !!(await (await fetch(BASE + "/status")).json()).hasDs; } catch (e) {} const j = await (await fetch(BASE + "/term")).json(); msgs = j.messages; agent = j.agent || null; sessions = j.sessions || []; session = j.session || null; render(); if ($("menu").classList.contains("on")) renderSessions(); } catch (e) {} }
 document.addEventListener("click", async e => {
   const g = e.target.closest("[data-go]"); if (g) { post({ type: "locate", id: g.dataset.go }); return; }
   const b = e.target.closest("[data-send],[data-del]"); if (!b) return;
@@ -257,7 +259,7 @@ onmessage = async (e) => {
   const m = e.data.pluginMessage; if (!m) return;
   if (m.type === "sel") { sel = m.nodes; dropped = new Set([...dropped].filter(id => sel.some(n => n.id === id))); renderComposer(); return; }
   if (m.type === "prompt") { if (promptWait) { const f = promptWait; promptWait = null; f(m); } return; }
-  if (m.type === "ds-progress") { log(m.text); return; }
+  if (m.type === "ds-progress") { log(m.text); const o = $("onbProg"); if (o) o.textContent = m.text; return; }
   if (m.type === "ds-part") { if (dsParts) dsParts[m.part] = m.data; return; }
   if (m.type === "ds-done") { dsFinish(m); return; }
   if (m.type === "cmd") {

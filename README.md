@@ -16,26 +16,21 @@ you / reference frame ──▶ Claude ──▶ screens/<name>.json ──▶ l
 - `screens/*.json` is the whole spec. Node names are IDs, props use the Figma axis names, spacing/colors are token names. Lint rejects raw values without a reason.
 - The plugin (**Clause Assist**) rebuilds on every save, exports HTML, and gives you a chat pane: select layers, write what should change, queue, send. Claude reads the inbox, edits the JSON, replies in the pane.
 
-## Setup (once per machine, ~5 min)
+## Getting started (you do 4 things, Claude does the rest)
 
-Requirements: Node 18+, Figma desktop, [Claude Code](https://claude.com/claude-code).
+Requirements: Figma desktop, [Claude Code](https://claude.com/claude-code), Node 18+.
 
-```bash
-git clone https://github.com/hari-icd/clause && cd clause
-npm run setup
-```
+**You:**
+1. `git clone https://github.com/hari-icd/clause` and open the folder in Claude Code.
+2. In Figma desktop: Plugins → Development → **Import plugin from manifest…** → `figma-plugin/manifest.json`.
+3. Open your design-system file (team libraries enabled).
+4. Tell Claude: **"set me up"**.
 
-`setup` checks the machine, generates `figma-plugin/` and `ds/tokens.css`, lints the screens and prints the remaining manual steps:
+**Claude then:** checks the machine (`npm run setup`), starts the live server, waits for you to run **Clause Assist → Open Clause Assist** once, triggers **Extract components & tokens** in the plugin (1–3 min; the pane shows progress), audits the resulting `ds/` catalog, replies in the pane with what it found and what to build first, and arms the inbox listener so your next message from Figma reaches it without a prompt.
 
-1. Figma desktop → open your design-system file; enable its team libraries.
-2. Plugins → Development → **Import plugin from manifest…** → `figma-plugin/manifest.json`.
-3. `npm run live` (starts the server, opens the exports listing).
-4. Plugins → Development → **Clause Assist → Start (silent)**. ⌘⌥P / Ctrl+Alt+P re-runs it later.
-5. Open the folder in Claude Code.
+First screen: give Claude a screenshot or a Figma URL of what you want. It drafts from the reference, builds the frame on the page you're on, and shows you the screenshot.
 
-### New design system
-
-Run the plugin menu **Extract components & tokens** once. It walks every page and enabled library and writes `ds/components.json`, `ds/variable-keys.json`, `ds/tokens/*`, a starter `config.md` and `design-rules.md`. Claude audits the result automatically if the inbox listener is on (say "listen"). Sections to skip can be set in the plugin menu (⌥-click the item).
+Already have a catalog? The same extract runs as a **preview** (written under `.clause/`) and Claude tells you what changed before anything in `ds/` is touched.
 
 ## Daily loop
 
@@ -52,7 +47,7 @@ Say **"listen"** in Claude Code to have it wake on each send instead of you typi
 
 | | |
 |---|---|
-| `npm run setup` | machine check + generate plugin and tokens |
+| `npm run setup` | machine check + generate plugin and tokens (Claude runs it for you via **/onboard**) |
 | `npm run live` | server + listing + plugin rebuild |
 | `npm run inspect <url\|nodeId> [--vs <id>] [--raw]` | reference frame → draft JSON / diff / layer dump |
 | `npm run inbox` / `npm run reply -- "…"` / `npm run status -- "…"` | what Claude uses to read, answer and show presence in the pane |

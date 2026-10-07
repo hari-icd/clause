@@ -119,6 +119,13 @@ http.createServer(async (req, res) => {
     return json(res, 200, result);
   }
   if (p === "/domerror" && req.method === "POST") { try { const b = JSON.parse(await body(req)); console.error(`  figma: HTML EXPORT ERROR ${b.name}: ${b.error}`); } catch {} return json(res, 200, { ok: true }); }
+  if (p === "/extract/start" && req.method === "POST") {
+    const o = req.headers.origin; if (o && o !== "null") { res.writeHead(403); return res.end(); }
+    if (req.headers["x-clause"] !== "1") return json(res, 403, { error: "POST with header x-clause: 1" });
+    if (!clients.size) return json(res, 409, { error: "plugin not connected — run Clause Assist in Figma first" });
+    let b = {}; try { b = JSON.parse(await body(req)); } catch {}
+    broadcast({ type: "extract", ignoreSections: b.ignoreSections || [] }); console.log("  ⇣ extract requested"); return json(res, 200, { ok: true });
+  }
   if (p === "/extract/ds" && req.method === "POST") {
     const o = req.headers.origin; if (o && o !== "null") { res.writeHead(403); return res.end(); }
     if (req.headers["x-clause"] !== "1") return json(res, 403, { error: "POST with header x-clause: 1" });
