@@ -10,6 +10,8 @@ const FL = C.f || (C.f = {});
 function lf(f) { const k = f.family + "|" + f.style; return FL[k] || (FL[k] = figma.loadFontAsync(f)); }
 async function loadNodeFonts(t) { const fn = t.fontName; if (fn !== figma.mixed) { await lf(fn); return; } for (const seg of t.getStyledTextSegments(["fontName"])) await lf(seg.fontName); }
 const created = [], warnings = [];
+// preload every font the screen's text styles use (parallel) so text nodes never wait one by one
+await Promise.all(Object.values(FONTS || {}).map(f => lf({ family: f[0], style: f[1] }).catch(() => lf({ family: f[0], style: f[1].replace(/([a-z])([A-Z])/g, "$1 $2") }).catch(() => null))));
 // ---- inspect mode: SCREEN.INSPECT = node id -> structure/spec JSON (used by scripts/inspect.mjs) ----
 async function inspectNode(id) {
   const root = await figma.getNodeByIdAsync(id); if (!root) throw new Error("node not found " + id);
@@ -88,39 +90,44 @@ async function tintNode(inst, name) {
     if (k.fills && k.fills !== figma.mixed && k.fills.some(s => s.visible !== false && s.type === "SOLID")) k.fills = [paint];
   }
 }
-function inInst(inst, id) { return inst.findOne(n => n.id === id || n.id.endsWith(";" + id)); }
+
+// ---- per-instance layer index: one findAll per instance instead of one per op (ops/texts were the slowest part of a build)
+const IDX = new WeakMap();
+function idx(inst) { let x = IDX.get(inst); if (!x) { const all = inst.findAll(() => true); const byName = new Map(); for (const n of all) { const a = byName.get(n.name); if (a) a.push(n); else byName.set(n.name, [n]); } x = { all, byName, texts: all.filter(n => n.type === "TEXT") }; IDX.set(inst, x); } return x; }
+const dropIdx = inst => IDX.delete(inst);
+function inInst(inst, id) { return idx(inst).all.find(n => n.id === id || n.id.endsWith(";" + id)) || null; }
 async function applyOps(inst, ops) {
   for (const op of ops || []) {
     for (const sp of op.nodes || []) {
       let hit;
-      if (sp.has) { const tx = inst.findAll(n => n.type === "TEXT" && n.characters.includes(sp.has))[sp.nth || 0]; if (tx) { hit = tx; let up = tx.parent; while (up && up !== inst) { if (up.type === "INSTANCE" && (!sp.name || up.name === sp.name)) { hit = up; break; } up = up.parent; } } }
-      else hit = inst.findAll(n => n.name === sp.name)[sp.nth || 0];
+      if (sp.has) { const tx = idx(inst).texts.filter(n => n.characters.includes(sp.has))[sp.nth || 0]; if (tx) { hit = tx; let up = tx.parent; while (up && up !== inst) { if (up.type === "INSTANCE" && (!sp.name || up.name === sp.name)) { hit = up; break; } up = up.parent; } } }
+      else hit = (idx(inst).byName.get(sp.name) || [])[sp.nth || 0];
       if (!hit) { warnings.push("nodes: no #" + (sp.nth || 0) + " " + (sp.name || ("has:" + sp.has))); continue; }
       if (sp.hide) hit.visible = false; if (sp.show) hit.visible = true;
-      if (sp.swap) { const comp = await component(sp.swap.slice(1)); try { hit.swapComponent(comp); } catch (e) { warnings.push("nodes swap " + sp.name + ": " + e.message); } }
-      if (sp.props) { const tgt = hit.type === "INSTANCE" ? hit : hit.findOne(n => n.type === "INSTANCE"); try { tgt.setProperties(sp.props); } catch (e) { warnings.push("nodes props " + sp.name + ": " + e.message); } }
+      if (sp.swap) { const comp = await component(sp.swap.slice(1)); try { hit.swapComponent(comp); dropIdx(inst); } catch (e) { warnings.push("nodes swap " + sp.name + ": " + e.message); } }
+      if (sp.props) { const tgt = hit.type === "INSTANCE" ? hit : hit.findOne(n => n.type === "INSTANCE"); try { tgt.setProperties(sp.props); dropIdx(inst); } catch (e) { warnings.push("nodes props " + sp.name + ": " + e.message); } }
       if (sp.maxLines) { const t = hit.type === "TEXT" ? hit : hit.findOne(n => n.type === "TEXT"); if (t) { t.textAutoResize = "HEIGHT"; try { if (t.parent.layoutMode) t.parent.layoutSizingHorizontal = "FILL"; t.layoutSizingHorizontal = "FILL"; } catch (e) { warnings.push("maxLines fill: " + e.message); } t.textTruncation = "ENDING"; t.maxLines = sp.maxLines; } }
       if (sp.style || sp.color) { const t = hit.type === "TEXT" ? hit : hit.findOne(n => n.type === "TEXT"); if (!t) warnings.push("nodes: no text in " + sp.name); else {
         if (sp.style) { const font = FONTS[sp.style]; if (font) for (const st of [font[1], font[1].replace(/([a-z])([A-Z])/g, "$1 $2"), "Regular"]) { try { await lf({ family: font[0], style: st }); break; } catch {} } try { await t.setTextStyleIdAsync((await S(sp.style)).id); } catch (e) { warnings.push("nodes style " + sp.style + ": " + e.message); } }
         if (sp.color) await bindFill(t, sp.color, "fill"); } }
       if (sp.align) { const t = hit.type === "TEXT" ? hit : hit.findOne(n => n.type === "TEXT"); if (t) { await loadNodeFonts(t); t.textAlignHorizontal = String(sp.align).toUpperCase(); try { if (t.parent && t.parent.layoutMode) { t.parent.layoutSizingHorizontal = "FILL"; t.parent.primaryAxisAlignItems = sp.align === "right" ? "MAX" : sp.align === "center" ? "CENTER" : "MIN"; } t.layoutSizingHorizontal = "FILL"; } catch (e) {} } }
       if (sp.tint) await tintNode(hit, sp.tint);
-      if (sp.icon) { const ic = hit.findOne(n => n.type === "INSTANCE"); const comp = await component(sp.icon.slice(1)); if (ic) ic.swapComponent(comp); else warnings.push("nodes: no icon inside " + sp.name); }
+      if (sp.icon) { const ic = hit.findOne(n => n.type === "INSTANCE"); const comp = await component(sp.icon.slice(1)); if (ic) { ic.swapComponent(comp); dropIdx(inst); } else warnings.push("nodes: no icon inside " + sp.name); }
     }
-    for (const nm of op.hideNames || []) for (const t of inst.findAll(n => n.name === nm)) t.visible = false;
+    for (const nm of op.hideNames || []) for (const t of (idx(inst).byName.get(nm) || [])) t.visible = false;
     for (const id of op.hide || []) { const t = inInst(inst, id); if (t) t.visible = false; else warnings.push("hide: not found " + id); }
     if (op.icons) {
       const mains = {};
       for (const [, src] of op.icons) { const c = inInst(inst, src); const ic = c && c.findOne(n => n.type === "INSTANCE"); mains[src] = ic ? await ic.getMainComponentAsync() : null; }
-      for (const [tgt, src] of op.icons) { const c = inInst(inst, tgt); const ic = c && c.findOne(n => n.type === "INSTANCE"); if (ic && mains[src]) ic.swapComponent(mains[src]); else warnings.push("icons: " + tgt + " <- " + src); }
+      for (const [tgt, src] of op.icons) { const c = inInst(inst, tgt); const ic = c && c.findOne(n => n.type === "INSTANCE"); if (ic && mains[src]) { ic.swapComponent(mains[src]); dropIdx(inst); } else warnings.push("icons: " + tgt + " <- " + src); }
     }
-    for (const [id, props] of op.set || []) { const t = inInst(inst, id); try { t.setProperties(props); } catch (e) { warnings.push("set " + id + ": " + e.message); } }
+    for (const [id, props] of op.set || []) { const t = inInst(inst, id); try { t.setProperties(props); dropIdx(inst); } catch (e) { warnings.push("set " + id + ": " + e.message); } }
   }
 }
 function vis(n, root) { for (let p = n; p && p !== root.parent; p = p.parent) if (p.visible === false) return false; return true; }
 async function setTexts(inst, text) {
   if (!text) return;
-  const nodes = inst.findAllWithCriteria({ types: ["TEXT"] }).filter(t => vis(t, inst));
+  dropIdx(inst); const nodes = idx(inst).texts.filter(t => { try { return vis(t, inst); } catch (e) { return false; } });
   if (Array.isArray(text)) {
     for (let i = 0; i < text.length && i < nodes.length; i++) { if (text[i] == null) continue; await loadNodeFonts(nodes[i]); nodes[i].characters = String(text[i]); }
   } else {
@@ -179,18 +186,8 @@ function size(node, n, parent) {
   if (fx) { if (node.type !== "TEXT") node.resize(100, node.height); node.layoutSizingHorizontal = "FILL"; } else if (n.w == null && node.type === "FRAME" && node.layoutMode) node.layoutSizingHorizontal = "HUG";
   if (fy) node.layoutSizingVertical = "FILL"; else if (n.h == null && node.type === "FRAME" && node.layoutMode) node.layoutSizingVertical = "HUG";
 }
-async function build(n, parent) {
-  let node;
-  if (n.c) {
-    const comp = await tm("component", component(n.c, n.p));
-    node = comp.createInstance(); node.name = n.i || comp.name;
-    parent.appendChild(node);
-    await tm("props", setBoolProps(node, n.p));
-    await tm("ops", applyOps(node, n.ops));
-    await tm("texts", setTexts(node, n.text));
-    if (n.tint) await tintNode(node, n.tint);
-  } else if (n.t === "text") {
-    node = figma.createText(); node.name = n.i || "text";
+async function buildText(n, parent) {
+    let node = figma.createText(); node.name = n.i || "text";
     const st = n.style || "Text md/Regular";
     const font = FONTS[st];
     let loaded = null;
@@ -221,6 +218,23 @@ async function build(n, parent) {
     else if (n.fill === "x" || n.grow) { node.textAutoResize = "HEIGHT"; }
     if (n.align === "center") node.textAlignHorizontal = "CENTER";
     if (n.maxLines) { node.textTruncation = "ENDING"; node.maxLines = n.maxLines; }
+  return node;
+}
+async function build(n, parent) {
+  const T_B = Date.now(); try { return await build0(n, parent); } finally { TM.build = (TM.build || 0) + (Date.now() - T_B); }
+}
+async function build0(n, parent) {
+  let node;
+  if (n.c) {
+    const comp = await tm("component", component(n.c, n.p));
+    const T_I = Date.now(); node = comp.createInstance(); node.name = n.i || comp.name;
+    parent.appendChild(node); TM.inst = (TM.inst || 0) + (Date.now() - T_I); TM["inst:" + (n.i || comp.name)] = Date.now() - T_I;
+    await tm("props", setBoolProps(node, n.p));
+    await tm("ops", applyOps(node, n.ops));
+    await tm("texts", setTexts(node, n.text));
+    if (n.tint) await tintNode(node, n.tint);
+  } else if (n.t === "text") {
+    const T_T = Date.now(); try { node = await buildText(n, parent); } finally { TM.text = (TM.text || 0) + (Date.now() - T_T); }
   } else if (n.t === "spacer") {
     node = figma.createFrame(); node.name = "spacer"; node.fills = []; node.resize(100, 1); parent.appendChild(node);
     node.layoutSizingHorizontal = parent.layoutMode === "HORIZONTAL" ? "FILL" : "FIXED";
@@ -240,11 +254,18 @@ async function build(n, parent) {
 const T_START = Date.now();
 let x = 0, replaced = false;
 const wanted = new Set(SCREENS.map(([nm]) => TITLE + (SCREENS.length > 1 ? " — " + nm : "")));
-const stale = page.children.filter(n => n.type === "FRAME" && wanted.has(n.name));
+const T_RM = Date.now(); const OLD = new Set(SCREEN.OLD_ROOTS || []);
+const stale = page.children.filter(n => n.type === "FRAME" && wanted.has(n.name) && !OLD.has(n.id));
 if (stale.length) { x = Math.min(...stale.map(n => n.x)); replaced = true; for (const n of stale) n.remove(); }
+const oldRoots = []; for (const id of OLD) { const n = await figma.getNodeByIdAsync(id); if (n) oldRoots.push(n); }
+// reuse index: top-level children of the previous build, by name → { node, hash }
+const REUSE = new Map(); for (const r of oldRoots) for (const ch of r.children) { const h = ch.getPluginData("es-hash"); if (h) REUSE.set(ch.name, { node: ch, hash: h }); }
+const SALT = JSON.stringify([COMPS, VARS, STYLES]).length + ":" + (SCREEN.RT_HASH || "");
+const hashOf = o => { const str = SALT + JSON.stringify(o); let h = 5381; for (let i = 0; i < str.length; i++) h = ((h << 5) + h + str.charCodeAt(i)) | 0; return String(h); };
 if (REPLACE) { const old = await figma.getNodeByIdAsync(REPLACE); if (old) { x = old.x; old.remove(); replaced = true; } }
 if (POS) { x = POS.x; replaced = true; }
 if (!replaced) for (const ch of page.children) x = Math.max(x, ch.x + ch.width + 200);
+TM.prep = Date.now() - T_RM;
 const roots = [], rootNodes = [];
 for (const [name, tree] of SCREENS) {
   const rootF = figma.createFrame(); rootF.name = TITLE + (SCREENS.length > 1 ? " — " + name : "");
@@ -253,9 +274,13 @@ for (const [name, tree] of SCREENS) {
   rootF.resize(WIDTH, HEIGHT || 900);
   rootF.primaryAxisSizingMode = HEIGHT ? "FIXED" : "AUTO"; rootF.counterAxisSizingMode = "FIXED";
   if (!tree.bg && VARS["bg-primary"]) await bindFill(rootF, "bg-primary", "fill");
-  for (const ch of (tree.children || [])) await build(ch, rootF);
+  for (const ch of (tree.children || [])) {
+    const h = ch.i ? hashOf(ch) : null; const prev = h && REUSE.get(ch.i);
+    if (prev && prev.hash === h) { const T_R = Date.now(); rootF.appendChild(prev.node); REUSE.delete(ch.i); TM.reused = (TM.reused || 0) + (Date.now() - T_R); TM["reused:" + ch.i] = 1; continue; }
+    const node = await build(ch, rootF); if (node && h) node.setPluginData("es-hash", h);
+  }
   roots.push(rootF.id); rootNodes.push(rootF); x += WIDTH + 200;
 }
-figma.viewport.scrollAndZoomIntoView(rootNodes);
-if (typeof rootNodes[0].screenshot === "function") { try { await rootNodes[0].screenshot({ scale: 1 }); } catch (e) { warnings.push("screenshot: " + e.message); } }
+const T_VP = Date.now(); figma.viewport.scrollAndZoomIntoView(rootNodes); TM.viewport = Date.now() - T_VP;
+const T_OLD = Date.now(); for (const r of oldRoots) { try { r.remove(); } catch (e) {} } TM.removeOld = Date.now() - T_OLD;
 return { roots, created: created.length, warnings, removedDuplicates: stale.length, timing: Object.assign({ totalMs: Date.now() - T_START }, TM) };

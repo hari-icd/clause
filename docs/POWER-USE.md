@@ -39,3 +39,5 @@ Living list of the tricks that make the loop fast. Every time we find a loophole
 - `ops.nodes` `has: "<text>"` selects the nearest instance that contains that text (hide/props it) — use when layer names repeat (menu items, list rows).
 - Molecules exist for most "atom stacks": Split Button Brand (`split-button-brand`), Dropdown Menu (`dropdown-menu`). Check the catalog for *-menu / split-* before composing from atoms.
 - `ops.nodes` `show: true` reveals a layer the component hides by default (e.g. a 5th menu item); text arrays then include it. Ops run BEFORE text overrides, so `has:` must match the component's original text.
+- **Incremental rebuild**: top-level nodes whose JSON (plus catalog/runtime salt) is unchanged are moved from the previous frame instead of rebuilt (`es-hash` plugin data). Unchanged screen ≈ 60 ms; a content edit rebuilds only `main` (nav reused). Keep the nav / overlays as separate top-level children so they stay reusable.
+- Per-instance layer index (`idx`) + font preload: ops/texts no longer walk the instance per op.
