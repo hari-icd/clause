@@ -25,7 +25,7 @@ writeFileSync(resolve(dir, "manifest.json"), JSON.stringify({
   editorType: ["figma"],
   documentAccess: "dynamic-page",
   permissions: ["teamlibrary"],
-  menu: [{ name: "Start (silent)", command: "start" }, { name: "Open Clause Assist", command: "panel" }, { name: "Extract components & tokens", command: "extract" }],
+  menu: [{ name: "Open Clause Assist", command: "panel" }, { name: "Start (silent)", command: "start" }, { name: "Extract components & tokens", command: "extract" }],
   networkAccess: { allowedDomains: ["none"], devAllowedDomains: [`http://localhost:${PORT}`] },
 }, null, 2));
 
