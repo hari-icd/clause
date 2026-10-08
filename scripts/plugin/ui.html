@@ -38,7 +38,9 @@
   .msg.batch .t { max-height:56px; overflow:hidden } .msg.batch .t.open { max-height:none } .more { color:var(--acc); cursor:pointer; font-size:10px }
   .pres { align-self:flex-start; display:flex; align-items:center; gap:8px; padding:6px 10px; border-radius:8px; border-bottom-left-radius:2px; background:var(--bg2); color:var(--fg2) }
   .pres .dots { display:inline-flex; gap:3px } .pres .dots i { width:4px; height:4px; border-radius:50%; background:var(--fg3); animation:bl 1.2s infinite } .pres .dots i:nth-child(2) { animation-delay:.2s } .pres .dots i:nth-child(3) { animation-delay:.4s } @keyframes bl { 0%,80%,100% { opacity:.25 } 40% { opacity:1 } }
-  #send.stopmode { background:var(--fg); color:var(--bg) } #send.stopmode:hover { background:var(--warn); color:#fff }
+  #send.stopmode { color:var(--acc) } #send.stopmode:hover { background:var(--fg); color:var(--bg) }
+  #send .thk { display:flex; align-items:center; justify-content:center } #send .stp { display:none } #send.stopmode:hover .wave { display:none } #send.stopmode:hover .stp { display:flex }
+  #send .wave { display:inline-flex; gap:3px; align-items:center } #send .wave i { width:4px; height:4px; border-radius:50%; background:var(--acc); animation:wv 1s ease-in-out infinite } #send .wave i:nth-child(2) { animation-delay:.15s } #send .wave i:nth-child(3) { animation-delay:.3s }
   .pres svg { width:12px; height:12px } .pres .stop { margin-left:4px; height:18px; padding:0 6px; border-radius:5px; border:1px solid var(--line); background:var(--bg); color:var(--fg); font:inherit; font-size:10px; cursor:pointer } .pres .stop:hover { border-color:var(--warn); color:var(--warn) } .pres.stopped { color:var(--warn) } .pres.built { color:var(--ok) } .pres.error { color:var(--warn) }
   .sys { align-self:center; color:var(--fg3); font-size:10px; text-align:center; padding:2px 8px; max-width:95%; overflow:hidden; text-overflow:ellipsis; white-space:nowrap }
   #tip { position:fixed; z-index:20; pointer-events:none; background:#1e1e1e; color:#fff; box-shadow:0 2px 8px rgba(0,0,0,.35); font-size:10px; line-height:14px; padding:4px 7px; border-radius:5px; white-space:nowrap; opacity:0; transition:opacity .08s; max-width:260px; white-space:normal }
@@ -275,7 +277,7 @@ function renderComposer() {
   for (const n of t) { const c = document.createElement("span"); c.className = "chip go"; c.dataset.go = n.id; c.innerHTML = "<b>" + esc(n.name) + "</b><i>" + esc(n.component || n.type.toLowerCase()) + (n.screen ? "" : " ?") + '</i><a data-x="' + n.id + '" title="leave out">✕</a>'; $("selrow").appendChild(c); }
   const has = $("box").value.trim().length > 0;
   $("queue").disabled = !has;
-  const w = working(); $("send").classList.toggle("stopmode", w); $("send").innerHTML = w ? STOP_SVG : RET_SVG; $("send").disabled = w ? false : !has; setTip("send", w ? "Stop Claude [Esc]" : "Send now");
+  const w = working(); $("send").classList.toggle("stopmode", w); $("send").innerHTML = w ? '<span class="thk"><span class="wave"><i></i><i></i><i></i></span><span class="stp">' + STOP_SVG + "</span></span>" : RET_SVG; $("send").disabled = w ? false : !has; setTip("send", w ? "Claude is working — click to stop [Esc]" : "Send now");
   $("hint").textContent = annOn ? (t.length ? t.length + " layer" + (t.length === 1 ? "" : "s") + (t[0].screen ? " · " + t[0].screen : "") + (t.some(n => !n.screen) ? " · ? not Clause-built" : "") : "") : "";
 }
 $("selrow").onclick = e => { const x = e.target.dataset.x; if (x) { e.stopPropagation(); dropped.add(x); renderComposer(); } };
