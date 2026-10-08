@@ -1,7 +1,7 @@
 // ES DS builder runtime. Runs inside Figma via the loader emitted by scripts/build.mjs.
 // Locals provided by loader: figma, SCREEN. Do not edit generated copies in the Figma file — run build.mjs --install.
 const { VARS, STYLES, FONTS, COMPS, PAGE_ID, TITLE, WIDTH, HEIGHT, REPLACE, SCREENS, POS } = SCREEN;
-const page = await figma.getNodeByIdAsync(PAGE_ID); await figma.setCurrentPageAsync(page);
+const page = await figma.getNodeByIdAsync(PAGE_ID); if (page.id !== figma.currentPage.id) await page.loadAsync(); // never switch the user's page
 const C = (typeof CACHE !== "undefined" && CACHE) || {};
 const vcache = C.v || (C.v = {}), scache = C.s || (C.s = {}), SETS = C.sets || (C.sets = {});
 function V(name) { return vcache[name] || (vcache[name] = figma.variables.importVariableByKeyAsync(VARS[name])); }
@@ -281,6 +281,6 @@ for (const [name, tree] of SCREENS) {
   }
   roots.push(rootF.id); rootNodes.push(rootF); x += WIDTH + 200;
 }
-const T_VP = Date.now(); figma.viewport.scrollAndZoomIntoView(rootNodes); TM.viewport = Date.now() - T_VP;
+const T_VP = Date.now(); if (page.id === figma.currentPage.id) figma.viewport.scrollAndZoomIntoView(rootNodes); TM.viewport = Date.now() - T_VP;
 const T_OLD = Date.now(); for (const r of oldRoots) { try { r.remove(); } catch (e) {} } TM.removeOld = Date.now() - T_OLD;
 return { roots, created: created.length, warnings, removedDuplicates: stale.length, timing: Object.assign({ totalMs: Date.now() - T_START }, TM) };
