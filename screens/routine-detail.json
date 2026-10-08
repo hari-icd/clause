@@ -1,0 +1,1399 @@
+{
+ "title": "Routine detail — Morning brief",
+ "height": 900,
+ "tree": {
+  "t": "row",
+  "i": "root",
+  "gap": "none",
+  "clip": true,
+  "children": [
+   {
+    "c": "main-nav",
+    "i": "nav",
+    "p": {
+     "types": "collapsed"
+    },
+    "fill": "y"
+   },
+   {
+    "t": "stack",
+    "i": "main",
+    "grow": true,
+    "fill": "y",
+    "gap": "none",
+    "bg": "bg-primary",
+    "children": [
+     {
+      "t": "row",
+      "i": "topbar",
+      "fill": "x",
+      "h": 40,
+      "align": "center",
+      "children": [
+       {
+        "c": "es-breadcrumb",
+        "i": "crumb",
+        "fill": "x",
+        "p": {
+         "Variant": "with Icon",
+         "Actions": "false",
+         "AI assist button": "false",
+         "Avatar Group": "false"
+        },
+        "text": [
+         "Routines",
+         "New routine"
+        ],
+        "bg": "none"
+       }
+      ]
+     },
+     {
+      "t": "row",
+      "i": "content",
+      "fill": "x",
+      "gap": "4xl",
+      "align": "start",
+      "pt": "3xl",
+      "px": "7xl",
+      "pb": "4xl",
+      "children": [
+       {
+        "t": "stack",
+        "i": "card",
+        "w": 280,
+        "gap": "none",
+        "bg": "bg-secondary",
+        "radius": "2xl",
+        "children": [
+         {
+          "t": "stack",
+          "i": "card-head",
+          "fill": "x",
+          "pad": "xl",
+          "gap": "lg",
+          "bg": "bg-tertiary",
+          "radius": "2xl",
+          "children": [
+           {
+            "t": "row",
+            "i": "card-top",
+            "fill": "x",
+            "justify": "between",
+            "align": "center",
+            "children": [
+             {
+              "c": "featured-icon",
+              "i": "card-icon",
+              "p": {
+               "Size": "md",
+               "Color": "Brand",
+               "Icon swap": "@icon-sunrise"
+              }
+             },
+             {
+              "c": "toggle",
+              "i": "card-toggle",
+              "p": {
+               "Pressed": "True",
+               "Text": "False",
+               "State": "Default",
+               "Size": "sm",
+               "Hint Text": "False"
+              }
+             }
+            ]
+           },
+           {
+            "t": "stack",
+            "i": "card-title",
+            "gap": "xxs",
+            "children": [
+             {
+              "t": "text",
+              "i": "ct",
+              "content": "Morning brief",
+              "style": "Text md/Medium",
+              "color": "text-primary"
+             },
+             {
+              "t": "text",
+              "i": "cm",
+              "content": "Ver 1 · Ran 0 times in the last 24 hours",
+              "style": "Text sm/Regular",
+              "color": "text-tertiary"
+             }
+            ]
+           }
+          ]
+         },
+         {
+          "t": "stack",
+          "i": "card-body",
+          "fill": "x",
+          "px": "xl",
+          "pt": "xl",
+          "pb": "lg",
+          "gap": "xl",
+          "children": [
+           {
+            "t": "stack",
+            "i": "desc",
+            "fill": "x",
+            "gap": "xs",
+            "children": [
+             {
+              "t": "text",
+              "i": "desc-t",
+              "content": "Every Friday at 4:00 PM PT, it scans the past week for open escalations across a fixed list I will name, groups them by account, and emails you a ranked summary. It reads and reports — it answers nothing and changes nothing. This process ensures you stay informed…",
+              "style": "Text sm/Regular",
+              "color": "text-secondary",
+              "fill": "x"
+             },
+             {
+              "t": "text",
+              "i": "read-more",
+              "content": "Read more",
+              "style": "Text xs/Regular",
+              "color": "text-tertiary"
+             }
+            ]
+           },
+           {
+            "t": "stack",
+            "i": "kvs",
+            "fill": "x",
+            "gap": "none",
+            "children": [
+             {
+              "t": "row",
+              "i": "kv-1",
+              "fill": "x",
+              "py": "md",
+              "gap": "xl",
+              "align": "start",
+              "borderB": "border-secondary",
+              "children": [
+               {
+                "t": "text",
+                "i": "kvl-1",
+                "content": "Project",
+                "style": "Text sm/Regular",
+                "color": "text-secondary",
+                "w": 56
+               },
+               {
+                "t": "text",
+                "i": "kvv-1",
+                "content": "Gulf Expansions",
+                "style": "Text sm/Regular",
+                "color": "text-primary",
+                "grow": true
+               },
+               {
+                "c": "icon-folder",
+                "i": "kvi-1",
+                "w": 16,
+                "h": 16
+               }
+              ]
+             },
+             {
+              "t": "row",
+              "i": "kv-2",
+              "fill": "x",
+              "py": "md",
+              "gap": "xl",
+              "align": "start",
+              "borderB": "border-secondary",
+              "children": [
+               {
+                "t": "text",
+                "i": "kvl-2",
+                "content": "Tools",
+                "style": "Text sm/Regular",
+                "color": "text-secondary",
+                "w": 56
+               },
+               {
+                "t": "text",
+                "i": "kvv-2",
+                "content": "Gmail, Google Calendar",
+                "style": "Text sm/Regular",
+                "color": "text-primary",
+                "grow": true
+               }
+              ]
+             },
+             {
+              "t": "row",
+              "i": "kv-3",
+              "fill": "x",
+              "py": "md",
+              "gap": "xl",
+              "align": "start",
+              "borderB": "border-secondary",
+              "children": [
+               {
+                "t": "text",
+                "i": "kvl-3",
+                "content": "Notify",
+                "style": "Text sm/Regular",
+                "color": "text-secondary",
+                "w": 56
+               },
+               {
+                "t": "text",
+                "i": "kvv-3",
+                "content": "Via Email",
+                "style": "Text sm/Regular",
+                "color": "text-primary",
+                "grow": true
+               }
+              ]
+             },
+             {
+              "t": "row",
+              "i": "kv-4",
+              "fill": "x",
+              "py": "md",
+              "gap": "xl",
+              "align": "start",
+              "children": [
+               {
+                "t": "text",
+                "i": "kvl-4",
+                "content": "Trigger",
+                "style": "Text sm/Regular",
+                "color": "text-secondary",
+                "w": 56
+               },
+               {
+                "t": "text",
+                "i": "kvv-4",
+                "content": "Every Friday, 4:00 PM PT · Pacific time",
+                "style": "Text sm/Regular",
+                "color": "text-primary",
+                "grow": true
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "t": "stack",
+        "i": "right",
+        "grow": true,
+        "gap": "3xl",
+        "children": [
+         {
+          "t": "row",
+          "i": "head",
+          "fill": "x",
+          "justify": "between",
+          "align": "center",
+          "children": [
+           {
+            "t": "text",
+            "i": "title",
+            "content": "Morning brief",
+            "style": "Display md/Semibold",
+            "color": "text-primary"
+           },
+           {
+            "t": "row",
+            "i": "actions",
+            "gap": "md",
+            "align": "center",
+            "children": [
+             {
+              "c": "small-icon-button",
+              "i": "more",
+              "p": {
+               "Size": "md",
+               "Icon swap": "@icon-dots-horizontal"
+              }
+             },
+             {
+              "c": "button-neutral",
+              "i": "btn-rec",
+              "p": {
+               "Size": "md",
+               "Hierarchy": "Secondary",
+               "Icon leading": "false",
+               "Icon trailing": "false"
+              },
+              "text": {
+               "Button": "Recommend"
+              }
+             },
+             {
+              "c": "button-brand",
+              "i": "btn-run",
+              "p": {
+               "Size": "md",
+               "Hierarchy": "Primary",
+               "Icon leading": "true",
+               "Icon leading swap": "@icon-play-solid",
+               "Icon trailing": "false"
+              },
+              "text": {
+               "Button": "Run"
+              }
+             }
+            ]
+           }
+          ]
+         },
+         {
+          "t": "text",
+          "i": "sessions",
+          "content": "Sessions",
+          "style": "Text md/Medium",
+          "color": "text-primary"
+         },
+         {
+          "t": "stack",
+          "i": "table",
+          "fill": "x",
+          "gap": "none",
+          "children": [
+           {
+            "t": "row",
+            "i": "thead",
+            "fill": "x",
+            "h": 44,
+            "align": "center",
+            "borderB": "border-secondary",
+            "children": [
+             {
+              "c": "col-header-cell",
+              "i": "th-t",
+              "p": {
+               "Size": "md",
+               "Text": "True",
+               "Checkbox": "False",
+               "State": "Default",
+               "Data Icon": "Off"
+              },
+              "text": [
+               "TIME"
+              ],
+              "w": 140,
+              "bg": "none"
+             },
+             {
+              "c": "col-header-cell",
+              "i": "th-o",
+              "p": {
+               "Size": "md",
+               "Text": "True",
+               "Checkbox": "False",
+               "State": "Default",
+               "Data Icon": "Off"
+              },
+              "text": [
+               "OUTPUT"
+              ],
+              "fill": "x",
+              "bg": "none"
+             },
+             {
+              "c": "col-header-cell",
+              "i": "th-c",
+              "p": {
+               "Size": "md",
+               "Text": "True",
+               "Checkbox": "False",
+               "State": "Default",
+               "Data Icon": "Off"
+              },
+              "text": [
+               "COST"
+              ],
+              "w": 100,
+              "bg": "none"
+             },
+             {
+              "c": "col-header-cell",
+              "i": "th-s",
+              "p": {
+               "Size": "md",
+               "Text": "True",
+               "Checkbox": "False",
+               "State": "Default",
+               "Data Icon": "Off"
+              },
+              "text": [
+               "STATUS"
+              ],
+              "w": 150,
+              "bg": "none"
+             },
+             {
+              "t": "row",
+              "i": "th-a",
+              "w": 56
+             }
+            ]
+           },
+           {
+            "t": "row",
+            "i": "r0",
+            "fill": "x",
+            "h": 48,
+            "align": "center",
+            "borderB": "border-secondary",
+            "children": [
+             {
+              "c": "table-cell",
+              "i": "r0-t",
+              "p": {
+               "Style": "Text",
+               "Lead": "No",
+               "State": "Default",
+               "Size": "md",
+               "Supporting Text": "false",
+               "Badge": "false",
+               "Dropdown": "false"
+              },
+              "text": [
+               "Today, 6:30 AM"
+              ],
+              "w": 140
+             },
+             {
+              "c": "table-cell",
+              "i": "r0-o",
+              "p": {
+               "Style": "Text",
+               "Lead": "No",
+               "State": "Default",
+               "Size": "md",
+               "Supporting Text": "false",
+               "Badge": "false",
+               "Dropdown": "false"
+              },
+              "text": [
+               "Tricon came back on pricing overnight and wants the revised terms before Thursday"
+              ],
+              "fill": "x",
+              "ops": [
+               {
+                "nodes": [
+                 {
+                  "name": "Text",
+                  "nth": 0,
+                  "maxLines": 1
+                 }
+                ]
+               }
+              ]
+             },
+             {
+              "c": "table-cell",
+              "i": "r0-c",
+              "p": {
+               "Style": "Text",
+               "Lead": "No",
+               "State": "Default",
+               "Size": "md",
+               "Supporting Text": "false",
+               "Badge": "false",
+               "Dropdown": "false"
+              },
+              "text": [
+               "$0.12"
+              ],
+              "w": 100
+             },
+             {
+              "t": "row",
+              "i": "r0-s",
+              "w": 150,
+              "align": "center",
+              "children": [
+               {
+                "c": "pill-squared",
+                "i": "r0-s-p",
+                "p": {
+                 "Size": "sm",
+                 "Type": "Pill Clear",
+                 "Icon": "Dot",
+                 "Color": "Success"
+                },
+                "text": [
+                 "Completed"
+                ]
+               }
+              ]
+             },
+             {
+              "t": "row",
+              "i": "r0-a",
+              "w": 56,
+              "justify": "center",
+              "children": [
+               {
+                "c": "small-icon-button",
+                "i": "r0-m",
+                "p": {
+                 "Size": "sm",
+                 "Icon swap": "@icon-dots-horizontal"
+                }
+               }
+              ]
+             }
+            ]
+           },
+           {
+            "t": "row",
+            "i": "r1",
+            "fill": "x",
+            "h": 48,
+            "align": "center",
+            "borderB": "border-secondary",
+            "children": [
+             {
+              "c": "table-cell",
+              "i": "r1-t",
+              "p": {
+               "Style": "Text",
+               "Lead": "No",
+               "State": "Default",
+               "Size": "md",
+               "Supporting Text": "false",
+               "Badge": "false",
+               "Dropdown": "false"
+              },
+              "text": [
+               "Yesterday, 6:30 AM"
+              ],
+              "w": 140
+             },
+             {
+              "c": "table-cell",
+              "i": "r1-o",
+              "p": {
+               "Style": "Text",
+               "Lead": "No",
+               "State": "Default",
+               "Size": "md",
+               "Supporting Text": "false",
+               "Badge": "false",
+               "Dropdown": "false"
+              },
+              "text": [
+               "Eleven threads read, three need you. Nothing blocking."
+              ],
+              "fill": "x",
+              "ops": [
+               {
+                "nodes": [
+                 {
+                  "name": "Text",
+                  "nth": 0,
+                  "maxLines": 1
+                 }
+                ]
+               }
+              ]
+             },
+             {
+              "c": "table-cell",
+              "i": "r1-c",
+              "p": {
+               "Style": "Text",
+               "Lead": "No",
+               "State": "Default",
+               "Size": "md",
+               "Supporting Text": "false",
+               "Badge": "false",
+               "Dropdown": "false"
+              },
+              "text": [
+               "$0.09"
+              ],
+              "w": 100
+             },
+             {
+              "t": "row",
+              "i": "r1-s",
+              "w": 150,
+              "align": "center",
+              "children": [
+               {
+                "c": "pill-squared",
+                "i": "r1-s-p",
+                "p": {
+                 "Size": "sm",
+                 "Type": "Pill Clear",
+                 "Icon": "Dot",
+                 "Color": "Error"
+                },
+                "text": [
+                 "Failed"
+                ]
+               }
+              ]
+             },
+             {
+              "t": "row",
+              "i": "r1-a",
+              "w": 56,
+              "justify": "center",
+              "children": [
+               {
+                "c": "small-icon-button",
+                "i": "r1-m",
+                "p": {
+                 "Size": "sm",
+                 "Icon swap": "@icon-dots-horizontal"
+                }
+               }
+              ]
+             }
+            ]
+           },
+           {
+            "t": "row",
+            "i": "r2",
+            "fill": "x",
+            "h": 48,
+            "align": "center",
+            "borderB": "border-secondary",
+            "children": [
+             {
+              "c": "table-cell",
+              "i": "r2-t",
+              "p": {
+               "Style": "Text",
+               "Lead": "No",
+               "State": "Default",
+               "Size": "md",
+               "Supporting Text": "false",
+               "Badge": "false",
+               "Dropdown": "false"
+              },
+              "text": [
+               "20 Aug, 6:30 AM"
+              ],
+              "w": 140
+             },
+             {
+              "c": "table-cell",
+              "i": "r2-o",
+              "p": {
+               "Style": "Text",
+               "Lead": "No",
+               "State": "Default",
+               "Size": "md",
+               "Supporting Text": "false",
+               "Badge": "false",
+               "Dropdown": "false"
+              },
+              "text": [
+               "Warburg answered on terms and want the revised deck by Friday"
+              ],
+              "fill": "x",
+              "ops": [
+               {
+                "nodes": [
+                 {
+                  "name": "Text",
+                  "nth": 0,
+                  "maxLines": 1
+                 }
+                ]
+               }
+              ]
+             },
+             {
+              "c": "table-cell",
+              "i": "r2-c",
+              "p": {
+               "Style": "Text",
+               "Lead": "No",
+               "State": "Default",
+               "Size": "md",
+               "Supporting Text": "false",
+               "Badge": "false",
+               "Dropdown": "false"
+              },
+              "text": [
+               "$0.11"
+              ],
+              "w": 100
+             },
+             {
+              "t": "row",
+              "i": "r2-s",
+              "w": 150,
+              "align": "center",
+              "children": [
+               {
+                "c": "pill-squared",
+                "i": "r2-s-p",
+                "p": {
+                 "Size": "sm",
+                 "Type": "Pill Clear",
+                 "Icon": "Dot",
+                 "Color": "Gray"
+                },
+                "text": [
+                 "Skipped"
+                ]
+               }
+              ]
+             },
+             {
+              "t": "row",
+              "i": "r2-a",
+              "w": 56,
+              "justify": "center",
+              "children": [
+               {
+                "c": "small-icon-button",
+                "i": "r2-m",
+                "p": {
+                 "Size": "sm",
+                 "Icon swap": "@icon-dots-horizontal"
+                }
+               }
+              ]
+             }
+            ]
+           },
+           {
+            "t": "row",
+            "i": "r3",
+            "fill": "x",
+            "h": 48,
+            "align": "center",
+            "borderB": "border-secondary",
+            "children": [
+             {
+              "c": "table-cell",
+              "i": "r3-t",
+              "p": {
+               "Style": "Text",
+               "Lead": "No",
+               "State": "Default",
+               "Size": "md",
+               "Supporting Text": "false",
+               "Badge": "false",
+               "Dropdown": "false"
+              },
+              "text": [
+               "19 Aug, 6:30 AM"
+              ],
+              "w": 140
+             },
+             {
+              "c": "table-cell",
+              "i": "r3-o",
+              "p": {
+               "Style": "Text",
+               "Lead": "No",
+               "State": "Default",
+               "Size": "md",
+               "Supporting Text": "false",
+               "Badge": "false",
+               "Dropdown": "false"
+              },
+              "text": [
+               "The deck is assembled, but net revenue retention is still missing"
+              ],
+              "fill": "x",
+              "ops": [
+               {
+                "nodes": [
+                 {
+                  "name": "Text",
+                  "nth": 0,
+                  "maxLines": 1
+                 }
+                ]
+               }
+              ]
+             },
+             {
+              "c": "table-cell",
+              "i": "r3-c",
+              "p": {
+               "Style": "Text",
+               "Lead": "No",
+               "State": "Default",
+               "Size": "md",
+               "Supporting Text": "false",
+               "Badge": "false",
+               "Dropdown": "false"
+              },
+              "text": [
+               "$0.14"
+              ],
+              "w": 100
+             },
+             {
+              "t": "row",
+              "i": "r3-s",
+              "w": 150,
+              "align": "center",
+              "children": [
+               {
+                "c": "pill-squared",
+                "i": "r3-s-p",
+                "p": {
+                 "Size": "sm",
+                 "Type": "Pill Clear",
+                 "Icon": "Dot",
+                 "Color": "Success"
+                },
+                "text": [
+                 "Completed"
+                ]
+               }
+              ]
+             },
+             {
+              "t": "row",
+              "i": "r3-a",
+              "w": 56,
+              "justify": "center",
+              "children": [
+               {
+                "c": "small-icon-button",
+                "i": "r3-m",
+                "p": {
+                 "Size": "sm",
+                 "Icon swap": "@icon-dots-horizontal"
+                }
+               }
+              ]
+             }
+            ]
+           },
+           {
+            "t": "row",
+            "i": "r4",
+            "fill": "x",
+            "h": 48,
+            "align": "center",
+            "borderB": "border-secondary",
+            "children": [
+             {
+              "c": "table-cell",
+              "i": "r4-t",
+              "p": {
+               "Style": "Text",
+               "Lead": "No",
+               "State": "Default",
+               "Size": "md",
+               "Supporting Text": "false",
+               "Badge": "false",
+               "Dropdown": "false"
+              },
+              "text": [
+               "18 Aug, 6:30 AM"
+              ],
+              "w": 140
+             },
+             {
+              "c": "table-cell",
+              "i": "r4-o",
+              "p": {
+               "Style": "Text",
+               "Lead": "No",
+               "State": "Default",
+               "Size": "md",
+               "Supporting Text": "false",
+               "Badge": "false",
+               "Dropdown": "false"
+              },
+              "text": [
+               "Held — you were out of office all day, so the brief waited"
+              ],
+              "fill": "x",
+              "ops": [
+               {
+                "nodes": [
+                 {
+                  "name": "Text",
+                  "nth": 0,
+                  "maxLines": 1
+                 }
+                ]
+               }
+              ]
+             },
+             {
+              "c": "table-cell",
+              "i": "r4-c",
+              "p": {
+               "Style": "Text",
+               "Lead": "No",
+               "State": "Default",
+               "Size": "md",
+               "Supporting Text": "false",
+               "Badge": "false",
+               "Dropdown": "false"
+              },
+              "text": [
+               "—"
+              ],
+              "w": 100
+             },
+             {
+              "t": "row",
+              "i": "r4-s",
+              "w": 150,
+              "align": "center",
+              "children": [
+               {
+                "c": "pill-squared",
+                "i": "r4-s-p",
+                "p": {
+                 "Size": "sm",
+                 "Type": "Pill Clear",
+                 "Icon": "Dot",
+                 "Color": "Error"
+                },
+                "text": [
+                 "Failed"
+                ]
+               }
+              ]
+             },
+             {
+              "t": "row",
+              "i": "r4-a",
+              "w": 56,
+              "justify": "center",
+              "children": [
+               {
+                "c": "small-icon-button",
+                "i": "r4-m",
+                "p": {
+                 "Size": "sm",
+                 "Icon swap": "@icon-dots-horizontal"
+                }
+               }
+              ]
+             }
+            ]
+           },
+           {
+            "t": "row",
+            "i": "r5",
+            "fill": "x",
+            "h": 48,
+            "align": "center",
+            "borderB": "border-secondary",
+            "children": [
+             {
+              "c": "table-cell",
+              "i": "r5-t",
+              "p": {
+               "Style": "Text",
+               "Lead": "No",
+               "State": "Default",
+               "Size": "md",
+               "Supporting Text": "false",
+               "Badge": "false",
+               "Dropdown": "false"
+              },
+              "text": [
+               "15 Aug, 6:30 AM"
+              ],
+              "w": 140
+             },
+             {
+              "c": "table-cell",
+              "i": "r5-o",
+              "p": {
+               "Style": "Text",
+               "Lead": "No",
+               "State": "Default",
+               "Size": "md",
+               "Supporting Text": "false",
+               "Badge": "false",
+               "Dropdown": "false"
+              },
+              "text": [
+               "Tricon and Halden both moved their close dates out a quarter"
+              ],
+              "fill": "x",
+              "ops": [
+               {
+                "nodes": [
+                 {
+                  "name": "Text",
+                  "nth": 0,
+                  "maxLines": 1
+                 }
+                ]
+               }
+              ]
+             },
+             {
+              "c": "table-cell",
+              "i": "r5-c",
+              "p": {
+               "Style": "Text",
+               "Lead": "No",
+               "State": "Default",
+               "Size": "md",
+               "Supporting Text": "false",
+               "Badge": "false",
+               "Dropdown": "false"
+              },
+              "text": [
+               "$0.10"
+              ],
+              "w": 100
+             },
+             {
+              "t": "row",
+              "i": "r5-s",
+              "w": 150,
+              "align": "center",
+              "children": [
+               {
+                "c": "pill-squared",
+                "i": "r5-s-p",
+                "p": {
+                 "Size": "sm",
+                 "Type": "Pill Clear",
+                 "Icon": "Dot",
+                 "Color": "Success"
+                },
+                "text": [
+                 "Completed"
+                ]
+               }
+              ]
+             },
+             {
+              "t": "row",
+              "i": "r5-a",
+              "w": 56,
+              "justify": "center",
+              "children": [
+               {
+                "c": "small-icon-button",
+                "i": "r5-m",
+                "p": {
+                 "Size": "sm",
+                 "Icon swap": "@icon-dots-horizontal"
+                }
+               }
+              ]
+             }
+            ]
+           },
+           {
+            "t": "row",
+            "i": "r6",
+            "fill": "x",
+            "h": 48,
+            "align": "center",
+            "borderB": "border-secondary",
+            "children": [
+             {
+              "c": "table-cell",
+              "i": "r6-t",
+              "p": {
+               "Style": "Text",
+               "Lead": "No",
+               "State": "Default",
+               "Size": "md",
+               "Supporting Text": "false",
+               "Badge": "false",
+               "Dropdown": "false"
+              },
+              "text": [
+               "14 Aug, 6:31 AM"
+              ],
+              "w": 140
+             },
+             {
+              "c": "table-cell",
+              "i": "r6-o",
+              "p": {
+               "Style": "Text",
+               "Lead": "No",
+               "State": "Default",
+               "Size": "md",
+               "Supporting Text": "false",
+               "Badge": "false",
+               "Dropdown": "false"
+              },
+              "text": [
+               "The mail read timed out twice and the brief went out late"
+              ],
+              "fill": "x",
+              "ops": [
+               {
+                "nodes": [
+                 {
+                  "name": "Text",
+                  "nth": 0,
+                  "maxLines": 1
+                 }
+                ]
+               }
+              ]
+             },
+             {
+              "c": "table-cell",
+              "i": "r6-c",
+              "p": {
+               "Style": "Text",
+               "Lead": "No",
+               "State": "Default",
+               "Size": "md",
+               "Supporting Text": "false",
+               "Badge": "false",
+               "Dropdown": "false"
+              },
+              "text": [
+               "$0.03"
+              ],
+              "w": 100
+             },
+             {
+              "t": "row",
+              "i": "r6-s",
+              "w": 150,
+              "align": "center",
+              "children": [
+               {
+                "c": "pill-squared",
+                "i": "r6-s-p",
+                "p": {
+                 "Size": "sm",
+                 "Type": "Pill Clear",
+                 "Icon": "Dot",
+                 "Color": "Gray"
+                },
+                "text": [
+                 "Skipped"
+                ]
+               }
+              ]
+             },
+             {
+              "t": "row",
+              "i": "r6-a",
+              "w": 56,
+              "justify": "center",
+              "children": [
+               {
+                "c": "small-icon-button",
+                "i": "r6-m",
+                "p": {
+                 "Size": "sm",
+                 "Icon swap": "@icon-dots-horizontal"
+                }
+               }
+              ]
+             }
+            ]
+           },
+           {
+            "t": "row",
+            "i": "r7",
+            "fill": "x",
+            "h": 48,
+            "align": "center",
+            "borderB": "border-secondary",
+            "children": [
+             {
+              "c": "table-cell",
+              "i": "r7-t",
+              "p": {
+               "Style": "Text",
+               "Lead": "No",
+               "State": "Default",
+               "Size": "md",
+               "Supporting Text": "false",
+               "Badge": "false",
+               "Dropdown": "false"
+              },
+              "text": [
+               "13 Aug, 6:30 AM"
+              ],
+              "w": 140
+             },
+             {
+              "c": "table-cell",
+              "i": "r7-o",
+              "p": {
+               "Style": "Text",
+               "Lead": "No",
+               "State": "Default",
+               "Size": "md",
+               "Supporting Text": "false",
+               "Badge": "false",
+               "Dropdown": "false"
+              },
+              "text": [
+               "Legal want a decision on what goes into the renewal addendum"
+              ],
+              "fill": "x",
+              "ops": [
+               {
+                "nodes": [
+                 {
+                  "name": "Text",
+                  "nth": 0,
+                  "maxLines": 1
+                 }
+                ]
+               }
+              ]
+             },
+             {
+              "c": "table-cell",
+              "i": "r7-c",
+              "p": {
+               "Style": "Text",
+               "Lead": "No",
+               "State": "Default",
+               "Size": "md",
+               "Supporting Text": "false",
+               "Badge": "false",
+               "Dropdown": "false"
+              },
+              "text": [
+               "$0.11"
+              ],
+              "w": 100
+             },
+             {
+              "t": "row",
+              "i": "r7-s",
+              "w": 150,
+              "align": "center",
+              "children": [
+               {
+                "c": "pill-squared",
+                "i": "r7-s-p",
+                "p": {
+                 "Size": "sm",
+                 "Type": "Pill Clear",
+                 "Icon": "Dot",
+                 "Color": "Gray"
+                },
+                "text": [
+                 "Skipped"
+                ]
+               }
+              ]
+             },
+             {
+              "t": "row",
+              "i": "r7-a",
+              "w": 56,
+              "justify": "center",
+              "children": [
+               {
+                "c": "small-icon-button",
+                "i": "r7-m",
+                "p": {
+                 "Size": "sm",
+                 "Icon swap": "@icon-dots-horizontal"
+                }
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "c": "dropdown-menu",
+    "i": "ctx-menu",
+    "p": {
+     "Type": "Small",
+     "Scroll bar": "false"
+    },
+    "w": 120,
+    "abs": {
+     "x": 962,
+     "y": 104
+    },
+    "why": "context menu anchored under the ⋯ button",
+    "text": [
+     "Edit",
+     "Pause",
+     "Delete"
+    ],
+    "ops": [
+     {
+      "nodes": [
+       {
+        "name": "placeholder",
+        "nth": 0,
+        "hide": true
+       },
+       {
+        "name": "placeholder",
+        "nth": 1,
+        "hide": true
+       },
+       {
+        "name": "placeholder",
+        "nth": 2,
+        "hide": true
+       },
+       {
+        "name": "placeholder",
+        "nth": 3,
+        "hide": true
+       },
+       {
+        "name": "placeholder",
+        "nth": 4,
+        "hide": true
+       },
+       {
+        "name": "log-out-01",
+        "nth": 0,
+        "hide": true
+       },
+       {
+        "has": "Log out",
+        "hide": true
+       },
+       {
+        "has": "View profile",
+        "props": {
+         "Icon": "true"
+        },
+        "icon": "@icon-edit"
+       },
+       {
+        "has": "Keyboard shortcuts",
+        "props": {
+         "Icon": "true"
+        },
+        "icon": "@icon-close"
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ }
+}
