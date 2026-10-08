@@ -14,7 +14,7 @@ async function clCtx(n) {
   return o;
 }
 function clPrompt(items, file, page) {
-  const L = ["Apply these " + items.length + " review comment" + (items.length === 1 ? "" : "s") + " from Figma (file: " + file + ", page: " + page + "). Read CLAUDE.md first.",
+  const L = ["Apply these " + items.length + " review comment" + (items.length === 1 ? "" : "s") + " from Figma (file: " + file + (FILE_KEY ? " [key " + FILE_KEY + "]" : " — key unknown: ask the user for the Figma link if you need to read it") + ", page: " + page + (PAGE_ID ? " [" + PAGE_ID + "]" : "") + "). Read CLAUDE.md first.",
     "Rules: edit screens/<screen>.json only (each target below lists its JSON id (`i`) — frames/text are named by it; component instances keep the component's own name and carry the id in plugin data; layers inside an instance → `ops`). Catalog components + tokens only, exact prop names, no raw hex. Lint clean, zero rebuild warnings, verify with `node scripts/inspect.mjs <nodeId> --raw` / `--vs`.", ""];
   items.forEach((it, i) => {
     L.push((i + 1) + ". " + it.text.replace(/\s*\n\s*/g, " ") + (it.tags.length ? "  [" + it.tags.join(", ") + "]" : ""));
@@ -29,7 +29,7 @@ function clPrompt(items, file, page) {
   });
   return L.join("\n");
 }
-let selTimer = null;
+let selTimer = null; let FILE_KEY = null, PAGE_ID = null; try { FILE_KEY = figma.fileKey || null; } catch (e) {} const pageIdNow = () => { try { return figma.currentPage.id; } catch (e) { return null; } };
 async function pushSel() {
   const sel = figma.currentPage.selection.slice(0, 12), out = [];
   for (const n of sel) out.push(await clCtx(n));
@@ -40,6 +40,6 @@ figma.on("currentpagechange", pushSel);
 async function annMessage(msg) {
   if (msg.type === "sel-get") { await pushSel(); return true; }
   if (msg.type === "locate") { const n = await figma.getNodeByIdAsync(msg.id); if (n) { figma.currentPage.selection = [n]; figma.viewport.scrollAndZoomIntoView([n]); } return true; }
-  if (msg.type === "prompt") { figma.ui.postMessage({ type: "prompt", text: clPrompt(msg.items, figma.root.name, figma.currentPage.name), n: msg.items.length }); return true; }
+  if (msg.type === "prompt") { PAGE_ID = pageIdNow(); figma.ui.postMessage({ type: "prompt", text: clPrompt(msg.items, figma.root.name, figma.currentPage.name), n: msg.items.length }); return true; }
   return false;
 }
