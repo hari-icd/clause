@@ -148,7 +148,7 @@ const setTip = (id, t) => { const el = $(id); if (!el) return; el.dataset.tip = 
 // ---- collapse: window shrinks to just the two corner icons
 let collapsed = false;
 const ICON_DOWN = '<svg viewBox="0 0 16 16"><path d="M4 6l4 4 4-4"/></svg>', ICON_UP = '<svg viewBox="0 0 16 16"><path d="M4 10l4-4 4 4"/></svg>';
-function setCollapsed(on) { collapsed = on; document.body.classList.toggle("collapsed", on); $("collapseIc").innerHTML = on ? '<svg viewBox="0 0 16 16"><path d="M4 10l4-4 4 4"/></svg>' : '<svg viewBox="0 0 16 16"><path d="M4 6l4 4 4-4"/></svg>'; setTip("collapse", on ? "Expand" : "Collapse"); renderMini(); post({ type: "resize", w: on ? 72 : 320, h: on ? 32 : 520 }); try { localStorage.setItem("collapsed", on ? "1" : ""); } catch (e) {} if (!on) setTimeout(() => $("box").focus(), 0); }
+function setCollapsed(on) { collapsed = on; document.body.classList.toggle("collapsed", on); $("collapseIc").innerHTML = on ? '<svg viewBox="0 0 16 16"><path d="M4 10l4-4 4 4"/></svg>' : '<svg viewBox="0 0 16 16"><path d="M4 6l4 4 4-4"/></svg>'; setTip("collapse", on ? "Expand" : "Collapse"); renderMini(); post({ type: "resize", w: on ? 72 : 320, h: on ? 32 : 520, anchor: "br" }); try { localStorage.setItem("collapsed", on ? "1" : ""); } catch (e) {} if (!on) setTimeout(() => $("box").focus(), 0); }
 const WAVE = '<span class="wave"><i></i><i></i><i></i></span>';
 let online = false;
 const running = () => working() || (agent && agent.state === "building");
