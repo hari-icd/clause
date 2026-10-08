@@ -9,7 +9,7 @@ description: Apply messages and annotations sent from the Clause Assist Figma pl
 
 
 1. `npm run inbox` (needs `npm run live` running). Each message is either free text or an **annotations batch** (numbered items with screen, node id, name, type/component, path, props/text/layout).
-2. For each item: the node **name** is the screen JSON `i` id in `screens/<screen>.json`; layers inside a component instance are edited with `ops` (`nodes` → `hide`/`props`/`style`/`color`/`maxLines`/`swap`). Never hand-edit Figma. If the item is vague, run `node scripts/inspect.mjs <nodeId> --raw` first; with a reference frame, `--vs`.
+2. For each item: the target's **JSON id** (listed in the annotation as `target: <id> [layer "<Figma name>"]`) is the screen JSON `i` id in `screens/<screen>.json`; layers inside a component instance are edited with `ops` (`nodes` → `hide`/`props`/`style`/`color`/`maxLines`/`swap`). Never hand-edit Figma. If the item is vague, run `node scripts/inspect.mjs <nodeId> --raw` first; with a reference frame, `--vs`.
 2b. Any correction the user gives that could apply again ("use X instead of Y", "always…", "this is misplaced") goes into `ds/design-rules.md` → **Standing preferences** the same turn, in one line. Read that section before building anything.
 3. Before any multi-step investigation, `npm run status -- "<what you are doing>"` so the pane shows it. Edit the JSON (hook lints). Catalog components/variants over primitives; props by exact axis name.
 4. Save → live rebuild. Read `curl -s localhost:8787/result`: any warning is a bug. Re-inspect the changed node / `get_screenshot` the frame.
