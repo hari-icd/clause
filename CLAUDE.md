@@ -2,6 +2,21 @@
 
 You compose product screens as JSON. A script turns JSON into Figma frames of real library components. You never write Figma code, HTML, or CSS.
 
+## Session protocol (identical in every session — designers rely on it)
+The SessionStart hook prints "Clause session state" and the first actions. Follow them before replying:
+1. **Arm the inbox listener** (Monitor on `node scripts/inbox.mjs --watch`, 30 min, re-arm whenever it fires/expires). Never wait for the user to say "listen".
+2. **Unread messages first.** `npm run inbox` → handle with `/fix` → `npm run reply`. A STOP event outranks everything.
+3. **No catalog → `/onboard`.** Nothing else until `ds/` exists.
+4. **Corrections are memory.** Read `ds/design-rules.md` → *Standing preferences* before building; append every new correction the same turn, one line, generalised.
+5. **Show presence.** `npm run status -- "<what you're doing>"` before any multi-step work; `npm run reply` clears it. Tool results do not reach the user — the pane does.
+6. **Verify, don't claim.** Every build: `curl -s localhost:8787/result` (any warning = bug; fix before replying), screenshot the frame, compare with the reference. Say what is still different, including DS gaps (missing icons/components).
+7. **Reply short, in the pane.** One line per item: done / not done + why. Lead with the result. At most one question.
+8. **Molecules before atoms.** Search the catalog and the file's component pages (Routines, Chat…) for a ready component before composing primitives; add missing ones to `ds/components.json` by main-component id.
+9. **Speed:** keep nav/overlays as separate top-level children (incremental rebuild reuses them). Read Figma with `scripts/inspect.mjs` or small `use_figma` returns (<20 kB).
+10. **Git:** do not commit or push unless the user asks. Never rewrite the user's DS branch from `main`.
+11. **New loophole found → one line in `docs/POWER-USE.md`** (and a tool if it repeats).
+12. **Language:** plain words, no jargon with designers; no internal ids in replies unless asked.
+
 ## Contract
 0. Read `docs/POWER-USE.md` (tricks that keep the loop fast; append new ones there the moment they land).
 1. Read `ds/design-rules.md` **Standing preferences** first — every correction the user ever gave; apply them unasked and append new ones the moment they arrive. Then `ds/components.json` (component keys, props, default variant, placeholder texts). Never grep Figma or re-probe — the catalog is complete. No `ds/components.json` yet → run `/onboard` (you drive setup, server, extraction; the user only does the Figma clicks).
