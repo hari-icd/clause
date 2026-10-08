@@ -144,6 +144,10 @@ figma.ui.onmessage = async (msg) => {
     catch (e) { figma.ui.postMessage({ type: "ds-done", error: String((e && e.message) || e) }); }
     return;
   }
+  if (msg.type === "goto") {
+    try { const pg = await figma.getNodeByIdAsync(msg.pageId); if (pg) await figma.setCurrentPageAsync(pg); const n = msg.nodeId ? await figma.getNodeByIdAsync(msg.nodeId) : null; if (n) { figma.currentPage.selection = [n]; figma.viewport.scrollAndZoomIntoView([n]); } } catch (e) {}
+    return;
+  }
   if (msg.type === "resize") {
     // reposition() takes CANVAS coordinates while the window size is in screen px (measured: windowSpace = origin + zoom × canvas).
     // So: read the window position, resize (anchors top-left), then move by the size delta converted px → canvas units (÷ zoom); verify and correct once.
@@ -185,7 +189,7 @@ figma.ui.onmessage = async (msg) => {
     if (!page) { const cur = figma.currentPage; const known = PAGE_OF[msg.name] && await figma.getNodeByIdAsync(PAGE_OF[msg.name]); if (known && known.type === "PAGE") page = known; else if (hasTag(cur)) page = cur; else { for (const pg of figma.root.children) { if (pg === cur) continue; await pg.loadAsync(); if (hasTag(pg)) { page = pg; break; } } } if (!page) page = cur; }
     PAGE_OF[msg.name] = page.id; const T_PAGE = Date.now() - t0;
     S.PAGE_ID = page.id; S.RT_HASH = msg.rtHash;
-    await figma.setCurrentPageAsync(page);
+    if (page.id !== figma.currentPage.id) await page.loadAsync(); // build in the background: never move the user to another page
     before = new Set(page.children.map(n => n.id));
     const old = page.children.filter(n => n.getPluginData("es-screen") === msg.name);
     // keep the previous frame alive during the build: the runtime reuses unchanged top-level nodes (e.g. the nav) from it, then removes it
@@ -195,7 +199,7 @@ figma.ui.onmessage = async (msg) => {
     const res = fn ? await fn(figma, S, CACHE) : await runScreen(S);
     for (const id of res.roots) { const n = await figma.getNodeByIdAsync(id); if (n) n.setPluginData("es-screen", msg.name); }
     res.ms = Date.now() - t0; res.timing.page = T_PAGE; res.timing.wrapper = res.ms - res.timing.totalMs;
-    figma.ui.postMessage({ type: "result", ok: true, name: msg.name, res });
+    figma.ui.postMessage({ type: "result", ok: true, name: msg.name, res, page: { id: page.id, name: page.name, current: figma.currentPage.id === page.id } });
     // HTML export: wait until saves go quiet, then extract once
     exTimer = setTimeout(async () => {
       try {
