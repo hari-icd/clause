@@ -9,7 +9,8 @@ async function clCtx(n) {
   const o = { id: n.id, name: n.name, type: n.type, w: Math.round(n.width), h: Math.round(n.height) };
   const path = []; let p = n.parent, screen = clScreen(n), inst = n.type === "INSTANCE" ? n : null;
   while (p && p.type !== "PAGE" && p.type !== "DOCUMENT") { path.unshift(p.name); const s = clScreen(p); if (s) screen = s; if (p.type === "INSTANCE") inst = p; p = p.parent; }
-  o.path = path; o.screen = screen;
+  let jid = null; for (let q = n; q && q.type !== "PAGE" && q.type !== "DOCUMENT"; q = q.parent) { let d = null; try { d = q.getPluginData("es-i"); } catch (e) {} if (d) { jid = d; break; } if (q.type !== "INSTANCE" && !(q.parent && q.parent.type === "INSTANCE")) { /* frames/text built by Clause are named by their JSON id */ if (clScreen(q.parent || q) || (q.parent && q.parent.type === "FRAME")) { jid = jid || q.name; break; } } }
+  o.jsonId = jid || n.name; o.path = path; o.screen = screen;
   try {
     if (inst) { const mc = await inst.getMainComponentAsync(); const set = mc && mc.parent && mc.parent.type === "COMPONENT_SET" ? mc.parent : null; o.component = mc && (set ? set.name : mc.name); if (inst !== n) o.instance = { name: inst.name, id: inst.id }; o.props = {}; for (const [k, v] of Object.entries(inst.componentProperties)) o.props[k.split("#")[0]] = v.value; }
     if (n.type === "TEXT") { o.text = n.characters.slice(0, 200); const sid = n.textStyleId; if (sid && sid !== figma.mixed) { const st = await figma.getStyleByIdAsync(sid); o.textStyle = st && st.name; } }
@@ -19,11 +20,11 @@ async function clCtx(n) {
 }
 function clPrompt(items, file, page) {
   const L = ["Apply these " + items.length + " review comment" + (items.length === 1 ? "" : "s") + " from Figma (file: " + file + ", page: " + page + "). Read CLAUDE.md first.",
-    "Rules: edit screens/<screen>.json only (a layer's name is the JSON `i` id; layers inside a component instance → `ops`). Catalog components + tokens only, exact prop names, no raw hex. Lint clean, zero rebuild warnings, verify with `node scripts/inspect.mjs <nodeId> --raw` / `--vs`.", ""];
+    "Rules: edit screens/<screen>.json only (each target below lists its JSON id (`i`) — frames/text are named by it; component instances keep the component's own name and carry the id in plugin data; layers inside an instance → `ops`). Catalog components + tokens only, exact prop names, no raw hex. Lint clean, zero rebuild warnings, verify with `node scripts/inspect.mjs <nodeId> --raw` / `--vs`.", ""];
   items.forEach((it, i) => {
     L.push((i + 1) + ". " + it.text.replace(/\s*\n\s*/g, " ") + (it.tags.length ? "  [" + it.tags.join(", ") + "]" : ""));
     for (const t of it.targets) {
-      L.push("   target: " + t.name + " (" + t.type + (t.component ? " · " + t.component : "") + ") id " + t.id + " " + t.w + "×" + t.h + " · " + (t.screen ? "screen " + t.screen + " → screens/" + t.screen + ".json" : "not a Clause-built frame"));
+      L.push("   target: " + (t.jsonId || t.name) + (t.jsonId && t.jsonId !== t.name ? " [layer \"" + t.name + "\"]" : "") + " (" + t.type + (t.component ? " · " + t.component : "") + ") id " + t.id + " " + t.w + "×" + t.h + " · " + (t.screen ? "screen " + t.screen + " → screens/" + t.screen + ".json" : "not a Clause-built frame"));
       if (t.instance) L.push("     inside instance: " + t.instance.name + " id " + t.instance.id);
       if (t.path && t.path.length) L.push("     path: " + t.path.join(" › "));
       if (t.props && Object.keys(t.props).length) L.push("     props: " + JSON.stringify(t.props));

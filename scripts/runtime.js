@@ -227,7 +227,7 @@ async function build0(n, parent) {
   let node;
   if (n.c) {
     const comp = await tm("component", component(n.c, n.p));
-    const T_I = Date.now(); node = comp.createInstance(); node.name = n.i || comp.name;
+    const T_I = Date.now(); node = comp.createInstance(); if (n.i) node.setPluginData("es-i", n.i); // layer keeps the component's own name; the JSON id lives in plugin data (es-i)
     parent.appendChild(node); TM.inst = (TM.inst || 0) + (Date.now() - T_I); TM["inst:" + (n.i || comp.name)] = Date.now() - T_I;
     await tm("props", setBoolProps(node, n.p));
     await tm("ops", applyOps(node, n.ops));
@@ -259,8 +259,8 @@ const stale = page.children.filter(n => n.type === "FRAME" && wanted.has(n.name)
 if (stale.length) { x = Math.min(...stale.map(n => n.x)); replaced = true; for (const n of stale) n.remove(); }
 const oldRoots = []; for (const id of OLD) { const n = await figma.getNodeByIdAsync(id); if (n) oldRoots.push(n); }
 // reuse index: top-level children of the previous build, by name → { node, hash }
-const REUSE = new Map(); for (const r of oldRoots) for (const ch of r.children) { const h = ch.getPluginData("es-hash"); if (h) REUSE.set(ch.name, { node: ch, hash: h }); }
-const SALT = JSON.stringify([COMPS, VARS, STYLES]).length + ":" + (SCREEN.RT_HASH || "");
+const REUSE = new Map(); for (const r of oldRoots) for (const ch of r.children) { const h = ch.getPluginData("es-hash"); if (h) REUSE.set(ch.getPluginData("es-i") || ch.name, { node: ch, hash: h }); }
+const SALT = JSON.stringify([COMPS, VARS, STYLES]).length + ":" + (SCREEN.RT_HASH || "") + ":n3";
 const hashOf = o => { const str = SALT + JSON.stringify(o); let h = 5381; for (let i = 0; i < str.length; i++) h = ((h << 5) + h + str.charCodeAt(i)) | 0; return String(h); };
 if (REPLACE) { const old = await figma.getNodeByIdAsync(REPLACE); if (old) { x = old.x; old.remove(); replaced = true; } }
 if (POS) { x = POS.x; replaced = true; }
