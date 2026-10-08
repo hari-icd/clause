@@ -43,3 +43,4 @@ Living list of the tricks that make the loop fast. Every time we find a loophole
 - Per-instance layer index (`idx`) + font preload: ops/texts no longer walk the instance per op.
 - Presence/stop: while Claude works the composer send button turns into ■ (Esc also stops); send icon is ↵. ⌄ collapse sits top-left (opposite ☰) and shrinks the window to just the two corner icons.
 - Collapsed = ⌃ expand (left) + a bare three-dot status on the right, no container: dots wave in blue while Claude works or a build runs, sit still and grey when idle, red when the server is offline.
+- Plugin window anchoring: `figma.ui.resize` keeps the top-left fixed, so collapse/expand pass `anchor:"br"` and code.js shifts the window with `figma.ui.reposition` — the bottom-right corner stays put wherever the user parked it.

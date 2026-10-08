@@ -133,7 +133,7 @@ async function dsExtract(opts, emit, progress) {
 
 
 const AF = Object.getPrototypeOf(async function () {}).constructor;
-let CACHE = {}, CACHE_HASH = null, exTimer = null; const PAGE_OF = {}, RT_FN = { hash: null, fn: null }; // screen name → page id (skips the all-pages walk on rebuilds)
+let CACHE = {}, CACHE_HASH = null, exTimer = null; let UI_SIZE = { w: 320, h: 520 }; const PAGE_OF = {}, RT_FN = { hash: null, fn: null }; // screen name → page id (skips the all-pages walk on rebuilds)
 
 figma.ui.onmessage = async (msg) => {
   if (await annMessage(msg)) return;
@@ -144,7 +144,14 @@ figma.ui.onmessage = async (msg) => {
     catch (e) { figma.ui.postMessage({ type: "ds-done", error: String((e && e.message) || e) }); }
     return;
   }
-  if (msg.type === "resize") { figma.ui.resize(msg.w, msg.h); return; }
+  if (msg.type === "resize") {
+    // keep the window's bottom-right corner where it is while it grows/shrinks (resize alone anchors the top-left)
+    const w = Math.round(msg.w), h = Math.round(msg.h), cw = UI_SIZE.w, ch = UI_SIZE.h;
+    let pos = null; if (msg.anchor === "br") { try { pos = await figma.ui.getPosition(); } catch (e) {} }
+    figma.ui.resize(w, h); UI_SIZE = { w, h };
+    if (pos && pos.windowSpace) { try { figma.ui.reposition(Math.max(0, Math.round(pos.windowSpace.x + (cw - w))), Math.max(0, Math.round(pos.windowSpace.y + (ch - h)))); } catch (e) {} }
+    return;
+  }
   if (msg.type !== "build") return;
   if (msg.rtHash !== CACHE_HASH) { CACHE = {}; CACHE_HASH = msg.rtHash; }
   clearTimeout(exTimer);
