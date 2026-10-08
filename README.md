@@ -31,7 +31,7 @@ Claude checks the computer, starts Clause's local server, and tells you the only
 
 Claude sees the plugin connect, starts **Extract components & tokens** in it (1–3 min, progress shows in the plugin pane), reads the result, and replies in the pane with what it found and what to build first.
 
-That is the whole setup. From now on you talk to Claude from the plugin pane or from Claude Code — whichever is open.
+That is the whole setup. Every later Claude Code session in this folder starts the same way on its own: the server is started, Claude listens for your plugin messages, reads your saved preferences, and tells you in one line that it is listening. From now on you talk to Claude from the plugin pane or from Claude Code — whichever is open.
 
 > Something failed? Tell Claude Code: **"setup failed, here is what I see: …"** and paste the message. Claude fixes it or tells you the one thing to click.
 
