@@ -5,6 +5,11 @@
   * { box-sizing:border-box } body { margin:0; font:11px/16px Inter, system-ui, sans-serif; color:var(--fg); background:var(--bg); display:flex; flex-direction:column; height:100vh; overflow:hidden; -webkit-font-smoothing:antialiased }
   b { font-weight:600 } .m { color:var(--fg2) } .s { color:var(--fg3) } .sm { font-size:10px; line-height:14px } a { color:inherit }
   svg { width:12px; height:12px; fill:none; stroke:currentColor; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round; display:block }
+  .ib.float { position:fixed } .ib .ic { display:flex } .ib .sd, .ib .ud { position:absolute; display:none; border-radius:50%; pointer-events:none }
+  body.collapsed .ib .sd { display:block; right:5px; bottom:5px; width:6px; height:6px; background:var(--warn) } body.collapsed .ib .sd.on { background:var(--ok) } body.collapsed .ib .sd.warn { background:#f5a623 }
+  .ib .bd { position:absolute; top:3px; right:3px; min-width:14px; height:14px; padding:0 4px; border-radius:7px; background:var(--acc); color:#fff; font-size:9px; line-height:14px; font-weight:600; text-align:center; display:none } body.collapsed .ib .bd.on { display:block }
+  body.collapsed .ib .ud.on { display:block; top:5px; left:5px; width:7px; height:7px; background:var(--warn); box-shadow:0 0 0 2px var(--bg) }
+  .spin { animation:sp 1s linear infinite } @keyframes sp { to { transform:rotate(360deg) } } .ib.sigwork { color:var(--acc) } .ib.sigok { color:var(--ok) } .ib.sigbad { color:var(--warn) }
   .ib.corner { width:32px; height:32px; border-radius:0 0 0 8px } .ib.float.left { right:auto !important; left:0 !important; border-radius:0 0 8px 0 }
   body.collapsed > :not(.float) { display:none !important } body.collapsed { background:transparent } body.collapsed .float { background:var(--bg) } .ib.float { position:fixed !important; top:0; right:0; left:auto; z-index:6; background:none; color:var(--fg3) } .ib.float:hover { background:var(--bg2); color:var(--fg) }
   .srv { display:inline-flex; align-items:center; gap:2px; margin:0 6px; flex:none; color:var(--fg3) } .srv code { font:10px/1 ui-monospace, Menlo, monospace } .dot3 { width:6px; height:6px; border-radius:50%; background:var(--warn) } .dot3.on { background:var(--ok) }
@@ -54,8 +59,8 @@
   .bar { display:flex; align-items:center; gap:2px } .bar .grow { flex:1; color:var(--fg3); font-size:10px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap }
   #toast { position:fixed; left:12px; right:40px; top:6px; background:var(--fg); color:var(--bg); padding:6px 10px; border-radius:6px; opacity:0; transition:opacity .15s; pointer-events:none; z-index:9 } #toast.on { opacity:1 }
 </style>
-<button class="ib corner float left" id="collapse" title="Collapse"><svg viewBox="0 0 16 16"><path d="M4 6l4 4 4-4"/></svg></button>
-<button class="ib corner float" id="menuBtn" title="Chats & tools"><svg viewBox="0 0 16 16"><path d="M2.5 4.5h11M2.5 8h11M2.5 11.5h11"/></svg></button>
+<button class="ib corner float left" id="collapse" title="Collapse"><span class="ic" id="collapseIc"><svg viewBox="0 0 16 16"><path d="M4 6l4 4 4-4"/></svg></span><span class="sd" id="sd"></span></button>
+<button class="ib corner float" id="menuBtn" title="Chats & tools"><svg viewBox="0 0 16 16"><path d="M2.5 4.5h11M2.5 8h11M2.5 11.5h11"/></svg><span class="bd" id="bd"></span><span class="ud" id="ud"></span></button>
 <div id="menu">
   <button class="ib corner" id="menuClose" title="Close [Esc]"><svg viewBox="0 0 16 16"><path d="M4 4l8 8M12 4l-8 8"/></svg></button>
   <div class="mb">
@@ -141,8 +146,27 @@ const setTip = (id, t) => { const el = $(id); if (!el) return; el.dataset.tip = 
 // ---- collapse: window shrinks to just the two corner icons
 let collapsed = false;
 const ICON_DOWN = '<svg viewBox="0 0 16 16"><path d="M4 6l4 4 4-4"/></svg>', ICON_UP = '<svg viewBox="0 0 16 16"><path d="M4 10l4-4 4 4"/></svg>';
-function setCollapsed(on) { collapsed = on; document.body.classList.toggle("collapsed", on); $("collapse").innerHTML = on ? ICON_UP : ICON_DOWN; setTip("collapse", on ? "Expand" : "Collapse"); post({ type: "resize", w: on ? 72 : 320, h: on ? 32 : 520 }); try { localStorage.setItem("collapsed", on ? "1" : ""); } catch (e) {} if (!on) setTimeout(() => $("box").focus(), 0); }
-const renderMini = () => {};
+function setCollapsed(on) { collapsed = on; document.body.classList.toggle("collapsed", on); renderMini(); post({ type: "resize", w: on ? 72 : 320, h: on ? 32 : 520 }); try { localStorage.setItem("collapsed", on ? "1" : ""); } catch (e) {} if (!on) setTimeout(() => $("box").focus(), 0); }
+const SPIN = '<svg class="spin" viewBox="0 0 16 16"><circle cx="8" cy="8" r="5" stroke-opacity=".25"/><path d="M8 3a5 5 0 0 1 5 5"/></svg>', CHECK = '<svg viewBox="0 0 16 16"><path d="M3.5 8.5l3 3 6-6.5"/></svg>', CROSS = '<svg viewBox="0 0 16 16"><path d="M4.5 4.5l7 7M11.5 4.5l-7 7"/></svg>';
+let seenClaude = null, online = false;
+function renderMini() {
+  const lastC = [...msgs].reverse().find(m => m.from === "claude"); if (!collapsed) seenClaude = lastC ? lastC.id : null;
+  const unread = collapsed && lastC && lastC.id !== seenClaude, st = agent ? agent.state : null;
+  const c = $("collapse"); c.classList.remove("sigwork", "sigok", "sigbad");
+  let ic = collapsed ? ICON_UP : ICON_DOWN, tip = collapsed ? "Expand" : "Collapse";
+  if (collapsed) {
+    if (!online) { tip = "Server offline — run: npm run live"; }
+    else if (st === "error" || st === "stopped") { ic = CROSS; c.classList.add("sigbad"); tip = st === "stopped" ? "Stopped" : "Last build failed — expand to see"; }
+    else if (working()) { ic = SPIN; c.classList.add("sigwork"); tip = (agent.text || "Claude is working") + " — expand to stop"; }
+    else if (st === "built") { ic = CHECK; c.classList.add("sigok"); tip = (agent.text || "Built") + " — expand"; }
+    else if (unread) tip = "Claude replied — expand";
+    else tip = "Listening — expand";
+  }
+  $("collapseIc").innerHTML = ic; $("sd").className = "sd " + (!online ? "" : working() || queued ? "warn" : "on"); setTip("collapse", tip);
+  const q = $("bd"); q.textContent = queued ? String(queued) : ""; q.classList.toggle("on", collapsed && queued > 0);
+  $("ud").classList.toggle("on", !!unread);
+  setTip("menuBtn", collapsed ? ((queued ? queued + " queued · " : "") + (unread ? "new reply · " : "") + "Chats & tools") : "Chats & tools");
+}
 $("collapse").onclick = () => setCollapsed(!collapsed);
 try { if (localStorage.getItem("collapsed")) setCollapsed(true); } catch (e) {}
 // ---- extract entry: full call-to-action only when there is no catalog; otherwise a quiet note
@@ -187,8 +211,8 @@ async function fromServer(sync) {
   } catch (e) {}
 }
 const es = new EventSource(BASE + "/events");
-es.onopen = () => { $("dot2").className = "dot2 on"; $("dot3").className = "dot3 on"; setTip("srv", "Clause server live · localhost:8787"); $("conn").textContent = "live · localhost:8787"; fromServer(true); loadMsgs(); };
-es.onerror = () => { $("dot2").className = "dot2"; $("dot3").className = "dot3"; setTip("srv", "Server offline — run: npm run live"); $("conn").textContent = "offline — npm run live"; };
+es.onopen = () => { $("dot2").className = "dot2 on"; $("dot3").className = "dot3 on"; online = true; renderMini(); setTip("srv", "Clause server live · localhost:8787"); $("conn").textContent = "live · localhost:8787"; fromServer(true); loadMsgs(); };
+es.onerror = () => { $("dot2").className = "dot2"; $("dot3").className = "dot3"; online = false; renderMini(); setTip("srv", "Server offline — run: npm run live"); $("conn").textContent = "offline — npm run live"; };
 es.onmessage = async e => {
   const m = JSON.parse(e.data);
   if (m.type === "state") { if (m.error) { log(m.error); post({ type: "notify", error: true, text: "Clause: " + m.error.split("\n")[0] }); return; } fromServer(); }
