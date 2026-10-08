@@ -16,6 +16,7 @@
   .mlbl { color:var(--fg3); font-size:10px; font-weight:500; text-transform:uppercase; letter-spacing:.04em; margin:10px 0 2px }
   button.b.wide { width:100%; justify-content:center; height:28px }
   .mi { display:flex; align-items:center; gap:10px; padding:6px 8px; border-radius:6px; cursor:pointer } .mi:hover { background:var(--bg2) } .mi .grow { flex:1; min-width:0 } .mi svg { width:14px; height:14px; color:var(--fg2); flex:none }
+  .dsnote { color:var(--fg3); font-size:10px; line-height:14px; padding:2px 8px } .dsnote a { color:var(--fg2); text-decoration:underline; cursor:pointer }
   .adv { display:none; padding:0 8px 4px 32px } .adv.on { display:block } .adv input { height:24px; border:1px solid var(--line); border-radius:6px; padding:0 8px; background:var(--bg); color:var(--fg); font:inherit; width:100% }
   .si { display:flex; align-items:center; gap:8px; padding:6px 8px; border-radius:6px; cursor:pointer; border:1px solid transparent } .si:hover { background:var(--bg2) } .si.on { border-color:var(--line); background:var(--bg2) }
   .si.new { border:1px dashed var(--fg3); color:var(--fg2); margin-bottom:10px } .si.new:hover { border-color:var(--fg); color:var(--fg); background:none } .si.new svg { width:12px; height:12px } .si .grow { flex:1; min-width:0 } .si b { font-weight:500; display:block; overflow:hidden; text-overflow:ellipsis; white-space:nowrap } .si .ops { display:none } .si:hover .ops { display:flex }
@@ -62,6 +63,7 @@
     <div class="list" id="sessList"></div>
     <div class="mlbl">Tools</div>
     <div class="mi" id="miExtract"><svg viewBox="0 0 16 16"><path d="M8 4.5c-1.2-1.2-3-1.5-5.5-1.5v9c2.5 0 4.3.3 5.5 1.5 1.2-1.2 3-1.5 5.5-1.5v-9c-2.5 0-4.3.3-5.5 1.5zM8 4.5V13.5"/></svg><div class="grow"><b>Extract components &amp; tokens</b><div class="s sm">Builds ds/ from this file + its libraries. 1–3 min.</div></div><span class="s sm" id="dsState"></span></div>
+    <div class="dsnote" id="dsNote" hidden>Design system extracted <span id="dsAgo"></span> ago. Want to <a href="#" id="dsAgain">run it again</a>? <span id="dsState2"></span></div>
     <div class="adv" id="dsAdv"><input id="dsIgnore" placeholder="sections to skip, comma-separated"></div>
     <label class="mi" id="drop"><svg viewBox="0 0 16 16"><path d="M8 11V3M4.5 6.5L8 3l3.5 3.5M3 13h10"/></svg><div class="grow"><b>Rebuild from an HTML export</b><div class="s sm">Drop or pick an exports/*.html file</div></div><input id="file" type="file" accept=".html,text/html" hidden></label>
     <div class="mi" id="open"><svg viewBox="0 0 16 16"><path d="M6 3H3v10h10v-3M9 3h4v4M13 3L7 9"/></svg><div class="grow"><b>Open listing page</b><div class="s sm">All screens as real HTML</div></div></div>
@@ -109,15 +111,15 @@ try { $("dsIgnore").value = localStorage.getItem("dsIgnore") || ""; } catch (e) 
 async function dsRun() {
   if (dsBusy) return; dsBusy = true; dsParts = {}; openMenu(true);
   const ignoreSections = $("dsIgnore").value.split(",").map(x => x.trim()).filter(Boolean); try { localStorage.setItem("dsIgnore", $("dsIgnore").value); } catch (e) {}
-  $("dsState").textContent = "extracting…"; log("extracting design system…"); $("chat").innerHTML = '<div class="onb"><b>Extracting…</b><div class="s sm" id="onbProg">reading pages</div></div>';
+  $("dsState").textContent = "extracting…"; if ($("dsState2")) $("dsState2").textContent = "extracting…"; log("extracting design system…"); $("chat").innerHTML = '<div class="onb"><b>Extracting…</b><div class="s sm" id="onbProg">reading pages</div></div>';
   post({ type: "ds-extract", ignoreSections });
 }
 async function dsFinish(m) {
   dsBusy = false;
-  if (m.error) { $("dsState").textContent = "failed"; log("✗ extract: " + m.error); toast("Extract failed"); return; }
+  if (m.error) { $("dsState").textContent = "failed"; if ($("dsState2")) $("dsState2").textContent = "failed"; log("✗ extract: " + m.error); toast("Extract failed"); return; }
   try {
     const r = await api("/extract/ds", { ...dsParts, mode: hasDs ? "preview" : "replace" });
-    $("dsState").textContent = "extracted · " + Math.round(m.ms / 1000) + "s"; log(r.summary || "extracted"); toast(hasDs ? "Preview saved — Claude is comparing it with ds/" : "ds/ written — Claude is auditing it"); loadMsgs();
+    $("dsState").textContent = "extracted · " + Math.round(m.ms / 1000) + "s"; if ($("dsState2")) $("dsState2").textContent = "preview saved · " + Math.round(m.ms / 1000) + "s"; log(r.summary || "extracted"); toast(hasDs ? "Preview saved — Claude is comparing it with ds/" : "ds/ written — Claude is auditing it"); loadMsgs();
   } catch (e) { $("dsState").textContent = "server offline"; log("✗ could not reach the server (npm run live)"); }
 }
 
@@ -143,6 +145,9 @@ function setCollapsed(on) { collapsed = on; document.body.classList.toggle("coll
 const renderMini = () => {};
 $("collapse").onclick = () => setCollapsed(!collapsed);
 try { if (localStorage.getItem("collapsed")) setCollapsed(true); } catch (e) {}
+// ---- extract entry: full call-to-action only when there is no catalog; otherwise a quiet note
+function ago(ms) { const m = Math.round((Date.now() - ms) / 60000); return m < 2 ? "just now" : m < 60 ? m + " min" : m < 1440 ? Math.round(m / 60) + " h" : Math.round(m / 1440) + " day" + (Math.round(m / 1440) === 1 ? "" : "s"); }
+function renderDsNote() { $("miExtract").hidden = !!hasDs; $("dsNote").hidden = !hasDs; if (!hasDs) return; const t = dsAt ? ago(dsAt) : null; $("dsNote").innerHTML = (t === "just now" ? "Design system extracted just now." : t ? "Design system extracted " + t + " ago." : "Design system extracted earlier.") + ' Want to <a href="#" id="dsAgain">run it again</a>? <span id="dsState2"></span>'; }
 // ---- menu (full screen) + chat sessions
 let sessions = [], session = null;
 function openMenu(on) { $("menu").classList.toggle("on", on); if (on) renderSessions(); else setTimeout(() => $("box").focus(), 0); }
@@ -158,6 +163,7 @@ $("sessList").onclick = async e => {
   if (e.target.closest("#newChat")) { await api("/term/new"); await loadMsgs(); openMenu(false); return; }
   const o = e.target.closest("[data-open]"); if (o) { await api("/term/open", { id: o.dataset.open }); await loadMsgs(); openMenu(false); }
 };
+$("dsNote").onclick = e => { if (e.target.id === "dsAgain") { e.preventDefault(); dsRun(); } };
 $("miExtract").onclick = e => { if (e.altKey) { $("dsAdv").classList.toggle("on"); return; } dsRun(); };
 $("miExtract").oncontextmenu = e => { e.preventDefault(); $("dsAdv").classList.toggle("on"); };
 
@@ -199,7 +205,7 @@ drop.ondrop = e => { e.preventDefault(); drop.classList.remove("over"); if (e.da
 $("open").onclick = () => { window.open(BASE + "/", "_blank"); };
 
 // ---- chat history + queue widget
-let msgs = [], queued = 0, agent = null, hasDs = true;
+let msgs = [], queued = 0, agent = null, hasDs = true, dsAt = null;
 const working = () => !!agent && !['built', 'error', 'stopped'].includes(agent.state);
 const RET_SVG = '<svg viewBox="0 0 16 16"><path d="M13 3v6H3.5M6.5 6l-3 3 3 3"/></svg>', STOP_SVG = '<svg viewBox="0 0 16 16"><rect x="4" y="4" width="8" height="8" rx="1.5" fill="currentColor" stroke="none"/></svg>';
 const fmtDur = ms => { const s = Math.round(ms / 1000); return s < 60 ? s + "s" : s < 3600 ? Math.floor(s / 60) + "m " + (s % 60) + "s" : Math.floor(s / 3600) + "h " + Math.floor((s % 3600) / 60) + "m"; };
@@ -224,7 +230,7 @@ function render() {
   const lr = [...hist].reverse().find(m => m.from === "claude" && m.took); $("lastTook").textContent = lr ? fmtDur(lr.took) + " · prompt → reply" : "–";
   c.scrollTop = c.scrollHeight; renderComposer(); renderMini();
 }
-async function loadMsgs() { try { try { hasDs = !!(await (await fetch(BASE + "/status")).json()).hasDs; } catch (e) {} const j = await (await fetch(BASE + "/term")).json(); msgs = j.messages; agent = j.agent || null; sessions = j.sessions || []; session = j.session || null; render(); if ($("menu").classList.contains("on")) renderSessions(); } catch (e) {} }
+async function loadMsgs() { try { try { const st = await (await fetch(BASE + "/status")).json(); hasDs = !!st.hasDs; dsAt = st.dsAt || null; renderDsNote(); } catch (e) {} const j = await (await fetch(BASE + "/term")).json(); msgs = j.messages; agent = j.agent || null; sessions = j.sessions || []; session = j.session || null; render(); if ($("menu").classList.contains("on")) renderSessions(); } catch (e) {} }
 document.addEventListener("click", async e => {
   const g = e.target.closest("[data-go]"); if (g) { post({ type: "locate", id: g.dataset.go }); return; }
   const b = e.target.closest("[data-send],[data-del]"); if (!b) return;

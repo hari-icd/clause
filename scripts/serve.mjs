@@ -97,7 +97,7 @@ http.createServer(async (req, res) => {
   if (p === "/") { res.writeHead(200, { "content-type": "text/html; charset=utf-8" }); return res.end(readFileSync(resolve(root, "scripts/listing.html"), "utf8")); }
   if (p === "/tokens.css") { res.writeHead(200, { "content-type": "text/css" }); return res.end(readFileSync(resolve(root, "ds/tokens.css"))); }
   if (p === "/exports.json") return json(res, 200, listExports());
-  if (p === "/status") return json(res, 200, { plugin: clients.size > 0, version: state.version, hasDs: existsSync(resolve(root, "ds/components.json")) });
+  if (p === "/status") return json(res, 200, { plugin: clients.size > 0, version: state.version, hasDs: existsSync(resolve(root, "ds/components.json")), dsAt: existsSync(resolve(root, "ds/components.json")) ? statSync(resolve(root, "ds/components.json")).mtimeMs : null });
   if (p.startsWith("/export/")) {
     const f = resolve(EXPORTS, p.slice(8));
     if (!f.startsWith(EXPORTS) || !existsSync(f)) return json(res, 404, { error: "not found" });
