@@ -7,10 +7,10 @@
   svg { width:12px; height:12px; fill:none; stroke:currentColor; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round; display:block }
   .ib .ic { display:flex } .spin { animation:sp 1s linear infinite } @keyframes sp { to { transform:rotate(360deg) } }
   #statusBtn { display:none } body.collapsed #statusBtn { display:inline-flex !important } body.collapsed #menuBtn { display:none !important } #statusBtn, #statusBtn:hover { background:none !important; box-shadow:none !important; border-radius:0 !important; cursor:default }
-  #statusBtn .wave { display:inline-flex; gap:4px; align-items:center; height:16px } #statusBtn .wave i { width:5px; height:5px; border-radius:50%; background:var(--fg3) }
+  #statusBtn .wave { display:inline-flex; gap:3px; align-items:center; height:12px } #statusBtn .wave i { width:4px; height:4px; border-radius:50%; background:var(--fg3) }
   #statusBtn.run .wave i { background:var(--acc); animation:wv 1s ease-in-out infinite } #statusBtn.run .wave i:nth-child(2) { animation-delay:.15s } #statusBtn.run .wave i:nth-child(3) { animation-delay:.3s }
   #statusBtn.off .wave i { background:var(--warn) } #statusBtn.ok .wave i { background:var(--fg3) }
-  @keyframes wv { 0%,60%,100% { transform:translateY(0); opacity:.45 } 30% { transform:translateY(-4px); opacity:1 } }
+  @keyframes wv { 0%,60%,100% { transform:translateY(0); opacity:.45 } 30% { transform:translateY(-3px); opacity:1 } }
   .ib.corner { width:32px; height:32px; border-radius:0 0 0 8px } .ib.float.left { right:auto !important; left:0 !important; border-radius:0 0 8px 0 }
   body.collapsed > :not(.float) { display:none !important } body.collapsed, body.collapsed .float { background:var(--bg) } body.collapsed #collapse { border-radius:0 !important } body.collapsed #statusBtn { width:40px !important; right:0 !important } .ib.float { position:fixed !important; top:0; right:0; left:auto; z-index:6; background:none; color:var(--fg3) } .ib.float:hover { background:var(--bg2); color:var(--fg) }
   .srv { display:inline-flex; align-items:center; gap:2px; margin:0 6px; flex:none; color:var(--fg3) } .srv code { font:10px/1 ui-monospace, Menlo, monospace } .dot3 { width:6px; height:6px; border-radius:50%; background:var(--warn) } .dot3.on { background:var(--ok) }
