@@ -1171,6 +1171,13 @@
          "Icon": "true"
         },
         "icon": "@icon-close"
+       },
+       {
+        "has": "Settings",
+        "props": {
+         "Icon": "true"
+        },
+        "icon": "@icon-clock"
        }
       ]
      }
