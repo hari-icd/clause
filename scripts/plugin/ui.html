@@ -6,7 +6,11 @@
   b { font-weight:600 } .m { color:var(--fg2) } .s { color:var(--fg3) } .sm { font-size:10px; line-height:14px } a { color:inherit }
   svg { width:12px; height:12px; fill:none; stroke:currentColor; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round; display:block }
   .ib .ic { display:flex } .spin { animation:sp 1s linear infinite } @keyframes sp { to { transform:rotate(360deg) } }
-  #statusBtn { display:none } body.collapsed #statusBtn { display:inline-flex !important } body.collapsed #menuBtn { display:none !important } #statusBtn.run { color:var(--acc) } #statusBtn.ok { color:var(--ok) } #statusBtn.off { color:var(--warn) }
+  #statusBtn { display:none } body.collapsed #statusBtn { display:inline-flex !important } body.collapsed #menuBtn { display:none !important } #statusBtn, #statusBtn:hover { background:none !important; box-shadow:none !important; border-radius:0 !important; cursor:default }
+  #statusBtn .wave { display:inline-flex; gap:4px; align-items:center; height:16px } #statusBtn .wave i { width:5px; height:5px; border-radius:50%; background:var(--fg3) }
+  #statusBtn.run .wave i { background:var(--acc); animation:wv 1s ease-in-out infinite } #statusBtn.run .wave i:nth-child(2) { animation-delay:.15s } #statusBtn.run .wave i:nth-child(3) { animation-delay:.3s }
+  #statusBtn.off .wave i { background:var(--warn) } #statusBtn.ok .wave i { background:var(--fg3) }
+  @keyframes wv { 0%,60%,100% { transform:translateY(0); opacity:.45 } 30% { transform:translateY(-4px); opacity:1 } }
   .ib.corner { width:32px; height:32px; border-radius:0 0 0 8px } .ib.float.left { right:auto !important; left:0 !important; border-radius:0 0 8px 0 }
   body.collapsed > :not(.float) { display:none !important } body.collapsed { background:transparent } body.collapsed .float { background:var(--bg) } .ib.float { position:fixed !important; top:0; right:0; left:auto; z-index:6; background:none; color:var(--fg3) } .ib.float:hover { background:var(--bg2); color:var(--fg) }
   .srv { display:inline-flex; align-items:center; gap:2px; margin:0 6px; flex:none; color:var(--fg3) } .srv code { font:10px/1 ui-monospace, Menlo, monospace } .dot3 { width:6px; height:6px; border-radius:50%; background:var(--warn) } .dot3.on { background:var(--ok) }
@@ -145,15 +149,16 @@ const setTip = (id, t) => { const el = $(id); if (!el) return; el.dataset.tip = 
 let collapsed = false;
 const ICON_DOWN = '<svg viewBox="0 0 16 16"><path d="M4 6l4 4 4-4"/></svg>', ICON_UP = '<svg viewBox="0 0 16 16"><path d="M4 10l4-4 4 4"/></svg>';
 function setCollapsed(on) { collapsed = on; document.body.classList.toggle("collapsed", on); renderMini(); post({ type: "resize", w: on ? 72 : 320, h: on ? 32 : 520 }); try { localStorage.setItem("collapsed", on ? "1" : ""); } catch (e) {} if (!on) setTimeout(() => $("box").focus(), 0); }
-const SPIN = '<svg class="spin" viewBox="0 0 16 16"><circle cx="8" cy="8" r="5" stroke-opacity=".25"/><path d="M8 3a5 5 0 0 1 5 5"/></svg>', IDLE = '<svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="5"/><circle cx="8" cy="8" r="1.6" fill="currentColor" stroke="none"/></svg>';
+const WAVE = '<span class="wave"><i></i><i></i><i></i></span>';
 let online = false;
 const running = () => working() || (agent && agent.state === "building");
 function renderMini() {
   const b = $("statusBtn"); b.hidden = !collapsed; if (!collapsed) return;
   b.classList.remove("run", "ok", "off");
-  if (!online) { b.innerHTML = IDLE; b.classList.add("off"); setTip("statusBtn", "Server offline — run: npm run live"); }
-  else if (running()) { b.innerHTML = SPIN; b.classList.add("run"); setTip("statusBtn", agent && agent.text ? agent.text : "Working…"); }
-  else { b.innerHTML = IDLE; b.classList.add("ok"); setTip("statusBtn", "Idle — listening"); }
+  b.innerHTML = WAVE;
+  if (!online) { b.classList.add("off"); setTip("statusBtn", "Server offline — run: npm run live"); }
+  else if (running()) { b.classList.add("run"); setTip("statusBtn", agent && agent.text ? agent.text : "Working…"); }
+  else { b.classList.add("ok"); setTip("statusBtn", "Idle — listening"); }
 }
 $("collapse").onclick = () => setCollapsed(!collapsed); $("statusBtn").onclick = () => setCollapsed(false);
 try { if (localStorage.getItem("collapsed")) setCollapsed(true); } catch (e) {}

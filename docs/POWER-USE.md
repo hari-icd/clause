@@ -42,4 +42,4 @@ Living list of the tricks that make the loop fast. Every time we find a loophole
 - **Incremental rebuild**: top-level nodes whose JSON (plus catalog/runtime salt) is unchanged are moved from the previous frame instead of rebuilt (`es-hash` plugin data). Unchanged screen ≈ 60 ms; a content edit rebuilds only `main` (nav reused). Keep the nav / overlays as separate top-level children so they stay reusable.
 - Per-instance layer index (`idx`) + font preload: ops/texts no longer walk the instance per op.
 - Presence/stop: while Claude works the composer send button turns into ■ (Esc also stops); send icon is ↵. ⌄ collapse sits top-left (opposite ☰) and shrinks the window to just the two corner icons.
-- Collapsed = two icons: ⌃ expand (left) and a status icon (right): spinner while Claude works or a build runs, idle ring otherwise (red when the server is offline). Tooltip says what is running.
+- Collapsed = ⌃ expand (left) + a bare three-dot status on the right, no container: dots wave in blue while Claude works or a build runs, sit still and grey when idle, red when the server is offline.
