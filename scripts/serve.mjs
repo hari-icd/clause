@@ -44,8 +44,11 @@ async function exportHtml(name) {
 
 function rebuild(name) {
   try {
-    try { execFileSync("node", [resolve(root, "scripts/lint.mjs"), name], { encoding: "utf8", stdio: "pipe" }); }
-    catch (e) { throw new Error("lint failed:\n" + (e.stderr || e.stdout || e.message).trim()); }
+    // an editor may fire the watcher mid-write (half-written JSON): re-lint once after a short wait before calling it a failure
+    const lintOnce = () => { try { execFileSync("node", [resolve(root, "scripts/lint.mjs"), name], { encoding: "utf8", stdio: "pipe" }); return null; } catch (e) { return String(e.stderr || e.stdout || e.message).trim(); } };
+    let lintErr = lintOnce();
+    if (lintErr) { Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 450); lintErr = lintOnce(); }
+    if (lintErr) { const lines = lintErr.split("\n").map(l => l.trim()).filter(l => l && !/^✗/.test(l)); throw new Error(`${name}: ${lines[0] || "lint failed"}${lines.length > 1 ? ` (+${lines.length - 1} more)` : ""}\n${lintErr}`); }
     const screen = run("compile", name); screen.REPLACE = null; // plugin replaces by tag, not id
     screen.__v = Date.now();
     scenes[name] = screen;
