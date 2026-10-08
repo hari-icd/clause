@@ -21,7 +21,7 @@ const PORT = Number(process.env.PORT || 8787);
 const store = createStore(root);
 // agent presence for the plugin pane: reading → thinking/custom → building → built → (reply clears). Auto-clears after 15 min.
 let agent = null, agentT = null;
-function setAgent(state, text) { clearTimeout(agentT); agent = state ? { state, text: text || "", at: Date.now() } : null; if (agent) agentT = setTimeout(() => { agent = null; broadcast({ type: "agent" }); }, 15 * 60e3); broadcast({ type: "agent" }); }
+function setAgent(state, text, busy) { clearTimeout(agentT); if (!state) agent = null; else { const keep = agent ? agent.busy : false; agent = { state, text: text || "", at: Date.now(), busy: busy === undefined ? keep : busy }; agentT = setTimeout(() => { agent = null; broadcast({ type: "agent" }); }, 45 * 60e3); } broadcast({ type: "agent" }); }
 const EXPORTS = resolve(root, "exports");
 mkdirSync(EXPORTS, { recursive: true });
 let state = { version: 0, name: null, screen: null, error: null, at: null };
@@ -157,7 +157,7 @@ http.createServer(async (req, res) => {
     const o = req.headers.origin;
     if (o && o !== "null") { res.writeHead(403); return res.end(); }
     if (req.method === "GET" && p === "/term") return json(res, 200, { messages: store.list(), queued: store.queued(), agent, ...store.state() });
-    if (req.method === "GET" && p === "/inbox") { const peek = url.searchParams.get("peek"); const u = peek ? store.unread() : store.markRead(); if (!peek && u.length) { broadcast({ type: "term" }); setAgent("thinking", "Reading your " + (u.length === 1 ? "message" : u.length + " messages")); } return json(res, 200, { count: u.length, messages: u.map(m => ({ id: m.id, kind: m.kind, title: m.title, text: m.text })) }); }
+    if (req.method === "GET" && p === "/inbox") { const peek = url.searchParams.get("peek"); const u = peek ? store.unread() : store.markRead(); if (!peek && u.length) { broadcast({ type: "term" }); setAgent("thinking", "Reading your " + (u.length === 1 ? "message" : u.length + " messages"), true); } return json(res, 200, { count: u.length, messages: u.map(m => ({ id: m.id, kind: m.kind, title: m.title, text: m.text })) }); }
     if (req.method !== "POST" || req.headers["x-clause"] !== "1") return json(res, 403, { error: "POST with header x-clause: 1" });
     let b = {}; try { b = JSON.parse(await body(req)); } catch {}
     let out = { ok: true };
@@ -165,9 +165,9 @@ http.createServer(async (req, res) => {
     else if (p === "/term/edit") out.ok = store.edit(b.id, b.text);
     else if (p === "/term/remove") out.ok = store.remove(b.id);
     else if (p === "/term/send") out.sent = b.id ? store.sendOne(b.id) : store.send();
-    else if (p === "/term/reply") { out.message = store.reply(b.text || ""); setAgent(null); }
-    else if (p === "/term/status") setAgent(b.state || "thinking", b.text || "");
-    else if (p === "/term/stop") { if (agent) { store.addSystem({ title: "STOP", text: "The user pressed Stop in the plugin. Abandon the current task now, leave files in a consistent state, and reply with one line saying where you stopped." }); setAgent("stopped", "Stopping…"); } }
+    else if (p === "/term/reply") { out.message = store.reply(b.text || ""); if (b.working) setAgent("thinking", b.working === true ? "Still working…" : String(b.working), true); else setAgent(null); }
+    else if (p === "/term/status") { if (b.state === "idle" || b.state === "done") setAgent(null); else setAgent(b.state || "thinking", b.text || "", true); }
+    else if (p === "/term/stop") { if (agent) { store.addSystem({ title: "STOP", text: "The user pressed Stop in the plugin. Abandon the current task now, leave files in a consistent state, and reply with one line saying where you stopped." }); setAgent("stopped", "Stopping…", false); } }
     else if (p === "/term/discard") out.removed = store.discardQueued();
     else if (p === "/term/new") out.session = store.newSession();
     else if (p === "/term/open") out.ok = store.open(b.id);
@@ -177,12 +177,16 @@ http.createServer(async (req, res) => {
     else return json(res, 404, { error: "not found" });
     broadcast({ type: "term" }); return json(res, 200, out);
   }
-  if (p.startsWith("/inspect/") && req.method === "POST") {
-    const id = decodeURIComponent(p.slice(9)).replace("-", ":"); const base = Object.values(scenes)[0];
-    if (!base) return json(res, 500, { error: "no compiled scene to borrow PAGE_ID from" });
-    const screen = { PAGE_ID: base.PAGE_ID, TITLE: "_inspect", WIDTH: 1, HEIGHT: 1, SCREENS: [], VARS: {}, STYLES: {}, FONTS: [], COMPS: {}, INSPECT: id, __v: Date.now() };
-    state = { version: state.version + 1, name: "_inspect", screen, error: null, at: stamp() };
-    broadcast({ type: "state", version: state.version, name: "_inspect" }); return json(res, 200, { ok: true, queued: id });
+  if ((p.startsWith("/inspect/") || p.startsWith("/snap/") || p === "/pages") && req.method === "POST") {
+    // read-only jobs run by the plugin in WHATEVER file is open — no MCP access to that file needed
+    const base = Object.values(scenes)[0]; if (!base) return json(res, 500, { error: "no compiled scene to borrow keys from" });
+    const sc = { PAGE_ID: base.PAGE_ID, TITLE: "_job", WIDTH: 1, HEIGHT: 1, SCREENS: [], VARS: {}, STYLES: {}, FONTS: [], COMPS: {}, __v: Date.now() };
+    let label;
+    if (p === "/pages") { sc.PAGES = true; label = "pages"; }
+    else if (p.startsWith("/snap/")) { label = decodeURIComponent(p.slice(6)).replace("-", ":"); sc.SNAP = { id: label, w: Number(url.searchParams.get("w")) || 1400 }; }
+    else { label = decodeURIComponent(p.slice(9)).replace("-", ":"); sc.INSPECT = label; if (url.searchParams.get("depth")) sc.INSPECT_DEPTH = Number(url.searchParams.get("depth")); }
+    state = { version: state.version + 1, name: "_inspect", screen: sc, error: null, at: stamp() };
+    broadcast({ type: "state", version: state.version, name: "_inspect" }); return json(res, 200, { ok: true, queued: label });
   }
   if (p.startsWith("/push/") && req.method === "POST") { const n = decodeURIComponent(p.slice(6)); if (!existsSync(resolve(root, "screens", n + ".json"))) return json(res, 404, { error: "no such screen" }); rebuild(n); return json(res, 200, { ok: true, queued: n }); }
   if (p.startsWith("/dom/") && req.method === "POST") {

@@ -53,5 +53,5 @@ export function esCompile(cat, screen, name, screenIdx) {
   pick.forEach(([, t], i) => walk(t, "screen" + i + ":"));
   const base = tokenKey("bg-primary"); if (base) used.vars["bg-primary"] = base; // root frame default fill
   if (errors.length) throw new Error("screen JSON has " + errors.length + " problem(s):\n  " + errors.join("\n  "));
-  return { PAGE_ID: cat.page, PINNED_PAGE: screen.page || null, TITLE: screen.title || name || "Screen", WIDTH: screen.width || 1440, HEIGHT: screen.height || 0, REPLACE: screen.replace || null, VARS: used.vars, STYLES: used.styles, FONTS: used.fonts, COMPS: used.comps, SCREENS: pick };
+  return { PAGE_ID: cat.page, PINNED_PAGE: screen.page || null, SECTION: screen.section || null, TITLE: screen.title || name || "Screen", WIDTH: screen.width || 1440, HEIGHT: screen.height || 0, REPLACE: screen.replace || null, VARS: used.vars, STYLES: used.styles, FONTS: used.fonts, COMPS: used.comps, SCREENS: pick };
 }

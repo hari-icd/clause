@@ -157,7 +157,7 @@ let online = false, nudge = null, nudgeT = null;
 function setNudge(n) { nudge = n; clearTimeout(nudgeT); if (n) nudgeT = setTimeout(() => { nudge = null; renderNudge(); renderMini(); }, 9000); renderNudge(); renderMini(); }
 function renderNudge() { const el = $("nudge"); if (!nudge || collapsed) { el.hidden = true; return; } el.hidden = false; el.innerHTML = '<span class="grow">✓ Built <b>' + esc(nudge.name) + '</b> on page “' + esc(nudge.pageName) + '”</span><button id="nudgeGo">Go <svg viewBox="0 0 16 16" style="width:10px;height:10px"><path d="M6 3l5 5-5 5"/></svg></button>'; $("nudgeGo").onclick = goNudge; }
 function goNudge() { if (!nudge) return; post({ type: "goto", pageId: nudge.pageId, nodeId: nudge.nodeId }); setNudge(null); }
-const running = () => working() || (agent && agent.state === "building");
+const running = () => working();
 function renderMini() {
   const b = $("statusBtn"); b.hidden = !collapsed; if (!collapsed) return;
   b.classList.remove("run", "ok", "off", "nudge");
@@ -230,7 +230,7 @@ $("open").onclick = () => { window.open(BASE + "/", "_blank"); };
 
 // ---- chat history + queue widget
 let msgs = [], queued = 0, agent = null, hasDs = true, dsAt = null;
-const working = () => !!agent && !['built', 'error', 'stopped'].includes(agent.state);
+const working = () => !!agent && agent.busy && agent.state !== 'stopped';
 const RET_SVG = '<svg viewBox="0 0 16 16"><path d="M13 3v6H3.5M6.5 6l-3 3 3 3"/></svg>', STOP_SVG = '<svg viewBox="0 0 16 16"><rect x="4" y="4" width="8" height="8" rx="1.5" fill="currentColor" stroke="none"/></svg>';
 const fmtDur = ms => { const s = Math.round(ms / 1000); return s < 60 ? s + "s" : s < 3600 ? Math.floor(s / 60) + "m " + (s % 60) + "s" : Math.floor(s / 3600) + "h " + Math.floor((s % 3600) / 60) + "m"; };
 const hhmm = t => { const d = new Date(t); return d.getHours().toString().padStart(2, "0") + ":" + d.getMinutes().toString().padStart(2, "0"); };

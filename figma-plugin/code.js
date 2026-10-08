@@ -53,7 +53,7 @@ async function annMessage(msg) {
 // Runs in code.js (and testable through use_figma). Emits parts through `emit(part, data)`; nothing is written to the file.
 const dsSlug = s => String(s).split("/").pop().toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "x";
 const dsCut = (t, n) => { t = String(t).replace(/\s+/g, " ").trim(); return t.length > n ? t.slice(0, n - 1) + "…" : t; };
-const dsProps = defs => { const o = {}; for (const [k, v] of Object.entries(defs || {})) o[k.split("#")[0]] = v.type === "VARIANT" ? v.variantOptions : v.type; return o; };
+const dsProps = defs => { const o = {}; for (const [k, v] of Object.entries(defs || {})) o[k.split("#")[0].replace(/^[^A-Za-z0-9]+\s*/, "")] = v.type === "VARIANT" ? v.variantOptions : v.type; return o; };
 const dsVisTexts = (n, max) => n.findAll(t => t.type === "TEXT" && t.visible).slice(0, max).map(t => dsCut(t.characters, 25));
 const dsNested = n => [...new Set(n.findAll(x => x.type === "INSTANCE" && x.visible).map(x => x.name))].slice(0, 6);
 function dsSection(n) { for (let p = n.parent; p && p.type !== "PAGE"; p = p.parent) if (p.type === "SECTION") return p.name; return null; }
@@ -186,20 +186,25 @@ figma.ui.onmessage = async (msg) => {
   try {
     // page rule: a screen pinned with "page" in its JSON → that page; a screen already built somewhere → that page; otherwise the page the user is on.
     const hasTag = pg => pg.children.some(n => n.getPluginData && n.getPluginData("es-screen") === msg.name);
-    if (S.PINNED_PAGE) page = await figma.getNodeByIdAsync(S.PINNED_PAGE);
+    const JOB = !!(S.INSPECT || S.SNAP || S.PAGES);
+    if (JOB) page = figma.currentPage; else if (S.PINNED_PAGE) page = await figma.getNodeByIdAsync(S.PINNED_PAGE);
     if (!page) { const cur = figma.currentPage; const known = PAGE_OF[msg.name] && await figma.getNodeByIdAsync(PAGE_OF[msg.name]); if (known && known.type === "PAGE") page = known; else if (hasTag(cur)) page = cur; else { for (const pg of figma.root.children) { if (pg === cur) continue; await pg.loadAsync(); if (hasTag(pg)) { page = pg; break; } } } if (!page) page = cur; }
     PAGE_OF[msg.name] = page.id; const T_PAGE = Date.now() - t0;
     S.PAGE_ID = page.id; S.RT_HASH = msg.rtHash;
     if (page.id !== figma.currentPage.id) await page.loadAsync(); // build in the background: never move the user to another page
     before = new Set(page.children.map(n => n.id));
-    const old = page.children.filter(n => n.getPluginData("es-screen") === msg.name);
+    // frames of this screen may sit on the page or one level down inside a Section
+    const old = []; for (const c of page.children) { if (c.getPluginData("es-screen") === msg.name) old.push(c); else if (c.type === "SECTION") for (const g of c.children) if (g.getPluginData("es-screen") === msg.name) old.push(g); }
+    if (!S.SECTION && old.length && old[0].parent && old[0].parent.type === "SECTION") S.SECTION = old[0].parent.id;
+    // leftovers of earlier FAILED builds (Clause-made, never tagged as a finished screen, not the frame we are replacing) → remove, so retries never pile up
+    if (!JOB) { CACHE.pending = []; const oldIds = new Set(old.map(o => o.id)); const strays = []; const isStray = n => n.type === "FRAME" && !oldIds.has(n.id) && !n.getPluginData("es-screen") && (n.getPluginData("es-root") || n.getPluginData("es-sec")) && n.name === (S.TITLE || msg.name) ; for (const c of page.children) { if (isStray(c)) strays.push(c); else if (c.type === "SECTION") for (const g of c.children) if (isStray(g)) strays.push(g); } for (const n of strays) n.remove(); }
     // keep the previous frame alive during the build: the runtime reuses unchanged top-level nodes (e.g. the nav) from it, then removes it
     if (old.length) { S.POS = { x: Math.min(...old.map(o => o.x)), y: old[0].y }; S.OLD_ROOTS = old.map(o => o.id); for (const o of old) o.setPluginData("es-screen", ""); }
     let fn = null;
     if (msg.runtime) { if (RT_FN.hash !== msg.rtHash) { try { RT_FN.fn = new AF("figma", "SCREEN", "CACHE", msg.runtime); RT_FN.hash = msg.rtHash; } catch (e) { RT_FN.fn = null; } } fn = RT_FN.fn; }
     const res = fn ? await fn(figma, S, CACHE) : await runScreen(S);
-    for (const id of res.roots) { const n = await figma.getNodeByIdAsync(id); if (n) n.setPluginData("es-screen", msg.name); }
-    res.ms = Date.now() - t0; res.timing.page = T_PAGE; res.timing.wrapper = res.ms - res.timing.totalMs;
+    for (const id of res.roots) { const n = await figma.getNodeByIdAsync(id); if (n) n.setPluginData("es-screen", msg.name); } CACHE.pending = [];
+    res.ms = Date.now() - t0; if (res.timing) { res.timing.page = T_PAGE; res.timing.wrapper = res.ms - res.timing.totalMs; }
     figma.ui.postMessage({ type: "result", ok: true, name: msg.name, res, page: { id: page.id, name: page.name, current: figma.currentPage.id === page.id } });
     // HTML export: wait until saves go quiet, then extract once
     exTimer = setTimeout(async () => {
@@ -213,6 +218,9 @@ figma.ui.onmessage = async (msg) => {
   } catch (e) {
     let error = String((e && e.message) || e);
     if (page) for (const n of [...page.children]) if (!before.has(n.id)) n.remove();
+    // frames created inside a Section (or anywhere) by the failed attempt, and give the previous frame its tag back so the next build replaces it instead of duplicating
+    try { for (const id of (CACHE.pending || [])) { const n = await figma.getNodeByIdAsync(id); if (n) n.remove(); } CACHE.pending = []; } catch (e2) {}
+    try { for (const id of (S.OLD_ROOTS || [])) { const n = await figma.getNodeByIdAsync(id); if (n) n.setPluginData("es-screen", msg.name); } } catch (e2) {}
     if (/variable|style|component/i.test(error)) {
       try {
         const cols = await figma.teamLibrary.getAvailableLibraryVariableCollectionsAsync();
