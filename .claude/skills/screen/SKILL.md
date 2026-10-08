@@ -5,6 +5,9 @@ description: Create a product screen in Figma from a brief, reference image, or 
 
 # /screen
 
+> **Programmatic first** (CLAUDE.md): anything deterministic — reading a reference frame, token/prop lookup, bulk JSON edits, validation, diffing — is done by a script (`inspect.mjs`, `lint`, `node -e`, `jq`), never by hand in context.
+
+
 1. Read `ds/components.json` keys + `ds/design-rules.md` (skip if already in context this session).
 2. Pick a kebab name. List regions of the screen; for each, name the catalog component. Where none fits, note the primitive and why. Keep this list for the reply — do not write a separate file.
 3. Write `screens/<name>.json`. Multi-state → `"screens": [{"name","tree"}]`.

@@ -5,6 +5,9 @@ description: Apply messages and annotations sent from the Clause Assist Figma pl
 
 # /fix — work the Clause inbox
 
+> **Programmatic first** (CLAUDE.md): use `inspect.mjs --raw/--vs`, `jq`, `node -e` for every deterministic step; spend tokens only on judgement.
+
+
 1. `npm run inbox` (needs `npm run live` running). Each message is either free text or an **annotations batch** (numbered items with screen, node id, name, type/component, path, props/text/layout).
 2. For each item: the node **name** is the screen JSON `i` id in `screens/<screen>.json`; layers inside a component instance are edited with `ops` (`nodes` → `hide`/`props`/`style`/`color`/`maxLines`/`swap`). Never hand-edit Figma. If the item is vague, run `node scripts/inspect.mjs <nodeId> --raw` first; with a reference frame, `--vs`.
 2b. Any correction the user gives that could apply again ("use X instead of Y", "always…", "this is misplaced") goes into `ds/design-rules.md` → **Standing preferences** the same turn, in one line. Read that section before building anything.

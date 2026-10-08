@@ -3,7 +3,10 @@ name: onboard
 description: Set up Clause for a new user or a new design system. Use when the user says "set me up", "onboard", "new design system", "get started", or when ds/components.json is missing.
 ---
 
-# /onboard — Claude does everything except the Figma clicks
+# /onboard
+
+> **Programmatic first** (CLAUDE.md): setup, server start, extraction and the audit's counting/diffing are scripts; only the judgement calls and the user-facing words are yours.
+ — Claude does everything except the Figma clicks
 
 Goal: from a fresh clone to a first screen with the user doing only the 4 things Claude cannot (install Figma desktop + Claude Code, open their DS file, import the plugin manifest, run the plugin).
 
