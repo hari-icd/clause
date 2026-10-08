@@ -133,7 +133,7 @@ async function dsExtract(opts, emit, progress) {
 
 
 const AF = Object.getPrototypeOf(async function () {}).constructor;
-let CACHE = {}, CACHE_HASH = null, exTimer = null; let UI_SIZE = { w: 320, h: 520 }; const NUDGE = 16; const PAGE_OF = {}, RT_FN = { hash: null, fn: null }; // screen name → page id (skips the all-pages walk on rebuilds)
+let CACHE = {}, CACHE_HASH = null, exTimer = null; let UI_SIZE = { w: 320, h: 520 }; const PAGE_OF = {}, RT_FN = { hash: null, fn: null }; // screen name → page id (skips the all-pages walk on rebuilds)
 
 figma.ui.onmessage = async (msg) => {
   if (await annMessage(msg)) return;
@@ -153,10 +153,14 @@ figma.ui.onmessage = async (msg) => {
     figma.ui.resize(w, h); UI_SIZE = { w, h };
     if (before) {
       const z = figma.viewport.zoom || 1, dbg = { z, before, cw, ch, w, h };
-      // collapsing sits NUDGE px left of the expanded window's right edge (breathing room from the side panel); expanding gives it back
-      const nudge = w < cw ? -NUDGE : NUDGE;
-      const wantWx = before.wx + (cw - w) + nudge, wantWy = before.wy + (ch - h);
-      const tx = before.cx + ((cw - w) + nudge) / z, ty = before.cy + (ch - h) / z;
+      // anchor the bottom-right corner, then clamp the window inside the visible canvas (never over the side panels)
+      const vb = figma.viewport.bounds, M = 12;
+      const toWx = c => before.wx + z * (c - before.cx), toWy = c => before.wy + z * (c - before.cy);
+      const vl = toWx(vb.x), vr = toWx(vb.x + vb.width), vt = toWy(vb.y), vbm = toWy(vb.y + vb.height);
+      let wantWx = before.wx + (cw - w), wantWy = before.wy + (ch - h);
+      wantWx = Math.max(vl + M, Math.min(wantWx, vr - M - w)); wantWy = Math.max(vt + M, Math.min(wantWy, vbm - M - h));
+      dbg.view = { vl, vr, vt, vbm };
+      const tx = before.cx + (wantWx - before.wx) / z, ty = before.cy + (wantWy - before.wy) / z;
       try { figma.ui.reposition(tx, ty); } catch (e) { dbg.err = String(e && e.message || e); }
       await new Promise(r => setTimeout(r, 60));
       let after = await getPos(); dbg.target = { tx, ty }; dbg.after = after;
