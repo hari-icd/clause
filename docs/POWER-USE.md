@@ -41,4 +41,4 @@ Living list of the tricks that make the loop fast. Every time we find a loophole
 - `ops.nodes` `show: true` reveals a layer the component hides by default (e.g. a 5th menu item); text arrays then include it. Ops run BEFORE text overrides, so `has:` must match the component's original text.
 - **Incremental rebuild**: top-level nodes whose JSON (plus catalog/runtime salt) is unchanged are moved from the previous frame instead of rebuilt (`es-hash` plugin data). Unchanged screen ≈ 60 ms; a content edit rebuilds only `main` (nav reused). Keep the nav / overlays as separate top-level children so they stay reusable.
 - Per-instance layer index (`idx`) + font preload: ops/texts no longer walk the instance per op.
-- Presence/stop: while Claude works the composer send button turns into ■ (Esc also stops); send icon is ↵. ⌄ collapse sits top-left (opposite ☰) and shrinks the window to a one-line status bar.
+- Presence/stop: while Claude works the composer send button turns into ■ (Esc also stops); send icon is ↵. ⌄ collapse sits top-left (opposite ☰) and shrinks the window to just the two corner icons.

@@ -6,8 +6,7 @@
   b { font-weight:600 } .m { color:var(--fg2) } .s { color:var(--fg3) } .sm { font-size:10px; line-height:14px } a { color:inherit }
   svg { width:12px; height:12px; fill:none; stroke:currentColor; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round; display:block }
   .ib.corner { width:32px; height:32px; border-radius:0 0 0 8px } .ib.float.left { right:auto !important; left:0 !important; border-radius:0 0 8px 0 }
-  #mini { display:flex; align-items:center; gap:8px; height:36px; padding:0 4px 0 12px; font-weight:500 } #mini .grow { flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap } #mini .n { min-width:16px; padding:0 5px; border-radius:8px; background:var(--acc); color:#fff; font-size:10px; line-height:16px; text-align:center } #mini .n:empty { display:none }
-  body.collapsed > :not(#mini) { display:none !important } .ib.float { position:fixed !important; top:0; right:0; left:auto; z-index:6; background:none; color:var(--fg3) } .ib.float:hover { background:var(--bg2); color:var(--fg) }
+  body.collapsed > :not(.float) { display:none !important } body.collapsed { background:transparent } body.collapsed .float { background:var(--bg) } .ib.float { position:fixed !important; top:0; right:0; left:auto; z-index:6; background:none; color:var(--fg3) } .ib.float:hover { background:var(--bg2); color:var(--fg) }
   .srv { display:inline-flex; align-items:center; gap:2px; margin:0 6px; flex:none; color:var(--fg3) } .srv code { font:10px/1 ui-monospace, Menlo, monospace } .dot3 { width:6px; height:6px; border-radius:50%; background:var(--warn) } .dot3.on { background:var(--ok) }
   .dot2 { display:inline-block; width:6px; height:6px; border-radius:50%; background:var(--warn); margin:0 5px 1px 0 } .dot2.on { background:var(--ok) }
   #menuBtn .dot { position:absolute; right:2px; top:2px; width:6px; height:6px; border-radius:50%; background:var(--warn) } #menuBtn .dot.on { background:var(--ok) }
@@ -25,7 +24,7 @@
   pre { white-space:pre-wrap; margin:0; padding:6px 8px; border-radius:6px; background:var(--bg2); max-height:80px; overflow:auto; font:10px/14px ui-monospace, Menlo, monospace }
   #drop.over { background:var(--accbg) }
   button.b { height:24px; padding:0 8px; border-radius:6px; border:1px solid var(--line); background:var(--bg); color:var(--fg); font:inherit; font-weight:500; cursor:pointer; white-space:nowrap; display:inline-flex; align-items:center; gap:4px } button.b:hover { background:var(--bg2) } button.b.p { background:var(--acc); border-color:var(--acc); color:#fff } button.b:disabled { opacity:.4; cursor:default }
-  #chat { flex:1; overflow:auto; padding:36px 12px 10px; display:flex; flex-direction:column; gap:10px }
+  #chat { flex:1; overflow:auto; padding:12px 12px 10px; display:flex; flex-direction:column; gap:10px }
   .msg { max-width:92%; padding:6px 8px; border-radius:8px; white-space:pre-wrap; word-break:break-word } .msg.you { align-self:flex-end; background:var(--accbg); border-bottom-right-radius:2px } .msg.claude { align-self:flex-start; background:var(--bg2); border-bottom-left-radius:2px }
   .msg .h { display:flex; gap:6px; justify-content:space-between; color:var(--fg2); font-size:10px; margin-bottom:2px } .msg .h svg { width:11px; height:11px; display:inline-block; vertical-align:-2px; color:var(--fg3) } .msg .h svg.rd { color:var(--acc) }
   .msg.you .chip { background:#0b5cad; border-color:#0b5cad; color:#fff } .msg.you .chip i { color:#bcd9f7 }
@@ -74,7 +73,6 @@
     <pre id="log">Save a file in screens/ — the frame rebuilds here.</pre>
   </div>
 </div>
-<div id="mini" hidden><span class="dot3" id="dotm"></span><span id="miniTxt" class="grow">Clause</span><span class="n" id="miniQ"></span><button class="ib" id="expand" title="Expand"><svg viewBox="0 0 16 16"><path d="M4 10l4-4 4 4"/></svg></button></div>
 <div id="chat"></div>
 <div id="q">
   <div class="qh" id="qh"><svg id="qchev" viewBox="0 0 16 16"><path d="M4 6l4 4 4-4"/></svg><span id="qn">0 queued</span><span class="grow"></span><button class="ib" id="qSendAll" title="Send all [⏎]"><svg viewBox="0 0 16 16"><path d="M13 3v6H3.5M6.5 6l-3 3 3 3"/></svg></button><button class="ib" id="qDiscardAll" title="Discard all"><svg viewBox="0 0 16 16"><path d="M4 4l8 8M12 4l-8 8"/></svg></button></div>
@@ -138,16 +136,17 @@ document.addEventListener("mouseout", e => { const el = e.target.closest("[data-
 document.addEventListener("mousedown", tipHide); document.addEventListener("scroll", tipHide, true);
 const setTip = (id, t) => { const el = $(id); if (!el) return; el.dataset.tip = t; el.removeAttribute("title"); if (tipFor === el) tipShow(el); };
 
-// ---- collapse to a one-line bar
+// ---- collapse: window shrinks to just the two corner icons
 let collapsed = false;
-function setCollapsed(on) { collapsed = on; document.body.classList.toggle("collapsed", on); $("mini").hidden = !on; post({ type: "resize", w: on ? 240 : 320, h: on ? 36 : 520 }); try { localStorage.setItem("collapsed", on ? "1" : ""); } catch (e) {} if (!on) setTimeout(() => $("box").focus(), 0); renderMini(); }
-function renderMini() { if (!collapsed) return; $("miniQ").textContent = queued ? String(queued) : ""; const last = [...msgs].reverse().find(m => m.from === "claude"); $("miniTxt").textContent = agent ? (agent.text || "Working…") : last ? last.text.replace(/\s+/g, " ").slice(0, 60) : "Clause"; $("dotm").className = $("dot3").className; }
-$("collapse").onclick = () => setCollapsed(true); $("expand").onclick = () => setCollapsed(false); $("mini").ondblclick = () => setCollapsed(false);
+const ICON_DOWN = '<svg viewBox="0 0 16 16"><path d="M4 6l4 4 4-4"/></svg>', ICON_UP = '<svg viewBox="0 0 16 16"><path d="M4 10l4-4 4 4"/></svg>';
+function setCollapsed(on) { collapsed = on; document.body.classList.toggle("collapsed", on); $("collapse").innerHTML = on ? ICON_UP : ICON_DOWN; setTip("collapse", on ? "Expand" : "Collapse"); post({ type: "resize", w: on ? 72 : 320, h: on ? 32 : 520 }); try { localStorage.setItem("collapsed", on ? "1" : ""); } catch (e) {} if (!on) setTimeout(() => $("box").focus(), 0); }
+const renderMini = () => {};
+$("collapse").onclick = () => setCollapsed(!collapsed);
 try { if (localStorage.getItem("collapsed")) setCollapsed(true); } catch (e) {}
 // ---- menu (full screen) + chat sessions
 let sessions = [], session = null;
 function openMenu(on) { $("menu").classList.toggle("on", on); if (on) renderSessions(); else setTimeout(() => $("box").focus(), 0); }
-$("menuBtn").onclick = () => openMenu(true); $("menuClose").onclick = () => openMenu(false);
+$("menuBtn").onclick = () => { if (collapsed) setCollapsed(false); openMenu(true); }; $("menuClose").onclick = () => openMenu(false);
 document.addEventListener("keydown", e => { if (e.key === "Escape" && $("menu").classList.contains("on")) openMenu(false); });
 const when = t => { const d = Date.now() - t, m = Math.round(d / 60000); return m < 1 ? "now" : m < 60 ? m + "m" : m < 1440 ? Math.round(m / 60) + "h" : Math.round(m / 1440) + "d"; };
 function renderSessions() {
@@ -182,8 +181,8 @@ async function fromServer(sync) {
   } catch (e) {}
 }
 const es = new EventSource(BASE + "/events");
-es.onopen = () => { $("dot2").className = "dot2 on"; $("dot3").className = "dot3 on"; $("dotm").className = "dot3 on"; setTip("srv", "Clause server live · localhost:__PORT__"); $("conn").textContent = "live · localhost:__PORT__"; fromServer(true); loadMsgs(); };
-es.onerror = () => { $("dot2").className = "dot2"; $("dot3").className = "dot3"; $("dotm").className = "dot3"; setTip("srv", "Server offline — run: npm run live"); $("conn").textContent = "offline — npm run live"; };
+es.onopen = () => { $("dot2").className = "dot2 on"; $("dot3").className = "dot3 on"; setTip("srv", "Clause server live · localhost:__PORT__"); $("conn").textContent = "live · localhost:__PORT__"; fromServer(true); loadMsgs(); };
+es.onerror = () => { $("dot2").className = "dot2"; $("dot3").className = "dot3"; setTip("srv", "Server offline — run: npm run live"); $("conn").textContent = "offline — npm run live"; };
 es.onmessage = async e => {
   const m = JSON.parse(e.data);
   if (m.type === "state") { if (m.error) { log(m.error); post({ type: "notify", error: true, text: "Clause: " + m.error.split("\n")[0] }); return; } fromServer(); }
