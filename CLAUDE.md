@@ -4,7 +4,7 @@ You compose product screens as JSON. A script turns JSON into Figma frames of re
 
 ## Contract
 0. Read `docs/POWER-USE.md` (tricks that keep the loop fast; append new ones there the moment they land).
-1. Read `ds/components.json` (component keys, props, default variant, placeholder texts) and `ds/design-rules.md`. Never grep Figma or re-probe — the catalog is complete. No `ds/components.json` yet → run `/onboard` (you drive setup, server, extraction; the user only does the Figma clicks).
+1. Read `ds/design-rules.md` **Standing preferences** first — every correction the user ever gave; apply them unasked and append new ones the moment they arrive. Then `ds/components.json` (component keys, props, default variant, placeholder texts). Never grep Figma or re-probe — the catalog is complete. No `ds/components.json` yet → run `/onboard` (you drive setup, server, extraction; the user only does the Figma clicks).
 2. Write `screens/<kebab-name>.json`. Schema in `docs/SCHEMA.md`. Every component/text/box node needs a unique `i`.
 3. The PostToolUse hook lints on write. Fix until it prints `clean`.
 4. Build: `npm run live` is running and the Clause Assist plugin is started → saving `screens/<name>.json` rebuilds the frame in place within ~2s. No tool call needed. New screens land on the page the user is viewing in Figma; rebuilds stay where the screen already is (`"page"` in the JSON pins one).
