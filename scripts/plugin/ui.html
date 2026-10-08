@@ -5,7 +5,9 @@
   * { box-sizing:border-box } body { margin:0; font:11px/16px Inter, system-ui, sans-serif; color:var(--fg); background:var(--bg); display:flex; flex-direction:column; height:100vh; overflow:hidden; -webkit-font-smoothing:antialiased }
   b { font-weight:600 } .m { color:var(--fg2) } .s { color:var(--fg3) } .sm { font-size:10px; line-height:14px } a { color:inherit }
   svg { width:12px; height:12px; fill:none; stroke:currentColor; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round; display:block }
-  .ib.corner { width:32px; height:32px; border-radius:0 0 0 8px } .ib.float { position:fixed !important; top:0; right:0; left:auto; z-index:6; background:none; color:var(--fg3) } .ib.float:hover { background:var(--bg2); color:var(--fg) }
+  .ib.corner { width:32px; height:32px; border-radius:0 0 0 8px } .ib.float.left { right:auto !important; left:0 !important; border-radius:0 0 8px 0 }
+  #mini { display:flex; align-items:center; gap:8px; height:36px; padding:0 4px 0 12px; font-weight:500 } #mini .grow { flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap } #mini .n { min-width:16px; padding:0 5px; border-radius:8px; background:var(--acc); color:#fff; font-size:10px; line-height:16px; text-align:center } #mini .n:empty { display:none }
+  body.collapsed > :not(#mini) { display:none !important } .ib.float { position:fixed !important; top:0; right:0; left:auto; z-index:6; background:none; color:var(--fg3) } .ib.float:hover { background:var(--bg2); color:var(--fg) }
   .srv { display:inline-flex; align-items:center; gap:2px; margin:0 6px; flex:none; color:var(--fg3) } .srv code { font:10px/1 ui-monospace, Menlo, monospace } .dot3 { width:6px; height:6px; border-radius:50%; background:var(--warn) } .dot3.on { background:var(--ok) }
   .dot2 { display:inline-block; width:6px; height:6px; border-radius:50%; background:var(--warn); margin:0 5px 1px 0 } .dot2.on { background:var(--ok) }
   #menuBtn .dot { position:absolute; right:2px; top:2px; width:6px; height:6px; border-radius:50%; background:var(--warn) } #menuBtn .dot.on { background:var(--ok) }
@@ -30,6 +32,7 @@
   .msg.batch .t { max-height:56px; overflow:hidden } .msg.batch .t.open { max-height:none } .more { color:var(--acc); cursor:pointer; font-size:10px }
   .pres { align-self:flex-start; display:flex; align-items:center; gap:8px; padding:6px 10px; border-radius:8px; border-bottom-left-radius:2px; background:var(--bg2); color:var(--fg2) }
   .pres .dots { display:inline-flex; gap:3px } .pres .dots i { width:4px; height:4px; border-radius:50%; background:var(--fg3); animation:bl 1.2s infinite } .pres .dots i:nth-child(2) { animation-delay:.2s } .pres .dots i:nth-child(3) { animation-delay:.4s } @keyframes bl { 0%,80%,100% { opacity:.25 } 40% { opacity:1 } }
+  #send.stopmode { background:var(--fg); color:var(--bg) } #send.stopmode:hover { background:var(--warn); color:#fff }
   .pres svg { width:12px; height:12px } .pres .stop { margin-left:4px; height:18px; padding:0 6px; border-radius:5px; border:1px solid var(--line); background:var(--bg); color:var(--fg); font:inherit; font-size:10px; cursor:pointer } .pres .stop:hover { border-color:var(--warn); color:var(--warn) } .pres.stopped { color:var(--warn) } .pres.built { color:var(--ok) } .pres.error { color:var(--warn) }
   .sys { align-self:center; color:var(--fg3); font-size:10px; text-align:center; padding:2px 8px; max-width:95%; overflow:hidden; text-overflow:ellipsis; white-space:nowrap }
   #tip { position:fixed; z-index:20; pointer-events:none; background:#1e1e1e; color:#fff; box-shadow:0 2px 8px rgba(0,0,0,.35); font-size:10px; line-height:14px; padding:4px 7px; border-radius:5px; white-space:nowrap; opacity:0; transition:opacity .08s; max-width:260px; white-space:normal }
@@ -51,6 +54,7 @@
   .bar { display:flex; align-items:center; gap:2px } .bar .grow { flex:1; color:var(--fg3); font-size:10px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap }
   #toast { position:fixed; left:12px; right:40px; top:6px; background:var(--fg); color:var(--bg); padding:6px 10px; border-radius:6px; opacity:0; transition:opacity .15s; pointer-events:none; z-index:9 } #toast.on { opacity:1 }
 </style>
+<button class="ib corner float left" id="collapse" title="Collapse"><svg viewBox="0 0 16 16"><path d="M4 6l4 4 4-4"/></svg></button>
 <button class="ib corner float" id="menuBtn" title="Chats & tools"><svg viewBox="0 0 16 16"><path d="M2.5 4.5h11M2.5 8h11M2.5 11.5h11"/></svg></button>
 <div id="menu">
   <button class="ib corner" id="menuClose" title="Close [Esc]"><svg viewBox="0 0 16 16"><path d="M4 4l8 8M12 4l-8 8"/></svg></button>
@@ -70,9 +74,10 @@
     <pre id="log">Save a file in screens/ — the frame rebuilds here.</pre>
   </div>
 </div>
+<div id="mini" hidden><span class="dot3" id="dotm"></span><span id="miniTxt" class="grow">Clause</span><span class="n" id="miniQ"></span><button class="ib" id="expand" title="Expand"><svg viewBox="0 0 16 16"><path d="M4 10l4-4 4 4"/></svg></button></div>
 <div id="chat"></div>
 <div id="q">
-  <div class="qh" id="qh"><svg id="qchev" viewBox="0 0 16 16"><path d="M4 6l4 4 4-4"/></svg><span id="qn">0 queued</span><span class="grow"></span><button class="ib" id="qSendAll" title="Send all [⏎]"><svg viewBox="0 0 16 16"><path d="M8 13V3M3.5 7.5L8 3l4.5 4.5"/></svg></button><button class="ib" id="qDiscardAll" title="Discard all"><svg viewBox="0 0 16 16"><path d="M4 4l8 8M12 4l-8 8"/></svg></button></div>
+  <div class="qh" id="qh"><svg id="qchev" viewBox="0 0 16 16"><path d="M4 6l4 4 4-4"/></svg><span id="qn">0 queued</span><span class="grow"></span><button class="ib" id="qSendAll" title="Send all [⏎]"><svg viewBox="0 0 16 16"><path d="M13 3v6H3.5M6.5 6l-3 3 3 3"/></svg></button><button class="ib" id="qDiscardAll" title="Discard all"><svg viewBox="0 0 16 16"><path d="M4 4l8 8M12 4l-8 8"/></svg></button></div>
   <div class="ql" id="ql"></div>
 </div>
 <div id="comp">
@@ -83,7 +88,7 @@
       <button class="ib" id="ann" title="Attach the Figma selection to this message"><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="4.5"/><path d="M8 1v2.5M8 12.5V15M1 8h2.5M12.5 8H15"/></svg></button>
       <span class="grow" id="hint"></span><span class="srv" id="srv" title="Connecting to the Clause server…"><span class="dot3" id="dot3"></span><code>:__PORT__</code></span>
       <button class="ib" id="queue" title="Queue [⌘⏎]"><svg viewBox="0 0 16 16"><path d="M3 4h10M3 8h10M3 12h6"/></svg></button>
-      <button class="ib" id="send" title="Send now"><svg viewBox="0 0 16 16"><path d="M8 13V3M3.5 7.5L8 3l4.5 4.5"/></svg></button>
+      <button class="ib" id="send" title="Send now"><svg viewBox="0 0 16 16"><path d="M13 3v6H3.5M6.5 6l-3 3 3 3"/></svg></button>
     </div>
   </div>
 </div>
@@ -133,6 +138,12 @@ document.addEventListener("mouseout", e => { const el = e.target.closest("[data-
 document.addEventListener("mousedown", tipHide); document.addEventListener("scroll", tipHide, true);
 const setTip = (id, t) => { const el = $(id); if (!el) return; el.dataset.tip = t; el.removeAttribute("title"); if (tipFor === el) tipShow(el); };
 
+// ---- collapse to a one-line bar
+let collapsed = false;
+function setCollapsed(on) { collapsed = on; document.body.classList.toggle("collapsed", on); $("mini").hidden = !on; post({ type: "resize", w: on ? 240 : 320, h: on ? 36 : 520 }); try { localStorage.setItem("collapsed", on ? "1" : ""); } catch (e) {} if (!on) setTimeout(() => $("box").focus(), 0); renderMini(); }
+function renderMini() { if (!collapsed) return; $("miniQ").textContent = queued ? String(queued) : ""; const last = [...msgs].reverse().find(m => m.from === "claude"); $("miniTxt").textContent = agent ? (agent.text || "Working…") : last ? last.text.replace(/\s+/g, " ").slice(0, 60) : "Clause"; $("dotm").className = $("dot3").className; }
+$("collapse").onclick = () => setCollapsed(true); $("expand").onclick = () => setCollapsed(false); $("mini").ondblclick = () => setCollapsed(false);
+try { if (localStorage.getItem("collapsed")) setCollapsed(true); } catch (e) {}
 // ---- menu (full screen) + chat sessions
 let sessions = [], session = null;
 function openMenu(on) { $("menu").classList.toggle("on", on); if (on) renderSessions(); else setTimeout(() => $("box").focus(), 0); }
@@ -171,8 +182,8 @@ async function fromServer(sync) {
   } catch (e) {}
 }
 const es = new EventSource(BASE + "/events");
-es.onopen = () => { $("dot2").className = "dot2 on"; $("dot3").className = "dot3 on"; setTip("srv", "Clause server live · localhost:__PORT__"); $("conn").textContent = "live · localhost:__PORT__"; fromServer(true); loadMsgs(); };
-es.onerror = () => { $("dot2").className = "dot2"; $("dot3").className = "dot3"; setTip("srv", "Server offline — run: npm run live"); $("conn").textContent = "offline — npm run live"; };
+es.onopen = () => { $("dot2").className = "dot2 on"; $("dot3").className = "dot3 on"; $("dotm").className = "dot3 on"; setTip("srv", "Clause server live · localhost:__PORT__"); $("conn").textContent = "live · localhost:__PORT__"; fromServer(true); loadMsgs(); };
+es.onerror = () => { $("dot2").className = "dot2"; $("dot3").className = "dot3"; $("dotm").className = "dot3"; setTip("srv", "Server offline — run: npm run live"); $("conn").textContent = "offline — npm run live"; };
 es.onmessage = async e => {
   const m = JSON.parse(e.data);
   if (m.type === "state") { if (m.error) { log(m.error); post({ type: "notify", error: true, text: "Clause: " + m.error.split("\n")[0] }); return; } fromServer(); }
@@ -190,6 +201,8 @@ $("open").onclick = () => { window.open(BASE + "/", "_blank"); };
 
 // ---- chat history + queue widget
 let msgs = [], queued = 0, agent = null, hasDs = true;
+const working = () => !!agent && !['built', 'error', 'stopped'].includes(agent.state);
+const RET_SVG = '<svg viewBox="0 0 16 16"><path d="M13 3v6H3.5M6.5 6l-3 3 3 3"/></svg>', STOP_SVG = '<svg viewBox="0 0 16 16"><rect x="4" y="4" width="8" height="8" rx="1.5" fill="currentColor" stroke="none"/></svg>';
 const fmtDur = ms => { const s = Math.round(ms / 1000); return s < 60 ? s + "s" : s < 3600 ? Math.floor(s / 60) + "m " + (s % 60) + "s" : Math.floor(s / 3600) + "h " + Math.floor((s % 3600) / 60) + "m"; };
 const hhmm = t => { const d = new Date(t); return d.getHours().toString().padStart(2, "0") + ":" + d.getMinutes().toString().padStart(2, "0"); };
 function chipsOf(m) { return (m.targets || []).map(t => '<span class="chip sm go" data-go="' + t.id + '"><b>' + esc(t.name) + "</b><i>" + esc(t.component || (t.type || "").toLowerCase()) + "</i></span>").join(""); }
@@ -197,7 +210,7 @@ function render() {
   const q = msgs.filter(m => m.status === "queued"), hist = msgs.filter(m => m.status !== "queued");
   queued = q.length;
   $("q").classList.toggle("on", q.length > 0); $("qn").textContent = q.length + " queued";
-  $("ql").innerHTML = q.map(m => '<div class="qi">' + (m.targets && m.targets.length ? '<div class="chips">' + chipsOf(m) + "</div>" : "") + '<div class="tx">' + esc(m.note || m.text) + '</div><span class="ops"><button class="ib" data-send="' + m.id + '" title="Send"><svg viewBox="0 0 16 16"><path d="M8 13V3M3.5 7.5L8 3l4.5 4.5"/></svg></button><button class="ib" data-del="' + m.id + '" title="Discard"><svg viewBox="0 0 16 16"><path d="M4 4l8 8M12 4l-8 8"/></svg></button></span></div>').join("");
+  $("ql").innerHTML = q.map(m => '<div class="qi">' + (m.targets && m.targets.length ? '<div class="chips">' + chipsOf(m) + "</div>" : "") + '<div class="tx">' + esc(m.note || m.text) + '</div><span class="ops"><button class="ib" data-send="' + m.id + '" title="Send"><svg viewBox="0 0 16 16"><path d="M13 3v6H3.5M6.5 6l-3 3 3 3"/></svg></button><button class="ib" data-del="' + m.id + '" title="Discard"><svg viewBox="0 0 16 16"><path d="M4 4l8 8M12 4l-8 8"/></svg></button></span></div>').join("");
   const c = $("chat");
   if (!hasDs && !dsBusy) { c.innerHTML = '<div class="onb"><b>Start by extracting your design system</b><div class="s sm">One click reads every page + enabled library of this file and writes the catalog Claude builds from.</div><ol class="steps sm"><li>Make sure this file\'s team libraries are enabled</li><li>Click extract (1–3 min, progress shows here)</li><li>Claude audits the result and says what to build first</li></ol><button class="b p wide" id="onbGo">Extract components &amp; tokens</button></div>'; $("onbGo").onclick = dsRun; return; }
   if (!hist.length) c.innerHTML = '<div class="empty">Select layers in Figma, write what should change, ⏎ to send · ⌘⏎ to queue.</div>';
@@ -208,9 +221,9 @@ function render() {
     const took = m.from === "claude" && m.took ? '<span class="took" title="From your send to this reply">' + fmtDur(m.took) + "</span> " : "";
     return '<div class="msg ' + m.from + '"><div class="h"><span>' + (m.from === "you" ? "you" : "Claude") + "</span><span>" + took + tick + hhmm(m.t) + "</span></div>" + body + "</div>";
   }).join("");
-  if (agent) { const ic = agent.state === "built" ? '<svg viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7"/></svg>' : agent.state === "error" ? '<svg viewBox="0 0 16 16"><path d="M4 4l8 8M12 4l-8 8"/></svg>' : '<span class="dots"><i></i><i></i><i></i></span>'; const label = agent.text || { thinking: "Thinking…", inspecting: "Inspecting the frame…", building: "Rebuilding…", built: "Built", error: "Something failed" }[agent.state] || "Working…"; const stoppable = !["built", "error", "stopped"].includes(agent.state); c.insertAdjacentHTML("beforeend", '<div class="pres ' + esc(agent.state) + '">' + ic + "<span>" + esc(label) + "</span>" + (stoppable ? '<button class="stop" id="stopBtn" title="Stop Claude">■ Stop</button>' : "") + "</div>"); if (stoppable) $("stopBtn").onclick = async () => { $("stopBtn").disabled = true; $("stopBtn").textContent = "stopping…"; try { await api("/term/stop"); } catch (e) {} }; }
+  if (agent) { const ic = agent.state === "built" ? '<svg viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7"/></svg>' : agent.state === "error" ? '<svg viewBox="0 0 16 16"><path d="M4 4l8 8M12 4l-8 8"/></svg>' : '<span class="dots"><i></i><i></i><i></i></span>'; const label = agent.text || { thinking: "Thinking…", inspecting: "Inspecting the frame…", building: "Rebuilding…", built: "Built", error: "Something failed" }[agent.state] || "Working…"; c.insertAdjacentHTML("beforeend", '<div class="pres ' + esc(agent.state) + '">' + ic + "<span>" + esc(label) + "</span></div>"); }
   const lr = [...hist].reverse().find(m => m.from === "claude" && m.took); $("lastTook").textContent = lr ? fmtDur(lr.took) + " · prompt → reply" : "–";
-  c.scrollTop = c.scrollHeight; renderComposer();
+  c.scrollTop = c.scrollHeight; renderComposer(); renderMini();
 }
 async function loadMsgs() { try { try { hasDs = !!(await (await fetch(BASE + "/status")).json()).hasDs; } catch (e) {} const j = await (await fetch(BASE + "/term")).json(); msgs = j.messages; agent = j.agent || null; sessions = j.sessions || []; session = j.session || null; render(); if ($("menu").classList.contains("on")) renderSessions(); } catch (e) {} }
 document.addEventListener("click", async e => {
@@ -232,7 +245,8 @@ function renderComposer() {
   $("selrow").querySelectorAll(".chip").forEach(c => c.remove()); $("selhint").hidden = t.length > 0;
   for (const n of t) { const c = document.createElement("span"); c.className = "chip go"; c.dataset.go = n.id; c.innerHTML = "<b>" + esc(n.name) + "</b><i>" + esc(n.component || n.type.toLowerCase()) + (n.screen ? "" : " ?") + '</i><a data-x="' + n.id + '" title="leave out">✕</a>'; $("selrow").appendChild(c); }
   const has = $("box").value.trim().length > 0;
-  $("queue").disabled = !has; $("send").disabled = !has;
+  $("queue").disabled = !has;
+  const w = working(); $("send").classList.toggle("stopmode", w); $("send").innerHTML = w ? STOP_SVG : RET_SVG; $("send").disabled = w ? false : !has; setTip("send", w ? "Stop Claude [Esc]" : "Send now");
   $("hint").textContent = annOn ? (t.length ? t.length + " layer" + (t.length === 1 ? "" : "s") + (t[0].screen ? " · " + t[0].screen : "") + (t.some(n => !n.screen) ? " · ? not Clause-built" : "") : "") : "";
 }
 $("selrow").onclick = e => { const x = e.target.dataset.x; if (x) { e.stopPropagation(); dropped.add(x); renderComposer(); } };
@@ -250,7 +264,9 @@ async function submit(sendNow) {
   try { const r = await api("/term/add", b); if (sendNow) { await api("/term/send", { id: r.message.id }); toast("Sent — Claude picks it up"); } } catch (e) { return toast("Server offline — npm run live"); }
   $("box").value = ""; $("box").style.height = ""; dropped = new Set(sel.map(n => n.id)); loadMsgs();
 }
-$("queue").onclick = () => submit(false); $("send").onclick = () => submit(true);
+$("queue").onclick = () => submit(false);
+$("send").onclick = async () => { if (working()) { $("send").disabled = true; try { await api("/term/stop"); } catch (e) {} return; } submit(true); };
+document.addEventListener("keydown", e => { if (e.key === "Escape" && working() && !$("menu").classList.contains("on")) { e.preventDefault(); $("send").click(); } });
 $("box").oninput = () => { const b = $("box"); b.style.height = ""; b.style.height = Math.min(96, b.scrollHeight) + "px"; renderComposer(); };
 $("box").onkeydown = e => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); if (e.metaKey || e.ctrlKey) submit(false); else sendAllWithDraft(); } };
 async function sendAllWithDraft() { if ($("box").value.trim()) { const b = await build(); if (!b) return; try { await api("/term/add", b); } catch (e) { return toast("Server offline — npm run live"); } $("box").value = ""; $("box").style.height = ""; dropped = new Set(sel.map(n => n.id)); } if (!queued && !msgs.some(m => m.status === "queued")) { await loadMsgs(); } const r = await api("/term/send"); toast(r.sent ? "Sent " + r.sent : "Nothing to send"); loadMsgs(); }
