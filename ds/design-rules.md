@@ -33,3 +33,14 @@ Short on purpose. Grows only from real screens that went wrong.
 - Check the 172-component catalog and `list-item*` variants BEFORE composing card rows from primitives.
 
 - Search bar = `input-field-outline` (Size lg, Type "Icon leading", Label/Hint off, Icon swap @icon-search-md, placeholder via `text` array). No dedicated search component exists.
+
+## Standing preferences (from plugin feedback — apply without being asked)
+- Menus: every row in a dropdown menu gets an icon, or none do. Never mixed.
+- Overlays (menus, pickers) sit anchored under the control that opens them (⋯, split chevron), not floating elsewhere.
+- Prefer molecules over atom stacks: `dropdown-menu`, `split-button-brand`, `list-item-cardified`, `routine-card`, `project-header`, `form-header`, `add-source`, `input-field-outline` (search). Check the catalog *and* the Routines/Chat pages for a local component before composing.
+- Tables: right-align numeric/date columns (`ops align:right`), inset the table 12px, no fill on header cells (`bg:"none"`).
+- Lists/rows of settings or options are `list-item-cardified`, not bordered primitives.
+- Copy: B2B SaaS names (Acme Corp, SOC 2, Salesforce → HubSpot…), Indian owners, 2026 dates.
+- Status in tables: `pill-squared` Pill Clear with dot colour (Success/Error/Gray) until the DS gets check/alert icons.
+- Breadcrumb top bar: `bg:"none"`, cost pill hidden unless the screen is a chat.
+- Avatars in card footers: xxs.
