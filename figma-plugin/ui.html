@@ -296,6 +296,7 @@ async function sendAllWithDraft() { if ($("box").value.trim()) { const b = await
 onmessage = async (e) => {
   const m = e.data.pluginMessage; if (!m) return;
   if (m.type === "sel") { sel = m.nodes; dropped = new Set([...dropped].filter(id => sel.some(n => n.id === id))); renderComposer(); return; }
+  if (m.type === "pos-debug") { try { fetch(BASE + "/domerror", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ name: "window-position", error: JSON.stringify(m.dbg) }) }); } catch (e) {} return; }
   if (m.type === "prompt") { if (promptWait) { const f = promptWait; promptWait = null; f(m); } return; }
   if (m.type === "ds-progress") { log(m.text); const o = $("onbProg"); if (o) o.textContent = m.text; return; }
   if (m.type === "ds-part") { if (dsParts) dsParts[m.part] = m.data; return; }

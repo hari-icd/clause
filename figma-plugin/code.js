@@ -133,7 +133,7 @@ async function dsExtract(opts, emit, progress) {
 
 
 const AF = Object.getPrototypeOf(async function () {}).constructor;
-let CACHE = {}, CACHE_HASH = null, exTimer = null; let UI_SIZE = { w: 320, h: 520 }; const PAGE_OF = {}, RT_FN = { hash: null, fn: null }; // screen name → page id (skips the all-pages walk on rebuilds)
+let CACHE = {}, CACHE_HASH = null, exTimer = null; let UI_SIZE = { w: 320, h: 520 }; const NUDGE = 16; const PAGE_OF = {}, RT_FN = { hash: null, fn: null }; // screen name → page id (skips the all-pages walk on rebuilds)
 
 figma.ui.onmessage = async (msg) => {
   if (await annMessage(msg)) return;
@@ -145,11 +145,27 @@ figma.ui.onmessage = async (msg) => {
     return;
   }
   if (msg.type === "resize") {
-    // keep the window's bottom-right corner where it is while it grows/shrinks (resize alone anchors the top-left)
+    // reposition() takes CANVAS coordinates while the window size is in screen px (measured: windowSpace = origin + zoom × canvas).
+    // So: read the window position, resize (anchors top-left), then move by the size delta converted px → canvas units (÷ zoom); verify and correct once.
     const w = Math.round(msg.w), h = Math.round(msg.h), cw = UI_SIZE.w, ch = UI_SIZE.h;
-    let pos = null; if (msg.anchor === "br") { try { pos = await figma.ui.getPosition(); } catch (e) {} }
+    const getPos = async () => { try { const p = await figma.ui.getPosition(); return p && p.windowSpace && p.canvasSpace ? { wx: p.windowSpace.x, wy: p.windowSpace.y, cx: p.canvasSpace.x, cy: p.canvasSpace.y } : null; } catch (e) { return null; } };
+    const before = msg.anchor === "br" ? await getPos() : null;
     figma.ui.resize(w, h); UI_SIZE = { w, h };
-    if (pos && pos.windowSpace) { try { figma.ui.reposition(Math.max(0, Math.round(pos.windowSpace.x + (cw - w))), Math.max(0, Math.round(pos.windowSpace.y + (ch - h)))); } catch (e) {} }
+    if (before) {
+      const z = figma.viewport.zoom || 1, dbg = { z, before, cw, ch, w, h };
+      // collapsing sits NUDGE px left of the expanded window's right edge (breathing room from the side panel); expanding gives it back
+      const nudge = w < cw ? -NUDGE : NUDGE;
+      const wantWx = before.wx + (cw - w) + nudge, wantWy = before.wy + (ch - h);
+      const tx = before.cx + ((cw - w) + nudge) / z, ty = before.cy + (ch - h) / z;
+      try { figma.ui.reposition(tx, ty); } catch (e) { dbg.err = String(e && e.message || e); }
+      await new Promise(r => setTimeout(r, 60));
+      let after = await getPos(); dbg.target = { tx, ty }; dbg.after = after;
+      if (after && (Math.abs(after.wx - wantWx) > 2 || Math.abs(after.wy - wantWy) > 2)) {
+        const fx = tx + (wantWx - after.wx) / z, fy = ty + (wantWy - after.wy) / z;
+        try { figma.ui.reposition(fx, fy); } catch (e) {} await new Promise(r => setTimeout(r, 60)); dbg.fix = { fx, fy }; dbg.final = await getPos();
+      }
+      figma.ui.postMessage({ type: "pos-debug", dbg });
+    }
     return;
   }
   if (msg.type !== "build") return;
