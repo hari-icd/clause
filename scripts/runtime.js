@@ -297,6 +297,10 @@ const wanted = new Set(SCREENS.map(([nm]) => TITLE + (SCREENS.length > 1 ? " —
 const T_RM = Date.now(); const OLD = new Set(SCREEN.OLD_ROOTS || []);
 const stale = page.children.filter(n => n.type === "FRAME" && wanted.has(n.name) && !OLD.has(n.id));
 if (stale.length) { x = Math.min(...stale.map(n => n.x)); replaced = true; for (const n of stale) n.remove(); }
+// sweep leftovers of earlier FAILED builds of this screen (Clause-made, never finished/tagged, not the frame being replaced) — works even with an older plugin wrapper
+{ const secN = SCREEN.SECTION ? await figma.getNodeByIdAsync(SCREEN.SECTION) : null; const pools = [page.children]; if (secN && secN.children) pools.push(secN.children); let swept = 0;
+  for (const pool of pools) for (const n of [...pool]) if (n.type === "FRAME" && !OLD.has(n.id) && !n.getPluginData("es-screen") && (n.getPluginData("es-root") || n.getPluginData("es-sec")) && n.name === TITLE) { n.remove(); swept++; }
+  if (swept) warnings.push("removed " + swept + " leftover frame(s) from earlier failed builds"); }
 const oldRoots = []; for (const id of OLD) { const n = await figma.getNodeByIdAsync(id); if (n) oldRoots.push(n); }
 // reuse index: top-level children of the previous build, by name → { node, hash }
 const REUSE = new Map(); for (const r of oldRoots) for (const ch of r.children) { const h = ch.getPluginData("es-hash"); if (h) REUSE.set(ch.getPluginData("es-i") || ch.name, { node: ch, hash: h }); }
