@@ -1,0 +1,107 @@
+{
+ "title": "Announcements — landing",
+ "ds": "ds/files/announcements",
+ "page": "13157:51469",
+ "section": "13149:51550",
+ "height": 900,
+ "tree": {
+  "t": "row",
+  "i": "root",
+  "gap": "none",
+  "clip": true,
+  "children": [
+   {
+    "c": "main-nav",
+    "i": "nav",
+    "p": {
+     "types": "collapsed"
+    },
+    "fill": "y"
+   },
+   {
+    "t": "stack",
+    "i": "main",
+    "grow": true,
+    "fill": "y",
+    "gap": "none",
+    "bg": "bg-primary",
+    "children": [
+     {
+      "t": "row",
+      "i": "topbar",
+      "fill": "x",
+      "h": 40,
+      "align": "center",
+      "children": [
+       {
+        "c": "es-breadcrumb",
+        "i": "crumb",
+        "fill": "x",
+        "p": {
+         "Variant": "with Icon",
+         "Actions": "false",
+         "AI assist button": "false",
+         "Avatar Group": "false"
+        },
+        "text": [
+         "Announcements",
+         "All announcements"
+        ],
+        "bg": "none"
+       }
+      ]
+     },
+     {
+      "t": "stack",
+      "i": "empty",
+      "grow": true,
+      "fill": "x",
+      "align": "center",
+      "justify": "center",
+      "gap": "2xl",
+      "children": [
+       {
+        "t": "stack",
+        "i": "copy",
+        "gap": "md",
+        "align": "center",
+        "children": [
+         {
+          "t": "text",
+          "i": "title",
+          "content": "Share news with the people who need it",
+          "style": "Display sm/Regular",
+          "color": "text-primary",
+          "align": "center"
+         },
+         {
+          "t": "text",
+          "i": "sub",
+          "content": "It shows on the home page of the people you choose, until the date you set.",
+          "style": "Text sm/Regular",
+          "color": "text-secondary",
+          "align": "center"
+         }
+        ]
+       },
+       {
+        "c": "button-brand",
+        "i": "btn-new",
+        "p": {
+         "Size": "md",
+         "Hierarchy": "Primary",
+         "Icon leading": "true",
+         "Icon leading swap": "@icon-plus",
+         "Icon trailing": "false"
+        },
+        "text": {
+         "Button": "New announcement"
+        }
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ }
+}

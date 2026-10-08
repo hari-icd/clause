@@ -17,7 +17,7 @@ The SessionStart hook prints "Clause session state" and the first actions. Follo
 2. **Unread messages first.** `npm run inbox` → handle with `/fix` → `npm run reply`. A STOP event outranks everything.
 3. **No catalog → `/onboard`.** Nothing else until `ds/` exists.
 4. **Corrections are memory.** Read `ds/design-rules.md` → *Standing preferences* before building; append every new correction the same turn, one line, generalised.
-5. **Show presence.** `npm run status -- "<what you're doing>"` before any multi-step work; `npm run reply` clears it. Tool results do not reach the user — the pane does.
+5. **Show presence.** The pane animates from the moment you read the inbox until you finish: builds update its text but never stop it. Use `npm run status -- "<what you're doing>"` before multi-step work, `npm run reply -- --working "…"` for an interim reply that keeps it running, and a plain `npm run reply` only when truly done (that clears it). Tool results do not reach the user — the pane does.
 6. **Verify, don't claim.** Every build: `curl -s localhost:8787/result` (any warning = bug; fix before replying), screenshot the frame, compare with the reference. Say what is still different, including DS gaps (missing icons/components).
 7. **Reply short, in the pane.** One line per item: done / not done + why. Lead with the result. At most one question.
 8. **Molecules before atoms.** Search the catalog and the file's component pages (Routines, Chat…) for a ready component before composing primitives; add missing ones to `ds/components.json` by main-component id.

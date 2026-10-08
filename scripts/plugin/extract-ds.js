@@ -2,7 +2,7 @@
 // Runs in code.js (and testable through use_figma). Emits parts through `emit(part, data)`; nothing is written to the file.
 const dsSlug = s => String(s).split("/").pop().toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "x";
 const dsCut = (t, n) => { t = String(t).replace(/\s+/g, " ").trim(); return t.length > n ? t.slice(0, n - 1) + "…" : t; };
-const dsProps = defs => { const o = {}; for (const [k, v] of Object.entries(defs || {})) o[k.split("#")[0]] = v.type === "VARIANT" ? v.variantOptions : v.type; return o; };
+const dsProps = defs => { const o = {}; for (const [k, v] of Object.entries(defs || {})) o[k.split("#")[0].replace(/^[^A-Za-z0-9]+\s*/, "")] = v.type === "VARIANT" ? v.variantOptions : v.type; return o; };
 const dsVisTexts = (n, max) => n.findAll(t => t.type === "TEXT" && t.visible).slice(0, max).map(t => dsCut(t.characters, 25));
 const dsNested = n => [...new Set(n.findAll(x => x.type === "INSTANCE" && x.visible).map(x => x.name))].slice(0, 6);
 function dsSection(n) { for (let p = n.parent; p && p.type !== "PAGE"; p = p.parent) if (p.type === "SECTION") return p.name; return null; }

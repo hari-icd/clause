@@ -10,8 +10,11 @@ const arg = process.argv[2];
 if (!arg) { console.error("usage: lint.mjs <screen-name|path>"); process.exit(2); }
 const file = arg.endsWith(".json") ? resolve(arg) : resolve(root, "screens", `${arg}.json`);
 
-const comps = JSON.parse(readFileSync(resolve(root, "ds/components.json"), "utf8"));
-const vars = JSON.parse(readFileSync(resolve(root, "ds/variable-keys.json"), "utf8"));
+// a screen may target another file's catalog: "ds": "ds/files/<name>" (default "ds")
+let screenPre = {}; try { screenPre = JSON.parse(readFileSync(file, "utf8")); } catch (e) {}
+const DS = screenPre.ds ? String(screenPre.ds).replace(/\.\.|^\//g, "") : "ds";
+const comps = JSON.parse(readFileSync(resolve(root, DS, "components.json"), "utf8"));
+const vars = JSON.parse(readFileSync(resolve(root, DS, "variable-keys.json"), "utf8"));
 const byKey = new Map([...comps.local, ...comps.library].map(c => [c.key, c]));
 const spacing = new Set(Object.keys(vars.spacing).map(k => k.replace(/^spacing-/, "")));
 const radius = new Set(Object.keys(vars.radius).map(k => k.replace(/^radius-/, "")));

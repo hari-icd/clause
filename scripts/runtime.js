@@ -1,7 +1,7 @@
 // ES DS builder runtime. Runs inside Figma via the loader emitted by scripts/build.mjs.
 // Locals provided by loader: figma, SCREEN. Do not edit generated copies in the Figma file — run build.mjs --install.
 const { VARS, STYLES, FONTS, COMPS, PAGE_ID, TITLE, WIDTH, HEIGHT, REPLACE, SCREENS, POS } = SCREEN;
-const page = await figma.getNodeByIdAsync(PAGE_ID); if (page.id !== figma.currentPage.id) await page.loadAsync(); // never switch the user's page
+const page = SCREEN.INSPECT || SCREEN.SNAP || SCREEN.PAGES ? figma.currentPage : await figma.getNodeByIdAsync(PAGE_ID); if (page.id !== figma.currentPage.id) await page.loadAsync(); // never switch the user's page
 const C = (typeof CACHE !== "undefined" && CACHE) || {};
 const vcache = C.v || (C.v = {}), scache = C.s || (C.s = {}), SETS = C.sets || (C.sets = {});
 function V(name) { return vcache[name] || (vcache[name] = figma.variables.importVariableByKeyAsync(VARS[name])); }
@@ -13,7 +13,7 @@ const created = [], warnings = [];
 // preload every font the screen's text styles use (parallel) so text nodes never wait one by one
 await Promise.all(Object.values(FONTS || {}).map(f => lf({ family: f[0], style: f[1] }).catch(() => lf({ family: f[0], style: f[1].replace(/([a-z])([A-Z])/g, "$1 $2") }).catch(() => null))));
 // ---- inspect mode: SCREEN.INSPECT = node id -> structure/spec JSON (used by scripts/inspect.mjs) ----
-async function inspectNode(id) {
+async function inspectNode(id, maxDepth) {
   const root = await figma.getNodeByIdAsync(id); if (!root) throw new Error("node not found " + id);
   const vn = {}; const varName = async (b) => { if (!b) return null; const a = Array.isArray(b) ? b[0] : b; if (!a || !a.id) return null; if (!(a.id in vn)) { try { vn[a.id] = (await figma.variables.getVariableByIdAsync(a.id)).name.split("/").pop(); } catch { vn[a.id] = null; } } return vn[a.id]; };
   let count = 0;
@@ -33,25 +33,65 @@ async function inspectNode(id) {
       o.texts = n.findAll(t => t.type === "TEXT" && vis(t, n)).slice(0, 12).map(t => t.characters.slice(0, 80));
       return o;
     }
-    if (depth > 14 || !n.children) return o;
+    if (depth >= (maxDepth || 14) || !n.children) { if (n.children && maxDepth) o.kids = n.children.length; return o; }
     o.k = []; for (const c of n.children) { const w = await walk(c, depth + 1); if (w) o.k.push(w); }
     return o;
   }
   return { inspect: await walk(root, 0), roots: [], created: 0, warnings: [], ms: 0 };
 }
-if (SCREEN.INSPECT) return await inspectNode(SCREEN.INSPECT);
+if (SCREEN.INSPECT) return await inspectNode(SCREEN.INSPECT, SCREEN.INSPECT_DEPTH);
+// ---- snapshot mode: PNG of any node of the open file (scripts/snap.mjs) — lets Claude SEE frames without MCP access to the file
+if (SCREEN.SNAP) {
+  const n = await figma.getNodeByIdAsync(SCREEN.SNAP.id); if (!n || !("exportAsync" in n)) throw new Error("cannot snapshot " + SCREEN.SNAP.id);
+  const bytes = await n.exportAsync({ format: "PNG", constraint: { type: "WIDTH", value: Math.max(200, Math.min(3000, SCREEN.SNAP.w || 1400)) } });
+  return { snap: figma.base64Encode(bytes), name: n.name, w: Math.round(n.width), h: Math.round(n.height), roots: [], created: 0, warnings: [], ms: 0 };
+}
+// ---- file overview: pages (+ top-level children) of the open file
+if (SCREEN.PAGES) {
+  const out = [];
+  for (const pg of figma.root.children) { try { await pg.loadAsync(); } catch (e) {} out.push({ id: pg.id, name: pg.name, children: pg.children.slice(0, 60).map(c => ({ id: c.id, n: c.name, t: c.type, w: Math.round(c.width), h: Math.round(c.height), kids: "children" in c ? c.children.length : 0 })) }); }
+  return { pages: out, file: figma.root.name, current: figma.currentPage.id, roots: [], created: 0, warnings: [], ms: 0 };
+}
 
 await Promise.all([...Object.keys(VARS).map(V), ...Object.keys(STYLES).map(S)]);
 const TM = {};
 async function tm(k, p) { const t = Date.now(); try { return await p; } finally { TM[k] = (TM[k] || 0) + (Date.now() - t); } }
 
 function parseVariant(s) { const o = {}; for (const kv of (s || "").split(",")) { const [k, v] = kv.split("="); if (k && v) o[k.trim()] = v.trim(); } return o; }
+
+// ---- donors: main components reachable through instances already in the open file (works when the library is gone)
+async function donorIndex() {
+  if (!C.donors) C.donors = { map: new Map(), list: page.findAllWithCriteria({ types: ["INSTANCE"] }), pos: 0, seen: new Set() };
+  return C.donors;
+}
+// incremental scan of the target page's instances until the wanted component is found (cached across screens in this session)
+async function donorFor(spec) {
+  const D = await donorIndex(), want = () => (spec.setKey && D.map.get("s:" + spec.setKey)) || D.map.get("c:" + spec.key) || (spec.alt && ((spec.alt.setKey && D.map.get("s:" + spec.alt.setKey)) || D.map.get("c:" + spec.alt.key))) || null;
+  let hit = want();
+  while (!hit && D.pos < D.list.length && D.pos < 30000) {
+    const inst = D.list[D.pos++]; let mc; try { mc = await inst.getMainComponentAsync(); } catch (e) { continue; } if (!mc || D.seen.has(mc.id)) continue; D.seen.add(mc.id);
+    const set = mc.parent && mc.parent.type === "COMPONENT_SET" ? mc.parent : null, entry = { comp: mc, set };
+    if (set && !D.map.has("s:" + set.key)) D.map.set("s:" + set.key, entry); if (!D.map.has("c:" + mc.key)) D.map.set("c:" + mc.key, entry);
+    hit = want();
+  }
+  return hit;
+}
 async function component(key, props) {
   const spec = COMPS[key];
   let node;
   if (spec.lib) {
-    if (!spec.setKey) return SETS["k" + spec.key] || (SETS["k" + spec.key] = await figma.importComponentByKeyAsync(spec.key));
-    node = SETS[spec.setKey] || (SETS[spec.setKey] = await figma.importComponentSetByKeyAsync(spec.setKey));
+    // import by key; if the library is no longer published/enabled in this file, borrow the main component of an instance already on the page
+    try {
+      if (!spec.setKey) return SETS["k" + spec.key] || (SETS["k" + spec.key] = await figma.importComponentByKeyAsync(spec.key));
+      node = SETS[spec.setKey] || (SETS[spec.setKey] = await figma.importComponentSetByKeyAsync(spec.setKey));
+    } catch (e) {
+      if (spec.alt) { try { if (!spec.alt.setKey) return (SETS["k" + spec.key] = await figma.importComponentByKeyAsync(spec.alt.key)); node = SETS[spec.alt.setKey] || (SETS[spec.alt.setKey] = await figma.importComponentSetByKeyAsync(spec.alt.setKey)); } catch (e2) { node = null; } }
+      if (!node) {
+      const d = await donorFor(spec); if (!d) { e.message += " [no donor instance found on the target page; scanned " + ((C.donors && C.donors.pos) || 0) + " instances]"; throw e; }
+      warnings.push("imported " + key + " from an existing instance (library not available by key)");
+      if (!spec.setKey) return (SETS["k" + spec.key] = d.comp);
+      node = SETS[spec.setKey || spec.key] = d.set || d.comp; }
+    }
   } else {
     node = await figma.getNodeByIdAsync(spec.id);
     if (!node) throw new Error("component node missing: " + key + " " + spec.id);
@@ -268,8 +308,15 @@ if (!replaced) for (const ch of page.children) x = Math.max(x, ch.x + ch.width +
 TM.prep = Date.now() - T_RM;
 const roots = [], rootNodes = [];
 for (const [name, tree] of SCREENS) {
-  const rootF = figma.createFrame(); rootF.name = TITLE + (SCREENS.length > 1 ? " — " + name : "");
-  page.appendChild(rootF); rootF.x = x; rootF.y = POS ? POS.y : 0;
+  const rootF = figma.createFrame(); rootF.name = TITLE + (SCREENS.length > 1 ? " — " + name : ""); rootF.setPluginData("es-root", "1"); (C.pending || (C.pending = [])).push(rootF.id); // tracked so a failed build can be cleaned up
+  const SEC = SCREEN.SECTION ? await figma.getNodeByIdAsync(SCREEN.SECTION) : null;
+  if (SEC && SEC.type === "SECTION") {
+    // build inside a Section: positions are section-relative; new screens go to the right of the last frame; the section grows to fit
+    SEC.appendChild(rootF);
+    const kids = SEC.children.filter(c => c !== rootF && c.type !== "SECTION");
+    rootF.x = POS ? POS.x : kids.length ? Math.max(...kids.map(c => c.x + c.width)) + 160 : 80; rootF.y = POS ? POS.y : kids.length ? Math.min(...kids.map(c => c.y)) : 80;
+    rootF.setPluginData("es-sec", "1");
+  } else { page.appendChild(rootF); rootF.x = x; rootF.y = POS ? POS.y : 0; }
   await applyBox(rootF, Object.assign({ t: "stack" }, tree, { i: rootF.name }));
   rootF.resize(WIDTH, HEIGHT || 900);
   rootF.primaryAxisSizingMode = HEIGHT ? "FIXED" : "AUTO"; rootF.counterAxisSizingMode = "FIXED";
@@ -281,6 +328,6 @@ for (const [name, tree] of SCREENS) {
   }
   roots.push(rootF.id); rootNodes.push(rootF); x += WIDTH + 200;
 }
-const T_VP = Date.now(); if (page.id === figma.currentPage.id) figma.viewport.scrollAndZoomIntoView(rootNodes); TM.viewport = Date.now() - T_VP;
+const T_VP = Date.now(); if (page.id === figma.currentPage.id) { for (const rn of rootNodes) { const sp = rn.parent; if (sp && sp.type === "SECTION") sp.resizeWithoutConstraints(Math.max(sp.width, rn.x + rn.width + 80), Math.max(sp.height, rn.y + rn.height + 80)); } figma.viewport.scrollAndZoomIntoView(rootNodes); } TM.viewport = Date.now() - T_VP;
 const T_OLD = Date.now(); for (const r of oldRoots) { try { r.remove(); } catch (e) {} } TM.removeOld = Date.now() - T_OLD;
 return { roots, created: created.length, warnings, removedDuplicates: stale.length, timing: Object.assign({ totalMs: Date.now() - T_START }, TM) };
