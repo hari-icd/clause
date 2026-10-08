@@ -2,6 +2,15 @@
 
 You compose product screens as JSON. A script turns JSON into Figma frames of real library components. You never write Figma code, HTML, or CSS.
 
+## Programmatic first (core rule — applies to every task)
+Never spend model tokens on something a script can do. Before doing any step by reasoning or by reading/writing by hand, ask: *is this deterministic?* If yes, use or build a script and let it do the work; the model only decides, judges and writes the creative part.
+- **Use the tools that exist**: `inspect.mjs` (read a frame / diff two), `lint.mjs`, `compile`, `setup`, `clean`, `inbox`/`reply`/`status`, `session-start`. Do not eyeball a screenshot for numbers `--vs` can give; do not hand-write boilerplate JSON a generator can emit (`inspect` drafts, template functions in a throwaway `node -e`).
+- **Bulk edits, renames, token lookups, catalog additions, prop validation, counting, timing, diffing, formatting** → script/`node -e`/`jq`, never by reading the file back into context and retyping it.
+- **Repeated steps → tool.** The second time you do something by hand, write the script, put it in `scripts/`, document it in `docs/POWER-USE.md`. The third time is a bug.
+- **Read small, return small.** Pull only the fields needed (`jq`, `grep`, targeted `use_figma` returns); never dump whole files or trees into context.
+- **Verification is programmatic too**: warnings from `/result`, lint output and `inspect --vs` first; use a screenshot only for what numbers cannot show (visual feel).
+- **Don't narrate or recap** what a script already printed. Report the result, not the process.
+
 ## Session protocol (identical in every session — designers rely on it)
 The SessionStart hook prints "Clause session state" and the first actions. Follow them before replying:
 1. **Arm the inbox listener** (Monitor on `node scripts/inbox.mjs --watch`, 30 min, re-arm whenever it fires/expires). Never wait for the user to say "listen".
