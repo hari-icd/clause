@@ -2714,6 +2714,46 @@
     "Share button",
     "copilot input"
    ]
+  },
+  {
+   "key": "routine-card",
+   "id": "1174:201430",
+   "name": "Routine card",
+   "section": "Routines page",
+   "set": true,
+   "props": {
+    "Edit button": "BOOLEAN",
+    "State": [
+     "Default",
+     "read more"
+    ]
+   },
+   "default": "State=Default",
+   "size": [
+    280,
+    482
+   ],
+   "texts": [
+    "Morning brief",
+    "Ver 1 · Ran 0 times in the last 24 hours",
+    "Every Friday at 4:00 PM PT, it scans the…",
+    "Read more",
+    "Project",
+    "Gulf Expansions",
+    "Tools",
+    "Gmail, Google Calendar",
+    "Notify",
+    "Via Email",
+    "Trigger",
+    "Every Friday, 4:00 PM PT · Pacific time"
+   ],
+   "nested": [
+    "Toggle",
+    "sun-setting-02",
+    "Buttons/Link",
+    "folder-solid",
+    "Tools it may use (tooltip)"
+   ]
   }
  ],
  "library": [
