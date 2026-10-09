@@ -1,0 +1,112 @@
+{
+ "swaps": [
+  {
+   "target": "13218:69156",
+   "key": "2e0d5e859fd9dae1a733362cf239989d69518eef",
+   "size": 22,
+   "name": "marketo"
+  },
+  {
+   "target": "13218:69166",
+   "key": "843c262ed41777c89f460bb6b56883e87471a46f",
+   "size": 22,
+   "name": "tableau"
+  },
+  {
+   "target": "13218:69169",
+   "key": "1daa2d63e2e5a74cf94a5b08285a58a028ccaf64",
+   "size": 22,
+   "name": "databricks"
+  },
+  {
+   "target": "13218:69172",
+   "key": "74697271776c7aea6141de2013d385774350f37c",
+   "size": 22,
+   "name": "openai"
+  },
+  {
+   "target": "13218:69175",
+   "key": "3370e1c3b890e0ac14ecb2510d10d4683bcd61ba",
+   "size": 22,
+   "name": "anthropic"
+  },
+  {
+   "target": "13218:69178",
+   "key": "7e6bc1270fcd87615a26a9092313bb5e7b194b7e",
+   "size": 22,
+   "name": "twilio"
+  },
+  {
+   "target": "13218:69181",
+   "key": "6eb2f47b39b5b0224f0a0a4f15e2ef2f046a98c8",
+   "size": 22,
+   "name": "docusign"
+  },
+  {
+   "target": "13218:69184",
+   "key": "1daa2d63e2e5a74cf94a5b08285a58a028ccaf64",
+   "size": 22,
+   "name": "databricks"
+  },
+  {
+   "target": "13218:69187",
+   "key": "feb10016b4a4afd19898791ec83ebc7af8dead57",
+   "size": 22,
+   "name": "sap"
+  },
+  {
+   "target": "13218:69191",
+   "key": "5087bfe41abc1112662d010561a6514ed52c0352",
+   "size": 22,
+   "name": "jira"
+  },
+  {
+   "target": "13218:69194",
+   "key": "df9ef57347df2cf864d9bed019d9695696b16543",
+   "size": 22,
+   "name": "asana"
+  },
+  {
+   "target": "13218:69197",
+   "key": "5f9914d01d76711ae69b3af432f1df94c51b985d",
+   "size": 22,
+   "name": "monday"
+  },
+  {
+   "target": "13218:69200",
+   "key": "c0e35aeacfeaa500102330a71b6680d93b8e919e",
+   "size": 22,
+   "name": "zendesk"
+  },
+  {
+   "target": "13218:69203",
+   "key": "71d15cfeee6f0298f94cd0cc28cc58b752b7e40f",
+   "size": 22,
+   "name": "slack"
+  },
+  {
+   "target": "13218:69206",
+   "key": "7651b45063cd95500b6b214736d1acdaa96fe51d",
+   "size": 22,
+   "name": "ms-teams"
+  },
+  {
+   "target": "13218:69209",
+   "key": "2501def04f69ee8444d7666973cec7591288d90d",
+   "size": 22,
+   "name": "outlook"
+  },
+  {
+   "target": "13218:69212",
+   "key": "450ed4f101549cf90ae43122dde639be1f069f22",
+   "size": 22,
+   "name": "gmail"
+  },
+  {
+   "target": "13218:69215",
+   "key": "71d15cfeee6f0298f94cd0cc28cc58b752b7e40f",
+   "size": 22,
+   "name": "slack"
+  }
+ ]
+}

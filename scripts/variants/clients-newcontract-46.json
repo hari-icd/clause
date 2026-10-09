@@ -1,0 +1,53 @@
+{
+ "ds": "ds/files/clients",
+ "useComps": [
+  "copilot-desktop-input-box"
+ ],
+ "swaps": [
+  {
+   "target": "15107:15018",
+   "comp": "copilot-desktop-input-box",
+   "props": {
+    "Type": "Landing Page",
+    "State": "Default",
+    "Tools & Sources": "No",
+    "Attachment": "Yes",
+    "Text": "One line",
+    "Inline Skills": "false"
+   },
+   "replaceTexts": [
+    [
+     "AI-generated insights",
+     "Acme sent back their redline of our MSA (v3). Please review it against our playbook."
+    ],
+    [
+     "Attachment",
+     "Acme redline \u2013 MSA v3.docx",
+     0
+    ],
+    [
+     "File",
+     "Word document",
+     0
+    ]
+   ],
+   "hide": [
+    {
+     "name": "Attachments",
+     "w": 300,
+     "nth": 1
+    },
+    {
+     "name": "Attachments",
+     "w": 48,
+     "all": true
+    },
+    {
+     "name": "Response_Desktop full/in line",
+     "prefix": true
+    }
+   ],
+   "name": "Copilot input"
+  }
+ ]
+}

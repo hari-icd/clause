@@ -1,0 +1,826 @@
+{
+ "title": "Announcements — list",
+ "ds": "ds/files/announcements",
+ "page": "13157:51469",
+ "section": "13149:51550",
+ "height": 900,
+ "tree": {
+  "t": "row",
+  "i": "root",
+  "gap": "none",
+  "clip": true,
+  "children": [
+   {
+    "c": "main-nav",
+    "i": "nav",
+    "p": {
+     "types": "collapsed"
+    },
+    "fill": "y"
+   },
+   {
+    "t": "stack",
+    "i": "main",
+    "children": [
+     {
+      "t": "row",
+      "i": "topbar",
+      "fill": "x",
+      "h": 40,
+      "align": "center",
+      "children": [
+       {
+        "c": "es-breadcrumb",
+        "i": "crumb",
+        "fill": "x",
+        "p": {
+         "Variant": "with Icon",
+         "Actions": "false",
+         "AI assist button": "false",
+         "Avatar Group": "false"
+        },
+        "text": [
+         "Announcements",
+         "All announcements"
+        ],
+        "bg": "none"
+       }
+      ]
+     },
+     {
+      "t": "stack",
+      "i": "content",
+      "children": [
+       {
+        "t": "row",
+        "i": "head",
+        "children": [
+         {
+          "t": "text",
+          "i": "h1",
+          "content": "Announcements",
+          "style": "Display md/Regular",
+          "color": "text-primary"
+         },
+         {
+          "c": "button-brand",
+          "i": "new",
+          "p": {
+           "Size": "md",
+           "Hierarchy": "Primary",
+           "Icon leading": "true",
+           "Icon leading swap": "@icon-plus",
+           "Icon trailing": "false"
+          },
+          "text": {
+           "Button": "New announcement"
+          }
+         }
+        ],
+        "fill": "x",
+        "justify": "between",
+        "align": "center"
+       },
+       {
+        "c": "small-tabs",
+        "i": "tabs",
+        "text": [
+         "All",
+         "Live",
+         "Scheduled",
+         "Drafts",
+         "Expired"
+        ],
+        "ops": [
+         {
+          "nodes": [
+           {
+            "name": "Tab",
+            "nth": 0,
+            "props": {
+             "Current": "True"
+            }
+           },
+           {
+            "name": "Tab",
+            "nth": 1,
+            "props": {
+             "Current": "False"
+            }
+           },
+           {
+            "name": "Tab",
+            "nth": 2,
+            "props": {
+             "Current": "False"
+            }
+           },
+           {
+            "name": "Tab",
+            "nth": 3,
+            "props": {
+             "Current": "False"
+            }
+           },
+           {
+            "name": "Tab",
+            "nth": 4,
+            "props": {
+             "Current": "False"
+            }
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "t": "stack",
+        "i": "table",
+        "children": [
+         {
+          "t": "row",
+          "i": "thead",
+          "children": [
+           {
+            "c": "col-header-cell",
+            "i": "h-a",
+            "p": {
+             "Size": "md",
+             "Text": "True",
+             "Checkbox": "False",
+             "State": "Default",
+             "Data Icon": "Off"
+            },
+            "text": [
+             "TITLE"
+            ],
+            "bg": "none",
+            "fill": "x"
+           },
+           {
+            "c": "col-header-cell",
+            "i": "h-b",
+            "p": {
+             "Size": "md",
+             "Text": "True",
+             "Checkbox": "False",
+             "State": "Default",
+             "Data Icon": "Off"
+            },
+            "text": [
+             "AUDIENCE"
+            ],
+            "bg": "none",
+            "w": 220
+           },
+           {
+            "c": "col-header-cell",
+            "i": "h-c",
+            "p": {
+             "Size": "md",
+             "Text": "True",
+             "Checkbox": "False",
+             "State": "Default",
+             "Data Icon": "Off"
+            },
+            "text": [
+             "STATUS"
+            ],
+            "bg": "none",
+            "w": 140
+           },
+           {
+            "c": "col-header-cell",
+            "i": "h-d",
+            "p": {
+             "Size": "md",
+             "Text": "True",
+             "Checkbox": "False",
+             "State": "Default",
+             "Data Icon": "Off"
+            },
+            "text": [
+             "ENDS"
+            ],
+            "bg": "none",
+            "w": 120
+           },
+           {
+            "t": "row",
+            "i": "h-e",
+            "children": [],
+            "w": 56
+           }
+          ],
+          "fill": "x",
+          "h": 44,
+          "align": "center",
+          "borderB": "border-secondary"
+         },
+         {
+          "t": "row",
+          "i": "tr0",
+          "children": [
+           {
+            "c": "table-cell",
+            "i": "c1-0",
+            "p": {
+             "Style": "Text",
+             "Lead": "No",
+             "State": "Default",
+             "Size": "md",
+             "Supporting Text": "false",
+             "Badge": "false",
+             "Dropdown": "false"
+            },
+            "text": [
+             "Join us at Customer Day on 16 October"
+            ],
+            "fill": "x"
+           },
+           {
+            "c": "table-cell",
+            "i": "c2-0",
+            "p": {
+             "Style": "Text",
+             "Lead": "No",
+             "State": "Default",
+             "Size": "md",
+             "Supporting Text": "false",
+             "Badge": "false",
+             "Dropdown": "false"
+            },
+            "text": [
+             "Everyone · 320 people"
+            ],
+            "w": 220
+           },
+           {
+            "t": "row",
+            "i": "st-0",
+            "w": 140,
+            "align": "center",
+            "children": [
+             {
+              "c": "pill-squared",
+              "i": "st-0-p",
+              "p": {
+               "Size": "sm",
+               "Type": "Pill Clear",
+               "Icon": "Dot",
+               "Color": "Success"
+              },
+              "text": [
+               "Live"
+              ]
+             }
+            ]
+           },
+           {
+            "c": "table-cell",
+            "i": "c4-0",
+            "p": {
+             "Style": "Text",
+             "Lead": "No",
+             "State": "Default",
+             "Size": "md",
+             "Supporting Text": "false",
+             "Badge": "false",
+             "Dropdown": "false"
+            },
+            "text": [
+             "Wed 14 Oct"
+            ],
+            "w": 120
+           },
+           {
+            "t": "row",
+            "i": "ac0",
+            "children": [
+             {
+              "c": "small-icon-button",
+              "i": "mo0",
+              "p": {
+               "Size": "sm",
+               "Icon swap": "@icon-dots-horizontal"
+              }
+             }
+            ],
+            "w": 56,
+            "justify": "center"
+           }
+          ],
+          "fill": "x",
+          "h": 48,
+          "align": "center",
+          "borderB": "border-secondary"
+         },
+         {
+          "t": "row",
+          "i": "tr1",
+          "children": [
+           {
+            "c": "table-cell",
+            "i": "c1-1",
+            "p": {
+             "Style": "Text",
+             "Lead": "No",
+             "State": "Default",
+             "Size": "md",
+             "Supporting Text": "false",
+             "Badge": "false",
+             "Dropdown": "false"
+            },
+            "text": [
+             "Q4 town hall — submit your questions"
+            ],
+            "fill": "x"
+           },
+           {
+            "c": "table-cell",
+            "i": "c2-1",
+            "p": {
+             "Style": "Text",
+             "Lead": "No",
+             "State": "Default",
+             "Size": "md",
+             "Supporting Text": "false",
+             "Badge": "false",
+             "Dropdown": "false"
+            },
+            "text": [
+             "Everyone · 320 people"
+            ],
+            "w": 220
+           },
+           {
+            "t": "row",
+            "i": "st-1",
+            "w": 140,
+            "align": "center",
+            "children": [
+             {
+              "c": "pill-squared",
+              "i": "st-1-p",
+              "p": {
+               "Size": "sm",
+               "Type": "Pill Clear",
+               "Icon": "Dot",
+               "Color": "Success"
+              },
+              "text": [
+               "Live"
+              ]
+             }
+            ]
+           },
+           {
+            "c": "table-cell",
+            "i": "c4-1",
+            "p": {
+             "Style": "Text",
+             "Lead": "No",
+             "State": "Default",
+             "Size": "md",
+             "Supporting Text": "false",
+             "Badge": "false",
+             "Dropdown": "false"
+            },
+            "text": [
+             "Fri 17 Oct"
+            ],
+            "w": 120
+           },
+           {
+            "t": "row",
+            "i": "ac1",
+            "children": [
+             {
+              "c": "small-icon-button",
+              "i": "mo1",
+              "p": {
+               "Size": "sm",
+               "Icon swap": "@icon-dots-horizontal"
+              }
+             }
+            ],
+            "w": 56,
+            "justify": "center"
+           }
+          ],
+          "fill": "x",
+          "h": 48,
+          "align": "center",
+          "borderB": "border-secondary"
+         },
+         {
+          "t": "row",
+          "i": "tr2",
+          "children": [
+           {
+            "c": "table-cell",
+            "i": "c1-2",
+            "p": {
+             "Style": "Text",
+             "Lead": "No",
+             "State": "Default",
+             "Size": "md",
+             "Supporting Text": "false",
+             "Badge": "false",
+             "Dropdown": "false"
+            },
+            "text": [
+             "New expense policy from 1 November"
+            ],
+            "fill": "x"
+           },
+           {
+            "c": "table-cell",
+            "i": "c2-2",
+            "p": {
+             "Style": "Text",
+             "Lead": "No",
+             "State": "Default",
+             "Size": "md",
+             "Supporting Text": "false",
+             "Badge": "false",
+             "Dropdown": "false"
+            },
+            "text": [
+             "Finance · 42 people"
+            ],
+            "w": 220
+           },
+           {
+            "t": "row",
+            "i": "st-2",
+            "w": 140,
+            "align": "center",
+            "children": [
+             {
+              "c": "pill-squared",
+              "i": "st-2-p",
+              "p": {
+               "Size": "sm",
+               "Type": "Pill Clear",
+               "Icon": "Dot",
+               "Color": "Brand"
+              },
+              "text": [
+               "Scheduled"
+              ]
+             }
+            ]
+           },
+           {
+            "c": "table-cell",
+            "i": "c4-2",
+            "p": {
+             "Style": "Text",
+             "Lead": "No",
+             "State": "Default",
+             "Size": "md",
+             "Supporting Text": "false",
+             "Badge": "false",
+             "Dropdown": "false"
+            },
+            "text": [
+             "Sat 1 Nov"
+            ],
+            "w": 120
+           },
+           {
+            "t": "row",
+            "i": "ac2",
+            "children": [
+             {
+              "c": "small-icon-button",
+              "i": "mo2",
+              "p": {
+               "Size": "sm",
+               "Icon swap": "@icon-dots-horizontal"
+              }
+             }
+            ],
+            "w": 56,
+            "justify": "center"
+           }
+          ],
+          "fill": "x",
+          "h": 48,
+          "align": "center",
+          "borderB": "border-secondary"
+         },
+         {
+          "t": "row",
+          "i": "tr3",
+          "children": [
+           {
+            "c": "table-cell",
+            "i": "c1-3",
+            "p": {
+             "Style": "Text",
+             "Lead": "No",
+             "State": "Default",
+             "Size": "md",
+             "Supporting Text": "false",
+             "Badge": "false",
+             "Dropdown": "false"
+            },
+            "text": [
+             "Office closed for Diwali"
+            ],
+            "fill": "x"
+           },
+           {
+            "c": "table-cell",
+            "i": "c2-3",
+            "p": {
+             "Style": "Text",
+             "Lead": "No",
+             "State": "Default",
+             "Size": "md",
+             "Supporting Text": "false",
+             "Badge": "false",
+             "Dropdown": "false"
+            },
+            "text": [
+             "London office · 410 people"
+            ],
+            "w": 220
+           },
+           {
+            "t": "row",
+            "i": "st-3",
+            "w": 140,
+            "align": "center",
+            "children": [
+             {
+              "c": "pill-squared",
+              "i": "st-3-p",
+              "p": {
+               "Size": "sm",
+               "Type": "Pill Clear",
+               "Icon": "Dot",
+               "Color": "Brand"
+              },
+              "text": [
+               "Scheduled"
+              ]
+             }
+            ]
+           },
+           {
+            "c": "table-cell",
+            "i": "c4-3",
+            "p": {
+             "Style": "Text",
+             "Lead": "No",
+             "State": "Default",
+             "Size": "md",
+             "Supporting Text": "false",
+             "Badge": "false",
+             "Dropdown": "false"
+            },
+            "text": [
+             "Mon 20 Oct"
+            ],
+            "w": 120
+           },
+           {
+            "t": "row",
+            "i": "ac3",
+            "children": [
+             {
+              "c": "small-icon-button",
+              "i": "mo3",
+              "p": {
+               "Size": "sm",
+               "Icon swap": "@icon-dots-horizontal"
+              }
+             }
+            ],
+            "w": 56,
+            "justify": "center"
+           }
+          ],
+          "fill": "x",
+          "h": 48,
+          "align": "center",
+          "borderB": "border-secondary"
+         },
+         {
+          "t": "row",
+          "i": "tr4",
+          "children": [
+           {
+            "c": "table-cell",
+            "i": "c1-4",
+            "p": {
+             "Style": "Text",
+             "Lead": "No",
+             "State": "Default",
+             "Size": "md",
+             "Supporting Text": "false",
+             "Badge": "false",
+             "Dropdown": "false"
+            },
+            "text": [
+             "Security training is due this week"
+            ],
+            "fill": "x"
+           },
+           {
+            "c": "table-cell",
+            "i": "c2-4",
+            "p": {
+             "Style": "Text",
+             "Lead": "No",
+             "State": "Default",
+             "Size": "md",
+             "Supporting Text": "false",
+             "Badge": "false",
+             "Dropdown": "false"
+            },
+            "text": [
+             "Engineering · 610 people"
+            ],
+            "w": 220
+           },
+           {
+            "t": "row",
+            "i": "st-4",
+            "w": 140,
+            "align": "center",
+            "children": [
+             {
+              "c": "pill-squared",
+              "i": "st-4-p",
+              "p": {
+               "Size": "sm",
+               "Type": "Pill Clear",
+               "Icon": "Dot",
+               "Color": "Gray"
+              },
+              "text": [
+               "Draft"
+              ]
+             }
+            ]
+           },
+           {
+            "c": "table-cell",
+            "i": "c4-4",
+            "p": {
+             "Style": "Text",
+             "Lead": "No",
+             "State": "Default",
+             "Size": "md",
+             "Supporting Text": "false",
+             "Badge": "false",
+             "Dropdown": "false"
+            },
+            "text": [
+             "—"
+            ],
+            "w": 120
+           },
+           {
+            "t": "row",
+            "i": "ac4",
+            "children": [
+             {
+              "c": "small-icon-button",
+              "i": "mo4",
+              "p": {
+               "Size": "sm",
+               "Icon swap": "@icon-dots-horizontal"
+              }
+             }
+            ],
+            "w": 56,
+            "justify": "center"
+           }
+          ],
+          "fill": "x",
+          "h": 48,
+          "align": "center",
+          "borderB": "border-secondary"
+         },
+         {
+          "t": "row",
+          "i": "tr5",
+          "children": [
+           {
+            "c": "table-cell",
+            "i": "c1-5",
+            "p": {
+             "Style": "Text",
+             "Lead": "No",
+             "State": "Default",
+             "Size": "md",
+             "Supporting Text": "false",
+             "Badge": "false",
+             "Dropdown": "false"
+            },
+            "text": [
+             "Welcome to the new Sales leaders"
+            ],
+            "fill": "x"
+           },
+           {
+            "c": "table-cell",
+            "i": "c2-5",
+            "p": {
+             "Style": "Text",
+             "Lead": "No",
+             "State": "Default",
+             "Size": "md",
+             "Supporting Text": "false",
+             "Badge": "false",
+             "Dropdown": "false"
+            },
+            "text": [
+             "Sales · 320 people"
+            ],
+            "w": 220
+           },
+           {
+            "t": "row",
+            "i": "st-5",
+            "w": 140,
+            "align": "center",
+            "children": [
+             {
+              "c": "pill-squared",
+              "i": "st-5-p",
+              "p": {
+               "Size": "sm",
+               "Type": "Pill Clear",
+               "Icon": "Dot",
+               "Color": "Warning"
+              },
+              "text": [
+               "Expired"
+              ]
+             }
+            ]
+           },
+           {
+            "c": "table-cell",
+            "i": "c4-5",
+            "p": {
+             "Style": "Text",
+             "Lead": "No",
+             "State": "Default",
+             "Size": "md",
+             "Supporting Text": "false",
+             "Badge": "false",
+             "Dropdown": "false"
+            },
+            "text": [
+             "Fri 3 Oct"
+            ],
+            "w": 120
+           },
+           {
+            "t": "row",
+            "i": "ac5",
+            "children": [
+             {
+              "c": "small-icon-button",
+              "i": "mo5",
+              "p": {
+               "Size": "sm",
+               "Icon swap": "@icon-dots-horizontal"
+              }
+             }
+            ],
+            "w": 56,
+            "justify": "center"
+           }
+          ],
+          "fill": "x",
+          "h": 48,
+          "align": "center",
+          "borderB": "border-secondary"
+         }
+        ],
+        "fill": "x",
+        "gap": "none"
+       }
+      ],
+      "w": 960,
+      "gap": "3xl",
+      "pt": "5xl"
+     }
+    ],
+    "grow": true,
+    "fill": "y",
+    "gap": "none",
+    "bg": "bg-primary",
+    "align": "center"
+   }
+  ]
+ }
+}

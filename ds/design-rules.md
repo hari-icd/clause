@@ -44,3 +44,15 @@ Short on purpose. Grows only from real screens that went wrong.
 - Status in tables: `pill-squared` Pill Clear with dot colour (Success/Error/Gray) until the DS gets check/alert icons.
 - Breadcrumb top bar: `bg:"none"`, cost pill hidden unless the screen is a chat.
 - Avatars in card footers: xxs.
+- Announcement/artifact previews use the `arifact-header` comp (hide extra toolbar groups via ops), not a hand-made header row.
+- Toasts/overlays must not cover the header or primary content; place bottom-right inside the pane and keep the full width on canvas.
+- Upload / drop zones use `file-upload-empty-state` (Size xl for a centred stack), never a hand-made dashed frame. Search the catalog by purpose words (upload, drop, paste, empty) before composing any region.
+- Icon beside text (steps, rows, empty states) is always 16px: set `w:16,h:16` on standalone icon instances (default instance is 24).
+- Publish confirmation is a popover under the Publish button (title, two key/value rows with chevrons, Cancel + Publish now), never a centred modal with a scrim (reference: Screenshots › 'Publish to home pages').
+- Screens that show a hover or pointer interaction carry a `cursor` instance (State Arrow / Pointer Hand) at the pointer position, and the hovered element in its hover state. New states get a frame named `NEW · <number><letter> <state>` in a section `NEW STATES — <journey>`, built by cloning the neighbouring existing frame.
+- Mobile frames are 360 wide with 20px side padding; stacked sections, type scaled (hero 36, section heading 30, body 18, eyebrow 14), header/CTA/footer come from the senior mobile reference, never re-drawn.
+- If a cursor sits on a button or any interactive component, that component is shown in its Hover state (target it by the row it belongs to: `set` with `near`), and the hovered row/surface gets the hover fill.
+- Rolling out a redesigned component to other screens: swap only the redesigned parts (head, foot…) by cloning the designer's new version; keep each screen's content, state and overlays, re-anchoring overlays to the new trigger.
+- The user's manual edits in Figma after a build are the source of truth: before any change to a built screen, read the live frame first (`inspect.mjs <id>`, `look.mjs tree`) and apply the request on top of what is there. Never regenerate/replace from the JSON or generator over their edits; prefer in-place edits (swap.mjs, ops) and rebuild only if the live frame still matches the last build.
+- Chat/ask inputs use the catalog `copilot-desktop-input-box` (Type Bottom small, Tools & Sources No, Attachment No, Inline Skills false), never a hand-built pill. The One-line variant shows ~27 characters and carries a ghost suggestion text (hide it with swap `hideTexts`).
+- Plugin chrome: expand/shrink diagonal-arrows icon top-right (collapse), grey dot only when collapsed and idle (wave only while working), menu entries as labelled icons (Chats, Tools, Status) in a dock under the composer; the hamburger is gone.

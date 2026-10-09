@@ -26,6 +26,8 @@ out.push(`- server: ${status ? (started ? "started just now" : "already running"
 out.push(`- Figma plugin: ${status && status.plugin ? "connected" : "not connected (user must open Clause Assist in Figma: ⌘⌥P)"}`);
 out.push(`- design-system catalog (ds/): ${hasDs ? "present" : "MISSING → run /onboard"}`);
 out.push(`- unread plugin messages: ${unread}`);
+try { const a = await (await fetch(`http://localhost:${process.env.PORT || 8787}/ds/active`)).json(); out.push(a.system ? `- active design system: ${a.system.name} (catalog ${a.system.dir}, from ${a.source}; Figma file "${a.file}") — also read ${a.system.dir}/design-rules.md if it exists` : `- active design system: unknown${a.file ? ` for file "${a.file}"` : " (no plugin file reported yet)"} — ask the user to pick it in the plugin composer`); } catch {}
+try { const { execFileSync } = await import("node:child_process"); out.push("- " + execFileSync("node", [resolve(root, "scripts/ctx-budget.mjs")], { encoding: "utf8" }).trim()); } catch {}
 const rules = resolve(root, "ds/design-rules.md");
 if (existsSync(rules)) { const t = readFileSync(rules, "utf8"); const m = t.match(/## Standing preferences[\s\S]*$/); out.push(`- standing preferences: ${m ? m[0].split("\n").filter(l => l.startsWith("- ")).length + " recorded (read ds/design-rules.md before building)" : "none yet"}`); }
 out.push("");

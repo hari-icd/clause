@@ -1,0 +1,38 @@
+{
+  "_doc": "Design systems this repo knows. `files` = Figma file names that use it (exact match). `dir` = catalog folder. Rules layer: ds/design-rules.md (shared) + <dir>/design-rules.md (this system only). Manual choices from the plugin switcher are stored in .clause/ds-choice.json.",
+  "systems": [
+    {
+      "id": "main",
+      "name": "Enterprise Brain",
+      "dir": "ds",
+      "files": [
+        "Enterprise Brain Base 2026 - 1"
+      ]
+    },
+    {
+      "id": "announcements",
+      "name": "Enterprise Brain · Announcements file",
+      "dir": "ds/files/announcements",
+      "files": [
+        "Enterprise Brain Base 2026 - 2"
+      ]
+    },
+    {
+      "id": "clients",
+      "name": "Enterprise Brain · Clients file",
+      "dir": "ds/files/clients",
+      "files": [
+        "Base ES 2026 - Clients"
+      ],
+      "extends": "announcements"
+    },
+    {
+      "id": "website",
+      "name": "UnifyApps Website 2026",
+      "dir": "ds/files/website",
+      "files": [
+        "UnifyApps Website 2026 V2"
+      ]
+    }
+  ]
+}

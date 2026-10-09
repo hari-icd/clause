@@ -1,0 +1,241 @@
+{
+ "_source": "Base ES 2026 - Clients — extracted by Clause Assist",
+ "local": [
+  {
+   "key": "tentant-switcher",
+   "id": "13057:57004",
+   "name": "Tentant Switcher",
+   "section": null,
+   "set": false,
+   "props": {},
+   "default": null,
+   "size": [
+    268,
+    156
+   ],
+   "texts": [
+    "tenant",
+    "QA",
+    "T",
+    "Anurag Kashyap",
+    "anurag_kasyap@unifyapps.…",
+    "Theme"
+   ],
+   "nested": [
+    "Buttons/Button Brand",
+    "chevron-right-sm",
+    "Avatar",
+    "_nav icon",
+    "mode",
+    "Toggle group"
+   ]
+  },
+  {
+   "key": "3431014",
+   "id": "12530:8707",
+   "name": "3431014",
+   "section": null,
+   "set": false,
+   "props": {},
+   "default": null,
+   "size": [
+    380,
+    806
+   ],
+   "texts": [
+    "Agents",
+    "Vibe Hacking Agent",
+    "Connect a Tool",
+    "-",
+    "Select App",
+    "Search"
+   ],
+   "nested": [
+    "_Breadcrumbs",
+    "_Breadcrumb button base",
+    "Buttons/Button Neutral",
+    "chevron-down",
+    "Help icon",
+    "Small Icon Button"
+   ]
+  },
+  {
+   "key": "component-2",
+   "id": "292:84377",
+   "name": "Component 2",
+   "section": null,
+   "set": true,
+   "props": {
+    "Type": [
+     "Full",
+     "Icon only"
+    ]
+   },
+   "default": "Type=Icon only",
+   "size": [
+    32,
+    40
+   ],
+   "texts": [],
+   "nested": []
+  },
+  {
+   "key": "feather",
+   "id": "15055:7594",
+   "name": "feather",
+   "section": null,
+   "set": false,
+   "props": {},
+   "default": null,
+   "size": [
+    20,
+    20
+   ],
+   "texts": [],
+   "nested": []
+  },
+  {
+   "key": "nav-menu-main",
+   "id": "19:22757",
+   "name": "Nav_menu/Main",
+   "section": "Nav Compos",
+   "set": true,
+   "props": {
+    "dots": "BOOLEAN",
+    "Variant": [
+     "Collapsed",
+     "Expanded"
+    ],
+    "State": [
+     "Default",
+     "Hover",
+     "Selected",
+     "Selected_hover"
+    ]
+   },
+   "default": "Variant=Collapsed, State=Default",
+   "size": [
+    32,
+    32
+   ],
+   "texts": [],
+   "nested": [
+    "plus"
+   ]
+  },
+  {
+   "key": "nav-menu-subheader",
+   "id": "19:22810",
+   "name": "Nav_menu/Subheader",
+   "section": "Nav Compos",
+   "set": true,
+   "props": {
+    "State": [
+     "Default",
+     "Hover",
+     "Selected"
+    ]
+   },
+   "default": "State=Default",
+   "size": [
+    256,
+    32
+   ],
+   "texts": [
+    "Agents"
+   ],
+   "nested": [
+    "explore-ai-agents",
+    "chevron-right",
+    "Small Icon",
+    "Small Icon Button",
+    "chevron-right-sm"
+   ]
+  },
+  {
+   "key": "nav-menu-footer",
+   "id": "19:22883",
+   "name": "Nav_menu/Footer",
+   "section": "Nav Compos",
+   "set": true,
+   "props": {
+    "Variant": [
+     "Default",
+     "Collapsed"
+    ],
+    "State": [
+     "Default",
+     "Clicked",
+     "Hover"
+    ]
+   },
+   "default": "Variant=Default, State=Default",
+   "size": [
+    280,
+    52
+   ],
+   "texts": [
+    "A",
+    "Anurag Kashyap"
+   ],
+   "nested": [
+    "Avatar",
+    "Buttons/Button Neutral",
+    "bell-notification",
+    "chevron-up-sm"
+   ]
+  }
+ ],
+ "library": [
+  {
+   "key": "icon-plus-2",
+   "name": "plus",
+   "lib": true,
+   "variantKey": "884255e860f9528caa1ea3e4c32c4f661953d6fc",
+   "variant": "plus",
+   "default": null,
+   "props": {},
+   "texts": []
+  },
+  {
+   "key": "icon-search-md-2",
+   "name": "search-md",
+   "lib": true,
+   "variantKey": "4494d5d36b811ce6d72969cfd4cf268bde29b0cd",
+   "variant": "search-md",
+   "default": null,
+   "props": {},
+   "texts": []
+  },
+  {
+   "key": "icon-eye-2",
+   "name": "eye",
+   "lib": true,
+   "variantKey": "f0e43b7c19b6a108a3651e7b13de071b427bf775",
+   "variant": "eye",
+   "default": null,
+   "props": {},
+   "texts": []
+  },
+  {
+   "key": "icon-close",
+   "name": "Close",
+   "lib": true,
+   "variantKey": "789ce1e81b7e0e77400f39603fc4f01a27c98d73",
+   "variant": "Close",
+   "default": null,
+   "props": {},
+   "texts": []
+  },
+  {
+   "key": "icon-ticket-01",
+   "name": "ticket-01",
+   "lib": true,
+   "variantKey": "67923500d2003b62a6c406755af8d6d4c4713a38",
+   "variant": "ticket-01",
+   "default": null,
+   "props": {},
+   "texts": []
+  }
+ ]
+}

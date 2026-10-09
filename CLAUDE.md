@@ -11,6 +11,13 @@ Never spend model tokens on something a script can do. Before doing any step by 
 - **Verification is programmatic too**: warnings from `/result`, lint output and `inspect --vs` first; use a screenshot only for what numbers cannot show (visual feel).
 - **Don't narrate or recap** what a script already printed. Report the result, not the process.
 
+## Context budget (long sessions fail when context overflows — protect it)
+- Start-up context is measured by `node scripts/ctx-budget.mjs` (session-start prints it); keep it under ~9k tokens. Move detail out of CLAUDE.md/design-rules into `docs/` and grep it on demand.
+- Read small: `| head -30`, `jq`/`python -c` to pull fields, `sed -n 'a,bp'`. Never print whole JSON, trees deeper than needed, or full catalogs.
+- Images are the heaviest items: crop to the region in question and keep ≤1000 px wide; one image per question; never view a full-page screenshot of a tall frame (use `look.mjs snaps` and crop).
+- Long jobs run in the background writing to a file; read only the summary line. Broad searches go to an Explore subagent, which returns conclusions, not file dumps.
+- After a finished chunk of work, write the learning to docs/memory the same turn (so a restart or compaction loses nothing), and keep replies to the user short.
+
 ## Session protocol (identical in every session — designers rely on it)
 The SessionStart hook prints "Clause session state" and the first actions. Follow them before replying:
 1. **Arm the inbox listener** (Monitor on `node scripts/inbox.mjs --watch`, 30 min, re-arm whenever it fires/expires). Never wait for the user to say "listen".
@@ -26,8 +33,11 @@ The SessionStart hook prints "Clause session state" and the first actions. Follo
 11. **New loophole found → one line in `docs/POWER-USE.md`** (and a tool if it repeats).
 12. **Language:** plain words, no jargon with designers; no internal ids in replies unless asked.
 
+## Several design systems
+`ds/registry.json` maps Figma file names to design systems (catalog folder in `dir`). The plugin reports the open file; the server resolves it (`GET /ds/active`, switcher icon in the composer, manual choice kept in `.clause/ds-choice.json`). Every inbox message starts with a `context:` line naming the file and the design system: use that catalog (`ds` field on screens, plus the page pin) and read `ds/design-rules.md` (shared) then `<dir>/design-rules.md` (this system only). Never read another system's catalog. Unknown file → ask which system, or run Extract. **Never extract a library twice**: a registered file is not re-extracted (plugin and server refuse; `force` only on the user's request). When a `DS extracted (preview)` event arrives for a new file, run `node scripts/ds-install.mjs <previewDir> <id> "<name>" "<file name>"`: it registers the file and, if the library is already known (>=85% shared components), stores only the delta (`extends`). Delete `.clause/ds-extracted-*` afterwards.
+
 ## Contract
-0. Read `docs/POWER-USE.md` (tricks that keep the loop fast; append new ones there the moment they land).
+0. Read `docs/POWER-INDEX.md` (one line per trick, ~1 KB). Open a full entry only when its topic comes up: `sed -n '<line>p' docs/POWER-USE.md`. Append new learnings to POWER-USE.md, then run `node scripts/power-index.mjs`.
 1. Read `ds/design-rules.md` **Standing preferences** first — every correction the user ever gave; apply them unasked and append new ones the moment they arrive. Then `ds/components.json` (component keys, props, default variant, placeholder texts). Never grep Figma or re-probe — the catalog is complete. No `ds/components.json` yet → run `/onboard` (you drive setup, server, extraction; the user only does the Figma clicks).
 2. Write `screens/<kebab-name>.json`. Schema in `docs/SCHEMA.md`. Every component/text/box node needs a unique `i`.
 3. The PostToolUse hook lints on write. Fix until it prints `clean`.

@@ -1,0 +1,215 @@
+{
+ "ds": "ds/files/clients",
+ "anchor": "15017:7686",
+ "section": "NEW STATES \u2014 review journey (to design)",
+ "useComps": [
+  "cursor",
+  "dropdown-menu",
+  "button-neutral",
+  "form-header",
+  "cot-steps",
+  "thinking-state",
+  "icon-play",
+  "icon-refresh-ccw-02"
+ ],
+ "useVars": [
+  "bg-secondary_hover"
+ ],
+ "variants": [
+  {
+   "from": "15017:7989",
+   "name": "NEW \u00b7 02a Clause row \u2014 hover",
+   "fill": [
+    {
+     "name": "Issue list line item",
+     "nth": 3,
+     "bg": "bg-secondary_hover"
+    }
+   ],
+   "add": [
+    {
+     "parent": {
+      "name": "Panel"
+     },
+     "comp": "cursor",
+     "props": {
+      "State": "Arrow"
+     },
+     "x": 150,
+     "y": 322,
+     "name": "Cursor"
+    }
+   ]
+  },
+  {
+   "from": "15017:8318",
+   "name": "NEW \u00b7 03a Apply \u2014 menu open (split button)",
+   "add": [
+    {
+     "parent": {
+      "name": "Panel"
+     },
+     "comp": "dropdown-menu",
+     "props": {
+      "Type": "Small"
+     },
+     "text": [
+      "Apply as tracked change",
+      "Apply without tracking",
+      "Apply with comment"
+     ],
+     "x": 196,
+     "y": 548,
+     "name": "Apply menu"
+    },
+    {
+     "parent": {
+      "name": "Panel"
+     },
+     "comp": "cursor",
+     "props": {
+      "State": "Arrow"
+     },
+     "x": 340,
+     "y": 538,
+     "name": "Cursor"
+    }
+   ],
+   "hide": [
+    {
+     "name": "Cursor",
+     "nth": 0
+    }
+   ],
+   "hideAfter": [
+    {
+     "name": "Dropdown list item",
+     "nth": 7
+    },
+    {
+     "name": "Dropdown list item",
+     "nth": 8
+    }
+   ]
+  },
+  {
+   "from": "15017:8899",
+   "name": "NEW \u00b7 08a Run a playbook",
+   "texts": [
+    [
+     "Playbooks",
+     "Run a playbook"
+    ]
+   ],
+   "set": [
+    {
+     "name": "Buttons/Button Neutral",
+     "all": true,
+     "props": {
+      "Icon": "Default",
+      "Size": "xs",
+      "Hierarchy": "Secondary",
+      "Icon leading": "true",
+      "Icon leading swap": "@icon-play",
+      "Icon trailing": "false"
+     },
+     "text": [
+      "Run"
+     ]
+    },
+    {
+     "name": "Buttons/Button Neutral",
+     "props": {
+      "Icon leading": "true",
+      "Icon leading swap": "@icon-refresh-ccw-02"
+     },
+     "near": "House Style"
+    }
+   ],
+   "textsAfter": [
+    [
+     "=Run",
+     "Re-run",
+     0
+    ]
+   ]
+  },
+  {
+   "from": "15017:8899",
+   "name": "NEW \u00b7 08b Run a playbook \u2014 hover on Run",
+   "texts": [
+    [
+     "Playbooks",
+     "Run a playbook"
+    ]
+   ],
+   "set": [
+    {
+     "name": "Buttons/Button Neutral",
+     "all": true,
+     "props": {
+      "Icon": "Default",
+      "Size": "xs",
+      "Hierarchy": "Secondary",
+      "Icon leading": "true",
+      "Icon leading swap": "@icon-play",
+      "Icon trailing": "false"
+     },
+     "text": [
+      "Run"
+     ]
+    },
+    {
+     "name": "Buttons/Button Neutral",
+     "props": {
+      "Icon leading": "true",
+      "Icon leading swap": "@icon-refresh-ccw-02"
+     },
+     "near": "House Style"
+    },
+    {
+     "near": "Mutual Non-Disclosure Agreement (Template)",
+     "name": "Buttons/Button Neutral",
+     "props": {
+      "State": "Hover"
+     }
+    }
+   ],
+   "add": [
+    {
+     "parent": {
+      "name": "Panel"
+     },
+     "comp": "cursor",
+     "props": {
+      "State": "Arrow"
+     },
+     "x": 342,
+     "y": 205,
+     "name": "Cursor"
+    }
+   ],
+   "textsAfter": [
+    [
+     "=Run",
+     "Re-run",
+     0
+    ]
+   ]
+  },
+  {
+   "from": "15017:9101",
+   "name": "NEW \u00b7 09a Reviewing \u2014 in progress (Chat tab)",
+   "texts": [
+    [
+     "Can you explain this NDA clause in plain language and highlight any potential risks?",
+     "Run the Mutual Non-Disclosure Agreement (Template) playbook on this document"
+    ],
+    [
+     "Thinking...",
+     "Checking each clause against the playbook\u2026"
+    ]
+   ]
+  }
+ ]
+}

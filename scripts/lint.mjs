@@ -14,6 +14,9 @@ const file = arg.endsWith(".json") ? resolve(arg) : resolve(root, "screens", `${
 let screenPre = {}; try { screenPre = JSON.parse(readFileSync(file, "utf8")); } catch (e) {}
 const DS = screenPre.ds ? String(screenPre.ds).replace(/\.\.|^\//g, "") : "ds";
 const comps = JSON.parse(readFileSync(resolve(root, DS, "components.json"), "utf8"));
+// a registered system may extend another (only the delta is stored): merge the base catalog, as compile.mjs does
+try { const reg = JSON.parse(readFileSync(resolve(root, "ds/registry.json"), "utf8")); const me = reg.systems.find(s => s.dir === DS), base = me && me.extends && reg.systems.find(s => s.id === me.extends);
+  if (base) { const b = JSON.parse(readFileSync(resolve(root, base.dir, "components.json"), "utf8")); const own = new Set([...comps.local, ...comps.library].map(x => x.key)); comps.library = [...b.library.filter(x => !own.has(x.key)), ...comps.library]; comps.local = [...b.local.filter(x => !own.has(x.key)), ...comps.local]; } } catch {}
 const vars = JSON.parse(readFileSync(resolve(root, DS, "variable-keys.json"), "utf8"));
 const byKey = new Map([...comps.local, ...comps.library].map(c => [c.key, c]));
 const spacing = new Set(Object.keys(vars.spacing).map(k => k.replace(/^spacing-/, "")));

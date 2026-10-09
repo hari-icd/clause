@@ -1,0 +1,90 @@
+{
+ "ds": "ds/files/clients",
+ "useComps": [
+  "copilot-desktop-input-box"
+ ],
+ "swaps": [
+  {
+   "target": "15104:17987",
+   "comp": "copilot-desktop-input-box",
+   "props": {
+    "Type": "Landing Page",
+    "State": "Default",
+    "Tools & Sources": "No",
+    "Attachment": "No",
+    "Text": "Placeholder",
+    "Inline Skills": "false"
+   },
+   "replaceTexts": [
+    [
+     "Use /skill",
+     "Describe what you need from legal, or add the document"
+    ]
+   ],
+   "name": "Copilot input"
+  },
+  {
+   "target": "15104:18818",
+   "comp": "copilot-desktop-input-box",
+   "props": {
+    "Type": "Landing Page",
+    "State": "Default",
+    "Tools & Sources": "No",
+    "Attachment": "No",
+    "Text": "Placeholder",
+    "Inline Skills": "false"
+   },
+   "replaceTexts": [
+    [
+     "Use /skill",
+     "Describe what you need from legal, or add the document"
+    ]
+   ],
+   "name": "Copilot input"
+  },
+  {
+   "target": "15104:18149",
+   "comp": "copilot-desktop-input-box",
+   "props": {
+    "Type": "Landing Page",
+    "State": "Default",
+    "Tools & Sources": "No",
+    "Attachment": "Yes",
+    "Text": "One line",
+    "Inline Skills": "false"
+   },
+   "replaceTexts": [
+    [
+     "Acme sent back their redline",
+     "Word document"
+    ],
+    [
+     "AI-generated insights",
+     "Acme sent back their redline of our MSA (v3). Please review it against our playbook."
+    ]
+   ],
+   "hide": [
+    {
+     "name": "Attachments",
+     "nth": 0
+    },
+    {
+     "name": "Attachments",
+     "nth": 1
+    },
+    {
+     "name": "Attachments",
+     "nth": 3
+    },
+    {
+     "name": "Attachments",
+     "nth": 4
+    },
+    {
+     "name": "Response_Desktop full/in line"
+    }
+   ],
+   "name": "Copilot input"
+  }
+ ]
+}

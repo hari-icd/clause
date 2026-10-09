@@ -578,6 +578,29 @@
     "Buttons/Button Brand/md/Primary/Default/Default",
     "plus"
    ]
+  },
+  {
+   "key": "small-tabs",
+   "id": "13220:520053",
+   "name": "Small Tabs",
+   "section": null,
+   "set": false,
+   "props": {},
+   "default": null,
+   "size": [
+    272,
+    28
+   ],
+   "texts": [
+    "Gallery",
+    "Upload",
+    "Link",
+    "Unsplash",
+    "Plan"
+   ],
+   "nested": [
+    "_Tab base"
+   ]
   }
  ],
  "library": [
@@ -858,16 +881,6 @@
    "texts": []
   },
   {
-   "key": "icon-search-md",
-   "name": "search-md",
-   "lib": true,
-   "variantKey": "4494d5d36b811ce6d72969cfd4cf268bde29b0cd",
-   "variant": "search-md",
-   "default": null,
-   "props": {},
-   "texts": []
-  },
-  {
    "key": "close",
    "name": "close",
    "lib": true,
@@ -929,16 +942,6 @@
    "lib": true,
    "variantKey": "b02625de0debac67f54eb382d8b4ed2f1e41c806",
    "variant": "search-md",
-   "default": null,
-   "props": {},
-   "texts": []
-  },
-  {
-   "key": "icon-dots-horizontal",
-   "name": "dots-horizontal",
-   "lib": true,
-   "variantKey": "20316f3d4798005d70d1b15df91f4b674d5a04c3",
-   "variant": "dots-horizontal",
    "default": null,
    "props": {},
    "texts": []
@@ -1085,16 +1088,6 @@
    "lib": true,
    "variantKey": "e2d7fd671653e9d633066e8f3d8a4b9f4c93b32e",
    "variant": "chevron-left",
-   "default": null,
-   "props": {},
-   "texts": []
-  },
-  {
-   "key": "icon-chevron-right",
-   "name": "chevron-right",
-   "lib": true,
-   "variantKey": "1534a28d83aa9fbaa2e4a9b96f8c383764684fb6",
-   "variant": "chevron-right",
    "default": null,
    "props": {},
    "texts": []
@@ -1320,16 +1313,6 @@
    "lib": true,
    "variantKey": "7fda7118fd2b0c04305aab6293ea68db6fca4332",
    "variant": "Ai_enrichment",
-   "default": null,
-   "props": {},
-   "texts": []
-  },
-  {
-   "key": "icon-chevron-down",
-   "name": "chevron-down",
-   "lib": true,
-   "variantKey": "ba9d16a5fecb946b07fb8968b71f6966d54f9324",
-   "variant": "chevron-down",
    "default": null,
    "props": {},
    "texts": []
@@ -3022,26 +3005,6 @@
    "texts": []
   },
   {
-   "key": "icon-clock",
-   "name": "clock",
-   "lib": true,
-   "variantKey": "2083e86e869ddf8b4d52e02dcc1b8c4ee591ffb1",
-   "variant": "clock",
-   "default": null,
-   "props": {},
-   "texts": []
-  },
-  {
-   "key": "icon-calendar",
-   "name": "calendar",
-   "lib": true,
-   "variantKey": "62d8e6356f2bf86abe8e0330c109f3fb640700be",
-   "variant": "calendar",
-   "default": null,
-   "props": {},
-   "texts": []
-  },
-  {
    "key": "icon-bar-line-chart",
    "name": "bar-line-chart",
    "lib": true,
@@ -3337,16 +3300,6 @@
      "Selected_hover"
     ]
    },
-   "texts": []
-  },
-  {
-   "key": "icon-folder",
-   "name": "folder",
-   "lib": true,
-   "variantKey": "4cf48b44b6d5652b855c11a2e36fb06d10cc9801",
-   "variant": "folder",
-   "default": null,
-   "props": {},
    "texts": []
   },
   {
@@ -3754,16 +3707,6 @@
      "sm"
     ]
    },
-   "texts": []
-  },
-  {
-   "key": "icon-plus",
-   "name": "plus",
-   "lib": true,
-   "variantKey": "884255e860f9528caa1ea3e4c32c4f661953d6fc",
-   "variant": "plus",
-   "default": null,
-   "props": {},
    "texts": []
   },
   {
@@ -7198,16 +7141,6 @@
      "False"
     ]
    },
-   "texts": []
-  },
-  {
-   "key": "icon-eye",
-   "name": "eye",
-   "lib": true,
-   "variantKey": "f0e43b7c19b6a108a3651e7b13de071b427bf775",
-   "variant": "eye",
-   "default": null,
-   "props": {},
    "texts": []
   },
   {
@@ -11162,16 +11095,6 @@
    "lib": true,
    "variantKey": "3641d75d1e4e680cfe01112a766867c4c1c09f5d",
    "variant": "Avatar-Male 7",
-   "default": null,
-   "props": {},
-   "texts": []
-  },
-  {
-   "key": "icon-close",
-   "name": "Close",
-   "lib": true,
-   "variantKey": "789ce1e81b7e0e77400f39603fc4f01a27c98d73",
-   "variant": "Close",
    "default": null,
    "props": {},
    "texts": []
@@ -18789,6 +18712,154 @@
     "2h ago",
     "Shared"
    ]
+  },
+  {
+   "key": "icon-close",
+   "name": "close",
+   "lib": true,
+   "setKey": "7bf7402a1fa3b91672b231e656b5e43a1add7354",
+   "variantKey": null,
+   "variant": "close",
+   "default": null,
+   "props": {},
+   "texts": []
+  },
+  {
+   "key": "icon-plus",
+   "name": "plus",
+   "lib": true,
+   "setKey": "8e8e11df54fce7172471708df7b8304ac1ff1c7b",
+   "variantKey": "62866561d850ee97a8b342d8365bc142c8d6c36d",
+   "variant": "Size=md",
+   "default": "Size=md",
+   "props": {
+    "Size": [
+     "md",
+     "sm",
+     "xs"
+    ]
+   },
+   "texts": []
+  },
+  {
+   "key": "icon-announcement",
+   "name": "announcement-01",
+   "lib": true,
+   "variantKey": "19583a9d4d76bbe3f9360ba3e9f60801cf256cf2",
+   "variant": "announcement-01",
+   "default": null,
+   "props": {},
+   "texts": []
+  },
+  {
+   "key": "icon-user-plus",
+   "name": "user-plus-01",
+   "lib": true,
+   "variantKey": "5e6a822485f557939270bcc07aa37da88423b96d",
+   "variant": "user-plus-01",
+   "default": null,
+   "props": {},
+   "texts": []
+  },
+  {
+   "key": "icon-calendar",
+   "name": "calendar",
+   "lib": true,
+   "variantKey": "62d8e6356f2bf86abe8e0330c109f3fb640700be",
+   "variant": "calendar",
+   "default": null,
+   "props": {},
+   "texts": []
+  },
+  {
+   "key": "icon-clock",
+   "name": "clock",
+   "lib": true,
+   "variantKey": "2083e86e869ddf8b4d52e02dcc1b8c4ee591ffb1",
+   "variant": "clock",
+   "default": null,
+   "props": {},
+   "texts": []
+  },
+  {
+   "key": "icon-upload-cloud",
+   "name": "upload-cloud-02",
+   "lib": true,
+   "variantKey": "23f58bd11af80f08e3e628eb576815f06f1e0155",
+   "variant": "upload-cloud-02",
+   "default": null,
+   "props": {},
+   "texts": []
+  },
+  {
+   "key": "icon-chevron-right",
+   "name": "chevron-right",
+   "lib": true,
+   "variantKey": "3894f5ad9bb4702e97d5da3b4f813e8817c9226a",
+   "variant": "chevron-right",
+   "default": null,
+   "props": {},
+   "texts": []
+  },
+  {
+   "key": "icon-dots-horizontal",
+   "name": "dots-horizontal",
+   "lib": true,
+   "variantKey": "20316f3d4798005d70d1b15df91f4b674d5a04c3",
+   "variant": "dots-horizontal",
+   "default": null,
+   "props": {},
+   "texts": []
+  },
+  {
+   "key": "icon-chevron-down",
+   "name": "chevron-down",
+   "lib": true,
+   "variantKey": "e5d0dd551faf8f96d5b7b5ded0a1a030c5c7276b",
+   "variant": "chevron-down",
+   "default": null,
+   "props": {},
+   "texts": []
+  },
+  {
+   "key": "icon-folder",
+   "name": "folder",
+   "lib": true,
+   "variantKey": "4cf48b44b6d5652b855c11a2e36fb06d10cc9801",
+   "variant": "folder",
+   "default": null,
+   "props": {},
+   "texts": []
+  },
+  {
+   "key": "icon-search-md",
+   "name": "search-md",
+   "lib": true,
+   "variantKey": "b02625de0debac67f54eb382d8b4ed2f1e41c806",
+   "variant": "search-md",
+   "default": null,
+   "props": {},
+   "texts": []
+  },
+  {
+   "key": "icon-edit",
+   "name": "pencil-02",
+   "lib": true,
+   "variantKey": "2bf028c647abf0efe46fba58cc85eeb38684ab22",
+   "variant": "pencil-02",
+   "default": null,
+   "props": {},
+   "texts": []
+  },
+  {
+   "key": "icon-eye",
+   "name": "eye",
+   "lib": true,
+   "variantKey": "fca2e8d11a2ac88f53e62c2c77e8a6c315b424b8",
+   "variant": "eye",
+   "default": null,
+   "props": {},
+   "texts": []
   }
  ]
 }

@@ -1,0 +1,447 @@
+{
+ "title": "Announcement — generating draft",
+ "ds": "ds/files/announcements",
+ "page": "13157:51469",
+ "section": "13149:51550",
+ "height": 900,
+ "tree": {
+  "t": "row",
+  "i": "root",
+  "gap": "none",
+  "clip": true,
+  "children": [
+   {
+    "c": "main-nav",
+    "i": "nav",
+    "p": {
+     "types": "collapsed"
+    },
+    "fill": "y"
+   },
+   {
+    "t": "stack",
+    "i": "main",
+    "children": [
+     {
+      "t": "row",
+      "i": "topbar",
+      "fill": "x",
+      "h": 40,
+      "align": "center",
+      "children": [
+       {
+        "c": "es-breadcrumb",
+        "i": "crumb",
+        "fill": "x",
+        "p": {
+         "Variant": "with Icon",
+         "Actions": "false",
+         "AI assist button": "false",
+         "Avatar Group": "false"
+        },
+        "text": [
+         "Announcements",
+         "New announcement"
+        ],
+        "bg": "none"
+       }
+      ]
+     },
+     {
+      "t": "row",
+      "i": "split",
+      "children": [
+       {
+        "t": "stack",
+        "i": "chat",
+        "children": [
+         {
+          "t": "stack",
+          "i": "thread",
+          "children": [
+           {
+            "t": "row",
+            "i": "user-row",
+            "children": [
+             {
+              "t": "stack",
+              "i": "user-bubble",
+              "children": [
+               {
+                "t": "text",
+                "i": "user-t",
+                "content": "Create a new Announcement",
+                "style": "Text sm/Regular",
+                "color": "text-primary"
+               }
+              ],
+              "bg": "bg-tertiary",
+              "radius": "2xl",
+              "px": "xl",
+              "py": "md"
+             }
+            ],
+            "fill": "x",
+            "justify": "end"
+           },
+           {
+            "t": "stack",
+            "i": "choices",
+            "children": [
+             {
+              "t": "stack",
+              "i": "qa1",
+              "children": [
+               {
+                "t": "text",
+                "i": "q1",
+                "content": "What would you like to announce?",
+                "style": "Text xs/Regular",
+                "color": "text-tertiary"
+               },
+               {
+                "t": "text",
+                "i": "a1",
+                "content": "Invite people to an event",
+                "style": "Text sm/Regular",
+                "color": "text-primary"
+               }
+              ],
+              "gap": "xxs",
+              "fill": "x"
+             },
+             {
+              "t": "stack",
+              "i": "qa2",
+              "children": [
+               {
+                "t": "text",
+                "i": "q2",
+                "content": "Which event is it?",
+                "style": "Text xs/Regular",
+                "color": "text-tertiary"
+               },
+               {
+                "t": "text",
+                "i": "a2",
+                "content": "Customer Day in London",
+                "style": "Text sm/Regular",
+                "color": "text-primary"
+               }
+              ],
+              "gap": "xxs",
+              "fill": "x"
+             },
+             {
+              "t": "stack",
+              "i": "qa3",
+              "children": [
+               {
+                "t": "text",
+                "i": "q3",
+                "content": "Who should see this?",
+                "style": "Text xs/Regular",
+                "color": "text-tertiary"
+               },
+               {
+                "t": "text",
+                "i": "a3",
+                "content": "Everyone at UnifyApps",
+                "style": "Text sm/Regular",
+                "color": "text-primary"
+               }
+              ],
+              "gap": "xxs",
+              "fill": "x"
+             },
+             {
+              "t": "stack",
+              "i": "qa4",
+              "children": [
+               {
+                "t": "text",
+                "i": "q4",
+                "content": "How long should it stay up?",
+                "style": "Text xs/Regular",
+                "color": "text-tertiary"
+               },
+               {
+                "t": "text",
+                "i": "a4",
+                "content": "1 week",
+                "style": "Text sm/Regular",
+                "color": "text-primary"
+               }
+              ],
+              "gap": "xxs",
+              "fill": "x"
+             }
+            ],
+            "fill": "x",
+            "gap": "lg",
+            "pad": "xl",
+            "border": "border-secondary",
+            "radius": "2xl"
+           },
+           {
+            "t": "row",
+            "i": "thoughts-row",
+            "children": [
+             {
+              "c": "agent-avatar",
+              "i": "th-av",
+              "p": {
+               "Size": "xs",
+               "Type": "Advance"
+              }
+             },
+             {
+              "c": "thoughts",
+              "i": "thoughts",
+              "p": {
+               "State": "Open"
+              }
+             }
+            ],
+            "gap": "md",
+            "align": "center"
+           },
+           {
+            "t": "row",
+            "i": "st0",
+            "children": [
+             {
+              "c": "icon-clock",
+              "i": "st-ic0",
+              "w": 16,
+              "h": 16
+             },
+             {
+              "t": "text",
+              "i": "st-t0",
+              "content": "Reading Customer Day in your calendar",
+              "style": "Text sm/Regular",
+              "color": "text-tertiary"
+             }
+            ],
+            "gap": "md",
+            "align": "center",
+            "pl": "xl"
+           },
+           {
+            "t": "row",
+            "i": "st1",
+            "children": [
+             {
+              "c": "icon-clock",
+              "i": "st-ic1",
+              "w": 16,
+              "h": 16
+             },
+             {
+              "t": "text",
+              "i": "st-t1",
+              "content": "Checking who is in Everyone at UnifyApps",
+              "style": "Text sm/Regular",
+              "color": "text-tertiary"
+             }
+            ],
+            "gap": "md",
+            "align": "center",
+            "pl": "xl"
+           },
+           {
+            "t": "row",
+            "i": "st2",
+            "children": [
+             {
+              "c": "icon-clock",
+              "i": "st-ic2",
+              "w": 16,
+              "h": 16
+             },
+             {
+              "t": "text",
+              "i": "st-t2",
+              "content": "Writing the first draft",
+              "style": "Text sm/Regular",
+              "color": "text-tertiary"
+             }
+            ],
+            "gap": "md",
+            "align": "center",
+            "pl": "xl"
+           }
+          ],
+          "gap": "xl",
+          "fill": "x",
+          "grow": true
+         },
+         {
+          "c": "copilot-desktop-input-box",
+          "i": "input",
+          "p": {
+           "Type": "Bottom small",
+           "State": "Generating",
+           "Tools & Sources": "No",
+           "Text": "Placeholder",
+           "Attachment": "No",
+           "Inline Skills": "false"
+          },
+          "fill": "x",
+          "text": [
+           "Ask for a change, or select words in the preview"
+          ]
+         }
+        ],
+        "w": 560,
+        "fill": "y",
+        "gap": "xl",
+        "px": "xl",
+        "pb": "xl",
+        "pt": "md"
+       },
+       {
+        "t": "stack",
+        "i": "preview",
+        "children": [
+         {
+          "c": "arifact-header",
+          "i": "pv-head",
+          "fill": "x",
+          "text": [
+           "Join us at Customer Day on 16 October"
+          ],
+          "ops": [
+           {
+            "nodes": [
+             {
+              "name": "Frame 2147266824",
+              "hide": true
+             },
+             {
+              "name": "Frame 2147266884",
+              "hide": true
+             },
+             {
+              "name": "Frame 2147266889",
+              "hide": true
+             }
+            ]
+           }
+          ]
+         },
+         {
+          "t": "stack",
+          "i": "pv-body",
+          "children": [
+           {
+            "t": "stack",
+            "i": "skeleton",
+            "children": [
+             {
+              "t": "stack",
+              "i": "sk0",
+              "fill": "x",
+              "h": 12,
+              "bg": "bg-tertiary",
+              "radius": "full",
+              "why": "photo placeholder — images are not drawn by Clause",
+              "children": []
+             },
+             {
+              "t": "stack",
+              "i": "sk1",
+              "fill": "x",
+              "h": 12,
+              "bg": "bg-tertiary",
+              "radius": "full",
+              "why": "photo placeholder — images are not drawn by Clause",
+              "children": []
+             },
+             {
+              "t": "stack",
+              "i": "sk2",
+              "w": 320,
+              "h": 12,
+              "bg": "bg-tertiary",
+              "radius": "full",
+              "why": "photo placeholder — images are not drawn by Clause",
+              "children": []
+             },
+             {
+              "t": "stack",
+              "i": "sk3",
+              "fill": "x",
+              "h": 12,
+              "bg": "bg-tertiary",
+              "radius": "full",
+              "why": "photo placeholder — images are not drawn by Clause",
+              "children": []
+             },
+             {
+              "t": "stack",
+              "i": "sk4",
+              "fill": "x",
+              "h": 12,
+              "bg": "bg-tertiary",
+              "radius": "full",
+              "why": "photo placeholder — images are not drawn by Clause",
+              "children": []
+             },
+             {
+              "t": "stack",
+              "i": "sk5",
+              "w": 320,
+              "h": 12,
+              "bg": "bg-tertiary",
+              "radius": "full",
+              "why": "photo placeholder — images are not drawn by Clause",
+              "children": []
+             },
+             {
+              "t": "stack",
+              "i": "sk6",
+              "fill": "x",
+              "h": 12,
+              "bg": "bg-tertiary",
+              "radius": "full",
+              "why": "photo placeholder — images are not drawn by Clause",
+              "children": []
+             }
+            ],
+            "gap": "lg",
+            "fill": "x"
+           }
+          ],
+          "fill": "x",
+          "grow": true,
+          "px": "5xl",
+          "pt": "3xl",
+          "pb": "xl",
+          "bg": "bg-primary"
+         }
+        ],
+        "grow": true,
+        "fill": "y",
+        "bg": "bg-primary",
+        "border": "border-secondary",
+        "radius": "xl",
+        "clip": true
+       }
+      ],
+      "fill": "x",
+      "grow": true,
+      "gap": "none",
+      "pr": "md",
+      "pb": "md"
+     }
+    ],
+    "grow": true,
+    "fill": "y",
+    "gap": "none",
+    "bg": "bg-secondary"
+   }
+  ]
+ }
+}

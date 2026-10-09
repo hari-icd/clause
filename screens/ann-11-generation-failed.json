@@ -1,0 +1,310 @@
+{
+ "title": "Announcement — draft failed",
+ "ds": "ds/files/announcements",
+ "page": "13157:51469",
+ "section": "13149:51550",
+ "height": 900,
+ "tree": {
+  "t": "row",
+  "i": "root",
+  "gap": "none",
+  "clip": true,
+  "children": [
+   {
+    "c": "main-nav",
+    "i": "nav",
+    "p": {
+     "types": "collapsed"
+    },
+    "fill": "y"
+   },
+   {
+    "t": "stack",
+    "i": "main",
+    "children": [
+     {
+      "t": "row",
+      "i": "topbar",
+      "fill": "x",
+      "h": 40,
+      "align": "center",
+      "children": [
+       {
+        "c": "es-breadcrumb",
+        "i": "crumb",
+        "fill": "x",
+        "p": {
+         "Variant": "with Icon",
+         "Actions": "false",
+         "AI assist button": "false",
+         "Avatar Group": "false"
+        },
+        "text": [
+         "Announcements",
+         "New announcement"
+        ],
+        "bg": "none"
+       }
+      ]
+     },
+     {
+      "t": "row",
+      "i": "split",
+      "children": [
+       {
+        "t": "stack",
+        "i": "chat",
+        "children": [
+         {
+          "t": "stack",
+          "i": "thread",
+          "children": [
+           {
+            "t": "row",
+            "i": "user-row",
+            "children": [
+             {
+              "t": "stack",
+              "i": "user-bubble",
+              "children": [
+               {
+                "t": "text",
+                "i": "user-t",
+                "content": "Create a new Announcement",
+                "style": "Text sm/Regular",
+                "color": "text-primary"
+               }
+              ],
+              "bg": "bg-tertiary",
+              "radius": "2xl",
+              "px": "xl",
+              "py": "md"
+             }
+            ],
+            "fill": "x",
+            "justify": "end"
+           },
+           {
+            "t": "stack",
+            "i": "choices",
+            "children": [
+             {
+              "t": "stack",
+              "i": "qa1",
+              "children": [
+               {
+                "t": "text",
+                "i": "q1",
+                "content": "What would you like to announce?",
+                "style": "Text xs/Regular",
+                "color": "text-tertiary"
+               },
+               {
+                "t": "text",
+                "i": "a1",
+                "content": "Invite people to an event",
+                "style": "Text sm/Regular",
+                "color": "text-primary"
+               }
+              ],
+              "gap": "xxs",
+              "fill": "x"
+             },
+             {
+              "t": "stack",
+              "i": "qa2",
+              "children": [
+               {
+                "t": "text",
+                "i": "q2",
+                "content": "Which event is it?",
+                "style": "Text xs/Regular",
+                "color": "text-tertiary"
+               },
+               {
+                "t": "text",
+                "i": "a2",
+                "content": "Customer Day in London",
+                "style": "Text sm/Regular",
+                "color": "text-primary"
+               }
+              ],
+              "gap": "xxs",
+              "fill": "x"
+             },
+             {
+              "t": "stack",
+              "i": "qa3",
+              "children": [
+               {
+                "t": "text",
+                "i": "q3",
+                "content": "Who should see this?",
+                "style": "Text xs/Regular",
+                "color": "text-tertiary"
+               },
+               {
+                "t": "text",
+                "i": "a3",
+                "content": "Everyone at UnifyApps",
+                "style": "Text sm/Regular",
+                "color": "text-primary"
+               }
+              ],
+              "gap": "xxs",
+              "fill": "x"
+             },
+             {
+              "t": "stack",
+              "i": "qa4",
+              "children": [
+               {
+                "t": "text",
+                "i": "q4",
+                "content": "How long should it stay up?",
+                "style": "Text xs/Regular",
+                "color": "text-tertiary"
+               },
+               {
+                "t": "text",
+                "i": "a4",
+                "content": "1 week",
+                "style": "Text sm/Regular",
+                "color": "text-primary"
+               }
+              ],
+              "gap": "xxs",
+              "fill": "x"
+             }
+            ],
+            "fill": "x",
+            "gap": "lg",
+            "pad": "xl",
+            "border": "border-secondary",
+            "radius": "2xl"
+           },
+           {
+            "t": "text",
+            "i": "fail-t",
+            "content": "I couldn’t write the draft this time — nothing was saved. Try again, or change one of your answers.",
+            "style": "Text sm/Regular",
+            "color": "text-primary",
+            "fill": "x"
+           },
+           {
+            "t": "row",
+            "i": "fail-a",
+            "children": [
+             {
+              "c": "button-brand",
+              "i": "retry",
+              "p": {
+               "Size": "sm",
+               "Hierarchy": "Primary",
+               "Icon leading": "false",
+               "Icon trailing": "false"
+              },
+              "text": {
+               "Button": "Try again"
+              }
+             },
+             {
+              "c": "button-neutral",
+              "i": "change",
+              "p": {
+               "Size": "sm",
+               "Hierarchy": "Secondary",
+               "Icon leading": "false",
+               "Icon trailing": "false"
+              },
+              "text": {
+               "Button": "Change answers"
+              }
+             }
+            ],
+            "gap": "md"
+           }
+          ],
+          "gap": "xl",
+          "fill": "x",
+          "grow": true
+         },
+         {
+          "c": "copilot-desktop-input-box",
+          "i": "input",
+          "p": {
+           "Type": "Bottom small",
+           "State": "Default",
+           "Tools & Sources": "No",
+           "Text": "Placeholder",
+           "Attachment": "No",
+           "Inline Skills": "false"
+          },
+          "fill": "x",
+          "text": [
+           "Ask for a change, or select words in the preview"
+          ]
+         }
+        ],
+        "w": 560,
+        "fill": "y",
+        "gap": "xl",
+        "px": "xl",
+        "pb": "xl",
+        "pt": "md"
+       },
+       {
+        "t": "stack",
+        "i": "preview",
+        "children": [
+         {
+          "t": "stack",
+          "i": "empty",
+          "children": [
+           {
+            "c": "alert",
+            "i": "err",
+            "p": {
+             "Size": "md",
+             "Color": "Error",
+             "Actions": "true",
+             "Supporting text": "true",
+             "Title Text": "true",
+             "Icon": "true",
+             "Double Stack": "Off"
+            },
+            "text": [
+             "Couldn’t write the draft",
+             "Dismiss",
+             "Try again"
+            ],
+            "fill": "x"
+           }
+          ],
+          "fill": "x",
+          "px": "xl",
+          "pt": "xl"
+         }
+        ],
+        "grow": true,
+        "fill": "y",
+        "bg": "bg-primary",
+        "border": "border-secondary",
+        "radius": "xl"
+       }
+      ],
+      "fill": "x",
+      "grow": true,
+      "gap": "none",
+      "pr": "md",
+      "pb": "md"
+     }
+    ],
+    "grow": true,
+    "fill": "y",
+    "gap": "none",
+    "bg": "bg-secondary"
+   }
+  ]
+ }
+}

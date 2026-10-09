@@ -1,0 +1,161 @@
+{
+ "ds": "ds/files/clients",
+ "useComps": [
+  "copilot-desktop-input-box"
+ ],
+ "swaps": [
+  {
+   "comp": "copilot-desktop-input-box",
+   "props": {
+    "Type": "Bottom small",
+    "State": "Default",
+    "Tools & Sources": "No",
+    "Attachment": "No",
+    "Text": "Placeholder",
+    "Inline Skills": "false"
+   },
+   "text": [
+    "Ask, or tell Clavia what to do"
+   ],
+   "fill": true,
+   "name": "Copilot input",
+   "target": "15066:10717"
+  },
+  {
+   "comp": "copilot-desktop-input-box",
+   "props": {
+    "Type": "Bottom small",
+    "State": "Default",
+    "Tools & Sources": "No",
+    "Attachment": "No",
+    "Text": "Placeholder",
+    "Inline Skills": "false"
+   },
+   "text": [
+    "Ask, or tell Clavia what to do"
+   ],
+   "fill": true,
+   "name": "Copilot input",
+   "target": "15066:10831"
+  },
+  {
+   "comp": "copilot-desktop-input-box",
+   "props": {
+    "Type": "Bottom small",
+    "State": "Default",
+    "Tools & Sources": "No",
+    "Attachment": "No",
+    "Text": "Placeholder",
+    "Inline Skills": "false"
+   },
+   "text": [
+    "Ask, or tell Clavia what to do"
+   ],
+   "fill": true,
+   "name": "Copilot input",
+   "target": "15067:10601"
+  },
+  {
+   "comp": "copilot-desktop-input-box",
+   "props": {
+    "Type": "Bottom small",
+    "State": "Default",
+    "Tools & Sources": "No",
+    "Attachment": "No",
+    "Text": "Placeholder",
+    "Inline Skills": "false"
+   },
+   "text": [
+    "Ask, or tell Clavia what to do"
+   ],
+   "fill": true,
+   "name": "Copilot input",
+   "target": "15067:10798"
+  },
+  {
+   "comp": "copilot-desktop-input-box",
+   "props": {
+    "Type": "Bottom small",
+    "State": "Default",
+    "Tools & Sources": "No",
+    "Attachment": "No",
+    "Text": "Placeholder",
+    "Inline Skills": "false"
+   },
+   "text": [
+    "Ask, or tell Clavia what to do"
+   ],
+   "fill": true,
+   "name": "Copilot input",
+   "target": "15067:10988"
+  },
+  {
+   "comp": "copilot-desktop-input-box",
+   "props": {
+    "Type": "Bottom small",
+    "State": "Default",
+    "Tools & Sources": "No",
+    "Attachment": "No",
+    "Text": "Placeholder",
+    "Inline Skills": "false"
+   },
+   "text": [
+    "Ask, or tell Clavia what to do"
+   ],
+   "fill": true,
+   "name": "Copilot input",
+   "target": "15067:11278"
+  },
+  {
+   "comp": "copilot-desktop-input-box",
+   "props": {
+    "Type": "Bottom small",
+    "State": "Default",
+    "Tools & Sources": "No",
+    "Attachment": "No",
+    "Text": "Placeholder",
+    "Inline Skills": "false"
+   },
+   "text": [
+    "Ask, or tell Clavia what to do"
+   ],
+   "fill": true,
+   "name": "Copilot input",
+   "target": "15067:11518"
+  },
+  {
+   "comp": "copilot-desktop-input-box",
+   "props": {
+    "Type": "Bottom small",
+    "State": "Default",
+    "Tools & Sources": "No",
+    "Attachment": "No",
+    "Text": "Placeholder",
+    "Inline Skills": "false"
+   },
+   "text": [
+    "Ask, or tell Clavia what to do"
+   ],
+   "fill": true,
+   "name": "Copilot input",
+   "target": "15068:11779"
+  },
+  {
+   "comp": "copilot-desktop-input-box",
+   "props": {
+    "Type": "Bottom small",
+    "State": "Default",
+    "Tools & Sources": "No",
+    "Attachment": "No",
+    "Text": "One line",
+    "Inline Skills": "false"
+   },
+   "text": [
+    "Is this acceptable under our playbook?"
+   ],
+   "fill": true,
+   "name": "Copilot input",
+   "target": "15066:10595"
+  }
+ ]
+}

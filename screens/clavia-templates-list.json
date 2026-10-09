@@ -1,0 +1,1801 @@
+{
+ "title": "Templates · 43 List (library)",
+ "ds": "ds/files/clients",
+ "page": "12098:475393",
+ "section": "15041:10639",
+ "width": 1440,
+ "height": 900,
+ "tree": {
+  "t": "row",
+  "i": "root",
+  "gap": "none",
+  "clip": true,
+  "children": [
+   {
+    "t": "stack",
+    "i": "rail",
+    "w": 280,
+    "h": 900,
+    "bg": "bg-brand-solid",
+    "children": [
+     {
+      "t": "row",
+      "i": "rail-head",
+      "py": "lg",
+      "px": "xl",
+      "justify": "between",
+      "align": "center",
+      "fill": "x",
+      "children": [
+       {
+        "t": "row",
+        "i": "logo",
+        "gap": "md",
+        "align": "center",
+        "children": [
+         {
+          "c": "feather",
+          "i": "logo-mark"
+         },
+         {
+          "t": "text",
+          "i": "wordmark",
+          "content": "Clavia",
+          "style": "Text xl/Medium",
+          "color": "text-white"
+         }
+        ]
+       },
+       {
+        "c": "icon-layout-left",
+        "i": "rail-toggle"
+       }
+      ]
+     },
+     {
+      "t": "stack",
+      "i": "nav-items",
+      "gap": "xs",
+      "pt": "xs",
+      "pb": "md",
+      "px": "lg",
+      "fill": "x",
+      "children": [
+       {
+        "c": "nav-menu-main",
+        "i": "nav0",
+        "p": {
+         "Variant": "Expanded"
+        },
+        "text": [
+         "New Chat"
+        ],
+        "fill": "x",
+        "ops": [
+         {
+          "nodes": [
+           {
+            "name": "plus",
+            "swap": "@icon-plus"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "c": "nav-menu-main",
+        "i": "nav1",
+        "p": {
+         "Variant": "Expanded"
+        },
+        "text": [
+         "Playbooks"
+        ],
+        "fill": "x",
+        "ops": [
+         {
+          "nodes": [
+           {
+            "name": "plus",
+            "swap": "@icon-book-open-01"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "c": "nav-menu-main",
+        "i": "nav2",
+        "p": {
+         "Variant": "Expanded"
+        },
+        "text": [
+         "Vault"
+        ],
+        "fill": "x",
+        "ops": [
+         {
+          "nodes": [
+           {
+            "name": "plus",
+            "swap": "@icon-lock-01"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "c": "nav-menu-main",
+        "i": "nav3",
+        "p": {
+         "Variant": "Expanded",
+         "State": "Selected"
+        },
+        "text": [
+         "Templates"
+        ],
+        "fill": "x",
+        "ops": [
+         {
+          "nodes": [
+           {
+            "name": "plus",
+            "swap": "@icon-layout-grid-02"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "c": "nav-menu-main",
+        "i": "nav4",
+        "p": {
+         "Variant": "Expanded"
+        },
+        "text": [
+         "Contracts"
+        ],
+        "fill": "x",
+        "ops": [
+         {
+          "nodes": [
+           {
+            "name": "plus",
+            "swap": "@icon-inbox-02"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "c": "nav-menu-main",
+        "i": "nav5",
+        "p": {
+         "Variant": "Expanded"
+        },
+        "text": [
+         "Requests"
+        ],
+        "fill": "x",
+        "ops": [
+         {
+          "nodes": [
+           {
+            "name": "plus",
+            "swap": "@icon-ticket-01"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "c": "nav-menu-main",
+        "i": "nav6",
+        "p": {
+         "Variant": "Expanded"
+        },
+        "text": [
+         "Projects"
+        ],
+        "fill": "x",
+        "ops": [
+         {
+          "nodes": [
+           {
+            "name": "plus",
+            "swap": "@icon-folder"
+           }
+          ]
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "t": "stack",
+      "i": "history",
+      "pt": "md",
+      "px": "lg",
+      "fill": "x",
+      "children": [
+       {
+        "c": "nav-menu-subheader",
+        "i": "history-sub",
+        "text": [
+         "History"
+        ],
+        "fill": "x"
+       }
+      ]
+     },
+     {
+      "t": "spacer",
+      "i": "rail-push"
+     },
+     {
+      "c": "nav-menu-footer",
+      "i": "rail-user",
+      "text": [
+       "R",
+       "Roger Bennett"
+      ],
+      "fill": "x"
+     }
+    ]
+   },
+   {
+    "t": "stack",
+    "i": "main",
+    "gap": "3xl",
+    "pad": "5xl",
+    "fill": "y",
+    "bg": "bg-workspace",
+    "grow": true,
+    "children": [
+     {
+      "t": "row",
+      "i": "page-head",
+      "justify": "between",
+      "align": "center",
+      "fill": "x",
+      "children": [
+       {
+        "t": "text",
+        "i": "page-title",
+        "content": "Templates",
+        "style": "Display sm/Regular",
+        "color": "text-primary"
+       },
+       {
+        "c": "button-brand",
+        "i": "new-template",
+        "p": {
+         "Size": "md",
+         "Hierarchy": "Primary",
+         "Icon leading": "true",
+         "Icon leading swap": "@icon-plus",
+         "Icon trailing": "false"
+        },
+        "text": [
+         "New Template"
+        ]
+       }
+      ]
+     },
+     {
+      "t": "stack",
+      "i": "table-card",
+      "fill": "x",
+      "radius": "4xl",
+      "bg": "bg-primary",
+      "border": "border-secondary",
+      "clip": true,
+      "children": [
+       {
+        "t": "row",
+        "i": "tabs",
+        "fill": "x",
+        "px": "xl",
+        "align": "center",
+        "borderB": "border-secondary",
+        "children": [
+         {
+          "c": "horizontal-tabs",
+          "i": "tabset",
+          "p": {
+           "Style": "Default",
+           "Start Icon Style": "None",
+           "Size": "sm",
+           "Add New Icon": "false"
+          },
+          "text": [
+           "All 7",
+           "Agreements 4",
+           "Addenda 1",
+           "Order Forms 1",
+           "Letters 1"
+          ],
+          "fill": "x",
+          "ops": [
+           {
+            "nodes": [
+             {
+              "name": "Tab 6",
+              "hide": true
+             },
+             {
+              "name": "Tab 7",
+              "hide": true
+             },
+             {
+              "name": "Tab 8",
+              "hide": true
+             },
+             {
+              "name": "Tab 9",
+              "hide": true
+             }
+            ]
+           }
+          ]
+         },
+         {
+          "c": "icon-search-md",
+          "i": "tabs-search",
+          "w": 16,
+          "h": 16
+         }
+        ]
+       },
+       {
+        "t": "row",
+        "i": "table",
+        "fill": "x",
+        "align": "start",
+        "children": [
+         {
+          "t": "stack",
+          "i": "col0",
+          "gap": "none",
+          "fill": "x",
+          "children": [
+           {
+            "c": "col-header-cell",
+            "i": "h0",
+            "p": {
+             "Size": "md",
+             "Text": "True",
+             "Checkbox": "False",
+             "State": "Default",
+             "Data Icon": "Off"
+            },
+            "text": [
+             "Name"
+            ],
+            "bg": "none",
+            "fill": "x"
+           },
+           {
+            "c": "table-cell",
+            "i": "n0",
+            "p": {
+             "Style": "Icon with text and badge",
+             "Lead": "No",
+             "State": "Default",
+             "Size": "md",
+             "Supporting Text": "false",
+             "Badge": "false",
+             "Dropdown": "false"
+            },
+            "text": {
+             "$1,800": "Reseller Agreement"
+            },
+            "fill": "x",
+            "ops": [
+             {
+              "hide": [],
+              "nodes": [
+               {
+                "name": "Pill squared",
+                "hide": true
+               },
+               {
+                "name": "Text",
+                "show": true
+               },
+               {
+                "name": "placeholder",
+                "swap": "@icon-file-05"
+               }
+              ]
+             }
+            ]
+           },
+           {
+            "c": "table-cell",
+            "i": "n1",
+            "p": {
+             "Style": "Icon with text and badge",
+             "Lead": "No",
+             "State": "Default",
+             "Size": "md",
+             "Supporting Text": "false",
+             "Badge": "false",
+             "Dropdown": "false"
+            },
+            "text": {
+             "$1,800": "Mutual NDA"
+            },
+            "fill": "x",
+            "ops": [
+             {
+              "hide": [],
+              "nodes": [
+               {
+                "name": "Pill squared",
+                "hide": true
+               },
+               {
+                "name": "Text",
+                "show": true
+               },
+               {
+                "name": "placeholder",
+                "swap": "@icon-file-05"
+               }
+              ]
+             }
+            ]
+           },
+           {
+            "c": "table-cell",
+            "i": "n2",
+            "p": {
+             "Style": "Icon with text and badge",
+             "Lead": "No",
+             "State": "Default",
+             "Size": "md",
+             "Supporting Text": "false",
+             "Badge": "false",
+             "Dropdown": "false"
+            },
+            "text": {
+             "$1,800": "Master Services Agreement — short form"
+            },
+            "fill": "x",
+            "ops": [
+             {
+              "hide": [],
+              "nodes": [
+               {
+                "name": "Pill squared",
+                "hide": true
+               },
+               {
+                "name": "Text",
+                "show": true
+               },
+               {
+                "name": "placeholder",
+                "swap": "@icon-file-05"
+               }
+              ]
+             }
+            ]
+           },
+           {
+            "c": "table-cell",
+            "i": "n3",
+            "p": {
+             "Style": "Icon with text and badge",
+             "Lead": "No",
+             "State": "Default",
+             "Size": "md",
+             "Supporting Text": "false",
+             "Badge": "false",
+             "Dropdown": "false"
+            },
+            "text": {
+             "$1,800": "Order Form"
+            },
+            "fill": "x",
+            "ops": [
+             {
+              "hide": [],
+              "nodes": [
+               {
+                "name": "Pill squared",
+                "hide": true
+               },
+               {
+                "name": "Text",
+                "show": true
+               },
+               {
+                "name": "placeholder",
+                "swap": "@icon-file-05"
+               }
+              ]
+             }
+            ]
+           },
+           {
+            "c": "table-cell",
+            "i": "n4",
+            "p": {
+             "Style": "Icon with text and badge",
+             "Lead": "No",
+             "State": "Default",
+             "Size": "md",
+             "Supporting Text": "false",
+             "Badge": "false",
+             "Dropdown": "false"
+            },
+            "text": {
+             "$1,800": "One-way NDA"
+            },
+            "fill": "x",
+            "ops": [
+             {
+              "hide": [],
+              "nodes": [
+               {
+                "name": "Pill squared",
+                "hide": true
+               },
+               {
+                "name": "Text",
+                "show": true
+               },
+               {
+                "name": "placeholder",
+                "swap": "@icon-file-05"
+               }
+              ]
+             }
+            ]
+           },
+           {
+            "c": "table-cell",
+            "i": "n5",
+            "p": {
+             "Style": "Icon with text and badge",
+             "Lead": "No",
+             "State": "Default",
+             "Size": "md",
+             "Supporting Text": "false",
+             "Badge": "false",
+             "Dropdown": "false"
+            },
+            "text": {
+             "$1,800": "Data Processing Addendum"
+            },
+            "fill": "x",
+            "ops": [
+             {
+              "hide": [],
+              "nodes": [
+               {
+                "name": "Pill squared",
+                "hide": true
+               },
+               {
+                "name": "Text",
+                "show": true
+               },
+               {
+                "name": "placeholder",
+                "swap": "@icon-file-05"
+               }
+              ]
+             }
+            ]
+           },
+           {
+            "c": "table-cell",
+            "i": "n6",
+            "p": {
+             "Style": "Icon with text and badge",
+             "Lead": "No",
+             "State": "Default",
+             "Size": "md",
+             "Supporting Text": "false",
+             "Badge": "false",
+             "Dropdown": "false"
+            },
+            "text": {
+             "$1,800": "Notice of Non-renewal"
+            },
+            "fill": "x",
+            "ops": [
+             {
+              "hide": [],
+              "nodes": [
+               {
+                "name": "Pill squared",
+                "hide": true
+               },
+               {
+                "name": "Text",
+                "show": true
+               },
+               {
+                "name": "placeholder",
+                "swap": "@icon-file-05"
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         },
+         {
+          "t": "stack",
+          "i": "col1",
+          "gap": "none",
+          "w": 120,
+          "children": [
+           {
+            "c": "col-header-cell",
+            "i": "h1",
+            "p": {
+             "Size": "md",
+             "Text": "True",
+             "Checkbox": "False",
+             "State": "Default",
+             "Data Icon": "Off"
+            },
+            "text": [
+             "Type"
+            ],
+            "bg": "none",
+            "w": 120
+           },
+           {
+            "c": "table-cell",
+            "i": "t0",
+            "p": {
+             "Style": "Text",
+             "Lead": "No",
+             "State": "Default",
+             "Size": "md",
+             "Supporting Text": "false",
+             "Badge": "false",
+             "Dropdown": "false"
+            },
+            "text": [
+             "Agreement"
+            ],
+            "w": 120
+           },
+           {
+            "c": "table-cell",
+            "i": "t1",
+            "p": {
+             "Style": "Text",
+             "Lead": "No",
+             "State": "Default",
+             "Size": "md",
+             "Supporting Text": "false",
+             "Badge": "false",
+             "Dropdown": "false"
+            },
+            "text": [
+             "Agreement"
+            ],
+            "w": 120
+           },
+           {
+            "c": "table-cell",
+            "i": "t2",
+            "p": {
+             "Style": "Text",
+             "Lead": "No",
+             "State": "Default",
+             "Size": "md",
+             "Supporting Text": "false",
+             "Badge": "false",
+             "Dropdown": "false"
+            },
+            "text": [
+             "Agreement"
+            ],
+            "w": 120
+           },
+           {
+            "c": "table-cell",
+            "i": "t3",
+            "p": {
+             "Style": "Text",
+             "Lead": "No",
+             "State": "Default",
+             "Size": "md",
+             "Supporting Text": "false",
+             "Badge": "false",
+             "Dropdown": "false"
+            },
+            "text": [
+             "Order form"
+            ],
+            "w": 120
+           },
+           {
+            "c": "table-cell",
+            "i": "t4",
+            "p": {
+             "Style": "Text",
+             "Lead": "No",
+             "State": "Default",
+             "Size": "md",
+             "Supporting Text": "false",
+             "Badge": "false",
+             "Dropdown": "false"
+            },
+            "text": [
+             "Agreement"
+            ],
+            "w": 120
+           },
+           {
+            "c": "table-cell",
+            "i": "t5",
+            "p": {
+             "Style": "Text",
+             "Lead": "No",
+             "State": "Default",
+             "Size": "md",
+             "Supporting Text": "false",
+             "Badge": "false",
+             "Dropdown": "false"
+            },
+            "text": [
+             "Addendum"
+            ],
+            "w": 120
+           },
+           {
+            "c": "table-cell",
+            "i": "t6",
+            "p": {
+             "Style": "Text",
+             "Lead": "No",
+             "State": "Default",
+             "Size": "md",
+             "Supporting Text": "false",
+             "Badge": "false",
+             "Dropdown": "false"
+            },
+            "text": [
+             "Letter"
+            ],
+            "w": 120
+           }
+          ]
+         },
+         {
+          "t": "stack",
+          "i": "col2",
+          "gap": "none",
+          "w": 130,
+          "children": [
+           {
+            "c": "col-header-cell",
+            "i": "h2",
+            "p": {
+             "Size": "md",
+             "Text": "True",
+             "Checkbox": "False",
+             "State": "Default",
+             "Data Icon": "Off"
+            },
+            "text": [
+             "Status"
+            ],
+            "bg": "none",
+            "w": 130
+           },
+           {
+            "t": "row",
+            "i": "s0",
+            "w": 130,
+            "px": "md",
+            "align": "center",
+            "bg": "bg-primary",
+            "children": [
+             {
+              "c": "pill-squared",
+              "i": "sp0",
+              "p": {
+               "Size": "sm",
+               "Type": "Pill Clear",
+               "Icon": "Dot",
+               "Color": "Warning"
+              },
+              "text": [
+               "Draft"
+              ]
+             }
+            ],
+            "h": 48,
+            "borderB": "border-secondary"
+           },
+           {
+            "t": "row",
+            "i": "s1",
+            "w": 130,
+            "px": "md",
+            "align": "center",
+            "bg": "bg-primary",
+            "children": [
+             {
+              "c": "pill-squared",
+              "i": "sp1",
+              "p": {
+               "Size": "sm",
+               "Type": "Pill Clear",
+               "Icon": "Dot",
+               "Color": "Success"
+              },
+              "text": [
+               "Published"
+              ]
+             }
+            ],
+            "h": 48,
+            "borderB": "border-secondary"
+           },
+           {
+            "t": "row",
+            "i": "s2",
+            "w": 130,
+            "px": "md",
+            "align": "center",
+            "bg": "bg-primary",
+            "children": [
+             {
+              "c": "pill-squared",
+              "i": "sp2",
+              "p": {
+               "Size": "sm",
+               "Type": "Pill Clear",
+               "Icon": "Dot",
+               "Color": "Success"
+              },
+              "text": [
+               "Published"
+              ]
+             }
+            ],
+            "h": 48,
+            "borderB": "border-secondary"
+           },
+           {
+            "t": "row",
+            "i": "s3",
+            "w": 130,
+            "px": "md",
+            "align": "center",
+            "bg": "bg-primary",
+            "children": [
+             {
+              "c": "pill-squared",
+              "i": "sp3",
+              "p": {
+               "Size": "sm",
+               "Type": "Pill Clear",
+               "Icon": "Dot",
+               "Color": "Success"
+              },
+              "text": [
+               "Published"
+              ]
+             }
+            ],
+            "h": 48,
+            "borderB": "border-secondary"
+           },
+           {
+            "t": "row",
+            "i": "s4",
+            "w": 130,
+            "px": "md",
+            "align": "center",
+            "bg": "bg-primary",
+            "children": [
+             {
+              "c": "pill-squared",
+              "i": "sp4",
+              "p": {
+               "Size": "sm",
+               "Type": "Pill Clear",
+               "Icon": "Dot",
+               "Color": "Success"
+              },
+              "text": [
+               "Published"
+              ]
+             }
+            ],
+            "h": 48,
+            "borderB": "border-secondary"
+           },
+           {
+            "t": "row",
+            "i": "s5",
+            "w": 130,
+            "px": "md",
+            "align": "center",
+            "bg": "bg-primary",
+            "children": [
+             {
+              "c": "pill-squared",
+              "i": "sp5",
+              "p": {
+               "Size": "sm",
+               "Type": "Pill Clear",
+               "Icon": "Dot",
+               "Color": "Success"
+              },
+              "text": [
+               "Published"
+              ]
+             }
+            ],
+            "h": 48,
+            "borderB": "border-secondary"
+           },
+           {
+            "t": "row",
+            "i": "s6",
+            "w": 130,
+            "px": "md",
+            "align": "center",
+            "bg": "bg-primary",
+            "children": [
+             {
+              "c": "pill-squared",
+              "i": "sp6",
+              "p": {
+               "Size": "sm",
+               "Type": "Pill Clear",
+               "Icon": "Dot",
+               "Color": "Success"
+              },
+              "text": [
+               "Published"
+              ]
+             }
+            ],
+            "h": 48,
+            "borderB": "border-secondary"
+           }
+          ]
+         },
+         {
+          "t": "stack",
+          "i": "col3",
+          "gap": "none",
+          "w": 90,
+          "children": [
+           {
+            "c": "col-header-cell",
+            "i": "h3",
+            "p": {
+             "Size": "md",
+             "Text": "True",
+             "Checkbox": "False",
+             "State": "Default",
+             "Data Icon": "Off"
+            },
+            "text": [
+             "Version"
+            ],
+            "bg": "none",
+            "w": 90,
+            "ops": [
+             {
+              "nodes": [
+               {
+                "name": "Text",
+                "align": "right"
+               }
+              ]
+             }
+            ]
+           },
+           {
+            "c": "table-cell",
+            "i": "v0",
+            "p": {
+             "Style": "Text",
+             "Lead": "No",
+             "State": "Default",
+             "Size": "md",
+             "Supporting Text": "false",
+             "Badge": "false",
+             "Dropdown": "false"
+            },
+            "text": [
+             "v1"
+            ],
+            "w": 90,
+            "ops": [
+             {
+              "nodes": [
+               {
+                "name": "Text",
+                "align": "right"
+               }
+              ]
+             }
+            ]
+           },
+           {
+            "c": "table-cell",
+            "i": "v1",
+            "p": {
+             "Style": "Text",
+             "Lead": "No",
+             "State": "Default",
+             "Size": "md",
+             "Supporting Text": "false",
+             "Badge": "false",
+             "Dropdown": "false"
+            },
+            "text": [
+             "v4"
+            ],
+            "w": 90,
+            "ops": [
+             {
+              "nodes": [
+               {
+                "name": "Text",
+                "align": "right"
+               }
+              ]
+             }
+            ]
+           },
+           {
+            "c": "table-cell",
+            "i": "v2",
+            "p": {
+             "Style": "Text",
+             "Lead": "No",
+             "State": "Default",
+             "Size": "md",
+             "Supporting Text": "false",
+             "Badge": "false",
+             "Dropdown": "false"
+            },
+            "text": [
+             "v3"
+            ],
+            "w": 90,
+            "ops": [
+             {
+              "nodes": [
+               {
+                "name": "Text",
+                "align": "right"
+               }
+              ]
+             }
+            ]
+           },
+           {
+            "c": "table-cell",
+            "i": "v3",
+            "p": {
+             "Style": "Text",
+             "Lead": "No",
+             "State": "Default",
+             "Size": "md",
+             "Supporting Text": "false",
+             "Badge": "false",
+             "Dropdown": "false"
+            },
+            "text": [
+             "v5"
+            ],
+            "w": 90,
+            "ops": [
+             {
+              "nodes": [
+               {
+                "name": "Text",
+                "align": "right"
+               }
+              ]
+             }
+            ]
+           },
+           {
+            "c": "table-cell",
+            "i": "v4",
+            "p": {
+             "Style": "Text",
+             "Lead": "No",
+             "State": "Default",
+             "Size": "md",
+             "Supporting Text": "false",
+             "Badge": "false",
+             "Dropdown": "false"
+            },
+            "text": [
+             "v2"
+            ],
+            "w": 90,
+            "ops": [
+             {
+              "nodes": [
+               {
+                "name": "Text",
+                "align": "right"
+               }
+              ]
+             }
+            ]
+           },
+           {
+            "c": "table-cell",
+            "i": "v5",
+            "p": {
+             "Style": "Text",
+             "Lead": "No",
+             "State": "Default",
+             "Size": "md",
+             "Supporting Text": "false",
+             "Badge": "false",
+             "Dropdown": "false"
+            },
+            "text": [
+             "v2"
+            ],
+            "w": 90,
+            "ops": [
+             {
+              "nodes": [
+               {
+                "name": "Text",
+                "align": "right"
+               }
+              ]
+             }
+            ]
+           },
+           {
+            "c": "table-cell",
+            "i": "v6",
+            "p": {
+             "Style": "Text",
+             "Lead": "No",
+             "State": "Default",
+             "Size": "md",
+             "Supporting Text": "false",
+             "Badge": "false",
+             "Dropdown": "false"
+            },
+            "text": [
+             "v1"
+            ],
+            "w": 90,
+            "ops": [
+             {
+              "nodes": [
+               {
+                "name": "Text",
+                "align": "right"
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         },
+         {
+          "t": "stack",
+          "i": "col4",
+          "gap": "none",
+          "w": 80,
+          "children": [
+           {
+            "c": "col-header-cell",
+            "i": "h4",
+            "p": {
+             "Size": "md",
+             "Text": "True",
+             "Checkbox": "False",
+             "State": "Default",
+             "Data Icon": "Off"
+            },
+            "text": [
+             "Used"
+            ],
+            "bg": "none",
+            "w": 80,
+            "ops": [
+             {
+              "nodes": [
+               {
+                "name": "Text",
+                "align": "right"
+               }
+              ]
+             }
+            ]
+           },
+           {
+            "c": "table-cell",
+            "i": "u0",
+            "p": {
+             "Style": "Text",
+             "Lead": "No",
+             "State": "Default",
+             "Size": "md",
+             "Supporting Text": "false",
+             "Badge": "false",
+             "Dropdown": "false"
+            },
+            "text": [
+             "0"
+            ],
+            "w": 80,
+            "ops": [
+             {
+              "nodes": [
+               {
+                "name": "Text",
+                "align": "right"
+               }
+              ]
+             }
+            ]
+           },
+           {
+            "c": "table-cell",
+            "i": "u1",
+            "p": {
+             "Style": "Text",
+             "Lead": "No",
+             "State": "Default",
+             "Size": "md",
+             "Supporting Text": "false",
+             "Badge": "false",
+             "Dropdown": "false"
+            },
+            "text": [
+             "48"
+            ],
+            "w": 80,
+            "ops": [
+             {
+              "nodes": [
+               {
+                "name": "Text",
+                "align": "right"
+               }
+              ]
+             }
+            ]
+           },
+           {
+            "c": "table-cell",
+            "i": "u2",
+            "p": {
+             "Style": "Text",
+             "Lead": "No",
+             "State": "Default",
+             "Size": "md",
+             "Supporting Text": "false",
+             "Badge": "false",
+             "Dropdown": "false"
+            },
+            "text": [
+             "34"
+            ],
+            "w": 80,
+            "ops": [
+             {
+              "nodes": [
+               {
+                "name": "Text",
+                "align": "right"
+               }
+              ]
+             }
+            ]
+           },
+           {
+            "c": "table-cell",
+            "i": "u3",
+            "p": {
+             "Style": "Text",
+             "Lead": "No",
+             "State": "Default",
+             "Size": "md",
+             "Supporting Text": "false",
+             "Badge": "false",
+             "Dropdown": "false"
+            },
+            "text": [
+             "63"
+            ],
+            "w": 80,
+            "ops": [
+             {
+              "nodes": [
+               {
+                "name": "Text",
+                "align": "right"
+               }
+              ]
+             }
+            ]
+           },
+           {
+            "c": "table-cell",
+            "i": "u4",
+            "p": {
+             "Style": "Text",
+             "Lead": "No",
+             "State": "Default",
+             "Size": "md",
+             "Supporting Text": "false",
+             "Badge": "false",
+             "Dropdown": "false"
+            },
+            "text": [
+             "21"
+            ],
+            "w": 80,
+            "ops": [
+             {
+              "nodes": [
+               {
+                "name": "Text",
+                "align": "right"
+               }
+              ]
+             }
+            ]
+           },
+           {
+            "c": "table-cell",
+            "i": "u5",
+            "p": {
+             "Style": "Text",
+             "Lead": "No",
+             "State": "Default",
+             "Size": "md",
+             "Supporting Text": "false",
+             "Badge": "false",
+             "Dropdown": "false"
+            },
+            "text": [
+             "27"
+            ],
+            "w": 80,
+            "ops": [
+             {
+              "nodes": [
+               {
+                "name": "Text",
+                "align": "right"
+               }
+              ]
+             }
+            ]
+           },
+           {
+            "c": "table-cell",
+            "i": "u6",
+            "p": {
+             "Style": "Text",
+             "Lead": "No",
+             "State": "Default",
+             "Size": "md",
+             "Supporting Text": "false",
+             "Badge": "false",
+             "Dropdown": "false"
+            },
+            "text": [
+             "9"
+            ],
+            "w": 80,
+            "ops": [
+             {
+              "nodes": [
+               {
+                "name": "Text",
+                "align": "right"
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         },
+         {
+          "t": "stack",
+          "i": "col5",
+          "gap": "none",
+          "w": 190,
+          "children": [
+           {
+            "c": "col-header-cell",
+            "i": "h5",
+            "p": {
+             "Size": "md",
+             "Text": "True",
+             "Checkbox": "False",
+             "State": "Default",
+             "Data Icon": "Off"
+            },
+            "text": [
+             "Owner"
+            ],
+            "bg": "none",
+            "w": 190
+           },
+           {
+            "c": "table-cell",
+            "i": "o0",
+            "p": {
+             "Style": "Avatar with text",
+             "Lead": "No",
+             "State": "Default",
+             "Size": "md",
+             "Supporting Text": "false",
+             "Badge": "false",
+             "Dropdown": "false"
+            },
+            "text": [
+             "AM",
+             "Aarav Mehta"
+            ],
+            "w": 190
+           },
+           {
+            "c": "table-cell",
+            "i": "o1",
+            "p": {
+             "Style": "Avatar with text",
+             "Lead": "No",
+             "State": "Default",
+             "Size": "md",
+             "Supporting Text": "false",
+             "Badge": "false",
+             "Dropdown": "false"
+            },
+            "text": [
+             "PN",
+             "Priya Nair"
+            ],
+            "w": 190
+           },
+           {
+            "c": "table-cell",
+            "i": "o2",
+            "p": {
+             "Style": "Avatar with text",
+             "Lead": "No",
+             "State": "Default",
+             "Size": "md",
+             "Supporting Text": "false",
+             "Badge": "false",
+             "Dropdown": "false"
+            },
+            "text": [
+             "PN",
+             "Priya Nair"
+            ],
+            "w": 190
+           },
+           {
+            "c": "table-cell",
+            "i": "o3",
+            "p": {
+             "Style": "Avatar with text",
+             "Lead": "No",
+             "State": "Default",
+             "Size": "md",
+             "Supporting Text": "false",
+             "Badge": "false",
+             "Dropdown": "false"
+            },
+            "text": [
+             "KI",
+             "Kavya Iyer"
+            ],
+            "w": 190
+           },
+           {
+            "c": "table-cell",
+            "i": "o4",
+            "p": {
+             "Style": "Avatar with text",
+             "Lead": "No",
+             "State": "Default",
+             "Size": "md",
+             "Supporting Text": "false",
+             "Badge": "false",
+             "Dropdown": "false"
+            },
+            "text": [
+             "PN",
+             "Priya Nair"
+            ],
+            "w": 190
+           },
+           {
+            "c": "table-cell",
+            "i": "o5",
+            "p": {
+             "Style": "Avatar with text",
+             "Lead": "No",
+             "State": "Default",
+             "Size": "md",
+             "Supporting Text": "false",
+             "Badge": "false",
+             "Dropdown": "false"
+            },
+            "text": [
+             "PN",
+             "Priya Nair"
+            ],
+            "w": 190
+           },
+           {
+            "c": "table-cell",
+            "i": "o6",
+            "p": {
+             "Style": "Avatar with text",
+             "Lead": "No",
+             "State": "Default",
+             "Size": "md",
+             "Supporting Text": "false",
+             "Badge": "false",
+             "Dropdown": "false"
+            },
+            "text": [
+             "AM",
+             "Aarav Mehta"
+            ],
+            "w": 190
+           }
+          ]
+         },
+         {
+          "t": "stack",
+          "i": "col6",
+          "gap": "none",
+          "w": 130,
+          "children": [
+           {
+            "c": "col-header-cell",
+            "i": "h6",
+            "p": {
+             "Size": "md",
+             "Text": "True",
+             "Checkbox": "False",
+             "State": "Default",
+             "Data Icon": "Off"
+            },
+            "text": [
+             "Last updated"
+            ],
+            "bg": "none",
+            "w": 130,
+            "ops": [
+             {
+              "nodes": [
+               {
+                "name": "Text",
+                "align": "right"
+               }
+              ]
+             }
+            ]
+           },
+           {
+            "c": "table-cell",
+            "i": "d0",
+            "p": {
+             "Style": "Text",
+             "Lead": "No",
+             "State": "Default",
+             "Size": "md",
+             "Supporting Text": "false",
+             "Badge": "false",
+             "Dropdown": "false"
+            },
+            "text": [
+             "27 Sept 2026"
+            ],
+            "w": 130,
+            "ops": [
+             {
+              "nodes": [
+               {
+                "name": "Text",
+                "align": "right"
+               }
+              ]
+             }
+            ]
+           },
+           {
+            "c": "table-cell",
+            "i": "d1",
+            "p": {
+             "Style": "Text",
+             "Lead": "No",
+             "State": "Default",
+             "Size": "md",
+             "Supporting Text": "false",
+             "Badge": "false",
+             "Dropdown": "false"
+            },
+            "text": [
+             "24 Sept 2026"
+            ],
+            "w": 130,
+            "ops": [
+             {
+              "nodes": [
+               {
+                "name": "Text",
+                "align": "right"
+               }
+              ]
+             }
+            ]
+           },
+           {
+            "c": "table-cell",
+            "i": "d2",
+            "p": {
+             "Style": "Text",
+             "Lead": "No",
+             "State": "Default",
+             "Size": "md",
+             "Supporting Text": "false",
+             "Badge": "false",
+             "Dropdown": "false"
+            },
+            "text": [
+             "17 Sept 2026"
+            ],
+            "w": 130,
+            "ops": [
+             {
+              "nodes": [
+               {
+                "name": "Text",
+                "align": "right"
+               }
+              ]
+             }
+            ]
+           },
+           {
+            "c": "table-cell",
+            "i": "d3",
+            "p": {
+             "Style": "Text",
+             "Lead": "No",
+             "State": "Default",
+             "Size": "md",
+             "Supporting Text": "false",
+             "Badge": "false",
+             "Dropdown": "false"
+            },
+            "text": [
+             "11 Sept 2026"
+            ],
+            "w": 130,
+            "ops": [
+             {
+              "nodes": [
+               {
+                "name": "Text",
+                "align": "right"
+               }
+              ]
+             }
+            ]
+           },
+           {
+            "c": "table-cell",
+            "i": "d4",
+            "p": {
+             "Style": "Text",
+             "Lead": "No",
+             "State": "Default",
+             "Size": "md",
+             "Supporting Text": "false",
+             "Badge": "false",
+             "Dropdown": "false"
+            },
+            "text": [
+             "2 Sept 2026"
+            ],
+            "w": 130,
+            "ops": [
+             {
+              "nodes": [
+               {
+                "name": "Text",
+                "align": "right"
+               }
+              ]
+             }
+            ]
+           },
+           {
+            "c": "table-cell",
+            "i": "d5",
+            "p": {
+             "Style": "Text",
+             "Lead": "No",
+             "State": "Default",
+             "Size": "md",
+             "Supporting Text": "false",
+             "Badge": "false",
+             "Dropdown": "false"
+            },
+            "text": [
+             "29 Aug 2026"
+            ],
+            "w": 130,
+            "ops": [
+             {
+              "nodes": [
+               {
+                "name": "Text",
+                "align": "right"
+               }
+              ]
+             }
+            ]
+           },
+           {
+            "c": "table-cell",
+            "i": "d6",
+            "p": {
+             "Style": "Text",
+             "Lead": "No",
+             "State": "Default",
+             "Size": "md",
+             "Supporting Text": "false",
+             "Badge": "false",
+             "Dropdown": "false"
+            },
+            "text": [
+             "14 Aug 2026"
+            ],
+            "w": 130,
+            "ops": [
+             {
+              "nodes": [
+               {
+                "name": "Text",
+                "align": "right"
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ }
+}

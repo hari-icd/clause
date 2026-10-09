@@ -1,0 +1,1106 @@
+{
+ "textStyles": [
+  {
+   "name": "Text xs/Regular",
+   "key": "f418043fe6a9d97306e9b57e5f91ec4afa1ef69a",
+   "remote": true,
+   "fontFamily": "Geist",
+   "fontStyle": "Regular",
+   "fontSize": 12,
+   "lineHeight": {
+    "unit": "PIXELS",
+    "value": 16
+   },
+   "letterSpacing": {
+    "unit": "PERCENT",
+    "value": 0
+   }
+  },
+  {
+   "name": "Text xxxs/Regular",
+   "key": "6492d48cc7163de3531c7177fdd62b1b94583dce",
+   "remote": true,
+   "fontFamily": "Inter",
+   "fontStyle": "Regular",
+   "fontSize": 10,
+   "lineHeight": {
+    "unit": "PIXELS",
+    "value": 12
+   },
+   "letterSpacing": {
+    "unit": "PERCENT",
+    "value": 0
+   }
+  },
+  {
+   "name": "Text sm/Medium",
+   "key": "af555539631b1f2fc8339fbdc3edee268942fd09",
+   "remote": true,
+   "fontFamily": "Geist",
+   "fontStyle": "Medium",
+   "fontSize": 14,
+   "lineHeight": {
+    "unit": "PIXELS",
+    "value": 20
+   },
+   "letterSpacing": {
+    "unit": "PERCENT",
+    "value": 0
+   }
+  },
+  {
+   "name": "Text xs/Regular",
+   "key": "e8605eaab72b5aa0d3124de4722c2c454d088ef3",
+   "remote": true,
+   "fontFamily": "Geist",
+   "fontStyle": "Regular",
+   "fontSize": 12,
+   "lineHeight": {
+    "unit": "PIXELS",
+    "value": 16
+   },
+   "letterSpacing": {
+    "unit": "PERCENT",
+    "value": 0
+   }
+  },
+  {
+   "name": "Text sm/Medium",
+   "key": "b7ce27231b679910c7ce94b157b802198b64b9f4",
+   "remote": true,
+   "fontFamily": "Geist",
+   "fontStyle": "Medium",
+   "fontSize": 13,
+   "lineHeight": {
+    "unit": "PIXELS",
+    "value": 20
+   },
+   "letterSpacing": {
+    "unit": "PERCENT",
+    "value": 0
+   }
+  },
+  {
+   "name": "Text sm/Regular",
+   "key": "10353df580d0916c1595d5fd12c44b0630e4f271",
+   "remote": true,
+   "fontFamily": "Geist",
+   "fontStyle": "Regular",
+   "fontSize": 13,
+   "lineHeight": {
+    "unit": "PIXELS",
+    "value": 20
+   },
+   "letterSpacing": {
+    "unit": "PERCENT",
+    "value": 0
+   }
+  },
+  {
+   "name": "Text xs/Regular",
+   "key": "799cbbea58aafdbb1697cacac37039b774876cb9",
+   "remote": true,
+   "fontFamily": "Geist",
+   "fontStyle": "Regular",
+   "fontSize": 12,
+   "lineHeight": {
+    "unit": "PIXELS",
+    "value": 16
+   },
+   "letterSpacing": {
+    "unit": "PERCENT",
+    "value": 0
+   }
+  },
+  {
+   "name": "Text xs/Semibold",
+   "key": "77f59f6603dbc7355448b701f026bee28ac2862e",
+   "remote": true,
+   "fontFamily": "Geist",
+   "fontStyle": "SemiBold",
+   "fontSize": 12,
+   "lineHeight": {
+    "unit": "PIXELS",
+    "value": 16
+   },
+   "letterSpacing": {
+    "unit": "PERCENT",
+    "value": 0
+   }
+  },
+  {
+   "name": "Text xs/Regular",
+   "key": "e8605eaab72b5aa0d3124de4722c2c454d088ef3",
+   "remote": true,
+   "fontFamily": "Geist",
+   "fontStyle": "Regular",
+   "fontSize": 12,
+   "lineHeight": {
+    "unit": "PIXELS",
+    "value": 16
+   },
+   "letterSpacing": {
+    "unit": "PERCENT",
+    "value": 0
+   }
+  },
+  {
+   "name": "Text xxs/Medium-ALL CAPS",
+   "key": "b6c25638f325d9d9c7350b5f3d25c22903d20976",
+   "remote": true,
+   "fontFamily": "Geist",
+   "fontStyle": "Medium",
+   "fontSize": 11,
+   "lineHeight": {
+    "unit": "PIXELS",
+    "value": 12
+   },
+   "letterSpacing": {
+    "unit": "PERCENT",
+    "value": 10
+   }
+  },
+  {
+   "name": "Text xs/Medium",
+   "key": "eff9b819973293c5e4dee6efa8db823225fed860",
+   "remote": true,
+   "fontFamily": "Geist",
+   "fontStyle": "Medium",
+   "fontSize": 12,
+   "lineHeight": {
+    "unit": "PIXELS",
+    "value": 16
+   },
+   "letterSpacing": {
+    "unit": "PERCENT",
+    "value": 0
+   }
+  },
+  {
+   "name": "Text xxs/Regular",
+   "key": "fbebeeb81d9c1dfd857319224b47f120f2f76e2d",
+   "remote": true,
+   "fontFamily": "Geist",
+   "fontStyle": "Regular",
+   "fontSize": 11,
+   "lineHeight": {
+    "unit": "PIXELS",
+    "value": 12
+   },
+   "letterSpacing": {
+    "unit": "PERCENT",
+    "value": 0
+   }
+  },
+  {
+   "name": "Text xxs/Medium",
+   "key": "a150b78525b14408b8e93da8448663b5909d30a7",
+   "remote": true,
+   "fontFamily": "Geist",
+   "fontStyle": "Medium",
+   "fontSize": 11,
+   "lineHeight": {
+    "unit": "PIXELS",
+    "value": 12
+   },
+   "letterSpacing": {
+    "unit": "PERCENT",
+    "value": 0
+   }
+  },
+  {
+   "name": "Text xs/Medium",
+   "key": "c903145b58c27d048ad5b6bb7d31c5be88bac46b",
+   "remote": true,
+   "fontFamily": "Geist",
+   "fontStyle": "Medium",
+   "fontSize": 12,
+   "lineHeight": {
+    "unit": "PIXELS",
+    "value": 16
+   },
+   "letterSpacing": {
+    "unit": "PERCENT",
+    "value": 0
+   }
+  },
+  {
+   "name": "Text xxxs/Regular",
+   "key": "3f20d68f7fa25c630d5bbcff95e5e81ef5d467b1",
+   "remote": true,
+   "fontFamily": "Geist",
+   "fontStyle": "Regular",
+   "fontSize": 10,
+   "lineHeight": {
+    "unit": "PIXELS",
+    "value": 12
+   },
+   "letterSpacing": {
+    "unit": "PERCENT",
+    "value": 0
+   }
+  },
+  {
+   "name": "Display 2xl/Regular",
+   "key": "fd9baff4d7353dc797ba9e5664b76d0a6d264baa",
+   "remote": true,
+   "fontFamily": "Spectral",
+   "fontStyle": "Regular",
+   "fontSize": 72,
+   "lineHeight": {
+    "unit": "PIXELS",
+    "value": 90
+   },
+   "letterSpacing": {
+    "unit": "PERCENT",
+    "value": -2
+   }
+  },
+  {
+   "name": "Text xs/Regular",
+   "key": "e8605eaab72b5aa0d3124de4722c2c454d088ef3",
+   "remote": true,
+   "fontFamily": "Geist",
+   "fontStyle": "Regular",
+   "fontSize": 12,
+   "lineHeight": {
+    "unit": "PIXELS",
+    "value": 16
+   },
+   "letterSpacing": {
+    "unit": "PERCENT",
+    "value": 0
+   }
+  },
+  {
+   "name": "Display md/Regular",
+   "key": "c3c1d6175f25dff0f0e972f4e4b442ba2ddc0bf0",
+   "remote": true,
+   "fontFamily": "Spectral",
+   "fontStyle": "Regular",
+   "fontSize": 36,
+   "lineHeight": {
+    "unit": "PIXELS",
+    "value": 44
+   },
+   "letterSpacing": {
+    "unit": "PERCENT",
+    "value": -2
+   }
+  },
+  {
+   "name": "Text xxs/Medium",
+   "key": "a150b78525b14408b8e93da8448663b5909d30a7",
+   "remote": true,
+   "fontFamily": "Geist",
+   "fontStyle": "Medium",
+   "fontSize": 11,
+   "lineHeight": {
+    "unit": "PIXELS",
+    "value": 12
+   },
+   "letterSpacing": {
+    "unit": "PERCENT",
+    "value": 0
+   }
+  },
+  {
+   "name": "Text xs/Medium",
+   "key": "c903145b58c27d048ad5b6bb7d31c5be88bac46b",
+   "remote": true,
+   "fontFamily": "Geist",
+   "fontStyle": "Medium",
+   "fontSize": 12,
+   "lineHeight": {
+    "unit": "PIXELS",
+    "value": 16
+   },
+   "letterSpacing": {
+    "unit": "PERCENT",
+    "value": 0
+   }
+  },
+  {
+   "name": "Text lg/Semibold",
+   "key": "f1ea5ba48cf391e100c68e5c5446ef3c4dc57dc4",
+   "remote": true,
+   "fontFamily": "Geist",
+   "fontStyle": "SemiBold",
+   "fontSize": 18,
+   "lineHeight": {
+    "unit": "PIXELS",
+    "value": 28
+   },
+   "letterSpacing": {
+    "unit": "PERCENT",
+    "value": 0
+   }
+  },
+  {
+   "name": "Text xs/Medium",
+   "key": "c903145b58c27d048ad5b6bb7d31c5be88bac46b",
+   "remote": true,
+   "fontFamily": "Geist",
+   "fontStyle": "Medium",
+   "fontSize": 12,
+   "lineHeight": {
+    "unit": "PIXELS",
+    "value": 16
+   },
+   "letterSpacing": {
+    "unit": "PERCENT",
+    "value": 0
+   }
+  },
+  {
+   "name": "Text xs/Regular",
+   "key": "e8605eaab72b5aa0d3124de4722c2c454d088ef3",
+   "remote": true,
+   "fontFamily": "Geist",
+   "fontStyle": "Regular",
+   "fontSize": 12,
+   "lineHeight": {
+    "unit": "PIXELS",
+    "value": 16
+   },
+   "letterSpacing": {
+    "unit": "PERCENT",
+    "value": 0
+   }
+  },
+  {
+   "name": "Text md/Regular para",
+   "key": "54d45967d218eca682396dd7cdf35b6d5696a468",
+   "remote": true,
+   "fontFamily": "Geist",
+   "fontStyle": "Regular",
+   "fontSize": 15,
+   "lineHeight": {
+    "unit": "PIXELS",
+    "value": 26
+   },
+   "letterSpacing": {
+    "unit": "PERCENT",
+    "value": 0
+   }
+  },
+  {
+   "name": "Text sm/Semibold",
+   "key": "7a9bf66e222e076b48ddd1357b56786e2c7f49f1",
+   "remote": true,
+   "fontFamily": "Geist",
+   "fontStyle": "SemiBold",
+   "fontSize": 14,
+   "lineHeight": {
+    "unit": "PIXELS",
+    "value": 20
+   },
+   "letterSpacing": {
+    "unit": "PERCENT",
+    "value": 0
+   }
+  },
+  {
+   "name": "Text sm/Regular",
+   "key": "d20cbd1304885735c0ae1d7f5053cc18cc8f5709",
+   "remote": true,
+   "fontFamily": "Geist",
+   "fontStyle": "Regular",
+   "fontSize": 14,
+   "lineHeight": {
+    "unit": "PIXELS",
+    "value": 20
+   },
+   "letterSpacing": {
+    "unit": "PERCENT",
+    "value": 0
+   }
+  },
+  {
+   "name": "Text md/Medium",
+   "key": "4d6be88580318bae7a21508be48d2858e2e4f95c",
+   "remote": true,
+   "fontFamily": "Geist",
+   "fontStyle": "Medium",
+   "fontSize": 15,
+   "lineHeight": {
+    "unit": "PIXELS",
+    "value": 24
+   },
+   "letterSpacing": {
+    "unit": "PERCENT",
+    "value": 0
+   }
+  },
+  {
+   "name": "Text md/Regular",
+   "key": "39b424eb09349d666bf003304777a980cd1d8cf0",
+   "remote": true,
+   "fontFamily": "Geist",
+   "fontStyle": "Regular",
+   "fontSize": 15,
+   "lineHeight": {
+    "unit": "PIXELS",
+    "value": 24
+   },
+   "letterSpacing": {
+    "unit": "PERCENT",
+    "value": 0
+   }
+  },
+  {
+   "name": "Text xxs/Medium",
+   "key": "0b60147e6fd29ea9fa236c0f9ef7b9c302408a79",
+   "remote": true,
+   "fontFamily": "Geist",
+   "fontStyle": "Medium",
+   "fontSize": 11,
+   "lineHeight": {
+    "unit": "PIXELS",
+    "value": 12
+   },
+   "letterSpacing": {
+    "unit": "PERCENT",
+    "value": 0
+   }
+  },
+  {
+   "name": "Text xs/Medium",
+   "key": "c903145b58c27d048ad5b6bb7d31c5be88bac46b",
+   "remote": true,
+   "fontFamily": "Geist",
+   "fontStyle": "Medium",
+   "fontSize": 12,
+   "lineHeight": {
+    "unit": "PIXELS",
+    "value": 16
+   },
+   "letterSpacing": {
+    "unit": "PERCENT",
+    "value": 0
+   }
+  },
+  {
+   "name": "Text sm/Regular",
+   "key": "d20cbd1304885735c0ae1d7f5053cc18cc8f5709",
+   "remote": true,
+   "fontFamily": "Geist",
+   "fontStyle": "Regular",
+   "fontSize": 14,
+   "lineHeight": {
+    "unit": "PIXELS",
+    "value": 20
+   },
+   "letterSpacing": {
+    "unit": "PERCENT",
+    "value": 0
+   }
+  },
+  {
+   "name": "Text xxs/Regular",
+   "key": "7629a25f83f9933d309b0cd59f51d0859b65dd79",
+   "remote": true,
+   "fontFamily": "Geist",
+   "fontStyle": "Regular",
+   "fontSize": 11,
+   "lineHeight": {
+    "unit": "PIXELS",
+    "value": 12
+   },
+   "letterSpacing": {
+    "unit": "PERCENT",
+    "value": 0
+   }
+  },
+  {
+   "name": "Text md/Regular para",
+   "key": "2820d1ddcf877a10937d4304f1c20485146f42a5",
+   "remote": true,
+   "fontFamily": "Geist",
+   "fontStyle": "Regular",
+   "fontSize": 16,
+   "lineHeight": {
+    "unit": "PIXELS",
+    "value": 26
+   },
+   "letterSpacing": {
+    "unit": "PERCENT",
+    "value": 0
+   }
+  },
+  {
+   "name": "Text sm/Semibold",
+   "key": "7a9bf66e222e076b48ddd1357b56786e2c7f49f1",
+   "remote": true,
+   "fontFamily": "Geist",
+   "fontStyle": "SemiBold",
+   "fontSize": 14,
+   "lineHeight": {
+    "unit": "PIXELS",
+    "value": 20
+   },
+   "letterSpacing": {
+    "unit": "PERCENT",
+    "value": 0
+   }
+  },
+  {
+   "name": "Text xxs/Regular",
+   "key": "7629a25f83f9933d309b0cd59f51d0859b65dd79",
+   "remote": true,
+   "fontFamily": "Geist",
+   "fontStyle": "Regular",
+   "fontSize": 11,
+   "lineHeight": {
+    "unit": "PIXELS",
+    "value": 12
+   },
+   "letterSpacing": {
+    "unit": "PERCENT",
+    "value": 0
+   }
+  },
+  {
+   "name": "Text xxxs/Medium-ALL CAPS",
+   "key": "efd50bf573724971b221a2c447dd0a9f1b827d2c",
+   "remote": true,
+   "fontFamily": "Geist",
+   "fontStyle": "Medium",
+   "fontSize": 10,
+   "lineHeight": {
+    "unit": "PIXELS",
+    "value": 12
+   },
+   "letterSpacing": {
+    "unit": "PERCENT",
+    "value": 10
+   }
+  },
+  {
+   "name": "Text xxs/Regular-Code",
+   "key": "fb7022d33d6efeb83f6e8c989d018f4be3bbca5d",
+   "remote": true,
+   "fontFamily": "JetBrains Mono",
+   "fontStyle": "Regular",
+   "fontSize": 11,
+   "lineHeight": {
+    "unit": "PIXELS",
+    "value": 12
+   },
+   "letterSpacing": {
+    "unit": "PERCENT",
+    "value": 0
+   }
+  },
+  {
+   "name": "Text xs/Medium",
+   "key": "c903145b58c27d048ad5b6bb7d31c5be88bac46b",
+   "remote": true,
+   "fontFamily": "Geist",
+   "fontStyle": "Medium",
+   "fontSize": 12,
+   "lineHeight": {
+    "unit": "PIXELS",
+    "value": 16
+   },
+   "letterSpacing": {
+    "unit": "PERCENT",
+    "value": 0
+   }
+  },
+  {
+   "name": "Text xs/Regular para",
+   "key": "3515a357a3596d107374cdd75d11ce5b0636e1ae",
+   "remote": true,
+   "fontFamily": "Geist",
+   "fontStyle": "Regular",
+   "fontSize": 12,
+   "lineHeight": {
+    "unit": "PIXELS",
+    "value": 18
+   },
+   "letterSpacing": {
+    "unit": "PERCENT",
+    "value": 0
+   }
+  },
+  {
+   "name": "Text xs/Medium",
+   "key": "ff35536dfc196966f3e5d31b84ce8f5d6d4c6cbd",
+   "remote": true,
+   "fontFamily": "Inter",
+   "fontStyle": "Medium",
+   "fontSize": 12,
+   "lineHeight": {
+    "unit": "PIXELS",
+    "value": 16
+   },
+   "letterSpacing": {
+    "unit": "PERCENT",
+    "value": 0
+   }
+  },
+  {
+   "name": "Display sm/Regular",
+   "key": "5c1e10b81d88e5cb567266b4f698c4acd3fceebf",
+   "remote": true,
+   "fontFamily": "Spectral",
+   "fontStyle": "Regular",
+   "fontSize": 30,
+   "lineHeight": {
+    "unit": "PIXELS",
+    "value": 38
+   },
+   "letterSpacing": {
+    "unit": "PERCENT",
+    "value": 0
+   }
+  },
+  {
+   "name": "Button_text 1_semibold",
+   "key": "4c6ec9d3ca7c9e3d066ad268571bd39a80ad4183",
+   "remote": true,
+   "fontFamily": "Proxima Nova",
+   "fontStyle": "Semibold",
+   "fontSize": 14,
+   "lineHeight": {
+    "unit": "PIXELS",
+    "value": 17
+   },
+   "letterSpacing": {
+    "unit": "PIXELS",
+    "value": 0
+   }
+  },
+  {
+   "name": "s2_Section_heading_medium",
+   "key": "4a725598740b100fa7ed1c8acc0fd8b673260f8b",
+   "remote": true,
+   "fontFamily": "Proxima Nova",
+   "fontStyle": "Medium",
+   "fontSize": 14,
+   "lineHeight": {
+    "unit": "PIXELS",
+    "value": 17
+   },
+   "letterSpacing": {
+    "unit": "PIXELS",
+    "value": 0
+   }
+  },
+  {
+   "name": "b1_Body_text",
+   "key": "4daec8b0558c8054cc5accb4281706c0514eaa86",
+   "remote": true,
+   "fontFamily": "Proxima Nova",
+   "fontStyle": "Regular",
+   "fontSize": 14,
+   "lineHeight": {
+    "unit": "PIXELS",
+    "value": 17
+   },
+   "letterSpacing": {
+    "unit": "PIXELS",
+    "value": 0
+   }
+  },
+  {
+   "name": "Button_text 2_semibold",
+   "key": "d89877bfc9e7081340a0ba51d4d033d5004f7bae",
+   "remote": true,
+   "fontFamily": "Proxima Nova",
+   "fontStyle": "Semibold",
+   "fontSize": 12,
+   "lineHeight": {
+    "unit": "PIXELS",
+    "value": 15
+   },
+   "letterSpacing": {
+    "unit": "PIXELS",
+    "value": 0
+   }
+  },
+  {
+   "name": "Text xxxs/Regular",
+   "key": "30c24a67afb255f8723afab5389367fc90425b44",
+   "remote": true,
+   "fontFamily": "Geist",
+   "fontStyle": "Regular",
+   "fontSize": 10,
+   "lineHeight": {
+    "unit": "PIXELS",
+    "value": 12
+   },
+   "letterSpacing": {
+    "unit": "PERCENT",
+    "value": 0
+   }
+  },
+  {
+   "name": "Text xs/Regular",
+   "key": "b9b2251a579c150f91afa58268d8485b3b418efe",
+   "remote": true,
+   "fontSize": 12,
+   "lineHeight": {
+    "unit": "PIXELS",
+    "value": 16
+   },
+   "letterSpacing": {
+    "unit": "PERCENT",
+    "value": 0
+   }
+  },
+  {
+   "name": "Text xxs/Regular",
+   "key": "7629a25f83f9933d309b0cd59f51d0859b65dd79",
+   "remote": true,
+   "fontFamily": "Inter",
+   "fontStyle": "Regular",
+   "fontSize": 11,
+   "lineHeight": {
+    "unit": "PIXELS",
+    "value": 12
+   },
+   "letterSpacing": {
+    "unit": "PERCENT",
+    "value": 0
+   }
+  },
+  {
+   "name": "Text sm/Regular para",
+   "key": "5eab0a5c9ede17749e6a0e4c05a469253d6038de",
+   "remote": true,
+   "fontFamily": "Geist",
+   "fontStyle": "Regular",
+   "fontSize": 13,
+   "lineHeight": {
+    "unit": "PIXELS",
+    "value": 22
+   },
+   "letterSpacing": {
+    "unit": "PERCENT",
+    "value": 0
+   }
+  },
+  {
+   "name": "Text sm/Medium",
+   "key": "af555539631b1f2fc8339fbdc3edee268942fd09",
+   "remote": true,
+   "fontFamily": "Geist",
+   "fontStyle": "Medium",
+   "fontSize": 14,
+   "lineHeight": {
+    "unit": "PIXELS",
+    "value": 20
+   },
+   "letterSpacing": {
+    "unit": "PERCENT",
+    "value": 0
+   }
+  },
+  {
+   "name": "Text xxs/Medium",
+   "key": "8098b9c2205ddcbae7a603bdf4673419f3478186",
+   "remote": true,
+   "fontFamily": "Geist",
+   "fontStyle": "Medium",
+   "fontSize": 11,
+   "lineHeight": {
+    "unit": "PIXELS",
+    "value": 12
+   },
+   "letterSpacing": {
+    "unit": "PERCENT",
+    "value": 0
+   }
+  },
+  {
+   "name": "Text xs/Medium",
+   "key": "c903145b58c27d048ad5b6bb7d31c5be88bac46b",
+   "remote": true,
+   "fontFamily": "Geist",
+   "fontStyle": "Medium",
+   "fontSize": 12,
+   "lineHeight": {
+    "unit": "PIXELS",
+    "value": 16
+   },
+   "letterSpacing": {
+    "unit": "PERCENT",
+    "value": 0
+   }
+  },
+  {
+   "name": "Text sm/Regular",
+   "key": "7fea2aa87965f2d4e936dc5b9ca4a41ad9d942d7",
+   "remote": true,
+   "fontFamily": "Inter",
+   "fontStyle": "Regular",
+   "fontSize": 13,
+   "lineHeight": {
+    "unit": "PIXELS",
+    "value": 20
+   },
+   "letterSpacing": {
+    "unit": "PERCENT",
+    "value": 0
+   }
+  },
+  {
+   "name": "Text sm/Regular",
+   "key": "d20cbd1304885735c0ae1d7f5053cc18cc8f5709",
+   "remote": true,
+   "fontFamily": "Geist",
+   "fontStyle": "Regular",
+   "fontSize": 14,
+   "lineHeight": {
+    "unit": "PIXELS",
+    "value": 20
+   },
+   "letterSpacing": {
+    "unit": "PERCENT",
+    "value": 0
+   }
+  },
+  {
+   "name": "Display xs/Semibold",
+   "key": "f7e8f9072aac0286e392d715230315cd500ed6a8",
+   "remote": true,
+   "fontFamily": "Spectral",
+   "fontStyle": "SemiBold",
+   "fontSize": 24,
+   "lineHeight": {
+    "unit": "PIXELS",
+    "value": 32
+   },
+   "letterSpacing": {
+    "unit": "PERCENT",
+    "value": -2
+   }
+  },
+  {
+   "name": "Text md/Regular",
+   "key": "1a9771837d6cec6a07f2566c85a6db14637fbd99",
+   "remote": true,
+   "fontFamily": "Inter",
+   "fontStyle": "Regular",
+   "fontSize": 15,
+   "lineHeight": {
+    "unit": "PIXELS",
+    "value": 24
+   },
+   "letterSpacing": {
+    "unit": "PERCENT",
+    "value": 0
+   }
+  },
+  {
+   "name": "Text xl/Semibold",
+   "key": "896e1fa6abb45cacc9c8a21a3aa001052ee1dfd9",
+   "remote": true,
+   "fontFamily": "Inter",
+   "fontStyle": "Semi Bold",
+   "fontSize": 20,
+   "lineHeight": {
+    "unit": "PIXELS",
+    "value": 26
+   },
+   "letterSpacing": {
+    "unit": "PERCENT",
+    "value": 0
+   }
+  },
+  {
+   "name": "Text xs/Regular",
+   "key": "f65cb006c45c8a55e0cc4d3922cd0432df50ce17",
+   "remote": true,
+   "fontFamily": "Inter",
+   "fontStyle": "Regular",
+   "fontSize": 12,
+   "lineHeight": {
+    "unit": "PIXELS",
+    "value": 16
+   },
+   "letterSpacing": {
+    "unit": "PERCENT",
+    "value": 0
+   }
+  },
+  {
+   "name": "Text xs/Regular",
+   "key": "e8605eaab72b5aa0d3124de4722c2c454d088ef3",
+   "remote": true,
+   "fontFamily": "Geist",
+   "fontStyle": "Regular",
+   "fontSize": 12,
+   "lineHeight": {
+    "unit": "PIXELS",
+    "value": 16
+   },
+   "letterSpacing": {
+    "unit": "PERCENT",
+    "value": 0
+   }
+  },
+  {
+   "name": "Text sm/Medium",
+   "key": "af555539631b1f2fc8339fbdc3edee268942fd09",
+   "remote": true,
+   "fontFamily": "Geist",
+   "fontStyle": "Medium",
+   "fontSize": 14,
+   "lineHeight": {
+    "unit": "PIXELS",
+    "value": 20
+   },
+   "letterSpacing": {
+    "unit": "PERCENT",
+    "value": 0
+   }
+  },
+  {
+   "name": "Text lg/Regular",
+   "key": "d406b455a2042a2c67817a4619cac5f463a78a2c",
+   "remote": true,
+   "fontFamily": "Spectral",
+   "fontStyle": "Regular",
+   "fontSize": 17,
+   "lineHeight": {
+    "unit": "PIXELS",
+    "value": 20
+   },
+   "letterSpacing": {
+    "unit": "PERCENT",
+    "value": 0
+   }
+  },
+  {
+   "name": "Text lg/Medium",
+   "key": "5901da3db2d67d52bf84039d7d10b71f2bdbf816",
+   "remote": true,
+   "fontFamily": "Spectral",
+   "fontStyle": "Medium",
+   "fontSize": 17,
+   "lineHeight": {
+    "unit": "PIXELS",
+    "value": 20
+   },
+   "letterSpacing": {
+    "unit": "PERCENT",
+    "value": 0
+   }
+  },
+  {
+   "name": "Display lg/Regular",
+   "key": "b934d50489c12e0e138fae6c9a4d7cd013eb37f9",
+   "remote": true,
+   "fontFamily": "Geist",
+   "fontStyle": "Regular",
+   "fontSize": 48,
+   "lineHeight": {
+    "unit": "PIXELS",
+    "value": 60
+   },
+   "letterSpacing": {
+    "unit": "PERCENT",
+    "value": -2
+   }
+  },
+  {
+   "name": "Text sm/Medium",
+   "key": "1bbbcb1d14f1f2994412496f043110f20b7e324f",
+   "remote": true,
+   "fontFamily": "Geist",
+   "fontStyle": "Medium",
+   "fontSize": 13,
+   "lineHeight": {
+    "unit": "PIXELS",
+    "value": 19
+   },
+   "letterSpacing": {
+    "unit": "PERCENT",
+    "value": 0
+   }
+  },
+  {
+   "name": "Text md/Medium",
+   "key": "425488aceefec17d340c3a103e500a3785a7677a",
+   "remote": true,
+   "fontFamily": "Geist",
+   "fontStyle": "Medium",
+   "fontSize": 16,
+   "lineHeight": {
+    "unit": "PIXELS",
+    "value": 24
+   },
+   "letterSpacing": {
+    "unit": "PERCENT",
+    "value": 0
+   }
+  },
+  {
+   "name": "Text xsm/Regular",
+   "key": "23807c96941969b21967e4c9ddc236094498bba9",
+   "remote": true,
+   "fontFamily": "Geist",
+   "fontStyle": "Regular",
+   "fontSize": 13,
+   "lineHeight": {
+    "unit": "PIXELS",
+    "value": 19
+   },
+   "letterSpacing": {
+    "unit": "PERCENT",
+    "value": 0
+   }
+  },
+  {
+   "name": "Text md/Semibold",
+   "key": "32f8b380e2b2ccd3e2faa53d42204fe02865890d",
+   "remote": true,
+   "fontFamily": "Geist",
+   "fontStyle": "SemiBold",
+   "fontSize": 15,
+   "lineHeight": {
+    "unit": "PIXELS",
+    "value": 24
+   },
+   "letterSpacing": {
+    "unit": "PERCENT",
+    "value": 0
+   }
+  },
+  {
+   "name": "Display lg/Regular",
+   "key": "a41d9ef3dda42c3f5bbaf5ed2d83e2d64edc4d4c",
+   "remote": true,
+   "fontFamily": "Spectral",
+   "fontStyle": "Regular",
+   "fontSize": 48,
+   "lineHeight": {
+    "unit": "PIXELS",
+    "value": 60
+   },
+   "letterSpacing": {
+    "unit": "PERCENT",
+    "value": -2
+   }
+  },
+  {
+   "name": "Text xl/Medium",
+   "key": "6d5a027d454bea954ccceb9f0f67a1d6685e243e",
+   "remote": true,
+   "fontFamily": "Spectral",
+   "fontStyle": "Medium",
+   "fontSize": 20,
+   "lineHeight": {
+    "unit": "PIXELS",
+    "value": 26
+   },
+   "letterSpacing": {
+    "unit": "PERCENT",
+    "value": 0
+   }
+  }
+ ]
+}

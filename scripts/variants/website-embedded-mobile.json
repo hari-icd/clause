@@ -1,0 +1,52 @@
+{
+ "source": "13080:47467",
+ "name": "Embedded integrations \u2014 Mobile (360)",
+ "keep": [
+  "Integration field"
+ ],
+ "blocks": [
+  {
+   "name": "Frame 2147264255",
+   "nth": 0,
+   "from": "13219:56804"
+  },
+  {
+   "name": "Linear 7",
+   "nth": 0,
+   "from": "13219:58692",
+   "texts": [
+    [
+     "Stop building integrations. Start shipping outcomes.",
+     [
+      [
+       "Ship your ",
+       0
+      ],
+      [
+       "next integration",
+       1
+      ],
+      [
+       " this week.",
+       0
+      ]
+     ]
+    ],
+    [
+     "Browse connectors",
+     "Talk to the team"
+    ]
+   ]
+  },
+  {
+   "name": "Linear 6",
+   "nth": 0,
+   "from": "13219:60243"
+  },
+  {
+   "name": "Footer",
+   "nth": 0,
+   "from": "13219:61026"
+  }
+ ]
+}

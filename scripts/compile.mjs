@@ -10,6 +10,9 @@ const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 export function loadCatalog(dsDir) {
   const D = dsDir ? String(dsDir).replace(/\.\.|^\//g, "") : "ds"; // per-screen catalog: "ds": "ds/files/<name>"
   const comps = JSON.parse(readFileSync(resolve(root, D, "components.json"), "utf8"));
+  // a registered system may extend another one (same library, only the delta is stored here): merge the base catalog first
+  try { const reg = JSON.parse(readFileSync(resolve(root, "ds/registry.json"), "utf8")); const me = reg.systems.find(s => s.dir === D), base = me && me.extends && reg.systems.find(s => s.id === me.extends);
+    if (base) { const b = JSON.parse(readFileSync(resolve(root, base.dir, "components.json"), "utf8")); const own = new Set([...comps.local, ...comps.library].map(x => x.key)); comps.library = [...b.library.filter(x => !own.has(x.key)), ...comps.library]; comps.local = [...b.local.filter(x => !own.has(x.key)), ...comps.local]; } } catch {}
   const keys = JSON.parse(readFileSync(resolve(root, D, "variable-keys.json"), "utf8"));
   const ts = JSON.parse(readFileSync(resolve(root, D, "tokens/text-styles.json"), "utf8")).textStyles;
   const config = existsSync(resolve(root, "ds/config.md")) ? readFileSync(resolve(root, "ds/config.md"), "utf8") : "";

@@ -9,13 +9,21 @@
   #statusBtn { display:none } body.collapsed #statusBtn { display:inline-flex !important } body.collapsed #menuBtn { display:none !important } #statusBtn, #statusBtn:hover { background:none !important; box-shadow:none !important; border-radius:0 !important; cursor:default }
   #statusBtn .wave { display:inline-flex; gap:3px; align-items:center; height:12px } #statusBtn .wave i { width:4px; height:4px; border-radius:50%; background:var(--fg3) }
   #statusBtn.run .wave i { background:var(--acc); animation:wv 1s ease-in-out infinite } #statusBtn.run .wave i:nth-child(2) { animation-delay:.15s } #statusBtn.run .wave i:nth-child(3) { animation-delay:.3s }
+  .sdot { width:7px; height:7px; border-radius:50%; background:var(--fg3); display:inline-block } #statusBtn.off .sdot { background:var(--warn) }
   #statusBtn.off .wave i { background:var(--warn) } #statusBtn.ok .wave i { background:var(--fg3) }
   @keyframes wv { 0%,60%,100% { transform:translateY(0); opacity:.45 } 30% { transform:translateY(-3px); opacity:1 } }
+  #collapse.ib.float { width:28px !important; z-index:12 !important; top:auto !important; bottom:0 !important; right:0 !important; left:auto !important; border-radius:8px 0 0 0 !important }
   .ib.corner { width:32px; height:32px; border-radius:0 0 0 8px } .ib.float.left { right:auto !important; left:0 !important; border-radius:0 0 8px 0 }
-  body.collapsed > :not(.float) { display:none !important } body.collapsed, body.collapsed .float { background:var(--bg) } body.collapsed #collapse { border-radius:0 !important } body.collapsed #statusBtn { width:40px !important; right:0 !important } .ib.float { position:fixed !important; top:0; right:0; left:auto; z-index:6; background:none; color:var(--fg3) } .ib.float:hover { background:var(--bg2); color:var(--fg) }
+  body.collapsed > :not(.float) { display:none !important } body.collapsed, body.collapsed .float { background:var(--bg) } body.collapsed #collapse { border-radius:0 !important } body.collapsed #statusBtn { width:32px !important; right:32px !important } .ib.float { position:fixed !important; top:0; right:0; left:auto; z-index:6; background:none; color:var(--fg3) } .ib.float:hover { background:var(--bg2); color:var(--fg) }
   .srv { display:inline-flex; align-items:center; gap:2px; margin:0 6px; flex:none; color:var(--fg3) } .srv code { font:10px/1 ui-monospace, Menlo, monospace } .dot3 { width:6px; height:6px; border-radius:50%; background:var(--warn) } .dot3.on { background:var(--ok) }
   .dot2 { display:inline-block; width:6px; height:6px; border-radius:50%; background:var(--warn); margin:0 5px 1px 0 } .dot2.on { background:var(--ok) }
   #menuBtn .dot { position:absolute; right:2px; top:2px; width:6px; height:6px; border-radius:50%; background:var(--warn) } #menuBtn .dot.on { background:var(--ok) }
+  #toBottom { position:fixed; right:14px; z-index:7; width:28px; height:28px; border-radius:50%; border:1px solid var(--line); background:var(--bg); color:var(--fg2); display:flex; align-items:center; justify-content:center; padding:0; cursor:pointer; box-shadow:0 2px 8px rgba(0,0,0,.15) } #toBottom[hidden] { display:none } #toBottom:hover { color:var(--fg); background:var(--bg2) } #toBottom svg { width:14px; height:14px; fill:none; stroke:currentColor; stroke-width:1.5; stroke-linecap:round; stroke-linejoin:round }
+  #dock { flex:none; display:flex; gap:0; padding:4px 28px 6px 8px; min-height:32px; align-items:center; border-top:1px solid var(--line) }
+  .dk { display:inline-flex; align-items:center; gap:5px; padding:4px 8px; border:0; border-radius:6px; background:none; color:var(--fg2); font-family:inherit; font-size:11px; line-height:1; cursor:pointer } .dk:hover { background:var(--bg2); color:var(--fg) }
+  .dk svg { width:12px; height:12px; fill:none; stroke:currentColor; stroke-width:1.4; stroke-linecap:round; stroke-linejoin:round }
+  #menu[data-page=chats] .pg-settings, #menu[data-page=settings] .pg-chats { display:none !important }
+  #dock { position:relative; z-index:9; background:var(--bg) } #menu { bottom:42px !important }
   #menu { position:fixed; inset:0; background:var(--bg); z-index:8; display:none; flex-direction:column } #menu.on { display:flex }
   #menu > .corner { position:absolute; top:0; right:0 }
   #menu .mb { flex:1; overflow:auto; padding:40px 14px 16px; display:flex; flex-direction:column; gap:6px }
@@ -41,6 +49,9 @@
   #send.stopmode { color:var(--acc) } #send.stopmode:hover { background:var(--fg); color:var(--bg) }
   #send .thk { display:flex; align-items:center; justify-content:center } #send .stp { display:none } #send.stopmode:hover .wave { display:none } #send.stopmode:hover .stp { display:flex }
   #send .wave { display:inline-flex; gap:3px; align-items:center } #send .wave i { width:4px; height:4px; border-radius:50%; background:var(--acc); animation:wv 1s ease-in-out infinite } #send .wave i:nth-child(2) { animation-delay:.15s } #send .wave i:nth-child(3) { animation-delay:.3s }
+  .pres .plogo { width:16px; height:16px; flex:none; animation:lp 1.6s ease-in-out infinite } @keyframes lp { 0%,100% { opacity:.5; transform:scale(.88) } 50% { opacity:1; transform:scale(1.06) } }
+  .pres .pdot { width:8px; height:8px; border-radius:50%; background:#2f6fe4; flex:none; animation:pd 1.4s ease-in-out infinite } @keyframes pd { 0%,100% { transform:scale(.75); box-shadow:0 0 0 0 rgba(47,111,228,.45) } 50% { transform:scale(1); box-shadow:0 0 0 6px rgba(47,111,228,0) } }
+  .pres .shim { background:linear-gradient(90deg, var(--fg3) 0%, var(--fg) 45%, var(--fg3) 90%); background-size:220% 100%; -webkit-background-clip:text; background-clip:text; color:transparent; animation:sh 1.8s linear infinite } @keyframes sh { 0% { background-position:100% 0 } 100% { background-position:-120% 0 } }
   .pres svg { width:12px; height:12px } .pres .stop { margin-left:4px; height:18px; padding:0 6px; border-radius:5px; border:1px solid var(--line); background:var(--bg); color:var(--fg); font:inherit; font-size:10px; cursor:pointer } .pres .stop:hover { border-color:var(--warn); color:var(--warn) } .pres.stopped { color:var(--warn) } .pres.built { color:var(--ok) } .pres.error { color:var(--warn) }
   .sys { align-self:center; color:var(--fg3); font-size:10px; text-align:center; padding:2px 8px; max-width:95%; overflow:hidden; text-overflow:ellipsis; white-space:nowrap }
   #tip { position:fixed; z-index:20; pointer-events:none; background:#1e1e1e; color:#fff; box-shadow:0 2px 8px rgba(0,0,0,.35); font-size:10px; line-height:14px; padding:4px 7px; border-radius:5px; white-space:nowrap; opacity:0; transition:opacity .08s; max-width:260px; white-space:normal }
@@ -50,7 +61,7 @@
   #statusBtn.nudge { color:var(--acc); cursor:pointer } #statusBtn.nudge svg { width:14px; height:14px; animation:nd 1.1s ease-in-out infinite } @keyframes nd { 0%,100% { transform:translateX(0) } 50% { transform:translateX(3px) } }
   .empty { color:var(--fg3); text-align:center; margin:auto; padding:24px }
   #q { flex:none; margin:0 8px 0 12px; border:1px solid var(--line); border-radius:8px; background:var(--bg2); max-height:45%; display:none; flex-direction:column } #q.on { display:flex }
-  #q .qh { display:flex; align-items:center; gap:6px; padding:4px 4px 4px 8px; color:var(--fg2); cursor:pointer; user-select:none } #q .qh .grow { flex:1 } #q .qh svg { transition:transform .15s } #q.closed .qh svg { transform:rotate(-90deg) }
+  #q .qh { display:flex; align-items:center; gap:6px; padding:4px 4px 4px 8px; color:var(--fg2); cursor:pointer; user-select:none } #q .qh .grow { flex:1 } #q .qh #qchev { transition:transform .15s } #q.closed .qh #qchev { transform:rotate(-90deg) }
   #q .ql { overflow:auto; padding:0 6px 6px; display:flex; flex-direction:column; gap:4px } #q.closed .ql { display:none }
   .qi { background:var(--bg) }
   .qi { border:1px solid var(--line); border-radius:8px; padding:6px 8px; position:relative } .qi:hover { border-color:var(--fg3) }
@@ -58,27 +69,30 @@
   .qi .ops { position:absolute; top:4px; right:4px; display:none; gap:2px; background:var(--bg2); border-radius:6px } .qi:hover .ops { display:flex }
   .chip { display:inline-flex; align-items:center; gap:4px; max-width:100%; height:20px; padding:0 8px; border-radius:10px; background:var(--bg2); border:1px solid var(--line); font-size:10px; white-space:nowrap } .chip b { font-weight:500; max-width:130px; overflow:hidden; text-overflow:ellipsis } .chip i { font-style:normal; color:var(--fg3) } .chip a { color:var(--fg3); cursor:pointer; padding:0 1px 0 2px } .chip a:hover { color:var(--fg) } .chip.go { cursor:pointer } .chip.sm { height:16px; padding:0 6px }
   #comp { flex:none; padding:8px 8px 8px 12px }
+  #selrow { margin-top:8px } #selrow.on { border:1px solid var(--line); border-bottom:0; border-radius:8px 8px 0 0; padding:6px 8px; background:var(--bg2); max-height:92px; overflow-y:auto; align-content:flex-start } /* 3.5 chip rows (20px + 3px gap) so the half row hints at scroll */
+  #q.on { border-radius:8px 8px 0 0; border-bottom:0 }
+  #q.on + #comp, #comp:has(#selrow.on) { padding-top:0 } #q.on + #comp #selrow { margin-top:0 } #q.on + #comp #selrow.on { border-radius:0 }
+  #q.on + #comp .card, #selrow.on + .card { border-radius:0 0 8px 8px }
   .card { border:1px solid var(--line); border-radius:8px; padding:6px 8px; display:flex; flex-direction:column; gap:6px } .card:focus-within { border-color:var(--acc) }
   #selrow { display:none; flex-wrap:wrap; gap:3px; align-items:center } #selrow.on { display:flex } #selrow .hint { color:var(--fg3); font-size:10px }
   textarea { width:100%; border:0; background:transparent; color:var(--fg); font:inherit; padding:0; resize:none; outline:none; max-height:96px }
   .bar { display:flex; align-items:center; gap:2px } .bar .grow { flex:1; color:var(--fg3); font-size:10px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap }
-  #toast { position:fixed; left:12px; right:40px; top:6px; background:var(--fg); color:var(--bg); padding:6px 10px; border-radius:6px; opacity:0; transition:opacity .15s; pointer-events:none; z-index:9 } #toast.on { opacity:1 }
+  #toast { position:fixed; left:12px; right:40px; top:6px; background:#2c2c2c; color:#fff; padding:6px 10px; border-radius:6px; opacity:0; transition:opacity .15s; pointer-events:none; z-index:9 } #toast.on { opacity:1 }
 </style>
-<button class="ib corner float left" id="collapse" title="Collapse"><span class="ic" id="collapseIc"><svg viewBox="0 0 16 16"><path d="M4 6l4 4 4-4"/></svg></span></button>
+<button class="ib corner float" id="collapse" title="Collapse"><span class="ic" id="collapseIc"><svg viewBox="0 0 16 16"><path d="M13.5 6.5h-4v-4M9.5 6.5L14 2M2.5 9.5h4v4M6.5 9.5L2 14"/></svg></span></button>
 <button class="ib corner float" id="statusBtn" title="Idle" hidden></button>
-<button class="ib corner float" id="menuBtn" title="Chats & tools"><svg viewBox="0 0 16 16"><path d="M2.5 4.5h11M2.5 8h11M2.5 11.5h11"/></svg></button>
+<button class="ib corner float" id="menuBtn" style="display:none !important" title="Chats & tools"><svg viewBox="0 0 16 16"><path d="M2.5 4.5h11M2.5 8h11M2.5 11.5h11"/></svg></button>
 <div id="menu">
   <button class="ib corner" id="menuClose" title="Close [Esc]"><svg viewBox="0 0 16 16"><path d="M4 4l8 8M12 4l-8 8"/></svg></button>
   <div class="mb">
-    <div class="mlbl">Chats</div>
+    <div class="mlbl" id="mlChats"><img src="data:image/png;base64,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" alt="" style="width:14px;height:14px;vertical-align:-3px;margin-right:6px">History</div>
     <div class="list" id="sessList"></div>
-    <div class="mlbl">Tools</div>
+    <div class="mlbl" id="mlTools">Tools</div>
     <div class="mi" id="miExtract"><svg viewBox="0 0 16 16"><path d="M8 4.5c-1.2-1.2-3-1.5-5.5-1.5v9c2.5 0 4.3.3 5.5 1.5 1.2-1.2 3-1.5 5.5-1.5v-9c-2.5 0-4.3.3-5.5 1.5zM8 4.5V13.5"/></svg><div class="grow"><b>Extract components &amp; tokens</b><div class="s sm">Builds ds/ from this file + its libraries. 1–3 min.</div></div><span class="s sm" id="dsState"></span></div>
     <div class="dsnote" id="dsNote" hidden>Design system extracted <span id="dsAgo"></span> ago. Want to <a href="#" id="dsAgain">run it again</a>? <span id="dsState2"></span></div>
     <div class="adv" id="dsAdv"><input id="dsIgnore" placeholder="sections to skip, comma-separated"></div>
-    <label class="mi" id="drop"><svg viewBox="0 0 16 16"><path d="M8 11V3M4.5 6.5L8 3l3.5 3.5M3 13h10"/></svg><div class="grow"><b>Rebuild from an HTML export</b><div class="s sm">Drop or pick an exports/*.html file</div></div><input id="file" type="file" accept=".html,text/html" hidden></label>
     <div class="mi" id="open"><svg viewBox="0 0 16 16"><path d="M6 3H3v10h10v-3M9 3h4v4M13 3L7 9"/></svg><div class="grow"><b>Open listing page</b><div class="s sm">All screens as real HTML</div></div></div>
-    <div class="mlbl">Status</div>
+    <div class="mlbl" id="mlStatus">Status</div>
     <div class="kv"><span>server</span><b><span class="dot2" id="dot2"></span><span id="conn">connecting…</span></b></div>
     <div class="kv"><span>screen</span><b id="name">–</b></div>
     <div class="kv"><span>last build</span><b id="last">–</b></div>
@@ -87,23 +101,31 @@
   </div>
 </div>
 <div id="chat"></div>
+<button id="toBottom" title="Scroll to latest" hidden><svg viewBox="0 0 16 16"><path d="M8 3v10M4 9l4 4 4-4"/></svg></button>
 <div id="nudge" hidden></div>
+<div id="listenNote" hidden style="margin:0 8px 6px 12px;padding:5px 8px;border-radius:8px;background:var(--accbg);color:var(--fg);font-size:10px">Claude isn’t listening. In Claude Code, type <b>check ib</b> and press ⏎. <a href="#" id="listenCopy">Copy</a></div>
 <div id="q">
   <div class="qh" id="qh"><svg id="qchev" viewBox="0 0 16 16"><path d="M4 6l4 4 4-4"/></svg><span id="qn">0 queued</span><span class="grow"></span><button class="ib" id="qSendAll" title="Send all [⏎]"><svg viewBox="0 0 16 16"><path d="M13 3v6H3.5M6.5 6l-3 3 3 3"/></svg></button><button class="ib" id="qDiscardAll" title="Discard all"><svg viewBox="0 0 16 16"><path d="M4 4l8 8M12 4l-8 8"/></svg></button></div>
   <div class="ql" id="ql"></div>
 </div>
 <div id="comp">
+  <div id="selrow"><span class="hint" id="selhint">Select layers on the canvas — they attach here</span></div>
   <div class="card">
-    <div id="selrow"><span class="hint" id="selhint">Select layers on the canvas — they attach here</span></div>
     <textarea id="box" rows="2" placeholder="Message for Claude…  ⏎ send all · ⌘⏎ queue"></textarea>
     <div class="bar">
-      <button class="ib" id="ann" title="Attach the Figma selection to this message"><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="4.5"/><path d="M8 1v2.5M8 12.5V15M1 8h2.5M12.5 8H15"/></svg></button>
+      
+      <button class="ib" id="ann" title="Attach the Figma selection to this message"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M4.037 4.688a.495.495 0 0 1 .651-.651l16 6.5a.5.5 0 0 1-.063.947l-6.124 1.58a2 2 0 0 0-1.438 1.435l-1.579 6.126a.5.5 0 0 1-.947.063z"/></svg></button>
+      
+      <button class="ib" id="silent" title="Follow builds: the canvas scrolls to each built frame"><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="4.5"/><path d="M8 1v2.5M8 12.5V15M1 8h2.5M12.5 8H15"/></svg></button>
+      <button class="ib" id="dsSel" title="Design system" style="width:auto;padding:0 4px;gap:1px"><svg viewBox="0 0 16 16"><path d="M8 2l6 3-6 3-6-3 6-3zM2 8l6 3 6-3M2 11l6 3 6-3"/></svg><svg viewBox="0 0 16 16" style="width:10px;height:10px"><path d="M4 6l4 4 4-4"/></svg></button>
+      <div id="dsMenu" hidden style="position:fixed;left:10px;bottom:70px;min-width:200px;max-width:290px;background:var(--bg);color:var(--fg);border:1px solid var(--line,rgba(128,128,128,.3));border-radius:8px;padding:4px;z-index:8;font-size:11px;box-shadow:0 4px 14px rgba(0,0,0,.18)"></div>
       <span class="grow" id="hint"></span><span class="srv" id="srv" title="Connecting to the Clause server…"><span class="dot3" id="dot3"></span><code>:__PORT__</code></span>
-      <button class="ib" id="queue" title="Queue [⌘⏎]"><svg viewBox="0 0 16 16"><path d="M3 4h10M3 8h10M3 12h6"/></svg></button>
+      <button class="ib" id="queue" title="Add to queue [⌘⏎]"><svg viewBox="0 0 16 16"><path d="M2.5 4h7M2.5 8h5M2.5 12h4M12 7.5v5M9.5 10h5"/></svg></button>
       <button class="ib" id="send" title="Send now"><svg viewBox="0 0 16 16"><path d="M13 3v6H3.5M6.5 6l-3 3 3 3"/></svg></button>
     </div>
   </div>
 </div>
+<div id="dock"><button class="dk" id="dkNew" title="New chat"><svg viewBox="0 0 16 16"><path d="M8 3v10M3 8h10"/></svg><span>New chat</span></button><button class="dk" id="dkChats" title="Chat history"><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="5.5"/><path d="M8 5v3.2l2 1.3"/></svg><span>History</span></button><span style="flex:1"></span><button class="dk" id="dkSettings" title="Tools and status" style="padding:4px 6px"><svg viewBox="0 0 16 16"><path d="M2.5 5h6M11.5 5h2M2.5 11h2M7.5 11h6"/><circle cx="10" cy="5" r="1.5"/><circle cx="6" cy="11" r="1.5"/></svg></button></div>
 <textarea id="clip" style="position:absolute;left:-9999px;top:0;height:1px"></textarea>
 <div id="toast"></div>
 <div id="tip"></div>
@@ -113,6 +135,18 @@ const $ = id => document.getElementById(id);
 const post = m => parent.postMessage({ pluginMessage: m }, "*");
 const esc = t => String(t == null ? "" : t).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const log = t => { $("log").textContent = t; };
+let dsInfo = null, fileName = null;
+function renderDsSel() { const b = $("dsSel"); if (!b) return; const known = !!(dsInfo && dsInfo.system); b.style.opacity = known ? "1" : "0.5"; b.title = known ? "Design system: " + dsInfo.system.name + " · file “" + (dsInfo.file || "") + "” — click to switch" : "Design system not recognised for “" + (fileName || "this file") + "” — click to choose"; }
+async function dsRefresh() { try { dsInfo = fileName ? await api("/ds/file", { name: fileName }) : await (await fetch(BASE + "/ds/active")).json(); } catch (e) {} renderDsSel(); }
+function openDsMenu() { const m = $("dsMenu"); if (!m.hidden) { m.hidden = true; return; } const list = (dsInfo && dsInfo.systems) || []; const cur = dsInfo && dsInfo.system && dsInfo.system.id; m.innerHTML = '<div style="padding:4px 8px;opacity:.6">' + esc(fileName || "This file") + '</div>' + list.map(x => '<div class="mi" data-id="' + esc(x.id) + '" style="padding:5px 8px;border-radius:5px;cursor:pointer;display:flex;gap:6px"><span style="width:12px">' + (x.id === cur ? "✓" : "") + '</span>' + esc(x.name) + '</div>').join("") + '<div class="mi" data-id="__extract" style="padding:5px 8px;border-radius:5px;cursor:pointer;opacity:.75;border-top:1px solid rgba(128,128,128,.25);margin-top:3px">Extract from this file…</div>'; m.hidden = false; }
+$("dsMenu").onclick = async e => { const t = e.target.closest("[data-id]"); if (!t) return; $("dsMenu").hidden = true; if (t.dataset.id === "__extract") { setCollapsed(false); try { $("menuBtn").click(); } catch (x) {} toast("Open the menu → Extract components & tokens"); return; } try { dsInfo = await api("/ds/choose", { id: t.dataset.id }); } catch (x) {} renderDsSel(); toast("Design system: " + (dsInfo && dsInfo.system ? dsInfo.system.name : "unchanged")); };
+document.addEventListener("visibilitychange", () => { if (document.visibilityState === "visible" && fileName) dsRefresh(); });
+$("dsSel").onclick = e => { e.stopPropagation(); openDsMenu(); };
+document.addEventListener("click", () => { const m = $("dsMenu"); if (m) m.hidden = true; });
+let silentOn = true; try { silentOn = localStorage.getItem("silent2") !== "0"; } catch (e) {}
+function renderSilent() { const b = $("silent"); b.classList.toggle("on", !silentOn); b.innerHTML = silentOn ? '<svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="4.5"/><path d="M8 1v2.5M8 12.5V15M1 8h2.5M12.5 8H15M2.5 13.5l11-11"/></svg>' : '<svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="4.5"/><path d="M8 1v2.5M8 12.5V15M1 8h2.5M12.5 8H15"/></svg>'; b.title = silentOn ? "Silent builds ON: the canvas stays where it is (click to follow builds)" : "Silent builds OFF: the canvas scrolls to each built frame (click for silent)"; }
+$("silent").onclick = () => { silentOn = !silentOn; try { localStorage.setItem("silent2", silentOn ? "1" : "0"); } catch (e) {} renderSilent(); toast(silentOn ? "Silent: the canvas stays where it is" : "Following builds"); };
+renderSilent();
 let toastT; function toast(t) { $("toast").textContent = t; $("toast").classList.add("on"); clearTimeout(toastT); toastT = setTimeout(() => $("toast").classList.remove("on"), 2000); }
 function copyText(t) { const c = $("clip"); c.value = t; c.focus(); c.select(); let ok = false; try { ok = document.execCommand("copy"); } catch (e) {} $("box").focus(); return ok; }
 const api = (path, body) => fetch(BASE + path, { method: "POST", headers: { "content-type": "application/json", "x-clause": "1" }, body: JSON.stringify(body || {}) }).then(r => r.json());
@@ -120,8 +154,9 @@ const api = (path, body) => fetch(BASE + path, { method: "POST", headers: { "con
 // ---- design-system extraction (⚙ popover + menu command)
 let dsParts = null, dsBusy = false;
 try { $("dsIgnore").value = localStorage.getItem("dsIgnore") || ""; } catch (e) {}
-async function dsRun() {
-  if (dsBusy) return; dsBusy = true; dsParts = {}; openMenu(true);
+async function dsRun(force) {
+  if (dsBusy) return;
+  if (force !== true) { try { const a = await (await fetch(BASE + "/ds/active")).json(); if (a.system) { toast("Already extracted: " + a.system.name); return; } } catch (e) {} } // never re-extract a file whose design system is already registered dsBusy = true; dsParts = {}; openMenu(true);
   const ignoreSections = $("dsIgnore").value.split(",").map(x => x.trim()).filter(Boolean); try { localStorage.setItem("dsIgnore", $("dsIgnore").value); } catch (e) {}
   $("dsState").textContent = "extracting…"; if ($("dsState2")) $("dsState2").textContent = "extracting…"; log("extracting design system…"); $("chat").innerHTML = '<div class="onb"><b>Extracting…</b><div class="s sm" id="onbProg">reading pages</div></div>';
   post({ type: "ds-extract", ignoreSections });
@@ -153,7 +188,8 @@ const setTip = (id, t) => { const el = $(id); if (!el) return; el.dataset.tip = 
 // ---- collapse: window shrinks to just the two corner icons
 let collapsed = false;
 const ICON_DOWN = '<svg viewBox="0 0 16 16"><path d="M4 6l4 4 4-4"/></svg>', ICON_UP = '<svg viewBox="0 0 16 16"><path d="M4 10l4-4 4 4"/></svg>';
-function setCollapsed(on) { collapsed = on; renderNudge(); document.body.classList.toggle("collapsed", on); $("collapseIc").innerHTML = on ? '<svg viewBox="0 0 16 16"><path d="M4 10l4-4 4 4"/></svg>' : '<svg viewBox="0 0 16 16"><path d="M4 6l4 4 4-4"/></svg>'; setTip("collapse", on ? "Expand" : "Collapse"); renderMini(); post({ type: "resize", w: on ? 72 : 320, h: on ? 32 : 520, anchor: "br" }); try { localStorage.setItem("collapsed", on ? "1" : ""); } catch (e) {} if (!on) setTimeout(() => $("box").focus(), 0); }
+function setCollapsed(on) { collapsed = on; renderNudge(); document.body.classList.toggle("collapsed", on); $("collapseIc").innerHTML = on ? '<svg viewBox="0 0 16 16"><path d="M9.5 2.5h4v4M13.5 2.5L9 7M6.5 13.5h-4v-4M2.5 13.5L7 9"/></svg>' : '<svg viewBox="0 0 16 16"><path d="M13.5 6.5h-4v-4M9.5 6.5L14 2M2.5 9.5h4v4M6.5 9.5L2 14"/></svg>'; setTip("collapse", on ? "Expand" : "Collapse"); renderMini(); post({ type: "resize", w: on ? 72 : 320, h: on ? 32 : 520, anchor: "br" }); try { localStorage.setItem("collapsed", on ? "1" : ""); } catch (e) {} if (!on) setTimeout(() => $("box").focus(), 0); }
+const LOGO_SRC = (document.querySelector("#mlChats img") || {}).src || "";
 const WAVE = '<span class="wave"><i></i><i></i><i></i></span>';
 let online = false, nudge = null, nudgeT = null;
 function setNudge(n) { nudge = n; clearTimeout(nudgeT); if (n) nudgeT = setTimeout(() => { nudge = null; renderNudge(); renderMini(); }, 9000); renderNudge(); renderMini(); }
@@ -164,7 +200,7 @@ function renderMini() {
   const b = $("statusBtn"); b.hidden = !collapsed; if (!collapsed) return;
   b.classList.remove("run", "ok", "off", "nudge");
   if (nudge) { b.classList.add("nudge"); b.innerHTML = '<svg viewBox="0 0 16 16"><path d="M6 3l5 5-5 5"/></svg>'; setTip("statusBtn", "Built " + nudge.name + " on “" + nudge.pageName + "” — click to go there"); return; }
-  b.innerHTML = WAVE;
+  b.innerHTML = running() ? WAVE : '<span class="sdot"></span>';
   if (!online) { b.classList.add("off"); setTip("statusBtn", "Server offline — run: npm run live"); }
   else if (running()) { b.classList.add("run"); setTip("statusBtn", agent && agent.text ? agent.text : "Working…"); }
   else { b.classList.add("ok"); setTip("statusBtn", "Idle — listening"); }
@@ -176,7 +212,13 @@ function ago(ms) { const m = Math.round((Date.now() - ms) / 60000); return m < 2
 function renderDsNote() { $("miExtract").hidden = !!hasDs; $("dsNote").hidden = !hasDs; if (!hasDs) return; const t = dsAt ? ago(dsAt) : null; $("dsNote").innerHTML = (t === "just now" ? "Design system extracted just now." : t ? "Design system extracted " + t + " ago." : "Design system extracted earlier.") + ' Want to <a href="#" id="dsAgain">run it again</a>? <span id="dsState2"></span>'; }
 // ---- menu (full screen) + chat sessions
 let sessions = [], session = null;
-function openMenu(on) { $("menu").classList.toggle("on", on); if (on) renderSessions(); else setTimeout(() => $("box").focus(), 0); }
+function openMenu(on, page) { if (page) $("menu").dataset.page = page; $("menu").classList.toggle("on", on); if (on) renderSessions(); else setTimeout(() => $("box").focus(), 0); }
+function updateToBottom() { const c = $("chat"), b = $("toBottom"); if (!c || !b) return; const far = c.scrollHeight - c.scrollTop - c.clientHeight > 80; b.hidden = !far || collapsed || $("menu").classList.contains("on"); if (!b.hidden) b.style.bottom = (window.innerHeight - $("comp").getBoundingClientRect().top + 8) + "px"; }
+$("chat").addEventListener("scroll", updateToBottom); $("toBottom").onclick = () => { $("chat").scrollTo({ top: $("chat").scrollHeight, behavior: "smooth" }); };
+setInterval(updateToBottom, 700);
+$("dkNew").onclick = async () => { await api("/term/new"); await loadMsgs(); openMenu(false); setTimeout(() => $("box").focus(), 0); };
+const togglePage = pg => () => { const m = $("menu"); if (m.classList.contains("on") && m.dataset.page === pg) openMenu(false); else openMenu(true, pg); }; $("dkChats").onclick = togglePage("chats"); $("dkSettings").onclick = togglePage("settings");
+(function tagPages() { let pg = "pg-chats"; for (const el of document.querySelectorAll("#menu .mb > *")) { if (el.id === "mlTools") pg = "pg-settings"; el.classList.add(pg); } })();
 $("menuBtn").onclick = () => { if (collapsed) setCollapsed(false); openMenu(true); }; $("menuClose").onclick = () => openMenu(false);
 document.addEventListener("keydown", e => { if (e.key === "Escape" && $("menu").classList.contains("on")) openMenu(false); });
 const when = t => { const d = Date.now() - t, m = Math.round(d / 60000); return m < 1 ? "now" : m < 60 ? m + "m" : m < 1440 ? Math.round(m / 60) + "h" : Math.round(m / 1440) + "d"; };
@@ -189,7 +231,7 @@ $("sessList").onclick = async e => {
   if (e.target.closest("#newChat")) { await api("/term/new"); await loadMsgs(); openMenu(false); return; }
   const o = e.target.closest("[data-open]"); if (o) { await api("/term/open", { id: o.dataset.open }); await loadMsgs(); openMenu(false); }
 };
-$("dsNote").onclick = e => { if (e.target.id === "dsAgain") { e.preventDefault(); dsRun(); } };
+$("dsNote").onclick = e => { if (e.target.id === "dsAgain") { e.preventDefault(); dsRun(true); } };
 $("miExtract").onclick = e => { if (e.altKey) { $("dsAdv").classList.toggle("on"); return; } dsRun(); };
 $("miExtract").oncontextmenu = e => { e.preventDefault(); $("dsAdv").classList.toggle("on"); };
 
@@ -202,13 +244,14 @@ async function pump() {
   const job = pending; pending = null; busy = true;
   clearTimeout(watchdog); watchdog = setTimeout(() => { busy = false; pump(); }, 30000);
   await loadSrc(job.rtHash); $("name").textContent = job.name; log("building " + job.name + "…");
-  post({ type: "build", name: job.name, screen: job.screen, runtime: rtText, extract: exText, rtHash });
+  post({ type: "build", name: job.name, silent: silentOn, screen: job.screen, runtime: rtText, extract: exText, rtHash });
 }
 // only build scenes that are NEWER than what this panel has already seen — opening the plugin must never rebuild the last screen
 let seenVersion = null;
 async function fromServer(sync) {
   try { const j = await (await fetch(BASE + "/scene")).json();
     if (sync || seenVersion === null) { seenVersion = j.version; if (j.name) $("name").textContent = j.name; return; }
+    if (j.version > seenVersion && j.screen && j.screen.FILE && fileName && j.screen.FILE !== fileName) { seenVersion = j.version; return; } // job is for another open file
     if (j.version > seenVersion && j.screen) { seenVersion = j.version; request({ name: j.name, screen: j.screen, rtHash: j.rtHash }); }
   } catch (e) {}
 }
@@ -220,14 +263,11 @@ es.onmessage = async e => {
   if (m.type === "state") { if (m.error) { log(m.error); post({ type: "notify", error: true, text: "Clause: " + m.error.split("\n")[0].slice(0, 160) }); return; } fromServer(); }
   else if (m.type === "rt") { await loadSrc(m.rtHash, true); seenVersion = -1; fromServer(); }
   else if (m.type === "term" || m.type === "agent") loadMsgs();
+  else if (m.type === "goto") { if (!m.file || !fileName || m.file === fileName) post({ type: "goto", pageId: m.pageId, nodeId: m.nodeId }); }
   else if (m.type === "extract") { if (m.ignoreSections && m.ignoreSections.length) $("dsIgnore").value = m.ignoreSections.join(", "); dsRun(); }
 };
 const slug = s => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 async function importHtml(file) { const doc = new DOMParser().parseFromString(await file.text(), "text/html"); const el = doc.getElementById("es-scene"); if (!el) { log("✗ not a Clause export (no #es-scene)"); return; } const scene = JSON.parse(el.textContent); request({ name: slug(scene.TITLE), screen: scene, rtHash }); }
-const drop = $("drop"), fileInput = $("file");
-fileInput.onchange = () => fileInput.files[0] && importHtml(fileInput.files[0]);
-drop.ondragover = e => { e.preventDefault(); drop.classList.add("over"); }; drop.ondragleave = () => drop.classList.remove("over");
-drop.ondrop = e => { e.preventDefault(); drop.classList.remove("over"); if (e.dataTransfer.files[0]) { importHtml(e.dataTransfer.files[0]); openMenu(false); } };
 $("open").onclick = () => { window.open(BASE + "/", "_blank"); };
 
 // ---- chat history + queue widget
@@ -252,33 +292,37 @@ function render() {
     const took = m.from === "claude" && m.took ? '<span class="took" title="From your send to this reply">' + fmtDur(m.took) + "</span> " : "";
     return '<div class="msg ' + m.from + '"><div class="h"><span>' + (m.from === "you" ? "you" : "Claude") + "</span><span>" + took + tick + hhmm(m.t) + "</span></div>" + body + "</div>";
   }).join("");
-  if (agent) { const ic = agent.state === "built" ? '<svg viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7"/></svg>' : agent.state === "error" ? '<svg viewBox="0 0 16 16"><path d="M4 4l8 8M12 4l-8 8"/></svg>' : '<span class="dots"><i></i><i></i><i></i></span>'; const label = agent.text || { thinking: "Thinking…", inspecting: "Inspecting the frame…", building: "Rebuilding…", built: "Built", error: "Something failed" }[agent.state] || "Working…"; c.insertAdjacentHTML("beforeend", '<div class="pres ' + esc(agent.state) + '">' + ic + "<span>" + esc(label) + "</span></div>"); }
+  if (agent) { const ic = agent.state === "built" ? '<svg viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7"/></svg>' : agent.state === "error" ? '<svg viewBox="0 0 16 16"><path d="M4 4l8 8M12 4l-8 8"/></svg>' : '<span class="pdot"></span>'; const label = agent.text || { thinking: "Thinking…", inspecting: "Inspecting the frame…", building: "Rebuilding…", built: "Built", error: "Something failed" }[agent.state] || "Working…"; c.insertAdjacentHTML("beforeend", '<div class="pres ' + esc(agent.state) + '">' + ic + "<span" + (agent.state === "built" || agent.state === "error" ? "" : ' class="shim"') + ">" + esc(label) + "</span></div>"); }
   const lr = [...hist].reverse().find(m => m.from === "claude" && m.took); $("lastTook").textContent = lr ? fmtDur(lr.took) + " · prompt → reply" : "–";
   c.scrollTop = c.scrollHeight; renderComposer(); renderMini();
 }
-async function loadMsgs() { try { try { const st = await (await fetch(BASE + "/status")).json(); hasDs = !!st.hasDs; dsAt = st.dsAt || null; renderDsNote(); } catch (e) {} const j = await (await fetch(BASE + "/term")).json(); msgs = j.messages; agent = j.agent || null; sessions = j.sessions || []; session = j.session || null; render(); if ($("menu").classList.contains("on")) renderSessions(); } catch (e) {} }
+let listening = true;
+function setListening(v) { listening = !!v; $("listenNote").hidden = listening || collapsed; }
+$("listenCopy").onclick = e => { e.preventDefault(); try { navigator.clipboard.writeText("check ib"); } catch (x) { const t = document.createElement("textarea"); t.value = "check ib"; document.body.appendChild(t); t.select(); document.execCommand("copy"); t.remove(); } e.target.textContent = "Copied"; };
+setInterval(() => { fetch(BASE + "/status").then(r => r.json()).then(st => { setListening(st.listening); if (fileName && document.visibilityState === "visible" && st.file !== fileName) dsRefresh(); }).catch(() => {}); }, 5000);
+async function loadMsgs() { try { try { const st = await (await fetch(BASE + "/status")).json(); hasDs = !!st.hasDs; dsAt = st.dsAt || null; renderDsNote(); setListening(st.listening); } catch (e) {} const j = await (await fetch(BASE + "/term")).json(); msgs = j.messages; agent = j.agent || null; sessions = j.sessions || []; session = j.session || null; render(); if ($("menu").classList.contains("on")) renderSessions(); } catch (e) {} }
 document.addEventListener("click", async e => {
   const g = e.target.closest("[data-go]"); if (g) { post({ type: "locate", id: g.dataset.go }); return; }
   const b = e.target.closest("[data-send],[data-del]"); if (!b) return;
-  if (b.dataset.send) { await api("/term/send", { id: b.dataset.send }); toast("Sent"); } else await api("/term/remove", { id: b.dataset.del });
+  if (b.dataset.send) { await api("/term/send", { id: b.dataset.send }); } else await api("/term/remove", { id: b.dataset.del });
   loadMsgs();
 });
 $("qh").onclick = e => { if (e.target.closest(".ib")) return; $("q").classList.toggle("closed"); try { localStorage.setItem("qclosed", $("q").classList.contains("closed") ? "1" : ""); } catch (e2) {} };
 try { if (localStorage.getItem("qclosed")) $("q").classList.add("closed"); } catch (e) {}
-$("qSendAll").onclick = async () => { const r = await api("/term/send"); toast("Sent " + r.sent); loadMsgs(); };
+$("qSendAll").onclick = async () => { const r = await api("/term/send"); loadMsgs(); };
 $("qDiscardAll").onclick = async () => { if (!confirm("Discard all " + queued + " queued?")) return; await api("/term/discard"); loadMsgs(); };
 
 // ---- composer: message, optionally with the Figma selection attached (annotate mode)
 let annOn = true, sel = [], dropped = new Set(), promptWait = null;
 const targets = () => annOn ? sel.filter(n => !dropped.has(n.id)) : [];
 function renderComposer() {
-  const t = targets(); $("ann").classList.toggle("on", annOn); $("selrow").classList.toggle("on", annOn);
+  const t = targets(); $("ann").classList.toggle("on", annOn); $("ann").innerHTML = annOn ? '<svg viewBox="0 0 24 24" stroke-width="2"><path d="M4.037 4.688a.495.495 0 0 1 .651-.651l16 6.5a.5.5 0 0 1-.063.947l-6.124 1.58a2 2 0 0 0-1.438 1.435l-1.579 6.126a.5.5 0 0 1-.947.063z"/></svg>' : '<svg viewBox="0 0 24 24" stroke-width="2"><path d="M4.037 4.688a.495.495 0 0 1 .651-.651l16 6.5a.5.5 0 0 1-.063.947l-6.124 1.58a2 2 0 0 0-1.438 1.435l-1.579 6.126a.5.5 0 0 1-.947.063z"/></svg>'; $("ann").title = annOn ? "Attaching the Figma selection (click to stop)" : "Not attaching the selection (click to attach)"; $("selrow").classList.toggle("on", annOn);
   $("selrow").querySelectorAll(".chip").forEach(c => c.remove()); $("selhint").hidden = t.length > 0;
   for (const n of t) { const c = document.createElement("span"); c.className = "chip go"; c.dataset.go = n.id; c.innerHTML = "<b>" + esc(n.name) + "</b><i>" + esc(n.component || n.type.toLowerCase()) + (n.screen ? "" : " ?") + '</i><a data-x="' + n.id + '" title="leave out">✕</a>'; $("selrow").appendChild(c); }
   const has = $("box").value.trim().length > 0;
   $("queue").disabled = !has;
   const w = working(); $("send").classList.toggle("stopmode", w); $("send").innerHTML = w ? '<span class="thk"><span class="wave"><i></i><i></i><i></i></span><span class="stp">' + STOP_SVG + "</span></span>" : RET_SVG; $("send").disabled = w ? false : !has; setTip("send", w ? "Claude is working — click to stop [Esc]" : "Send now");
-  $("hint").textContent = annOn ? (t.length ? t.length + " layer" + (t.length === 1 ? "" : "s") + (t[0].screen ? " · " + t[0].screen : "") + (t.some(n => !n.screen) ? " · ? not Clause-built" : "") : "") : "";
+  $("hint").textContent = "";
 }
 $("selrow").onclick = e => { const x = e.target.dataset.x; if (x) { e.stopPropagation(); dropped.add(x); renderComposer(); } };
 $("ann").onclick = () => { annOn = !annOn; if (annOn) post({ type: "sel-get" }); renderComposer(); $("box").focus(); };
@@ -292,7 +336,7 @@ async function build() {
 }
 async function submit(sendNow) {
   const b = await build(); if (!b) return;
-  try { const r = await api("/term/add", b); if (sendNow) { await api("/term/send", { id: r.message.id }); toast("Sent — Claude picks it up"); } } catch (e) { return toast("Server offline — npm run live"); }
+  try { const r = await api("/term/add", b); if (sendNow) { await api("/term/send", { id: r.message.id });  } } catch (e) { return toast("Server offline — npm run live"); }
   $("box").value = ""; $("box").style.height = ""; dropped = new Set(sel.map(n => n.id)); loadMsgs();
 }
 $("queue").onclick = () => submit(false);
@@ -307,6 +351,7 @@ onmessage = async (e) => {
   if (m.type === "sel") { sel = m.nodes; dropped = new Set([...dropped].filter(id => sel.some(n => n.id === id))); renderComposer(); return; }
   if (m.type === "pos-debug") { try { fetch(BASE + "/domerror", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ name: "window-position", error: JSON.stringify(m.dbg) }) }); } catch (e) {} return; }
   if (m.type === "prompt") { if (promptWait) { const f = promptWait; promptWait = null; f(m); } return; }
+  if (m.type === "file") { fileName = m.name; dsRefresh(); return; }
   if (m.type === "ds-progress") { log(m.text); const o = $("onbProg"); if (o) o.textContent = m.text; return; }
   if (m.type === "ds-part") { if (dsParts) dsParts[m.part] = m.data; return; }
   if (m.type === "ds-done") { dsFinish(m); return; }

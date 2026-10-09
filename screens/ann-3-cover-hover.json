@@ -1,0 +1,757 @@
+{
+ "title": "Announcement — cover hover",
+ "ds": "ds/files/announcements",
+ "page": "13157:51469",
+ "section": "13149:51550",
+ "height": 900,
+ "tree": {
+  "t": "row",
+  "i": "root",
+  "gap": "none",
+  "clip": true,
+  "children": [
+   {
+    "c": "main-nav",
+    "i": "nav",
+    "p": {
+     "types": "collapsed"
+    },
+    "fill": "y"
+   },
+   {
+    "t": "stack",
+    "i": "main",
+    "children": [
+     {
+      "t": "row",
+      "i": "topbar",
+      "fill": "x",
+      "h": 40,
+      "align": "center",
+      "children": [
+       {
+        "c": "es-breadcrumb",
+        "i": "crumb",
+        "fill": "x",
+        "p": {
+         "Variant": "with Icon",
+         "Actions": "false",
+         "AI assist button": "false",
+         "Avatar Group": "false"
+        },
+        "text": [
+         "Announcements",
+         "New announcement"
+        ],
+        "bg": "none"
+       }
+      ]
+     },
+     {
+      "t": "row",
+      "i": "split",
+      "children": [
+       {
+        "t": "stack",
+        "i": "chat",
+        "children": [
+         {
+          "t": "stack",
+          "i": "thread",
+          "children": [
+           {
+            "t": "row",
+            "i": "user-row",
+            "children": [
+             {
+              "t": "stack",
+              "i": "user-bubble",
+              "children": [
+               {
+                "t": "text",
+                "i": "user-t",
+                "content": "Create a new Announcement",
+                "style": "Text sm/Regular",
+                "color": "text-primary"
+               }
+              ],
+              "bg": "bg-tertiary",
+              "radius": "2xl",
+              "px": "xl",
+              "py": "md"
+             }
+            ],
+            "fill": "x",
+            "justify": "end"
+           },
+           {
+            "t": "stack",
+            "i": "choices",
+            "children": [
+             {
+              "t": "stack",
+              "i": "qa1",
+              "children": [
+               {
+                "t": "text",
+                "i": "q1",
+                "content": "What would you like to announce?",
+                "style": "Text xs/Regular",
+                "color": "text-tertiary"
+               },
+               {
+                "t": "text",
+                "i": "a1",
+                "content": "Invite people to an event",
+                "style": "Text sm/Regular",
+                "color": "text-primary"
+               }
+              ],
+              "gap": "xxs",
+              "fill": "x"
+             },
+             {
+              "t": "stack",
+              "i": "qa2",
+              "children": [
+               {
+                "t": "text",
+                "i": "q2",
+                "content": "Which event is it?",
+                "style": "Text xs/Regular",
+                "color": "text-tertiary"
+               },
+               {
+                "t": "text",
+                "i": "a2",
+                "content": "Customer Day in London",
+                "style": "Text sm/Regular",
+                "color": "text-primary"
+               }
+              ],
+              "gap": "xxs",
+              "fill": "x"
+             },
+             {
+              "t": "stack",
+              "i": "qa3",
+              "children": [
+               {
+                "t": "text",
+                "i": "q3",
+                "content": "Who should see this?",
+                "style": "Text xs/Regular",
+                "color": "text-tertiary"
+               },
+               {
+                "t": "text",
+                "i": "a3",
+                "content": "Everyone at UnifyApps",
+                "style": "Text sm/Regular",
+                "color": "text-primary"
+               }
+              ],
+              "gap": "xxs",
+              "fill": "x"
+             },
+             {
+              "t": "stack",
+              "i": "qa4",
+              "children": [
+               {
+                "t": "text",
+                "i": "q4",
+                "content": "How long should it stay up?",
+                "style": "Text xs/Regular",
+                "color": "text-tertiary"
+               },
+               {
+                "t": "text",
+                "i": "a4",
+                "content": "1 week",
+                "style": "Text sm/Regular",
+                "color": "text-primary"
+               }
+              ],
+              "gap": "xxs",
+              "fill": "x"
+             }
+            ],
+            "fill": "x",
+            "gap": "lg",
+            "pad": "xl",
+            "border": "border-secondary",
+            "radius": "2xl"
+           },
+           {
+            "t": "row",
+            "i": "thoughts-row",
+            "children": [
+             {
+              "c": "agent-avatar",
+              "i": "th-av",
+              "p": {
+               "Size": "xs",
+               "Type": "Advance"
+              }
+             },
+             {
+              "c": "thoughts",
+              "i": "thoughts",
+              "p": {
+               "State": "Closed"
+              }
+             }
+            ],
+            "gap": "md",
+            "align": "center"
+           },
+           {
+            "c": "inline-artifact-cards",
+            "i": "art",
+            "p": {
+             "State": "DOC"
+            },
+            "text": [
+             "Join us at Customer Day on 16 October",
+             "Announcement • v1 • Draft",
+             "Preview"
+            ],
+            "fill": "x"
+           },
+           {
+            "t": "text",
+            "i": "lead",
+            "content": "Here’s a first draft, open on the right as readers will see it. Type straight into it, or select words and tell me how to change them.",
+            "style": "Text sm/Regular",
+            "color": "text-primary",
+            "fill": "x"
+           },
+           {
+            "t": "stack",
+            "i": "facts",
+            "children": [
+             {
+              "t": "row",
+              "i": "f0",
+              "children": [
+               {
+                "t": "text",
+                "i": "fb0",
+                "content": "•",
+                "style": "Text sm/Regular",
+                "color": "text-secondary"
+               },
+               {
+                "t": "text",
+                "i": "ft0",
+                "content": "For: everyone at UnifyApps, from when you publish until Wed 14 Oct",
+                "style": "Text sm/Regular",
+                "color": "text-secondary",
+                "grow": true
+               }
+              ],
+              "gap": "md"
+             },
+             {
+              "t": "row",
+              "i": "f1",
+              "children": [
+               {
+                "t": "text",
+                "i": "fb1",
+                "content": "•",
+                "style": "Text sm/Regular",
+                "color": "text-secondary"
+               },
+               {
+                "t": "text",
+                "i": "ft1",
+                "content": "Sections: The day, What to do, Questions?",
+                "style": "Text sm/Regular",
+                "color": "text-secondary",
+                "grow": true
+               }
+              ],
+              "gap": "md"
+             },
+             {
+              "t": "row",
+              "i": "f2",
+              "children": [
+               {
+                "t": "text",
+                "i": "fb2",
+                "content": "•",
+                "style": "Text sm/Regular",
+                "color": "text-secondary"
+               },
+               {
+                "t": "text",
+                "i": "ft2",
+                "content": "Cover: A speaker on stage in front of a full room",
+                "style": "Text sm/Regular",
+                "color": "text-secondary",
+                "grow": true
+               }
+              ],
+              "gap": "md"
+             }
+            ],
+            "gap": "xs",
+            "fill": "x"
+           },
+           {
+            "c": "suggested-prompts",
+            "i": "sugg",
+            "p": {
+             "Type": "Lines"
+            },
+            "text": [
+             "Try a different cover",
+             "Make it shorter",
+             "Add a line on why this matters"
+            ],
+            "fill": "x"
+           }
+          ],
+          "gap": "xl",
+          "fill": "x",
+          "grow": true
+         },
+         {
+          "c": "copilot-desktop-input-box",
+          "i": "input",
+          "p": {
+           "Type": "Bottom small",
+           "State": "Default",
+           "Tools & Sources": "No",
+           "Text": "Placeholder",
+           "Attachment": "No",
+           "Inline Skills": "false"
+          },
+          "fill": "x",
+          "text": [
+           "Ask for a change, or select words in the preview"
+          ]
+         }
+        ],
+        "w": 560,
+        "fill": "y",
+        "gap": "xl",
+        "px": "xl",
+        "pb": "xl",
+        "pt": "md"
+       },
+       {
+        "t": "stack",
+        "i": "preview",
+        "children": [
+         {
+          "c": "arifact-header",
+          "i": "pv-head",
+          "fill": "x",
+          "text": [
+           "Join us at Customer Day on 16 October"
+          ],
+          "ops": [
+           {
+            "nodes": [
+             {
+              "name": "Frame 2147266824",
+              "hide": true
+             },
+             {
+              "name": "Frame 2147266884",
+              "hide": true
+             },
+             {
+              "name": "Frame 2147266889",
+              "hide": true
+             }
+            ]
+           }
+          ]
+         },
+         {
+          "t": "stack",
+          "i": "pv-body",
+          "children": [
+           {
+            "t": "stack",
+            "i": "doc",
+            "children": [
+             {
+              "t": "text",
+              "i": "p-title",
+              "content": "Join us at Customer Day on 16 October",
+              "style": "Display sm/Regular",
+              "color": "text-primary",
+              "fill": "x"
+             },
+             {
+              "t": "row",
+              "i": "author",
+              "children": [
+               {
+                "c": "avatar",
+                "i": "au-av",
+                "p": {
+                 "Size": "xxs",
+                 "Type": "Letter",
+                 "Colour": "Brand Solid"
+                },
+                "text": [
+                 "A"
+                ]
+               },
+               {
+                "t": "text",
+                "i": "au-t",
+                "content": "Aaryak Garg · Today",
+                "style": "Text xs/Regular",
+                "color": "text-tertiary"
+               }
+              ],
+              "gap": "md",
+              "align": "center"
+             },
+             {
+              "t": "stack",
+              "i": "cover",
+              "fill": "x",
+              "h": 184,
+              "radius": "xl",
+              "border": "border-secondary",
+              "why": "photo placeholder — images are not drawn by Clause",
+              "children": [],
+              "img": "https://picsum.photos/seed/customer-day-stage/1468/368.jpg"
+             },
+             {
+              "t": "text",
+              "i": "p-b1",
+              "content": "Customer Day is on Thursday 16 October at the London office, and every seller is invited. It’s a full day with the customers who shape our roadmap, and the best chance this year to hear, in their own words, why they chose us.",
+              "style": "Text sm/Regular",
+              "color": "text-secondary",
+              "fill": "x"
+             },
+             {
+              "t": "stack",
+              "i": "s1",
+              "children": [
+               {
+                "t": "text",
+                "i": "s1-h",
+                "content": "The day",
+                "style": "Text sm/Semibold",
+                "color": "text-primary"
+               },
+               {
+                "t": "row",
+                "i": "s1-r0",
+                "children": [
+                 {
+                  "t": "text",
+                  "i": "s1-d0",
+                  "content": "•",
+                  "style": "Text sm/Regular",
+                  "color": "text-secondary"
+                 },
+                 {
+                  "t": "text",
+                  "i": "s1-t0",
+                  "content": "10:00 — Welcome, and what customers asked us for this year",
+                  "style": "Text sm/Regular",
+                  "color": "text-secondary",
+                  "grow": true
+                 }
+                ],
+                "gap": "md"
+               },
+               {
+                "t": "row",
+                "i": "s1-r1",
+                "children": [
+                 {
+                  "t": "text",
+                  "i": "s1-d1",
+                  "content": "•",
+                  "style": "Text sm/Regular",
+                  "color": "text-secondary"
+                 },
+                 {
+                  "t": "text",
+                  "i": "s1-t1",
+                  "content": "11:30 — Customer panel with Lowe’s, Greif and Cority",
+                  "style": "Text sm/Regular",
+                  "color": "text-secondary",
+                  "grow": true
+                 }
+                ],
+                "gap": "md"
+               },
+               {
+                "t": "row",
+                "i": "s1-r2",
+                "children": [
+                 {
+                  "t": "text",
+                  "i": "s1-d2",
+                  "content": "•",
+                  "style": "Text sm/Regular",
+                  "color": "text-secondary"
+                 },
+                 {
+                  "t": "text",
+                  "i": "s1-t2",
+                  "content": "14:00 — Small-group sessions by industry",
+                  "style": "Text sm/Regular",
+                  "color": "text-secondary",
+                  "grow": true
+                 }
+                ],
+                "gap": "md"
+               },
+               {
+                "t": "row",
+                "i": "s1-r3",
+                "children": [
+                 {
+                  "t": "text",
+                  "i": "s1-d3",
+                  "content": "•",
+                  "style": "Text sm/Regular",
+                  "color": "text-secondary"
+                 },
+                 {
+                  "t": "text",
+                  "i": "s1-t3",
+                  "content": "17:00 — Drinks on the 19th floor",
+                  "style": "Text sm/Regular",
+                  "color": "text-secondary",
+                  "grow": true
+                 }
+                ],
+                "gap": "md"
+               }
+              ],
+              "gap": "md",
+              "fill": "x"
+             },
+             {
+              "t": "stack",
+              "i": "s2",
+              "children": [
+               {
+                "t": "text",
+                "i": "s2-h",
+                "content": "What to do",
+                "style": "Text sm/Semibold",
+                "color": "text-primary"
+               },
+               {
+                "t": "row",
+                "i": "s2-r0",
+                "children": [
+                 {
+                  "t": "text",
+                  "i": "s2-d0",
+                  "content": "•",
+                  "style": "Text sm/Regular",
+                  "color": "text-secondary"
+                 },
+                 {
+                  "t": "text",
+                  "i": "s2-t0",
+                  "content": "Register by Friday 3 October, so we can plan seats and lunch",
+                  "style": "Text sm/Regular",
+                  "color": "text-secondary",
+                  "grow": true
+                 }
+                ],
+                "gap": "md"
+               },
+               {
+                "t": "row",
+                "i": "s2-r1",
+                "children": [
+                 {
+                  "t": "text",
+                  "i": "s2-d1",
+                  "content": "•",
+                  "style": "Text sm/Regular",
+                  "color": "text-secondary"
+                 },
+                 {
+                  "t": "text",
+                  "i": "s2-t1",
+                  "content": "Bring one customer story from this quarter, two minutes long",
+                  "style": "Text sm/Regular",
+                  "color": "text-secondary",
+                  "grow": true
+                 }
+                ],
+                "gap": "md"
+               },
+               {
+                "t": "row",
+                "i": "s2-r2",
+                "children": [
+                 {
+                  "t": "text",
+                  "i": "s2-d2",
+                  "content": "•",
+                  "style": "Text sm/Regular",
+                  "color": "text-secondary"
+                 },
+                 {
+                  "t": "text",
+                  "i": "s2-t2",
+                  "content": "Can’t come in person? The panel is streamed on Teams",
+                  "style": "Text sm/Regular",
+                  "color": "text-secondary",
+                  "grow": true
+                 }
+                ],
+                "gap": "md"
+               }
+              ],
+              "gap": "md",
+              "fill": "x"
+             },
+             {
+              "t": "stack",
+              "i": "s3",
+              "children": [
+               {
+                "t": "text",
+                "i": "s3-h",
+                "content": "Questions?",
+                "style": "Text sm/Semibold",
+                "color": "text-primary"
+               },
+               {
+                "t": "text",
+                "i": "s3-t",
+                "content": "Ask Sales Enablement in #customer-day, and we’ll answer within a day.",
+                "style": "Text sm/Regular",
+                "color": "text-secondary",
+                "fill": "x"
+               }
+              ],
+              "gap": "md",
+              "fill": "x"
+             },
+             {
+              "t": "stack",
+              "i": "ask",
+              "children": [
+               {
+                "c": "suggested-prompts",
+                "i": "ask-sugg",
+                "p": {
+                 "Type": "Lines"
+                },
+                "text": [
+                 "When do I need to register?",
+                 "Who is on the customer panel?",
+                 "Can I join on Teams?"
+                ],
+                "fill": "x"
+               }
+              ],
+              "gap": "md",
+              "fill": "x",
+              "pt": "xl"
+             }
+            ],
+            "gap": "xl",
+            "fill": "x"
+           }
+          ],
+          "fill": "x",
+          "grow": true,
+          "px": "5xl",
+          "pt": "3xl",
+          "pb": "xl",
+          "bg": "bg-primary"
+         }
+        ],
+        "grow": true,
+        "fill": "y",
+        "bg": "bg-primary",
+        "border": "border-secondary",
+        "radius": "xl",
+        "clip": true
+       }
+      ],
+      "fill": "x",
+      "grow": true,
+      "gap": "none",
+      "pr": "md",
+      "pb": "md"
+     }
+    ],
+    "grow": true,
+    "fill": "y",
+    "gap": "none",
+    "bg": "bg-secondary"
+   },
+   {
+    "t": "row",
+    "i": "cover-bar",
+    "children": [
+     {
+      "c": "button-neutral",
+      "i": "cb1",
+      "p": {
+       "Size": "xs",
+       "Hierarchy": "Tertiary",
+       "Icon leading": "false",
+       "Icon trailing": "false"
+      },
+      "text": {
+       "Button": "Change cover"
+      }
+     },
+     {
+      "c": "button-neutral",
+      "i": "cb2",
+      "p": {
+       "Size": "xs",
+       "Hierarchy": "Tertiary",
+       "Icon leading": "false",
+       "Icon trailing": "false"
+      },
+      "text": {
+       "Button": "Reposition"
+      }
+     },
+     {
+      "c": "button-neutral",
+      "i": "cb3",
+      "p": {
+       "Size": "xs",
+       "Hierarchy": "Tertiary",
+       "Icon leading": "false",
+       "Icon trailing": "false"
+      },
+      "text": {
+       "Button": "Remove"
+      }
+     }
+    ],
+    "gap": "xxs",
+    "pad": "xxs",
+    "bg": "bg-primary",
+    "radius": "lg",
+    "border": "border-secondary",
+    "abs": {
+     "x": 1086,
+     "y": 218
+    },
+    "why": "toolbar floats on the cover's top-right on hover"
+   }
+  ]
+ }
+}
