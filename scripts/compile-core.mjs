@@ -16,7 +16,7 @@ export function esCompile(cat, screen, name, screenIdx) {
   const addComp = (key, where) => {
     const c = cat.comps[key];
     if (!c) { errors.push(where + ': unknown component "' + key + '"' + (near(key, Object.keys(cat.comps)).length ? " — did you mean: " + near(key, Object.keys(cat.comps)).join(", ") : "")); return null; }
-    used.comps[key] = c.lib ? { lib: true, setKey: c.setKey || null, key: c.key, def: c.def || null } : { id: c.id, set: c.set, def: c.def };
+    used.comps[key] = c.lib ? { lib: true, setKey: c.setKey || null, key: c.key, def: c.def || null, alt: c.alt || undefined } : { id: c.id, set: c.set, def: c.def };
     return c;
   };
   const walk = (n, path) => {

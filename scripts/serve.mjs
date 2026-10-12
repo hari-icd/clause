@@ -5,9 +5,11 @@
 //   • serves the exports listing at /
 //   node scripts/serve.mjs [screen-name]
 import http from "node:http";
+import { loadRegistry } from "./registry.mjs";
 import { watch, readdirSync, readFileSync, writeFileSync, mkdirSync, existsSync, statSync, copyFileSync } from "node:fs";
 import { createHash } from "node:crypto";
-import { execFileSync, execFile } from "node:child_process";
+import { execFileSync, execFile, spawn } from "node:child_process";
+import { loadCatalog as loadCatalogFn } from "./compile.mjs";
 import { resolve, dirname } from "node:path";
 import { createStore } from "./messages.mjs";
 import { fileURLToPath } from "node:url";
@@ -20,11 +22,11 @@ const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const PORT = Number(process.env.PORT || 8787);
 const store = createStore(root);
 // agent presence for the plugin pane: reading → thinking/custom → building → built → (reply clears). Auto-clears after 15 min.
-let agent = null, agentT = null;
+let agent = null, agentT = null, lastPoll = 0; // lastPoll = last time the inbox watcher asked for messages (Claude is listening while it keeps polling)
 function setAgent(state, text, busy) { clearTimeout(agentT); if (!state) agent = null; else { const keep = agent ? agent.busy : false; agent = { state, text: text || "", at: Date.now(), busy: busy === undefined ? keep : busy }; agentT = setTimeout(() => { agent = null; broadcast({ type: "agent" }); }, 45 * 60e3); } broadcast({ type: "agent" }); }
 const EXPORTS = resolve(root, "exports");
 mkdirSync(EXPORTS, { recursive: true });
-let state = { version: 0, name: null, screen: null, error: null, at: null };
+let state = { version: Math.floor(Date.now() / 1000), name: null, screen: null, error: null, at: null }; // version is monotonic across restarts: a plugin that missed the restart must not ignore new jobs as old
 let result = null;
 const scenes = {}, doms = {};
 const metaPath = resolve(EXPORTS, "meta.json");
@@ -42,6 +44,38 @@ async function exportHtml(name) {
   if (screens) console.log(`  ↳ exports/${name}.html from Figma (${(html.length / 1024).toFixed(0)}kb)`);
 }
 
+// image fills: download once into .clause/img (curl follows redirects), inline as base64 for the plugin runtime
+function attachImages(o) {
+  if (!o || typeof o !== "object") return;
+  if (Array.isArray(o)) { o.forEach(attachImages); return; }
+  if (typeof o.img === "string" && !o.imgB64) {
+    try {
+      const dir = resolve(root, ".clause/img"); mkdirSync(dir, { recursive: true });
+      const f = resolve(dir, o.img.replace(/[^a-z0-9]+/gi, "_").slice(-120));
+      if (!existsSync(f)) execFileSync("curl", ["-sL", "--max-time", "20", "-o", f, o.img]);
+      o.imgB64 = readFileSync(f).toString("base64");
+    } catch (e) { console.error("  image failed " + o.img + ": " + e.message); }
+  }
+  for (const k in o) if (k !== "imgB64") attachImages(o[k]);
+}
+
+// ---- which design system is the open Figma file using? (registry + manual choice) ----
+let lastFile = null;
+const regPath = resolve(root, "ds/registry.json"), choicePath = resolve(root, ".clause/ds-choice.json");
+const readJson = (f, d) => { try { return JSON.parse(readFileSync(f, "utf8")); } catch { return d; } };
+function dsResolve() {
+  const reg = loadRegistry(root), choice = readJson(choicePath, {});
+  const byId = id => reg.systems.find(x => x.id === id);
+  let sys = null, source = "none";
+  if (lastFile && choice[lastFile] && byId(choice[lastFile])) { sys = byId(choice[lastFile]); source = "choice"; }
+  else if (lastFile) { sys = reg.systems.find(x => (x.files || []).includes(lastFile)) || null; if (sys) source = "registry"; }
+  return { file: lastFile, system: sys, source, systems: reg.systems.map(({ id, name, dir }) => ({ id, name, dir })) };
+}
+
+// old node id -> new node id, recorded whenever a job replaces a node (chat chips follow the replacement)
+const idmapPath = resolve(root, ".clause/idmap.json");
+function mergeIdMap(list) { if (!Array.isArray(list) || !list.length) return; const m = readJson(idmapPath, {}); for (const r of list) if (r && r.from && r.to) m[r.from] = r.to; mkdirSync(resolve(root, ".clause"), { recursive: true }); writeFileSync(idmapPath, JSON.stringify(m, null, 1)); }
+
 function rebuild(name) {
   try {
     // an editor may fire the watcher mid-write (half-written JSON): re-lint once after a short wait before calling it a failure
@@ -50,7 +84,8 @@ function rebuild(name) {
     if (lintErr) { Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 450); lintErr = lintOnce(); }
     if (lintErr) { const lines = lintErr.split("\n").map(l => l.trim()).filter(l => l && !/^✗/.test(l)); throw new Error(`${name}: ${lines[0] || "lint failed"}${lines.length > 1 ? ` (+${lines.length - 1} more)` : ""}\n${lintErr}`); }
     const screen = run("compile", name); screen.REPLACE = null; // plugin replaces by tag, not id
-    screen.__v = Date.now();
+    attachImages(screen); // boxes with "img": "<url>" get their bytes inlined (the plugin cannot fetch)
+    screen.__v = Date.now(); screen.FILE = lastFile; // the plugin of any other open file ignores this build
     scenes[name] = screen;
     state = { version: state.version + 1, name, screen, error: null, at: stamp() };
     console.log(`[${stamp()}] ${name} queued`);
@@ -100,7 +135,43 @@ http.createServer(async (req, res) => {
   if (p === "/") { res.writeHead(200, { "content-type": "text/html; charset=utf-8" }); return res.end(readFileSync(resolve(root, "scripts/listing.html"), "utf8")); }
   if (p === "/tokens.css") { res.writeHead(200, { "content-type": "text/css" }); return res.end(readFileSync(resolve(root, "ds/tokens.css"))); }
   if (p === "/exports.json") return json(res, 200, listExports());
-  if (p === "/status") return json(res, 200, { plugin: clients.size > 0, version: state.version, hasDs: existsSync(resolve(root, "ds/components.json")), dsAt: existsSync(resolve(root, "ds/components.json")) ? statSync(resolve(root, "ds/components.json")).mtimeMs : null });
+  if ((p === "/swap" || p === "/mobilize") && req.method === "POST") {
+    if (req.headers["x-clause"] !== "1") return json(res, 403, { error: "POST with header x-clause: 1" });
+    try {
+      const spec = JSON.parse(await body(req)); const base = Object.values(scenes)[0] || {};
+      const sc = { PAGE_ID: base.PAGE_ID || "0:1", TITLE: "_job", WIDTH: 1, HEIGHT: 1, SCREENS: [], VARS: {}, STYLES: {}, FONTS: [], COMPS: {}, __v: Date.now(), INSPECT: p === "/swap" ? "swap" : "mobilize", ...(p === "/swap" ? { SWAP: spec } : { MOBILIZE: spec }), FILE: lastFile };
+      if (spec.useComps) { const cat = loadCatalogFn(spec.ds); for (const k of spec.useComps) { const c = cat.comps[k]; if (!c) return json(res, 400, { error: "unknown component " + k }); sc.COMPS[k] = c.lib ? { lib: true, setKey: c.setKey || null, key: c.key, def: c.def || null, alt: c.alt || undefined } : { id: c.id, set: c.set, def: c.def }; } }
+      state = { version: state.version + 1, name: "_inspect", screen: sc, error: null, at: stamp() }; broadcast({ type: "state", version: state.version, name: "_inspect" });
+      return json(res, 200, { ok: true, queued: "swap" });
+    } catch (e) { return json(res, 400, { error: String(e.message || e) }); }
+  }
+  if (p === "/variant" && req.method === "POST") {
+    if (req.headers["x-clause"] !== "1") return json(res, 403, { error: "POST with header x-clause: 1" });
+    try {
+      const spec = JSON.parse(await body(req)); const cat = loadCatalogFn(spec.ds);
+      const base = Object.values(scenes)[0] || {};
+      const sc = { PAGE_ID: base.PAGE_ID || "0:1", TITLE: "_job", WIDTH: 1, HEIGHT: 1, SCREENS: [], VARS: {}, STYLES: {}, FONTS: [], COMPS: {}, __v: Date.now(), INSPECT: "variant", VARIANT: spec, FILE: lastFile };
+      for (const k of spec.useComps || []) { const c = cat.comps[k]; if (!c) return json(res, 400, { error: "unknown component " + k }); sc.COMPS[k] = c.lib ? { lib: true, setKey: c.setKey || null, key: c.key, def: c.def || null, alt: c.alt || undefined } : { id: c.id, set: c.set, def: c.def }; }
+      for (const n of spec.useVars || []) { const k = cat.vars.colors[n] || cat.vars.spacing["spacing-" + n] || cat.vars.radius["radius-" + n]; if (!k) return json(res, 400, { error: "unknown token " + n }); sc.VARS[n] = k; }
+      state = { version: state.version + 1, name: "_inspect", screen: sc, error: null, at: stamp() }; broadcast({ type: "state", version: state.version, name: "_inspect" });
+      return json(res, 200, { ok: true, queued: "variant" });
+    } catch (e) { return json(res, 400, { error: String(e.message || e) }); }
+  }
+  if (p === "/goto" && req.method === "POST") {
+    if (req.headers["x-clause"] !== "1") return json(res, 403, { error: "POST with header x-clause: 1" });
+    let b = {}; try { b = JSON.parse(await body(req) || "{}"); } catch {}
+    broadcast({ type: "goto", pageId: b.pageId, nodeId: b.nodeId, file: lastFile }); return json(res, 200, { ok: true });
+  }
+  if (p === "/idmap" && req.method === "GET") return json(res, 200, readJson(idmapPath, {}));
+  if (p === "/ds/active" && req.method === "GET") return json(res, 200, dsResolve());
+  if (p.startsWith("/ds/") && req.method === "POST") {
+    if (req.headers["x-clause"] !== "1") return json(res, 403, { error: "POST with header x-clause: 1" });
+    let b = {}; try { b = JSON.parse(await body(req) || "{}"); } catch {}
+    if (p === "/ds/file") { lastFile = String(b.name || "").slice(0, 200) || null; if (b.key && /^[A-Za-z0-9]{10,40}$/.test(String(b.key))) { try { mkdirSync(resolve(root, ".clause"), { recursive: true }); writeFileSync(resolve(root, ".clause/figma-file"), String(b.key) + "\n"); } catch {} } return json(res, 200, dsResolve()); }
+    if (p === "/ds/choose") { const c = readJson(choicePath, {}); if (lastFile && b.id) { c[lastFile] = b.id; mkdirSync(resolve(root, ".clause"), { recursive: true }); writeFileSync(choicePath, JSON.stringify(c, null, 1)); } return json(res, 200, dsResolve()); }
+  }
+  // listening: grace period because the watcher is re-armed a few seconds after each message; Claude counts as listening while it is working
+  if (p === "/status") return json(res, 200, { file: lastFile, listening: Date.now() - lastPoll < 45000 || !!(agent && agent.busy), plugin: clients.size > 0, update: readJson(resolve(root, ".clause/update.json"), null), version: state.version, hasDs: existsSync(resolve(root, "ds/components.json")), dsAt: existsSync(resolve(root, "ds/components.json")) ? statSync(resolve(root, "ds/components.json")).mtimeMs : null });
   if (p.startsWith("/export/")) {
     const f = resolve(EXPORTS, p.slice(8));
     if (!f.startsWith(EXPORTS) || !existsSync(f)) return json(res, 404, { error: "not found" });
@@ -117,7 +188,7 @@ http.createServer(async (req, res) => {
   if (p === "/state") return json(res, 200, Object.assign({}, state, { rtHash: rtInfo().hash }));
   if (p === "/health") return json(res, 200, { ok: true, screens: readdirSync(resolve(root, "screens")).filter(f => f.endsWith(".json")) });
   if (p === "/result") {
-    if (req.method === "POST") { try { result = JSON.parse(await body(req)); const r = result; if (agent && r.ok && !r.name.startsWith("_")) setAgent("built", "Built " + r.name + " · " + (r.res.ms / 1000).toFixed(1) + "s" + (r.res.warnings.length ? " · " + r.res.warnings.length + " warning(s)" : "")); else if (agent && !r.ok) setAgent("error", "Build failed: " + String(r.error).slice(0, 80));
+    if (req.method === "POST") { try { result = JSON.parse(await body(req)); result.ts = Date.now(); mergeIdMap(result.res && result.res.remap); const r = result; if (agent && r.ok && !r.name.startsWith("_")) setAgent("built", "Built " + r.name + " · " + (r.res.ms / 1000).toFixed(1) + "s" + (r.res.warnings.length ? " · " + r.res.warnings.length + " warning(s)" : "")); else if (agent && !r.ok) setAgent("error", "Build failed: " + String(r.error).slice(0, 80));
       if (r.ok && !r.name.startsWith("_")) { meta[r.name] = { roots: r.res.roots, at: Date.now() }; writeFileSync(metaPath, JSON.stringify(meta)); } console.log(r.ok ? `  ✓ ${r.name} ${r.res.ms}ms ${(r.res.roots || []).join(",")}${r.res.warnings.length ? "  ⚠ " + r.res.warnings.join("; ") : ""}` : `  ✗ ${r.name}: ${r.error}`); } catch {} return json(res, 200, { ok: true }); }
     return json(res, 200, result);
   }
@@ -127,6 +198,7 @@ http.createServer(async (req, res) => {
     if (req.headers["x-clause"] !== "1") return json(res, 403, { error: "POST with header x-clause: 1" });
     if (!clients.size) return json(res, 409, { error: "plugin not connected — run Clause Assist in Figma first" });
     let b = {}; try { b = JSON.parse(await body(req)); } catch {}
+    const act = dsResolve(); if (act.system && !b.force) return json(res, 409, { error: `already extracted: "${act.file}" is registered as ${act.system.name} (pass {"force":true} to redo)` });
     broadcast({ type: "extract", ignoreSections: b.ignoreSections || [] }); console.log("  ⇣ extract requested"); return json(res, 200, { ok: true });
   }
   if (p === "/extract/ds" && req.method === "POST") {
@@ -157,7 +229,7 @@ http.createServer(async (req, res) => {
     const o = req.headers.origin;
     if (o && o !== "null") { res.writeHead(403); return res.end(); }
     if (req.method === "GET" && p === "/term") return json(res, 200, { messages: store.list(), queued: store.queued(), agent, ...store.state() });
-    if (req.method === "GET" && p === "/inbox") { const peek = url.searchParams.get("peek"); const u = peek ? store.unread() : store.markRead(); if (!peek && u.length) { broadcast({ type: "term" }); setAgent("thinking", "Reading your " + (u.length === 1 ? "message" : u.length + " messages"), true); } return json(res, 200, { count: u.length, messages: u.map(m => ({ id: m.id, kind: m.kind, title: m.title, text: m.text })) }); }
+    if (req.method === "GET" && p === "/inbox") { const peek = url.searchParams.get("peek"); if (!peek) lastPoll = Date.now(); const u = peek ? store.unread() : store.markRead(); if (!peek && u.length) { broadcast({ type: "term" }); setAgent("thinking", "Reading your " + (u.length === 1 ? "message" : u.length + " messages"), true); } return json(res, 200, { count: u.length, messages: u.map(m => ({ id: m.id, kind: m.kind, title: m.title, text: m.text })) }); }
     if (req.method !== "POST" || req.headers["x-clause"] !== "1") return json(res, 403, { error: "POST with header x-clause: 1" });
     let b = {}; try { b = JSON.parse(await body(req)); } catch {}
     let out = { ok: true };
@@ -180,11 +252,11 @@ http.createServer(async (req, res) => {
   if ((p.startsWith("/inspect/") || p.startsWith("/snap/") || p === "/pages") && req.method === "POST") {
     // read-only jobs run by the plugin in WHATEVER file is open — no MCP access to that file needed
     const base = Object.values(scenes)[0]; if (!base) return json(res, 500, { error: "no compiled scene to borrow keys from" });
-    const sc = { PAGE_ID: base.PAGE_ID, TITLE: "_job", WIDTH: 1, HEIGHT: 1, SCREENS: [], VARS: {}, STYLES: {}, FONTS: [], COMPS: {}, __v: Date.now() };
+    const sc = { PAGE_ID: base.PAGE_ID, TITLE: "_job", WIDTH: 1, HEIGHT: 1, SCREENS: [], VARS: {}, STYLES: {}, FONTS: [], COMPS: {}, __v: Date.now(), FILE: lastFile };
     let label;
     if (p === "/pages") { sc.PAGES = true; label = "pages"; }
     else if (p.startsWith("/snap/")) { label = decodeURIComponent(p.slice(6)).replace("-", ":"); sc.SNAP = { id: label, w: Number(url.searchParams.get("w")) || 1400 }; }
-    else { label = decodeURIComponent(p.slice(9)).replace("-", ":"); sc.INSPECT = label; if (url.searchParams.get("depth")) sc.INSPECT_DEPTH = Number(url.searchParams.get("depth")); }
+    else { label = decodeURIComponent(p.slice(9)).replace("-", ":"); sc.INSPECT = label; if (url.searchParams.get("remove")) sc.REMOVE = 1; if (url.searchParams.get("selection")) sc.SELECTION = 1; if (url.searchParams.get("depth")) sc.INSPECT_DEPTH = Number(url.searchParams.get("depth")); }
     state = { version: state.version + 1, name: "_inspect", screen: sc, error: null, at: stamp() };
     broadcast({ type: "state", version: state.version, name: "_inspect" }); return json(res, 200, { ok: true, queued: label });
   }
@@ -197,6 +269,7 @@ http.createServer(async (req, res) => {
   json(res, 404, { error: "not found" });
 }).listen(PORT, "127.0.0.1", () => {
   console.log(`Clause live server on http://localhost:${PORT} — watching screens/*.json · listing at /`);
+  const checkUpdate = () => { try { spawn(process.execPath, [resolve(root, "scripts/update-check.mjs"), "--json"], { cwd: root, stdio: "ignore", detached: true }).unref(); } catch {} }; checkUpdate(); setInterval(checkUpdate, 3 * 3600e3); // auto-update when clean, else nudge via /status
   for (const f of readdirSync(resolve(root, "screens")).filter(f => f.endsWith(".json"))) {
     const n = f.replace(/\.json$/, "");
     try { scenes[n] = Object.assign(run("compile", n), { REPLACE: null, __v: Date.now() }); if (!existsSync(resolve(EXPORTS, n + ".html"))) exportHtml(n); } catch (e) { console.error("skip", n, e.message); }

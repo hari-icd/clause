@@ -11,13 +11,13 @@ const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const PORT = process.env.PORT || 8787, B = `http://localhost:${PORT}`;
 const [cmd, a1, a2] = process.argv.slice(2);
 const nid = x => String(x || "").match(/node-id=(\d+)[-:](\d+)/) ? String(x).match(/node-id=(\d+)[-:](\d+)/).slice(1).join(":") : String(x || "").replace("-", ":");
-async function job(path) {
+async function job(path, attempt = 0) {
   const before = JSON.stringify(await (await fetch(B + "/result")).json());
   const r = await fetch(B + path, { method: "POST" }); if (!r.ok) throw new Error("server: " + (await r.text()));
   for (let i = 0; i < 160; i++) {
     await new Promise(s => setTimeout(s, 250));
     const x = await (await fetch(B + "/result")).json();
-    if (x && x.name === "_inspect" && JSON.stringify(x) !== before) { if (!x.ok) throw new Error(x.error); return x.res; }
+    if (x && x.name === "_inspect" && JSON.stringify(x) !== before) { if (!x.ok) { if (/establish connection/.test(x.error || "") && attempt < 4) { await new Promise(r => setTimeout(r, 8000)); return job(path, attempt + 1); } throw new Error(x.error); } return x.res; }
   }
   throw new Error("timeout — is the Figma plugin open in the file? (⌘⌥P)");
 }

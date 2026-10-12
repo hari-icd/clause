@@ -27,6 +27,7 @@ const free = await new Promise(r => { const s = createServer(); s.once("error", 
 check(`port ${PORT} free`, free, `something is on ${PORT} (is Clause already running? otherwise use --port)`);
 const cfg = existsSync(resolve(root, "ds/config.md")) ? readFileSync(resolve(root, "ds/config.md"), "utf8") : ""; const key = (cfg.match(/File key: `(\w+)`/) || [])[1];
 let claude = false; try { execFileSync(process.platform === "win32" ? "where" : "which", ["claude"], { stdio: "pipe" }); claude = true; } catch {}
+note.push(existsSync(resolve(root, ".clause/figma-token")) ? "Figma token present (comments readable: node scripts/comments.mjs)." : "No Figma token yet (.clause/figma-token) — needed to read Figma comments.");
 note.push(claude ? "Claude Code found." : "Claude Code CLI not found — install it, then open this folder (the terminal pane is just an inbox; Claude reads it from your session).");
 
 console.log("\nClause setup\n");
@@ -37,7 +38,8 @@ Manual steps (once per machine):
   2. Figma → Plugins → Development → Import plugin from manifest… → ${resolve(root, "figma-plugin", "manifest.json")}
   3. Start Clause:   npm run live      (or: node scripts/serve.mjs --open)
   4. Figma → Plugins → Development → Clause Assist → "Start (silent)"   (shortcut: ⌘⌥P / Ctrl+Alt+P re-runs it)
-  5. Open this folder in Claude Code and say what screen you want.
+  5. Figma comments (optional but recommended): Figma → Settings → Security → Personal access tokens → generate one with comments + file read; save it as the only line of .clause/figma-token (never paste it in chat). The file key arrives from the plugin by itself.
+  6. Open this folder in Claude Code and say what screen you want.
 Per-machine data lives only in .clause/ (message history). \`npm run clean\` removes it and every generated file.
 ${note.map(n => "  · " + n).join("\n")}
 `);
