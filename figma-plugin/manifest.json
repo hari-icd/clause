@@ -11,6 +11,7 @@
   "permissions": [
     "teamlibrary"
   ],
+  "enablePrivatePluginApi": true,
   "menu": [
     {
       "name": "Open Clause Assist",
