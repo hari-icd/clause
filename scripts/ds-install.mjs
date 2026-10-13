@@ -4,12 +4,13 @@
 // 1. copies the preview into ds/files/<id>/   2. finds an existing catalog sharing >=85% of its library components and, if found,
 // keeps only the delta + records `extends` in ds/registry.json   3. registers the file name.  (loadCatalog merges `extends` at compile time.)
 import { readFileSync, writeFileSync, mkdirSync, cpSync, existsSync, readdirSync } from "node:fs";
+import { loadRegistry, saveSystem } from "./registry.mjs";
 import { resolve, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const [prev, id, name, file] = process.argv.slice(2);
 if (!prev || !id || !name || !file) { console.error('usage: ds-install.mjs <previewDir> <id> "<name>" "<figma file name>"'); process.exit(1); }
-const regP = resolve(root, "ds/registry.json"), reg = JSON.parse(readFileSync(regP, "utf8"));
+const reg = loadRegistry(root);
 const dir = `ds/files/${id}`, out = resolve(root, dir);
 mkdirSync(out, { recursive: true }); if (resolve(root, prev) !== out) cpSync(resolve(root, prev), out, { recursive: true });
 const cp = resolve(out, "components.json"), cat = JSON.parse(readFileSync(cp, "utf8"));
@@ -26,4 +27,4 @@ if (best && best.ratio >= 0.85) {
   writeFileSync(cp, JSON.stringify(cat, null, 1));
   console.log(`same library as "${best.s.name}" (${Math.round(best.ratio * 100)}% shared): kept ${cat.library.length} new of ${before} library components, extends ${best.s.id}`);
 } else console.log(`own library (best overlap ${best ? Math.round(best.ratio * 100) + "% with " + best.s.id : "none"}): stored whole`);
-writeFileSync(regP, JSON.stringify(reg, null, 2));
+const where = saveSystem(root, entry); console.log("registered in " + where.replace(root + "/", ""));

@@ -1,0 +1,42 @@
+{
+ "ds": "ds/files/clients",
+ "useComps": [
+  "icon-upload-cloud",
+  "icon-folder"
+ ],
+ "swaps": [
+  {
+   "target": "15107:18756",
+   "icons": [
+    {
+     "item": 0,
+     "comp": "icon-upload-cloud"
+    },
+    {
+     "item": 1,
+     "key": "4dc32b0a2f081f538a6621c5648877258daee15f"
+    },
+    {
+     "item": 2,
+     "key": "3866e2bc035b3b70d28345c7e9e0bc0781af622b"
+    },
+    {
+     "item": 3,
+     "key": "c85f45039769ebea69738e3c9d72e5a89d4a908e"
+    },
+    {
+     "item": 4,
+     "comp": "icon-folder"
+    },
+    {
+     "item": 5,
+     "key": "c275bf90fd4efd3d79044e67467ef0af7c41224c"
+    },
+    {
+     "item": 6,
+     "key": "0b91ccce1552ef21ac15f5051000d6ad78d73720"
+    }
+   ]
+  }
+ ]
+}

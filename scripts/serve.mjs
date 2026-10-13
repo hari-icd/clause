@@ -5,9 +5,10 @@
 //   • serves the exports listing at /
 //   node scripts/serve.mjs [screen-name]
 import http from "node:http";
+import { loadRegistry } from "./registry.mjs";
 import { watch, readdirSync, readFileSync, writeFileSync, mkdirSync, existsSync, statSync, copyFileSync } from "node:fs";
 import { createHash } from "node:crypto";
-import { execFileSync, execFile } from "node:child_process";
+import { execFileSync, execFile, spawn } from "node:child_process";
 import { loadCatalog as loadCatalogFn } from "./compile.mjs";
 import { resolve, dirname } from "node:path";
 import { createStore } from "./messages.mjs";
@@ -63,13 +64,17 @@ let lastFile = null;
 const regPath = resolve(root, "ds/registry.json"), choicePath = resolve(root, ".clause/ds-choice.json");
 const readJson = (f, d) => { try { return JSON.parse(readFileSync(f, "utf8")); } catch { return d; } };
 function dsResolve() {
-  const reg = readJson(regPath, { systems: [] }), choice = readJson(choicePath, {});
+  const reg = loadRegistry(root), choice = readJson(choicePath, {});
   const byId = id => reg.systems.find(x => x.id === id);
   let sys = null, source = "none";
   if (lastFile && choice[lastFile] && byId(choice[lastFile])) { sys = byId(choice[lastFile]); source = "choice"; }
   else if (lastFile) { sys = reg.systems.find(x => (x.files || []).includes(lastFile)) || null; if (sys) source = "registry"; }
   return { file: lastFile, system: sys, source, systems: reg.systems.map(({ id, name, dir }) => ({ id, name, dir })) };
 }
+
+// old node id -> new node id, recorded whenever a job replaces a node (chat chips follow the replacement)
+const idmapPath = resolve(root, ".clause/idmap.json");
+function mergeIdMap(list) { if (!Array.isArray(list) || !list.length) return; const m = readJson(idmapPath, {}); for (const r of list) if (r && r.from && r.to) m[r.from] = r.to; mkdirSync(resolve(root, ".clause"), { recursive: true }); writeFileSync(idmapPath, JSON.stringify(m, null, 1)); }
 
 function rebuild(name) {
   try {
@@ -157,14 +162,16 @@ http.createServer(async (req, res) => {
     let b = {}; try { b = JSON.parse(await body(req) || "{}"); } catch {}
     broadcast({ type: "goto", pageId: b.pageId, nodeId: b.nodeId, file: lastFile }); return json(res, 200, { ok: true });
   }
+  if (p === "/idmap" && req.method === "GET") return json(res, 200, readJson(idmapPath, {}));
   if (p === "/ds/active" && req.method === "GET") return json(res, 200, dsResolve());
   if (p.startsWith("/ds/") && req.method === "POST") {
     if (req.headers["x-clause"] !== "1") return json(res, 403, { error: "POST with header x-clause: 1" });
     let b = {}; try { b = JSON.parse(await body(req) || "{}"); } catch {}
-    if (p === "/ds/file") { lastFile = String(b.name || "").slice(0, 200) || null; return json(res, 200, dsResolve()); }
+    if (p === "/ds/file") { lastFile = String(b.name || "").slice(0, 200) || null; if (b.key && /^[A-Za-z0-9]{10,40}$/.test(String(b.key))) { try { mkdirSync(resolve(root, ".clause"), { recursive: true }); writeFileSync(resolve(root, ".clause/figma-file"), String(b.key) + "\n"); } catch {} } return json(res, 200, dsResolve()); }
     if (p === "/ds/choose") { const c = readJson(choicePath, {}); if (lastFile && b.id) { c[lastFile] = b.id; mkdirSync(resolve(root, ".clause"), { recursive: true }); writeFileSync(choicePath, JSON.stringify(c, null, 1)); } return json(res, 200, dsResolve()); }
   }
-  if (p === "/status") return json(res, 200, { file: lastFile, listening: Date.now() - lastPoll < 6000, plugin: clients.size > 0, version: state.version, hasDs: existsSync(resolve(root, "ds/components.json")), dsAt: existsSync(resolve(root, "ds/components.json")) ? statSync(resolve(root, "ds/components.json")).mtimeMs : null });
+  // listening: grace period because the watcher is re-armed a few seconds after each message; Claude counts as listening while it is working
+  if (p === "/status") return json(res, 200, { file: lastFile, listening: Date.now() - lastPoll < 45000 || !!(agent && agent.busy), plugin: clients.size > 0, update: readJson(resolve(root, ".clause/update.json"), null), version: state.version, hasDs: existsSync(resolve(root, "ds/components.json")), dsAt: existsSync(resolve(root, "ds/components.json")) ? statSync(resolve(root, "ds/components.json")).mtimeMs : null });
   if (p.startsWith("/export/")) {
     const f = resolve(EXPORTS, p.slice(8));
     if (!f.startsWith(EXPORTS) || !existsSync(f)) return json(res, 404, { error: "not found" });
@@ -181,7 +188,7 @@ http.createServer(async (req, res) => {
   if (p === "/state") return json(res, 200, Object.assign({}, state, { rtHash: rtInfo().hash }));
   if (p === "/health") return json(res, 200, { ok: true, screens: readdirSync(resolve(root, "screens")).filter(f => f.endsWith(".json")) });
   if (p === "/result") {
-    if (req.method === "POST") { try { result = JSON.parse(await body(req)); result.ts = Date.now(); const r = result; if (agent && r.ok && !r.name.startsWith("_")) setAgent("built", "Built " + r.name + " · " + (r.res.ms / 1000).toFixed(1) + "s" + (r.res.warnings.length ? " · " + r.res.warnings.length + " warning(s)" : "")); else if (agent && !r.ok) setAgent("error", "Build failed: " + String(r.error).slice(0, 80));
+    if (req.method === "POST") { try { result = JSON.parse(await body(req)); result.ts = Date.now(); mergeIdMap(result.res && result.res.remap); const r = result; if (agent && r.ok && !r.name.startsWith("_")) setAgent("built", "Built " + r.name + " · " + (r.res.ms / 1000).toFixed(1) + "s" + (r.res.warnings.length ? " · " + r.res.warnings.length + " warning(s)" : "")); else if (agent && !r.ok) setAgent("error", "Build failed: " + String(r.error).slice(0, 80));
       if (r.ok && !r.name.startsWith("_")) { meta[r.name] = { roots: r.res.roots, at: Date.now() }; writeFileSync(metaPath, JSON.stringify(meta)); } console.log(r.ok ? `  ✓ ${r.name} ${r.res.ms}ms ${(r.res.roots || []).join(",")}${r.res.warnings.length ? "  ⚠ " + r.res.warnings.join("; ") : ""}` : `  ✗ ${r.name}: ${r.error}`); } catch {} return json(res, 200, { ok: true }); }
     return json(res, 200, result);
   }
@@ -230,8 +237,8 @@ http.createServer(async (req, res) => {
     else if (p === "/term/edit") out.ok = store.edit(b.id, b.text);
     else if (p === "/term/remove") out.ok = store.remove(b.id);
     else if (p === "/term/send") out.sent = b.id ? store.sendOne(b.id) : store.send();
-    else if (p === "/term/reply") { out.message = store.reply(b.text || ""); if (b.working) setAgent("thinking", b.working === true ? "Still working…" : String(b.working), true); else setAgent(null); }
-    else if (p === "/term/status") { if (b.state === "idle" || b.state === "done") setAgent(null); else setAgent(b.state || "thinking", b.text || "", true); }
+    else if (p === "/term/reply") { out.message = store.reply(b.text || "", b.targets); if (b.working && agent && agent.state === "stopped") { /* still stopping */ } else if (b.working) setAgent("thinking", b.working === true ? "Still working…" : String(b.working), true); else setAgent(null); }
+    else if (p === "/term/status") { if (b.state === "idle" || b.state === "done") setAgent(null); else if (agent && agent.state === "stopped" && Date.now() - agent.at < 10 * 60e3) { /* stop requested: keep showing "Stopping…" until Claude's final reply clears it, whatever status updates arrive meanwhile */ } else setAgent(b.state || "thinking", b.text || "", true); }
     else if (p === "/term/stop") { if (agent) { store.addSystem({ title: "STOP", text: "The user pressed Stop in the plugin. Abandon the current task now, leave files in a consistent state, and reply with one line saying where you stopped." }); setAgent("stopped", "Stopping…", false); } }
     else if (p === "/term/discard") out.removed = store.discardQueued();
     else if (p === "/term/new") out.session = store.newSession();
@@ -249,7 +256,7 @@ http.createServer(async (req, res) => {
     let label;
     if (p === "/pages") { sc.PAGES = true; label = "pages"; }
     else if (p.startsWith("/snap/")) { label = decodeURIComponent(p.slice(6)).replace("-", ":"); sc.SNAP = { id: label, w: Number(url.searchParams.get("w")) || 1400 }; }
-    else { label = decodeURIComponent(p.slice(9)).replace("-", ":"); sc.INSPECT = label; if (url.searchParams.get("remove")) sc.REMOVE = 1; if (url.searchParams.get("depth")) sc.INSPECT_DEPTH = Number(url.searchParams.get("depth")); }
+    else { label = decodeURIComponent(p.slice(9)).replace("-", ":"); sc.INSPECT = label; if (url.searchParams.get("remove")) sc.REMOVE = 1; if (url.searchParams.get("selection")) sc.SELECTION = 1; if (url.searchParams.get("depth")) sc.INSPECT_DEPTH = Number(url.searchParams.get("depth")); }
     state = { version: state.version + 1, name: "_inspect", screen: sc, error: null, at: stamp() };
     broadcast({ type: "state", version: state.version, name: "_inspect" }); return json(res, 200, { ok: true, queued: label });
   }
@@ -262,6 +269,7 @@ http.createServer(async (req, res) => {
   json(res, 404, { error: "not found" });
 }).listen(PORT, "127.0.0.1", () => {
   console.log(`Clause live server on http://localhost:${PORT} — watching screens/*.json · listing at /`);
+  const checkUpdate = () => { try { spawn(process.execPath, [resolve(root, "scripts/update-check.mjs"), "--json"], { cwd: root, stdio: "ignore", detached: true }).unref(); } catch {} }; checkUpdate(); setInterval(checkUpdate, 3 * 3600e3); // auto-update when clean, else nudge via /status
   for (const f of readdirSync(resolve(root, "screens")).filter(f => f.endsWith(".json"))) {
     const n = f.replace(/\.json$/, "");
     try { scenes[n] = Object.assign(run("compile", n), { REPLACE: null, __v: Date.now() }); if (!existsSync(resolve(EXPORTS, n + ".html"))) exportHtml(n); } catch (e) { console.error("skip", n, e.message); }

@@ -4980,6 +4980,50 @@
    "default": null,
    "props": {},
    "texts": []
+  },
+  {
+   "key": "input-menu-dropdown",
+   "name": "Input Menu Dropdown",
+   "lib": true,
+   "variantKey": "4d9f58fce9da6394379e7930030c336ace08e676",
+   "variant": "Type=Multi Select, Size=md, Search=Default",
+   "props": {
+    "Type": [
+     "Multi Select",
+     "Single Select",
+     "Empty State with Button"
+    ],
+    "Size": [
+     "md",
+     "sm"
+    ],
+    "Search": [
+     "Default"
+    ],
+    "Footer": "BOOLEAN",
+    "Selection Pills": "BOOLEAN",
+    "Scroll Bar": "BOOLEAN"
+   },
+   "texts": [
+    "Search",
+    "Users",
+    "39",
+    "Teams",
+    "6",
+    "Phoenix Baker",
+    "@phoenix",
+    "Olivia Rhye",
+    "@olivia",
+    "Lana Steiner",
+    "@lana",
+    "Demi Wilkinson"
+   ],
+   "size": [
+    320,
+    442
+   ],
+   "setKey": "6b0c7c2af450141e3aa2ef094dcb0fbe61594ae1",
+   "default": "Type=Multi Select, Size=md, Search=Default"
   }
  ]
 }

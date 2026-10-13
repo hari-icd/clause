@@ -1,0 +1,24 @@
+{
+ "ds": "ds/files/clients",
+ "anchor": "15244:106989",
+ "section": "Clavia · missing states (temp)",
+ "variants": [
+  { "from": "15244:110207", "name": "REQ-149 · 21b Analysis failed",
+    "texts": [["=Reviewing","Analysis failed"],
+              ["Acme redline – MSA v3 with the Data processing addendum Playbook","Acme redline – MSA v3 could not be analysed"],
+              ["Reading clauses and tracked changes","Something went wrong, or the network dropped"],
+              ["Picking the playbook","Your document is unchanged"],
+              ["Checking each clause against the playbook","Try again, or run a different playbook"]],
+    "hide": [{ "name": "Spinner", "all": true }] },
+  { "from": "15244:110054", "name": "REQ-149 · 19b No playbooks available",
+    "texts": [["=No playbooks match.","No playbooks available yet. Ask an admin to add one."]],
+    "hide": [{ "name": "Search wrap" }] },
+  { "from": "15244:110543", "name": "REQ-149 · 24b Run found nothing",
+    "texts": [["=Termination","No findings. Clavia checked every clause and found nothing to flag."],
+              ["Ran the SaaS subscription agreement Playbook again","No findings in this run"]],
+    "hide": [{ "name": "Item / Warranties" },{ "name": "Item / Data Protection" },{ "name": "Item / Limitation of Liability" },{ "name": "Item / Fees and Payment" },{ "name": "Item / Term and Renewal" },{ "name": "Item / Indemnification" },{ "name": "Item / Governing Law" },{ "name": "Item / Assignment" },{ "name": "Item / Most Favored Customer" },{ "name": "Item / Service Levels" },{ "name": "Item / Definitions" },{ "name": "Item / Subscription and Access" },{ "name": "Item / General" }] },
+  { "from": "15244:110907", "name": "REQ-149 · 28b Ask — could not answer",
+    "texts": [["Here’s what the document says:","I couldn’t answer that. Something went wrong on my side, so nothing was read. Try asking again."]],
+    "hide": [{ "name": "Citation" }] }
+ ]
+}

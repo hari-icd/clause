@@ -5,7 +5,7 @@ import { resolve, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const mem = resolve(process.env.HOME || "", ".claude/projects/-Users-abhishek-Code-ES-DS/memory");
-const files = ["CLAUDE.md", "docs/POWER-INDEX.md", "ds/design-rules.md"].map(f => resolve(root, f)).concat(existsSync(mem) ? ["MEMORY.md"].map(f => resolve(mem, f)) : []);
+const files = ["CLAUDE.md", "docs/POWER-INDEX.md", "ds/design-rules.md", ".clause/local-rules.md"].map(f => resolve(root, f)).concat(existsSync(mem) ? ["MEMORY.md"].map(f => resolve(mem, f)) : []);
 let bytes = 0; const rows = [];
 for (const f of files) if (existsSync(f)) { const n = readFileSync(f).length; bytes += n; rows.push(`${f.split("/").pop()} ${Math.round(n / 4)}t`); }
 const tokens = Math.round(bytes / 4), LIMIT = 9000;

@@ -1,0 +1,100 @@
+{
+ "ds": "ds/files/clients",
+ "useComps": [
+  "dropdown-menu"
+ ],
+ "swaps": [
+  {
+   "target": "15107:18577",
+   "comp": "dropdown-menu",
+   "props": {
+    "Type": "Full",
+    "Scroll bar": "false"
+   },
+   "hide": [
+    {
+     "name": "Dropdown list header"
+    },
+    {
+     "name": "Dropdown list header search"
+    },
+    {
+     "name": "Scroll bar"
+    },
+    {
+     "name": "Dropdown list item",
+     "nth": 15
+    },
+    {
+     "name": "Dropdown list item",
+     "nth": 14
+    },
+    {
+     "name": "Dropdown list item",
+     "nth": 13
+    },
+    {
+     "name": "Dropdown list item",
+     "nth": 12
+    },
+    {
+     "name": "Dropdown list item",
+     "nth": 11
+    },
+    {
+     "name": "Dropdown list item",
+     "nth": 10
+    },
+    {
+     "name": "Dropdown list item",
+     "nth": 9
+    },
+    {
+     "name": "Dropdown list item",
+     "nth": 8
+    },
+    {
+     "name": "Dropdown list item",
+     "nth": 4
+    }
+   ],
+   "replaceTexts": [
+    [
+     "View profile",
+     "Upload files"
+    ],
+    [
+     "Settings",
+     "SharePoint"
+    ],
+    [
+     "Keyboard shortcuts",
+     "OneDrive",
+     0
+    ],
+    [
+     "Keyboard shortcuts",
+     "Google Drive",
+     0
+    ],
+    [
+     "Company profile",
+     "iManage"
+    ],
+    [
+     "Home",
+     "Dropbox"
+    ],
+    [
+     "Team",
+     "Box"
+    ]
+   ],
+   "hideTexts": [
+    "\u2318",
+    "?"
+   ],
+   "name": "Attach menu"
+  }
+ ]
+}

@@ -1,0 +1,719 @@
+{
+ "title": "Connected environment settings",
+ "height": 1320,
+ "tree": {
+  "t": "row",
+  "i": "root",
+  "gap": "none",
+  "clip": true,
+  "children": [
+   {
+    "c": "platform-navigation",
+    "i": "nav",
+    "fill": "y"
+   },
+   {
+    "t": "stack",
+    "i": "main",
+    "grow": true,
+    "fill": "y",
+    "gap": "md",
+    "pad": "none",
+    "bg": "bg-workspace",
+    "children": [
+     {
+      "c": "breadcrumb-bar",
+      "i": "crumb",
+      "p": {
+       "Type": "Default"
+      },
+      "text": [
+       "Workspace Name 1",
+       "Connected Environments",
+       "changeset-tenant.qa.unifyapps.com"
+      ]
+     },
+     {
+      "c": "page-header",
+      "i": "page-title",
+      "fill": "x",
+      "p": {
+       "Level": "Level 1",
+       "Type": "Back",
+       "Tabs": "False",
+       "Actions": "false",
+       "Supporting text": "false",
+       "Badge": "false",
+       "Search": "false"
+      },
+      "text": [
+       "changeset-tenant.qa.unifyapps.com"
+      ]
+     },
+     {
+      "t": "stack",
+      "i": "body",
+      "fill": "both",
+      "grow": true,
+      "pl": "xl",
+      "pr": "xl",
+      "pb": "xl",
+      "children": [
+       {
+        "t": "stack",
+        "i": "card",
+        "grow": true,
+        "fill": "x",
+        "bg": "bg-primary",
+        "radius": "4xl",
+        "border": "border-secondary",
+        "clip": true,
+        "gap": "4xl",
+        "children": [
+         {
+          "t": "row",
+          "i": "card-head",
+          "fill": "x",
+          "bg": "bg-secondary",
+          "pt": "sm",
+          "pb": "md",
+          "px": "lg",
+          "align": "center",
+          "gap": "3xl",
+          "children": [
+           {
+            "t": "text",
+            "i": "card-title",
+            "content": "Environment settings",
+            "style": "Text sm/Medium",
+            "color": "text-primary"
+           },
+           {
+            "t": "spacer"
+           },
+           {
+            "c": "button-neutral",
+            "i": "btn-cancel",
+            "p": {
+             "Size": "sm",
+             "Hierarchy": "Secondary",
+             "Icon leading": "false",
+             "Icon trailing": "false"
+            },
+            "text": [
+             "Cancel"
+            ]
+           },
+           {
+            "c": "button-brand",
+            "i": "btn-save",
+            "p": {
+             "Size": "sm",
+             "Hierarchy": "Primary",
+             "State": "Disabled",
+             "Icon leading": "false",
+             "Icon trailing": "false"
+            },
+            "text": [
+             "Save"
+            ]
+           }
+          ]
+         },
+         {
+          "t": "stack",
+          "i": "card-body",
+          "fill": "x",
+          "align": "center",
+          "pb": "4xl",
+          "gap": "4xl",
+          "children": [
+           {
+            "t": "stack",
+            "i": "s-details",
+            "w": 760,
+            "gap": "md",
+            "children": [
+             {
+              "c": "form-header",
+              "i": "s-details-h",
+              "fill": "x",
+              "p": {
+               "Level": "Level 2",
+               "Actions": "false",
+               "Supporting text": "false",
+               "Divider": "false",
+               "Search": "false",
+               "Badge": "false",
+               "Help Icon": "false",
+               "More Horizontal": "false",
+               "More Vertical": "false",
+               "Toggle": "false"
+              },
+              "text": [
+               "Environment details"
+              ]
+             },
+             {
+              "t": "stack",
+              "i": "s-details-g",
+              "fill": "x",
+              "bg": "bg-workspace",
+              "border": "border-tertiary",
+              "radius": "4xl",
+              "pad": "xl",
+              "gap": "xl",
+              "children": [
+               {
+                "t": "row",
+                "i": "r-name",
+                "gap": "xl",
+                "align": "start",
+                "fill": "x",
+                "children": [
+                 {
+                  "c": "section-label",
+                  "i": "l-name",
+                  "grow": true,
+                  "p": {
+                   "Level": "Level 1",
+                   "Actions": "false",
+                   "Supporting text": "true"
+                  },
+                  "text": [
+                   "Environment Name*",
+                   "Unique name for the connected environment"
+                  ]
+                 },
+                 {
+                  "c": "input-field-outline",
+                  "i": "f-name",
+                  "w": 320,
+                  "p": {
+                   "Label": "false",
+                   "Hint text": "false",
+                   "Size": "md",
+                   "State": "Filled",
+                   "Help icon": "false"
+                  },
+                  "text": [
+                   "changeset-tenant.qa.unifyapps.com"
+                  ]
+                 }
+                ]
+               },
+               {
+                "t": "row",
+                "i": "r-domain",
+                "gap": "xl",
+                "align": "start",
+                "fill": "x",
+                "children": [
+                 {
+                  "c": "section-label",
+                  "i": "l-domain",
+                  "grow": true,
+                  "p": {
+                   "Level": "Level 1",
+                   "Actions": "false",
+                   "Supporting text": "true"
+                  },
+                  "text": [
+                   "Domain*",
+                   "Login domain of the connected environment"
+                  ]
+                 },
+                 {
+                  "c": "input-field-outline",
+                  "i": "f-domain",
+                  "w": 320,
+                  "p": {
+                   "Label": "false",
+                   "Hint text": "false",
+                   "Size": "md",
+                   "State": "Disabled",
+                   "Help icon": "false"
+                  },
+                  "text": [
+                   "changeset-tenant.qa.unifyapps.com"
+                  ]
+                 }
+                ]
+               },
+               {
+                "t": "row",
+                "i": "r-retain",
+                "gap": "xl",
+                "align": "start",
+                "fill": "x",
+                "children": [
+                 {
+                  "c": "section-label",
+                  "i": "l-retain",
+                  "grow": true,
+                  "p": {
+                   "Level": "Level 1",
+                   "Actions": "false",
+                   "Supporting text": "true"
+                  },
+                  "text": [
+                   "Retain Role Mapping",
+                   "Copy valid team & role mapping from source env. Any teams or roles not present in destination will be skipped"
+                  ]
+                 },
+                 {
+                  "c": "checkbox",
+                  "i": "cb-retain",
+                  "p": {
+                   "Type": "Checkbox",
+                   "Checked": "False",
+                   "Text": "False",
+                   "Size": "sm"
+                  }
+                 }
+                ]
+               }
+              ]
+             }
+            ]
+           },
+           {
+            "t": "stack",
+            "i": "s-approval",
+            "w": 760,
+            "gap": "md",
+            "children": [
+             {
+              "c": "form-header",
+              "i": "s-approval-h",
+              "fill": "x",
+              "p": {
+               "Level": "Level 2",
+               "Actions": "false",
+               "Supporting text": "false",
+               "Divider": "false",
+               "Search": "false",
+               "Badge": "false",
+               "Help Icon": "false",
+               "More Horizontal": "false",
+               "More Vertical": "false",
+               "Toggle": "false"
+              },
+              "text": [
+               "Approval"
+              ]
+             },
+             {
+              "t": "stack",
+              "i": "s-approval-g",
+              "fill": "x",
+              "bg": "bg-workspace",
+              "border": "border-tertiary",
+              "radius": "4xl",
+              "pad": "xl",
+              "gap": "xl",
+              "children": [
+               {
+                "t": "row",
+                "i": "r-appr",
+                "gap": "xl",
+                "align": "start",
+                "fill": "x",
+                "children": [
+                 {
+                  "c": "section-label",
+                  "i": "l-appr",
+                  "grow": true,
+                  "p": {
+                   "Level": "Level 1",
+                   "Actions": "false",
+                   "Supporting text": "true"
+                  },
+                  "text": [
+                   "Approval Type",
+                   "Define approval process for incoming change sets"
+                  ]
+                 },
+                 {
+                  "t": "row",
+                  "i": "appr-opts",
+                  "grow": true,
+                  "gap": "lg",
+                  "children": [
+                   {
+                    "c": "list-item-cardified",
+                    "i": "opt-auto",
+                    "grow": true,
+                    "p": {
+                     "Type": "Radio button",
+                     "Selected": "False",
+                     "Size": "sm",
+                     "State": "Default",
+                     "Supporting Text": "true",
+                     "Icon": "true",
+                     "Actions": "false",
+                     "Action Buttons": "false",
+                     "Badge": "false",
+                     "Subtext": "false"
+                    },
+                    "text": [
+                     "Auto-Approval",
+                     "All assets within a Change set will be auto-imported"
+                    ]
+                   },
+                   {
+                    "c": "list-item-cardified",
+                    "i": "opt-manual",
+                    "grow": true,
+                    "p": {
+                     "Type": "Radio button",
+                     "Selected": "True",
+                     "Size": "sm",
+                     "State": "Default",
+                     "Supporting Text": "true",
+                     "Icon": "true",
+                     "Actions": "false",
+                     "Action Buttons": "false",
+                     "Badge": "false",
+                     "Subtext": "false"
+                    },
+                    "text": [
+                     "Manual Approval",
+                     "Change set will require review before importing"
+                    ]
+                   }
+                  ]
+                 }
+                ]
+               },
+               {
+                "t": "stack",
+                "i": "flow",
+                "fill": "x",
+                "gap": "md",
+                "children": [
+                 {
+                  "c": "section-label",
+                  "i": "flow-label",
+                  "fill": "x",
+                  "p": {
+                   "Level": "Level 1",
+                   "Actions": "false",
+                   "Supporting text": "true"
+                  },
+                  "text": [
+                   "Approval Flow",
+                   "Define approval hierarchy and approvers for the change sets"
+                  ]
+                 },
+                 {
+                  "t": "row",
+                  "i": "tbl-head",
+                  "fill": "x",
+                  "gap": "none",
+                  "children": [
+                   {
+                    "c": "col-header-cell",
+                    "i": "th1",
+                    "grow": true,
+                    "p": {
+                     "Size": "sm"
+                    },
+                    "text": [
+                     "APPROVAL LEVEL NAME"
+                    ]
+                   },
+                   {
+                    "c": "col-header-cell",
+                    "i": "th2",
+                    "grow": true,
+                    "p": {
+                     "Size": "sm"
+                    },
+                    "text": [
+                     "NO. OF APPROVALS"
+                    ]
+                   },
+                   {
+                    "c": "col-header-cell",
+                    "i": "th3",
+                    "grow": true,
+                    "p": {
+                     "Size": "sm"
+                    },
+                    "text": [
+                     "APPROVERS"
+                    ]
+                   }
+                  ]
+                 },
+                 {
+                  "t": "row",
+                  "i": "tbl-row",
+                  "fill": "x",
+                  "gap": "none",
+                  "children": [
+                   {
+                    "c": "table-cell",
+                    "i": "td1",
+                    "grow": true,
+                    "p": {
+                     "Style": "Text",
+                     "Badge": "false",
+                     "Supporting Text": "false"
+                    },
+                    "text": [
+                     "Level 1"
+                    ]
+                   },
+                   {
+                    "c": "table-cell",
+                    "i": "td2",
+                    "grow": true,
+                    "p": {
+                     "Style": "Text",
+                     "Badge": "false",
+                     "Supporting Text": "false"
+                    },
+                    "text": [
+                     "1"
+                    ]
+                   },
+                   {
+                    "c": "table-cell",
+                    "i": "td3",
+                    "grow": true,
+                    "p": {
+                     "Style": "Text",
+                     "Dropdown": "true",
+                     "Badge": "false",
+                     "Supporting Text": "false"
+                    },
+                    "text": [
+                     ""
+                    ]
+                   }
+                  ]
+                 },
+                 {
+                  "c": "button-neutral",
+                  "i": "add-level",
+                  "p": {
+                   "Size": "xs",
+                   "Hierarchy": "Secondary",
+                   "Icon leading": "true",
+                   "Icon leading swap": "@icon-plus",
+                   "Icon trailing": "false"
+                  },
+                  "text": [
+                   "New Approval Level"
+                  ]
+                 }
+                ]
+               }
+              ]
+             }
+            ]
+           },
+           {
+            "t": "stack",
+            "i": "s-owner",
+            "w": 760,
+            "gap": "md",
+            "children": [
+             {
+              "c": "form-header",
+              "i": "s-owner-h",
+              "fill": "x",
+              "p": {
+               "Level": "Level 2",
+               "Actions": "false",
+               "Supporting text": "false",
+               "Divider": "false",
+               "Search": "false",
+               "Badge": "false",
+               "Help Icon": "false",
+               "More Horizontal": "false",
+               "More Vertical": "false",
+               "Toggle": "false"
+              },
+              "text": [
+               "Asset ownership"
+              ]
+             },
+             {
+              "t": "stack",
+              "i": "s-owner-g",
+              "fill": "x",
+              "bg": "bg-workspace",
+              "border": "border-tertiary",
+              "radius": "4xl",
+              "pad": "xl",
+              "gap": "xl",
+              "children": [
+               {
+                "c": "list-item",
+                "i": "owner-item",
+                "fill": "x",
+                "p": {
+                 "Type": "Checkbox",
+                 "Size": "md",
+                 "State": "Default",
+                 "Icon": "true",
+                 "Supporting Text": "true",
+                 "Badge": "false",
+                 "Action Buttons": "true"
+                },
+                "text": [
+                 "Retain Asset Owner",
+                 "Enable this to preserve asset ownership during import"
+                ]
+               },
+               {
+                "t": "row",
+                "i": "r-match",
+                "fill": "x",
+                "gap": "xl",
+                "children": [
+                 {
+                  "c": "section-label",
+                  "i": "l-match",
+                  "grow": true,
+                  "p": {
+                   "Level": "Level 1",
+                   "Actions": "false",
+                   "Supporting text": "true"
+                  },
+                  "text": [
+                   "Matching Property",
+                   "Map custom user attributes to match identities between environments"
+                  ]
+                 },
+                 {
+                  "c": "input-field-outline",
+                  "i": "f-match",
+                  "w": 320,
+                  "p": {
+                   "Label": "false",
+                   "Hint text": "false",
+                   "Help icon": "false",
+                   "Size": "md",
+                   "State": "Placeholder"
+                  },
+                  "text": [
+                   "Select Notification Type"
+                  ]
+                 }
+                ]
+               },
+               {
+                "t": "row",
+                "i": "r-jit",
+                "fill": "x",
+                "gap": "xl",
+                "children": [
+                 {
+                  "c": "section-label",
+                  "i": "l-jit",
+                  "grow": true,
+                  "p": {
+                   "Level": "Level 1",
+                   "Actions": "false",
+                   "Supporting text": "true"
+                  },
+                  "text": [
+                   "JIT Provisioning",
+                   "Auto create new users when no matching user is found"
+                  ]
+                 },
+                 {
+                  "t": "stack",
+                  "i": "jit-opts",
+                  "w": 320,
+                  "gap": "lg",
+                  "children": [
+                   {
+                    "c": "list-item-cardified",
+                    "i": "jit-auto",
+                    "fill": "x",
+                    "p": {
+                     "Type": "Radio button",
+                     "Selected": "False",
+                     "Size": "sm",
+                     "State": "Default",
+                     "Supporting Text": "true",
+                     "Icon": "true",
+                     "Actions": "false",
+                     "Action Buttons": "false",
+                     "Badge": "false",
+                     "Subtext": "false"
+                    },
+                    "text": [
+                     "Auto Create User",
+                     "Automatically create a new user when no matching user exists"
+                    ]
+                   },
+                   {
+                    "c": "list-item-cardified",
+                    "i": "jit-map",
+                    "fill": "x",
+                    "p": {
+                     "Type": "Radio button",
+                     "Selected": "False",
+                     "Size": "sm",
+                     "State": "Default",
+                     "Supporting Text": "true",
+                     "Icon": "true",
+                     "Actions": "false",
+                     "Action Buttons": "false",
+                     "Badge": "false",
+                     "Subtext": "false"
+                    },
+                    "text": [
+                     "Map Deployed User",
+                     "Map asset ownership to the user deploying the change set"
+                    ]
+                   }
+                  ]
+                 }
+                ]
+               }
+              ]
+             }
+            ]
+           },
+           {
+            "c": "input-menu-dropdown",
+            "i": "approvers-menu",
+            "abs": {
+             "x": 756,
+             "y": 589
+            },
+            "why": "open dropdown anchored under the Approvers cell",
+            "p": {
+             "Type": "Multi Select",
+             "Size": "md",
+             "Footer": "true",
+             "Selection Pills": "true",
+             "Scroll Bar": "true"
+            },
+            "text": [
+             "Search",
+             "Users",
+             "5305",
+             "Teams",
+             "6"
+            ]
+           }
+          ]
+         }
+        ]
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  "bg": "bg-workspace"
+ }
+}

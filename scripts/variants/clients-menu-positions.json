@@ -1,0 +1,27 @@
+{
+ "swaps": [
+  {
+   "target": "15107:18756",
+   "move": {
+    "anchor": "15104:19142",
+    "dy": 4
+   }
+  },
+  {
+   "target": "15107:18012",
+   "move": {
+    "within": "15059:8440",
+    "anchorText": "Apply",
+    "alignRight": true,
+    "dy": 4
+   }
+  },
+  {
+   "target": "15107:17825",
+   "place": {
+    "x": 1192,
+    "y": 223
+   }
+  }
+ ]
+}

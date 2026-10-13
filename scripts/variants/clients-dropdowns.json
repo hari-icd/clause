@@ -1,0 +1,74 @@
+{
+ "ds": "ds/files/clients",
+ "useComps": [
+  "dropdown-menu"
+ ],
+ "swaps": [
+  {
+   "target": "15107:17732",
+   "comp": "dropdown-menu",
+   "props": {
+    "Type": "Small",
+    "Scroll bar": "false"
+   },
+   "replaceTexts": [
+    [
+     "View profile",
+     "Open"
+    ],
+    [
+     "Settings",
+     "Review with Clavia"
+    ],
+    [
+     "Keyboard shortcuts",
+     "Delete"
+    ]
+   ],
+   "hide": [
+    {
+     "name": "Dropdown list item",
+     "nth": 3
+    },
+    {
+     "name": "Dropdown list item",
+     "nth": 3
+    }
+   ],
+   "name": "Row menu"
+  },
+  {
+   "target": "15059:8724",
+   "comp": "dropdown-menu",
+   "props": {
+    "Type": "Small",
+    "Scroll bar": "false"
+   },
+   "replaceTexts": [
+    [
+     "View profile",
+     "Apply as tracked change"
+    ],
+    [
+     "Settings",
+     "Apply without tracking"
+    ],
+    [
+     "Keyboard shortcuts",
+     "Apply with comment"
+    ]
+   ],
+   "hide": [
+    {
+     "name": "Dropdown list item",
+     "nth": 3
+    },
+    {
+     "name": "Dropdown list item",
+     "nth": 3
+    }
+   ],
+   "name": "Apply menu"
+  }
+ ]
+}

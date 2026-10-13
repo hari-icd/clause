@@ -39,7 +39,12 @@ figma.on("selectionchange", () => { clearTimeout(selTimer); selTimer = setTimeou
 figma.on("currentpagechange", pushSel);
 async function annMessage(msg) {
   if (msg.type === "sel-get") { await pushSel(); return true; }
-  if (msg.type === "locate") { const n = await figma.getNodeByIdAsync(msg.id); if (n) { figma.currentPage.selection = [n]; figma.viewport.scrollAndZoomIntoView([n]); } return true; }
+  if (msg.type === "locate") { let n = await figma.getNodeByIdAsync(msg.id);
+    if (!n && msg.name) { // the frame was rebuilt/replaced and its old id is gone: find the best same-named node on this page (most path elements in common wins, newest on ties)
+      const want = String(msg.path || "").split("\u203a").filter(Boolean); let best = null, bs = -1;
+      for (const c of figma.currentPage.findAll(x => x.name === msg.name)) { let sc = 0; for (let a = c.parent; a && a.type !== "PAGE"; a = a.parent) if (want.includes(a.name)) sc++; if (sc >= bs) { bs = sc; best = c; } }
+      n = best; }
+    if (n) { figma.currentPage.selection = [n]; figma.viewport.scrollAndZoomIntoView([n]); } return true; }
   if (msg.type === "prompt") { PAGE_ID = pageIdNow(); figma.ui.postMessage({ type: "prompt", text: clPrompt(msg.items, figma.root.name, figma.currentPage.name), n: msg.items.length }); return true; }
   return false;
 }
