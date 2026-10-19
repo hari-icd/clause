@@ -1,0 +1,405 @@
+{
+ "title": "API Group — endpoint detail",
+ "ds": "ds",
+ "page": "8932:378335",
+ "height": 900,
+ "tree": {
+  "t": "row",
+  "i": "root",
+  "children": [
+   {
+    "c": "platform-navigation",
+    "i": "nav",
+    "text": [
+     "99+",
+     "T"
+    ]
+   },
+   {
+    "t": "stack",
+    "i": "main",
+    "children": [
+     {
+      "c": "page-header-platform",
+      "i": "head",
+      "fill": "x",
+      "p": {
+       "Actions": "true",
+       "Search": "false",
+       "Show App Icon": "false",
+       "Badges": "false",
+       "Toggles": "true",
+       "Description": "false"
+      },
+      "text": [
+       "Global",
+       "API Manager - API Groups",
+       "PLAYGROUNDTestinggWX2c1kYH8c",
+       "ogiJgOSxFEvVFWVjSFIh",
+       "AI FDE",
+       "ogiJgOSxFEvVFWVjSFIh"
+      ],
+      "ops": [
+       {
+        "nodes": [
+         {
+          "name": "Pill squared",
+          "nth": 0,
+          "hide": true
+         },
+         {
+          "name": "Toggle group",
+          "nth": 0,
+          "hide": true
+         },
+         {
+          "name": "Buttons/Button Brand",
+          "has": "Button CTA",
+          "nth": 1,
+          "hide": true
+         },
+         {
+          "name": "Buttons/Button Brand",
+          "has": "Button CTA",
+          "nth": 0,
+          "text": "Export"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "t": "stack",
+      "i": "content",
+      "children": [
+       {
+        "t": "row",
+        "i": "work",
+        "children": [
+         {
+          "t": "stack",
+          "i": "work-in",
+          "children": [
+           {
+            "t": "stack",
+            "i": "body",
+            "children": [
+             {
+              "c": "section-label",
+              "i": "s-ep",
+              "fill": "x",
+              "p": {
+               "Supporting text": "false",
+               "Actions": "false",
+               "Level": "Level 1"
+              },
+              "text": [
+               "Endpoint Details"
+              ]
+             },
+             {
+              "t": "stack",
+              "i": "ep",
+              "children": [
+               {
+                "t": "row",
+                "i": "r-auto",
+                "children": [
+                 {
+                  "t": "text",
+                  "i": "r-auto-k",
+                  "content": "Automation Name",
+                  "style": "Text sm/Regular",
+                  "color": "text-tertiary",
+                  "w": 160
+                 },
+                 {
+                  "t": "text",
+                  "i": "v-auto",
+                  "content": "PLAYGROUNDTestingghABu446RfB",
+                  "style": "Text sm/Medium",
+                  "color": "text-primary"
+                 },
+                 {
+                  "c": "button-neutral",
+                  "i": "see",
+                  "p": {
+                   "Size": "xs",
+                   "Hierarchy": "Tertiary",
+                   "Icon leading": "false",
+                   "Icon trailing": "false"
+                  },
+                  "text": [
+                   "See Automation"
+                  ]
+                 }
+                ],
+                "fill": "x",
+                "gap": "xl",
+                "align": "center",
+                "py": "md"
+               },
+               {
+                "t": "row",
+                "i": "r-url",
+                "children": [
+                 {
+                  "t": "text",
+                  "i": "r-url-k",
+                  "content": "URL",
+                  "style": "Text sm/Regular",
+                  "color": "text-tertiary",
+                  "w": 160
+                 },
+                 {
+                  "t": "text",
+                  "i": "v-url",
+                  "content": "https://api.qa.unifyapps.com/api-endpoint/activitynYKgHdHKDn/WIiYSl",
+                  "style": "Text sm/Medium",
+                  "color": "text-primary"
+                 },
+                 {
+                  "c": "icon-copy",
+                  "i": "cp",
+                  "w": 14,
+                  "h": 14
+                 }
+                ],
+                "fill": "x",
+                "gap": "xl",
+                "align": "center",
+                "py": "md"
+               },
+               {
+                "t": "row",
+                "i": "r-type",
+                "children": [
+                 {
+                  "t": "text",
+                  "i": "r-type-k",
+                  "content": "API Type",
+                  "style": "Text sm/Regular",
+                  "color": "text-tertiary",
+                  "w": 160
+                 },
+                 {
+                  "t": "row",
+                  "i": "tags",
+                  "children": [
+                   {
+                    "c": "tag",
+                    "i": "tg0",
+                    "p": {
+                     "Icon": "False",
+                     "Action": "Text only",
+                     "Size": "sm",
+                     "Type": "Outline",
+                     "State": "Default"
+                    },
+                    "text": [
+                     "DELETE"
+                    ]
+                   },
+                   {
+                    "c": "tag",
+                    "i": "tg1",
+                    "p": {
+                     "Icon": "False",
+                     "Action": "Text only",
+                     "Size": "sm",
+                     "Type": "Outline",
+                     "State": "Default"
+                    },
+                    "text": [
+                     "POST"
+                    ]
+                   },
+                   {
+                    "c": "tag",
+                    "i": "tg2",
+                    "p": {
+                     "Icon": "False",
+                     "Action": "Text only",
+                     "Size": "sm",
+                     "Type": "Outline",
+                     "State": "Default"
+                    },
+                    "text": [
+                     "GET"
+                    ]
+                   },
+                   {
+                    "c": "tag",
+                    "i": "tg3",
+                    "p": {
+                     "Icon": "False",
+                     "Action": "Text only",
+                     "Size": "sm",
+                     "Type": "Outline",
+                     "State": "Default"
+                    },
+                    "text": [
+                     "PUT"
+                    ]
+                   },
+                   {
+                    "c": "tag",
+                    "i": "tg4",
+                    "p": {
+                     "Icon": "False",
+                     "Action": "Text only",
+                     "Size": "sm",
+                     "Type": "Outline",
+                     "State": "Default"
+                    },
+                    "text": [
+                     "PATCH"
+                    ]
+                   }
+                  ],
+                  "gap": "md"
+                 }
+                ],
+                "fill": "x",
+                "gap": "xl",
+                "align": "center",
+                "py": "md"
+               }
+              ],
+              "fill": "x"
+             },
+             {
+              "c": "section-label",
+              "i": "s-req",
+              "fill": "x",
+              "p": {
+               "Supporting text": "false",
+               "Actions": "false",
+               "Level": "Level 1"
+              },
+              "text": [
+               "Request"
+              ]
+             },
+             {
+              "t": "stack",
+              "i": "req",
+              "children": [
+               {
+                "t": "row",
+                "i": "req-h",
+                "children": [
+                 {
+                  "t": "text",
+                  "i": "req-t",
+                  "content": "application/json",
+                  "style": "Text xs/Regular",
+                  "color": "text-tertiary"
+                 }
+                ],
+                "fill": "x",
+                "px": "lg",
+                "py": "md",
+                "borderB": "border-secondary",
+                "align": "center"
+               },
+               {
+                "t": "row",
+                "i": "req-b",
+                "children": [
+                 {
+                  "t": "text",
+                  "i": "req-n",
+                  "content": "1",
+                  "style": "Text xs/Regular",
+                  "color": "text-quaternary",
+                  "w": 24
+                 },
+                 {
+                  "t": "text",
+                  "i": "req-c",
+                  "content": "{\"definitions\":{}}",
+                  "style": "Text xs/Regular-Code",
+                  "color": "text-primary"
+                 }
+                ],
+                "fill": "x",
+                "gap": "lg",
+                "pad": "lg",
+                "h": 140
+               }
+              ],
+              "fill": "x",
+              "border": "border-secondary",
+              "radius": "lg",
+              "why": "code editor surface: no catalog component",
+              "clip": true
+             },
+             {
+              "c": "section-label",
+              "i": "s-fb",
+              "fill": "x",
+              "p": {
+               "Supporting text": "false",
+               "Actions": "false",
+               "Level": "Level 1"
+              },
+              "text": [
+               "Fallback Response"
+              ]
+             },
+             {
+              "c": "button-neutral",
+              "i": "add-fb",
+              "p": {
+               "Size": "md",
+               "Hierarchy": "Secondary",
+               "Icon leading": "true",
+               "Icon leading swap": "@icon-plus",
+               "Icon trailing": "false"
+              },
+              "text": [
+               "Add Fallback Response"
+              ],
+              "fill": "x"
+             }
+            ],
+            "w": 840,
+            "gap": "2xl",
+            "pt": "3xl"
+           }
+          ],
+          "w": 1352,
+          "gap": "4xl",
+          "pb": "4xl",
+          "bg": "bg-primary",
+          "align": "center",
+          "fill": "y",
+          "pt": "none"
+         }
+        ],
+        "fill": "x",
+        "grow": true,
+        "border": "border-secondary",
+        "radius": "4xl",
+        "justify": "center"
+       }
+      ],
+      "fill": "x",
+      "grow": true,
+      "gap": "md",
+      "px": "xl",
+      "pb": "xl"
+     }
+    ],
+    "grow": true,
+    "fill": "y",
+    "gap": "md",
+    "bg": "bg-workspace"
+   }
+  ],
+  "gap": "none",
+  "clip": true,
+  "bg": "bg-workspace"
+ }
+}

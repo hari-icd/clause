@@ -1,0 +1,670 @@
+{
+ "title": "API Group — settings",
+ "ds": "ds",
+ "page": "8932:378335",
+ "height": 900,
+ "tree": {
+  "t": "row",
+  "i": "root",
+  "children": [
+   {
+    "c": "platform-navigation",
+    "i": "nav",
+    "text": [
+     "99+",
+     "T"
+    ]
+   },
+   {
+    "t": "stack",
+    "i": "main",
+    "children": [
+     {
+      "c": "page-header-platform",
+      "i": "head",
+      "fill": "x",
+      "p": {
+       "Actions": "false",
+       "Search": "false",
+       "Show App Icon": "false",
+       "Badges": "false",
+       "Toggles": "false",
+       "Description": "false"
+      },
+      "text": [
+       "Global",
+       "API Manager - API Groups",
+       "PLAYGROUNDTestinggWX2c1kYH8c",
+       "Settings",
+       "AI FDE",
+       "PLAYGROUNDTestinggWX2c1kYH8c"
+      ],
+      "ops": [
+       {
+        "nodes": [
+         {
+          "name": "Pill squared",
+          "nth": 0,
+          "hide": true
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "t": "stack",
+      "i": "content",
+      "children": [
+       {
+        "t": "stack",
+        "i": "body",
+        "children": [
+         {
+          "t": "stack",
+          "i": "card",
+          "children": [
+           {
+            "t": "row",
+            "i": "sc-head",
+            "children": [
+             {
+              "c": "icon-settings",
+              "i": "sch-ic",
+              "w": 16,
+              "h": 16
+             },
+             {
+              "t": "text",
+              "i": "sch-t",
+              "content": "Settings",
+              "style": "Display xs/Regular",
+              "color": "text-primary"
+             },
+             {
+              "t": "spacer"
+             },
+             {
+              "c": "button-neutral",
+              "i": "sb-cancel",
+              "p": {
+               "Size": "sm",
+               "Hierarchy": "Secondary",
+               "Icon leading": "false",
+               "Icon trailing": "false"
+              },
+              "text": [
+               "Cancel"
+              ]
+             },
+             {
+              "c": "button-brand",
+              "i": "sb-save",
+              "p": {
+               "Size": "sm",
+               "Hierarchy": "Primary",
+               "Icon leading": "false",
+               "Icon trailing": "false"
+              },
+              "text": [
+               "Save"
+              ]
+             }
+            ],
+            "fill": "x",
+            "gap": "lg",
+            "px": "lg",
+            "pt": "sm",
+            "pb": "md",
+            "bg": "bg-secondary",
+            "align": "center"
+           },
+           {
+            "t": "stack",
+            "i": "card-body",
+            "children": [
+             {
+              "t": "stack",
+              "i": "g-tel",
+              "children": [
+               {
+                "c": "form-header",
+                "i": "g-tel-h",
+                "fill": "x",
+                "ops": [
+                 {
+                  "nodes": [
+                   {
+                    "name": "Featured icon",
+                    "nth": 0,
+                    "hide": true
+                   },
+                   {
+                    "name": "_Header icon",
+                    "nth": 0,
+                    "hide": true
+                   }
+                  ]
+                 }
+                ],
+                "p": {
+                 "Level": "Level 2",
+                 "Actions": "false",
+                 "Supporting text": "false",
+                 "Divider": "false",
+                 "Search": "false",
+                 "Badge": "false",
+                 "Help Icon": "false",
+                 "More Horizontal": "false",
+                 "More Vertical": "false",
+                 "Toggle": "false"
+                },
+                "text": [
+                 "Open Telemetry Metrics"
+                ]
+               },
+               {
+                "t": "stack",
+                "i": "g-tel-g",
+                "children": [
+                 {
+                  "t": "row",
+                  "i": "mc",
+                  "children": [
+                   {
+                    "c": "section-label",
+                    "i": "mc-l",
+                    "grow": true,
+                    "ops": [
+                     {
+                      "nodes": [
+                       {
+                        "name": "clock",
+                        "nth": 0,
+                        "hide": true
+                       }
+                      ]
+                     }
+                    ],
+                    "p": {
+                     "Level": "Level 1",
+                     "Actions": "false",
+                     "Supporting text": "true"
+                    },
+                    "text": [
+                     "Metric Configs",
+                     "Configure the telemetry settings for the API Group"
+                    ]
+                   },
+                   {
+                    "t": "stack",
+                    "i": "mc-c",
+                    "children": [
+                     {
+                      "c": "button-neutral",
+                      "i": "add-m",
+                      "p": {
+                       "Size": "md",
+                       "Hierarchy": "Secondary",
+                       "Icon leading": "true",
+                       "Icon leading swap": "@icon-plus",
+                       "Icon trailing": "false"
+                      },
+                      "text": [
+                       "Add Metric"
+                      ],
+                      "fill": "x"
+                     }
+                    ],
+                    "w": 320
+                   }
+                  ],
+                  "fill": "x",
+                  "gap": "xl",
+                  "align": "start"
+                 },
+                 {
+                  "t": "row",
+                  "i": "mn",
+                  "children": [
+                   {
+                    "c": "section-label",
+                    "i": "mn-l",
+                    "grow": true,
+                    "ops": [
+                     {
+                      "nodes": [
+                       {
+                        "name": "clock",
+                        "nth": 0,
+                        "hide": true
+                       }
+                      ]
+                     }
+                    ],
+                    "p": {
+                     "Level": "Level 1",
+                     "Actions": "false",
+                     "Supporting text": "true"
+                    },
+                    "text": [
+                     "Metric Name",
+                     "Name published for the metric"
+                    ]
+                   },
+                   {
+                    "t": "stack",
+                    "i": "mn-c",
+                    "children": [
+                     {
+                      "c": "input-field-outline",
+                      "i": "mn-i",
+                      "p": {
+                       "Size": "md",
+                       "Type": "Default",
+                       "Label": "false",
+                       "Hint text": "false",
+                       "Help icon": "false",
+                       "Leading icon": "false",
+                       "Encryption": "false",
+                       "Destructive": "False",
+                       "State": "Placeholder"
+                      },
+                      "text": [
+                       "Enter metric name to be published"
+                      ],
+                      "w": 320
+                     }
+                    ],
+                    "w": 320
+                   }
+                  ],
+                  "fill": "x",
+                  "gap": "xl",
+                  "align": "start"
+                 },
+                 {
+                  "t": "row",
+                  "i": "mt",
+                  "children": [
+                   {
+                    "c": "section-label",
+                    "i": "mt-l",
+                    "grow": true,
+                    "ops": [
+                     {
+                      "nodes": [
+                       {
+                        "name": "clock",
+                        "nth": 0,
+                        "hide": true
+                       }
+                      ]
+                     }
+                    ],
+                    "p": {
+                     "Level": "Level 1",
+                     "Actions": "false",
+                     "Supporting text": "true"
+                    },
+                    "text": [
+                     "Metric",
+                     "Type of metric to record"
+                    ]
+                   },
+                   {
+                    "t": "stack",
+                    "i": "mt-c",
+                    "children": [
+                     {
+                      "c": "input-dropdown-outline",
+                      "i": "mt-i",
+                      "w": 320,
+                      "p": {
+                       "Size": "md",
+                       "Type": "Default",
+                       "State": "Default",
+                       "Label": "false",
+                       "Hint text": "false"
+                      },
+                      "text": [
+                       "Api Execution Duration - Timer"
+                      ]
+                     }
+                    ],
+                    "w": 320
+                   }
+                  ],
+                  "fill": "x",
+                  "gap": "xl",
+                  "align": "start"
+                 },
+                 {
+                  "t": "row",
+                  "i": "pi",
+                  "children": [
+                   {
+                    "c": "section-label",
+                    "i": "pi-l",
+                    "grow": true,
+                    "ops": [
+                     {
+                      "nodes": [
+                       {
+                        "name": "clock",
+                        "nth": 0,
+                        "hide": true
+                       }
+                      ]
+                     }
+                    ],
+                    "p": {
+                     "Level": "Level 1",
+                     "Actions": "false",
+                     "Supporting text": "true"
+                    },
+                    "text": [
+                     "Publish If",
+                     "Event that publishes the metric"
+                    ]
+                   },
+                   {
+                    "t": "stack",
+                    "i": "pi-c",
+                    "children": [
+                     {
+                      "c": "input-dropdown-outline",
+                      "i": "pi-i",
+                      "w": 320,
+                      "p": {
+                       "Size": "md",
+                       "Type": "Default",
+                       "State": "Placeholder",
+                       "Label": "false",
+                       "Hint text": "false"
+                      },
+                      "text": [
+                       "Select Event type"
+                      ]
+                     }
+                    ],
+                    "w": 320
+                   }
+                  ],
+                  "fill": "x",
+                  "gap": "xl",
+                  "align": "start"
+                 },
+                 {
+                  "t": "row",
+                  "i": "tg",
+                  "children": [
+                   {
+                    "c": "section-label",
+                    "i": "tg-l",
+                    "grow": true,
+                    "ops": [
+                     {
+                      "nodes": [
+                       {
+                        "name": "clock",
+                        "nth": 0,
+                        "hide": true
+                       }
+                      ]
+                     }
+                    ],
+                    "p": {
+                     "Level": "Level 1",
+                     "Actions": "false",
+                     "Supporting text": "true"
+                    },
+                    "text": [
+                     "Tags",
+                     "Use {{ to use input data-pill in Value"
+                    ]
+                   },
+                   {
+                    "t": "stack",
+                    "i": "tg-c",
+                    "children": [
+                     {
+                      "c": "input-field-outline",
+                      "i": "tg-i",
+                      "p": {
+                       "Size": "md",
+                       "Type": "Default",
+                       "Label": "false",
+                       "Hint text": "false",
+                       "Help icon": "false",
+                       "Leading icon": "false",
+                       "Encryption": "false",
+                       "Destructive": "False",
+                       "State": "Placeholder"
+                      },
+                      "text": [
+                       "Add a key"
+                      ],
+                      "w": 320
+                     }
+                    ],
+                    "w": 320
+                   }
+                  ],
+                  "fill": "x",
+                  "gap": "xl",
+                  "align": "start"
+                 },
+                 {
+                  "t": "row",
+                  "i": "bk",
+                  "children": [
+                   {
+                    "c": "section-label",
+                    "i": "bk-l",
+                    "grow": true,
+                    "ops": [
+                     {
+                      "nodes": [
+                       {
+                        "name": "clock",
+                        "nth": 0,
+                        "hide": true
+                       }
+                      ]
+                     }
+                    ],
+                    "p": {
+                     "Level": "Level 1",
+                     "Actions": "false",
+                     "Supporting text": "true"
+                    },
+                    "text": [
+                     "Buckets",
+                     "Define Bucket range (in ms) for histogram type visualization"
+                    ]
+                   },
+                   {
+                    "t": "stack",
+                    "i": "bk-c",
+                    "children": [
+                     {
+                      "c": "button-neutral",
+                      "i": "add-b",
+                      "p": {
+                       "Size": "md",
+                       "Hierarchy": "Secondary",
+                       "Icon leading": "true",
+                       "Icon leading swap": "@icon-plus",
+                       "Icon trailing": "false"
+                      },
+                      "text": [
+                       "Add Bucket"
+                      ],
+                      "fill": "x"
+                     }
+                    ],
+                    "w": 320
+                   }
+                  ],
+                  "fill": "x",
+                  "gap": "xl",
+                  "align": "start"
+                 }
+                ],
+                "fill": "x",
+                "gap": "xl",
+                "pad": "xl",
+                "bg": "bg-workspace",
+                "border": "border-tertiary",
+                "radius": "4xl"
+               }
+              ],
+              "w": 760,
+              "gap": "md"
+             },
+             {
+              "t": "stack",
+              "i": "g-trc",
+              "children": [
+               {
+                "c": "form-header",
+                "i": "g-trc-h",
+                "fill": "x",
+                "ops": [
+                 {
+                  "nodes": [
+                   {
+                    "name": "Featured icon",
+                    "nth": 0,
+                    "hide": true
+                   },
+                   {
+                    "name": "_Header icon",
+                    "nth": 0,
+                    "hide": true
+                   }
+                  ]
+                 }
+                ],
+                "p": {
+                 "Level": "Level 2",
+                 "Actions": "false",
+                 "Supporting text": "false",
+                 "Divider": "false",
+                 "Search": "false",
+                 "Badge": "false",
+                 "Help Icon": "false",
+                 "More Horizontal": "false",
+                 "More Vertical": "false",
+                 "Toggle": "false"
+                },
+                "text": [
+                 "Traceability"
+                ]
+               },
+               {
+                "t": "stack",
+                "i": "g-trc-g",
+                "children": [
+                 {
+                  "t": "row",
+                  "i": "tr",
+                  "children": [
+                   {
+                    "c": "section-label",
+                    "i": "tr-l",
+                    "grow": true,
+                    "ops": [
+                     {
+                      "nodes": [
+                       {
+                        "name": "clock",
+                        "nth": 0,
+                        "hide": true
+                       }
+                      ]
+                     }
+                    ],
+                    "p": {
+                     "Level": "Level 1",
+                     "Actions": "false",
+                     "Supporting text": "true"
+                    },
+                    "text": [
+                     "Enable Traceability",
+                     "If enabled, requests to the API are traced"
+                    ]
+                   },
+                   {
+                    "t": "stack",
+                    "i": "tr-c",
+                    "children": [
+                     {
+                      "c": "toggle",
+                      "i": "tr-tog",
+                      "p": {
+                       "Pressed": "False",
+                       "Text": "False",
+                       "State": "Default",
+                       "Size": "sm",
+                       "Hint Text": "False"
+                      }
+                     }
+                    ],
+                    "w": 40
+                   }
+                  ],
+                  "fill": "x",
+                  "gap": "xl",
+                  "align": "start"
+                 }
+                ],
+                "fill": "x",
+                "gap": "xl",
+                "pad": "xl",
+                "bg": "bg-workspace",
+                "border": "border-tertiary",
+                "radius": "4xl"
+               }
+              ],
+              "w": 760,
+              "gap": "md"
+             }
+            ],
+            "fill": "x",
+            "gap": "4xl",
+            "pb": "4xl",
+            "pt": "2xl",
+            "align": "center"
+           }
+          ],
+          "fill": "both",
+          "grow": true,
+          "bg": "bg-primary",
+          "border": "border-secondary",
+          "radius": "4xl",
+          "clip": true
+         }
+        ],
+        "fill": "both",
+        "grow": true
+       }
+      ],
+      "fill": "x",
+      "grow": true,
+      "gap": "md",
+      "px": "xl",
+      "pb": "xl"
+     }
+    ],
+    "grow": true,
+    "fill": "y",
+    "gap": "md",
+    "bg": "bg-workspace"
+   }
+  ],
+  "gap": "none",
+  "clip": true,
+  "bg": "bg-workspace"
+ }
+}

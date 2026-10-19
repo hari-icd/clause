@@ -1,5 +1,6 @@
 {
  "title": "Connected environment settings",
+ "frozen": true,
  "height": 1320,
  "tree": {
   "t": "row",
@@ -22,31 +23,26 @@
     "bg": "bg-workspace",
     "children": [
      {
-      "c": "breadcrumb-bar",
-      "i": "crumb",
+      "c": "page-header-platform",
+      "i": "page-header",
+      "fill": "x",
       "p": {
-       "Type": "Default"
+       "Type": "With Back Button",
+       "Divider": "No",
+       "Style": "Toggle",
+       "Actions": "false",
+       "Search": "false",
+       "Show App Icon": "false",
+       "Badges": "false",
+       "Toggles": "false",
+       "Description": "false"
       },
       "text": [
        "Workspace Name 1",
        "Connected Environments",
-       "changeset-tenant.qa.unifyapps.com"
-      ]
-     },
-     {
-      "c": "page-header",
-      "i": "page-title",
-      "fill": "x",
-      "p": {
-       "Level": "Level 1",
-       "Type": "Back",
-       "Tabs": "False",
-       "Actions": "false",
-       "Supporting text": "false",
-       "Badge": "false",
-       "Search": "false"
-      },
-      "text": [
+       "changeset-tenant.qa.unifyapps.com",
+       "Projects",
+       "AI FDE",
        "changeset-tenant.qa.unifyapps.com"
       ]
      },

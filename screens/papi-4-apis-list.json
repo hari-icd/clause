@@ -1,0 +1,492 @@
+{
+ "title": "API Group — APIs",
+ "ds": "ds",
+ "page": "8932:378335",
+ "height": 900,
+ "tree": {
+  "t": "row",
+  "i": "root",
+  "children": [
+   {
+    "c": "platform-navigation",
+    "i": "nav",
+    "text": [
+     "99+",
+     "T"
+    ]
+   },
+   {
+    "t": "stack",
+    "i": "main",
+    "children": [
+     {
+      "c": "page-header-platform",
+      "i": "head",
+      "fill": "x",
+      "p": {
+       "Actions": "true",
+       "Search": "false",
+       "Show App Icon": "false",
+       "Badges": "false",
+       "Toggles": "false",
+       "Description": "false"
+      },
+      "text": [
+       "Global",
+       "API Manager - API Groups",
+       "PLAYGROUNDTestinggWX2c1kYH8c",
+       "APIs",
+       "AI FDE",
+       "PLAYGROUNDTestinggWX2c1kYH8c"
+      ],
+      "ops": [
+       {
+        "nodes": [
+         {
+          "name": "Pill squared",
+          "nth": 0,
+          "hide": true
+         },
+         {
+          "name": "Toggle group",
+          "nth": 0,
+          "hide": true
+         },
+         {
+          "name": "Buttons/Button Brand",
+          "has": "Button CTA",
+          "nth": 1,
+          "text": "New API"
+         },
+         {
+          "name": "Buttons/Button Brand",
+          "has": "Button CTA",
+          "nth": 0,
+          "text": "Export API Group"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "t": "stack",
+      "i": "content",
+      "children": [
+       {
+        "t": "row",
+        "i": "work",
+        "children": [
+         {
+          "t": "stack",
+          "i": "work-in",
+          "children": [
+           {
+            "t": "stack",
+            "i": "list",
+            "children": [
+             {
+              "c": "horizontal-tabs",
+              "i": "ptabs",
+              "p": {
+               "Style": "Default",
+               "Start Icon Style": "None",
+               "Size": "sm",
+               "Add New Icon": "false"
+              },
+              "text": [
+               "APIs",
+               "Clients",
+               "Activity",
+               "Settings"
+              ],
+              "ops": [
+               {
+                "nodes": [
+                 {
+                  "name": "Tab",
+                  "nth": 4,
+                  "hide": true
+                 },
+                 {
+                  "name": "Tab",
+                  "nth": 5,
+                  "hide": true
+                 },
+                 {
+                  "name": "Tab",
+                  "nth": 6,
+                  "hide": true
+                 },
+                 {
+                  "name": "Tab",
+                  "nth": 7,
+                  "hide": true
+                 },
+                 {
+                  "name": "Tab",
+                  "nth": 8,
+                  "hide": true
+                 },
+                 {
+                  "name": "Tab",
+                  "nth": 0,
+                  "props": {
+                   "Current": "True"
+                  }
+                 }
+                ]
+               }
+              ]
+             },
+             {
+              "t": "row",
+              "i": "tbar",
+              "children": [
+               {
+                "c": "button-neutral",
+                "i": "tb-main",
+                "p": {
+                 "Size": "sm",
+                 "Hierarchy": "Secondary",
+                 "Icon leading": "true",
+                 "Icon leading swap": "@icon-list",
+                 "Icon trailing": "false"
+                },
+                "text": [
+                 "Main"
+                ]
+               },
+               {
+                "c": "button-neutral",
+                "i": "tb-filter",
+                "p": {
+                 "Size": "sm",
+                 "Hierarchy": "Secondary",
+                 "Icon leading": "true",
+                 "Icon leading swap": "@icon-filter-lines",
+                 "Icon trailing": "false"
+                },
+                "text": [
+                 "Filter"
+                ]
+               },
+               {
+                "c": "button-neutral",
+                "i": "tb-sort",
+                "p": {
+                 "Size": "sm",
+                 "Hierarchy": "Secondary",
+                 "Icon leading": "true",
+                 "Icon leading swap": "@icon-chevron-selector-vertical",
+                 "Icon trailing": "false"
+                },
+                "text": [
+                 "Sort"
+                ]
+               },
+               {
+                "c": "button-neutral",
+                "i": "tb-hidden",
+                "p": {
+                 "Size": "sm",
+                 "Hierarchy": "Secondary",
+                 "Icon leading": "true",
+                 "Icon leading swap": "@icon-eye",
+                 "Icon trailing": "false"
+                },
+                "text": [
+                 "3 hidden columns"
+                ]
+               },
+               {
+                "t": "spacer"
+               },
+               {
+                "c": "input-field-outline",
+                "i": "search",
+                "fill": "x",
+                "p": {
+                 "Size": "md",
+                 "Type": "Default",
+                 "Label": "false",
+                 "Hint text": "false",
+                 "Help icon": "false",
+                 "Leading icon": "false",
+                 "Encryption": "false",
+                 "Destructive": "False",
+                 "State": "Placeholder"
+                },
+                "text": [
+                 "Search endpoints"
+                ]
+               }
+              ],
+              "fill": "x",
+              "gap": "md",
+              "align": "center",
+              "px": "xl",
+              "py": "md"
+             },
+             {
+              "t": "stack",
+              "i": "table",
+              "children": [
+               {
+                "t": "row",
+                "i": "thead",
+                "children": [
+                 {
+                  "c": "col-header-cell",
+                  "i": "h1",
+                  "w": 320,
+                  "p": {
+                   "Text": "True",
+                   "Checkbox": "False",
+                   "Size": "md",
+                   "State": "Default",
+                   "Data Icon": "Off"
+                  },
+                  "text": [
+                   "ENDPOINT NAME"
+                  ]
+                 },
+                 {
+                  "c": "col-header-cell",
+                  "i": "h2",
+                  "w": 140,
+                  "p": {
+                   "Text": "True",
+                   "Checkbox": "False",
+                   "Size": "md",
+                   "State": "Default",
+                   "Data Icon": "Off"
+                  },
+                  "text": [
+                   "API TYPE"
+                  ]
+                 },
+                 {
+                  "c": "col-header-cell",
+                  "i": "h3",
+                  "w": 240,
+                  "p": {
+                   "Text": "True",
+                   "Checkbox": "False",
+                   "Size": "md",
+                   "State": "Default",
+                   "Data Icon": "Off"
+                  },
+                  "text": [
+                   "TYPE"
+                  ]
+                 },
+                 {
+                  "c": "col-header-cell",
+                  "i": "h4",
+                  "w": 140,
+                  "p": {
+                   "Text": "True",
+                   "Checkbox": "False",
+                   "Size": "md",
+                   "State": "Default",
+                   "Data Icon": "Off"
+                  },
+                  "text": [
+                   "WORKSPACE"
+                  ]
+                 },
+                 {
+                  "c": "col-header-cell",
+                  "i": "h5",
+                  "w": 140,
+                  "p": {
+                   "Text": "True",
+                   "Checkbox": "False",
+                   "Size": "md",
+                   "State": "Default",
+                   "Data Icon": "Off"
+                  },
+                  "text": [
+                   "TAGS"
+                  ]
+                 },
+                 {
+                  "c": "col-header-cell",
+                  "i": "h6",
+                  "w": 200,
+                  "p": {
+                   "Text": "True",
+                   "Checkbox": "False",
+                   "Size": "md",
+                   "State": "Default",
+                   "Data Icon": "Off"
+                  },
+                  "text": [
+                   "LAST UPDATED"
+                  ]
+                 }
+                ],
+                "fill": "x",
+                "bg": "bg-secondary"
+               },
+               {
+                "t": "row",
+                "i": "r1",
+                "children": [
+                 {
+                  "c": "table-cell",
+                  "i": "c1",
+                  "w": 320,
+                  "p": {
+                   "Supporting Text": "false",
+                   "Badge": "false",
+                   "Dropdown": "false",
+                   "Style": "Toggle",
+                   "Lead": "Yes",
+                   "State": "Default",
+                   "Size": "md"
+                  },
+                  "text": [
+                   "ogiJgOSxFEvVFWVjSFIh"
+                  ]
+                 },
+                 {
+                  "c": "table-cell",
+                  "i": "c2",
+                  "w": 140,
+                  "p": {
+                   "Supporting Text": "false",
+                   "Badge": "false",
+                   "Dropdown": "false",
+                   "Style": "Text",
+                   "Lead": "No",
+                   "State": "Default",
+                   "Size": "md"
+                  },
+                  "text": [
+                   "Rest API"
+                  ]
+                 },
+                 {
+                  "c": "table-cell",
+                  "i": "c3",
+                  "w": 240,
+                  "p": {
+                   "Supporting Text": "false",
+                   "Badge": "false",
+                   "Dropdown": "false",
+                   "Style": "Badges multiple",
+                   "Lead": "No",
+                   "State": "Default",
+                   "Size": "md"
+                  },
+                  "text": [
+                   "DELETE",
+                   "POST",
+                   "GET",
+                   "+2"
+                  ]
+                 },
+                 {
+                  "c": "table-cell",
+                  "i": "c4",
+                  "w": 140,
+                  "p": {
+                   "Supporting Text": "false",
+                   "Badge": "false",
+                   "Dropdown": "false",
+                   "Style": "Text",
+                   "Lead": "No",
+                   "State": "Default",
+                   "Size": "md"
+                  },
+                  "text": [
+                   "-"
+                  ]
+                 },
+                 {
+                  "c": "table-cell",
+                  "i": "c5",
+                  "w": 140,
+                  "p": {
+                   "Supporting Text": "false",
+                   "Badge": "false",
+                   "Dropdown": "false",
+                   "Style": "Text",
+                   "Lead": "No",
+                   "State": "Default",
+                   "Size": "md"
+                  },
+                  "text": [
+                   "-"
+                  ]
+                 },
+                 {
+                  "c": "table-cell",
+                  "i": "c6",
+                  "w": 200,
+                  "p": {
+                   "Supporting Text": "false",
+                   "Badge": "false",
+                   "Dropdown": "false",
+                   "Style": "Text",
+                   "Lead": "No",
+                   "State": "Default",
+                   "Size": "md"
+                  },
+                  "text": [
+                   "13 Oct 2026, 11:25"
+                  ]
+                 }
+                ],
+                "fill": "x",
+                "align": "center",
+                "borderB": "border-secondary"
+               }
+              ],
+              "fill": "x",
+              "border": "border-secondary",
+              "radius": "xl",
+              "clip": true
+             }
+            ],
+            "fill": "x",
+            "gap": "md",
+            "pt": "md",
+            "px": "xl"
+           }
+          ],
+          "w": 1384,
+          "gap": "md",
+          "pb": "4xl",
+          "bg": "bg-primary",
+          "align": "start",
+          "fill": "y",
+          "pt": "none"
+         }
+        ],
+        "fill": "x",
+        "grow": true,
+        "border": "border-secondary",
+        "radius": "4xl",
+        "justify": "center"
+       }
+      ],
+      "fill": "x",
+      "grow": true,
+      "gap": "md",
+      "px": "xl",
+      "pb": "xl"
+     }
+    ],
+    "grow": true,
+    "fill": "y",
+    "gap": "md",
+    "bg": "bg-workspace"
+   }
+  ],
+  "gap": "none",
+  "clip": true,
+  "bg": "bg-workspace"
+ }
+}

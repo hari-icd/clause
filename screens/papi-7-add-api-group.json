@@ -1,0 +1,730 @@
+{
+ "title": "API Manager — add API group",
+ "ds": "ds",
+ "page": "8932:378335",
+ "height": 900,
+ "tree": {
+  "t": "row",
+  "i": "root",
+  "children": [
+   {
+    "c": "platform-navigation",
+    "i": "nav",
+    "text": [
+     "99+",
+     "T"
+    ]
+   },
+   {
+    "t": "stack",
+    "i": "main",
+    "children": [
+     {
+      "c": "page-header-platform",
+      "i": "head",
+      "fill": "x",
+      "p": {
+       "Actions": "false",
+       "Search": "false",
+       "Show App Icon": "false",
+       "Badges": "false",
+       "Toggles": "false",
+       "Description": "false"
+      },
+      "text": [
+       "Global",
+       "API Manager - API Groups",
+       "API Groups",
+       "Add New API Group",
+       "AI FDE",
+       "Add New API Group"
+      ],
+      "ops": [
+       {
+        "nodes": [
+         {
+          "name": "Pill squared",
+          "nth": 0,
+          "hide": true
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "t": "stack",
+      "i": "content",
+      "children": [
+       {
+        "t": "stack",
+        "i": "body",
+        "children": [
+         {
+          "t": "stack",
+          "i": "card",
+          "children": [
+           {
+            "c": "form-header",
+            "i": "ac-head",
+            "fill": "x",
+            "p": {
+             "Level": "Level 1",
+             "Type": "Featured Icon",
+             "Style": "Default",
+             "Actions": "true",
+             "Supporting text": "false",
+             "Divider": "false",
+             "Help Icon": "false",
+             "Search": "false",
+             "More Horizontal": "false",
+             "Badge": "false",
+             "More Vertical": "false",
+             "Toggle": "false"
+            },
+            "text": [
+             "Add New API Group"
+            ],
+            "ops": [
+             {
+              "nodes": [
+               {
+                "name": "Toggle group",
+                "nth": 0,
+                "hide": true
+               },
+               {
+                "name": "Button",
+                "nth": 0,
+                "text": "Cancel"
+               },
+               {
+                "name": "Button",
+                "nth": 1,
+                "hide": true
+               },
+               {
+                "name": "Button",
+                "nth": 2,
+                "text": "Create API Group"
+               }
+              ]
+             }
+            ]
+           },
+           {
+            "t": "stack",
+            "i": "card-body",
+            "children": [
+             {
+              "t": "stack",
+              "i": "g-add-g",
+              "children": [
+               {
+                "t": "row",
+                "i": "an",
+                "children": [
+                 {
+                  "c": "section-label",
+                  "i": "an-l",
+                  "grow": true,
+                  "ops": [
+                   {
+                    "nodes": [
+                     {
+                      "name": "clock",
+                      "nth": 0,
+                      "hide": true
+                     }
+                    ]
+                   }
+                  ],
+                  "p": {
+                   "Level": "Level 1",
+                   "Actions": "false",
+                   "Supporting text": "true"
+                  },
+                  "text": [
+                   "Name*",
+                   "Descriptive name for the API group; for example, 'Inventory Management System'"
+                  ]
+                 },
+                 {
+                  "t": "stack",
+                  "i": "an-c",
+                  "children": [
+                   {
+                    "c": "input-field-outline",
+                    "i": "an-i",
+                    "p": {
+                     "Size": "md",
+                     "Type": "Default",
+                     "Label": "false",
+                     "Hint text": "false",
+                     "Help icon": "false",
+                     "Leading icon": "false",
+                     "Encryption": "false",
+                     "Destructive": "False",
+                     "State": "Placeholder"
+                    },
+                    "text": [
+                     "Enter API Group Name"
+                    ],
+                    "w": 320
+                   }
+                  ],
+                  "w": 320
+                 }
+                ],
+                "fill": "x",
+                "gap": "xl",
+                "align": "start"
+               },
+               {
+                "t": "row",
+                "i": "aw",
+                "children": [
+                 {
+                  "c": "section-label",
+                  "i": "aw-l",
+                  "grow": true,
+                  "ops": [
+                   {
+                    "nodes": [
+                     {
+                      "name": "clock",
+                      "nth": 0,
+                      "hide": true
+                     }
+                    ]
+                   }
+                  ],
+                  "p": {
+                   "Level": "Level 1",
+                   "Actions": "false",
+                   "Supporting text": "false"
+                  },
+                  "text": [
+                   "Workspace"
+                  ]
+                 },
+                 {
+                  "t": "stack",
+                  "i": "aw-c",
+                  "children": [
+                   {
+                    "c": "input-dropdown-outline",
+                    "i": "aw-i",
+                    "w": 320,
+                    "p": {
+                     "Size": "md",
+                     "Type": "Default",
+                     "State": "Placeholder",
+                     "Label": "false",
+                     "Hint text": "false"
+                    },
+                    "text": [
+                     "Select workspace"
+                    ]
+                   }
+                  ],
+                  "w": 320
+                 }
+                ],
+                "fill": "x",
+                "gap": "xl",
+                "align": "start"
+               },
+               {
+                "t": "row",
+                "i": "at",
+                "children": [
+                 {
+                  "c": "section-label",
+                  "i": "at-l",
+                  "grow": true,
+                  "ops": [
+                   {
+                    "nodes": [
+                     {
+                      "name": "clock",
+                      "nth": 0,
+                      "hide": true
+                     }
+                    ]
+                   }
+                  ],
+                  "p": {
+                   "Level": "Level 1",
+                   "Actions": "false",
+                   "Supporting text": "false"
+                  },
+                  "text": [
+                   "Tags"
+                  ]
+                 },
+                 {
+                  "t": "stack",
+                  "i": "at-c",
+                  "children": [
+                   {
+                    "c": "input-dropdown-outline",
+                    "i": "at-i",
+                    "w": 320,
+                    "p": {
+                     "Size": "md",
+                     "Type": "Default",
+                     "State": "Placeholder",
+                     "Label": "false",
+                     "Hint text": "false"
+                    },
+                    "text": [
+                     "Select tags"
+                    ]
+                   }
+                  ],
+                  "w": 320
+                 }
+                ],
+                "fill": "x",
+                "gap": "xl",
+                "align": "start"
+               },
+               {
+                "t": "row",
+                "i": "ad",
+                "children": [
+                 {
+                  "c": "section-label",
+                  "i": "ad-l",
+                  "grow": true,
+                  "ops": [
+                   {
+                    "nodes": [
+                     {
+                      "name": "clock",
+                      "nth": 0,
+                      "hide": true
+                     }
+                    ]
+                   }
+                  ],
+                  "p": {
+                   "Level": "Level 1",
+                   "Actions": "false",
+                   "Supporting text": "true"
+                  },
+                  "text": [
+                   "Description",
+                   "A brief description of this API group"
+                  ]
+                 },
+                 {
+                  "t": "stack",
+                  "i": "ad-c",
+                  "children": [
+                   {
+                    "c": "textarea-input-field",
+                    "i": "ad-i",
+                    "p": {
+                     "Label": "false",
+                     "Hint text": "false"
+                    },
+                    "text": [
+                     "Enter API Group description..."
+                    ],
+                    "w": 320
+                   }
+                  ],
+                  "w": 320
+                 }
+                ],
+                "fill": "x",
+                "gap": "xl",
+                "align": "start"
+               },
+               {
+                "t": "row",
+                "i": "ap",
+                "children": [
+                 {
+                  "c": "section-label",
+                  "i": "ap-l",
+                  "grow": true,
+                  "ops": [
+                   {
+                    "nodes": [
+                     {
+                      "name": "clock",
+                      "nth": 0,
+                      "hide": true
+                     }
+                    ]
+                   }
+                  ],
+                  "p": {
+                   "Level": "Level 1",
+                   "Actions": "false",
+                   "Supporting text": "true"
+                  },
+                  "text": [
+                   "Path",
+                   "Enter the path for the API group"
+                  ]
+                 },
+                 {
+                  "t": "stack",
+                  "i": "ap-c",
+                  "children": [
+                   {
+                    "c": "input-field-outline",
+                    "i": "ap-i",
+                    "p": {
+                     "Size": "md",
+                     "Type": "Default",
+                     "Label": "false",
+                     "Hint text": "false",
+                     "Help icon": "false",
+                     "Leading icon": "false",
+                     "Encryption": "false",
+                     "Destructive": "False",
+                     "State": "Placeholder"
+                    },
+                    "text": [
+                     "Enter Path"
+                    ],
+                    "w": 320
+                   }
+                  ],
+                  "w": 320
+                 }
+                ],
+                "fill": "x",
+                "gap": "xl",
+                "align": "start"
+               },
+               {
+                "t": "row",
+                "i": "av",
+                "children": [
+                 {
+                  "c": "section-label",
+                  "i": "av-l",
+                  "grow": true,
+                  "ops": [
+                   {
+                    "nodes": [
+                     {
+                      "name": "clock",
+                      "nth": 0,
+                      "hide": true
+                     }
+                    ]
+                   }
+                  ],
+                  "p": {
+                   "Level": "Level 1",
+                   "Actions": "false",
+                   "Supporting text": "true"
+                  },
+                  "text": [
+                   "Include version in path",
+                   "If enabled, the version will be included in the API path"
+                  ]
+                 },
+                 {
+                  "t": "stack",
+                  "i": "av-c",
+                  "children": [
+                   {
+                    "c": "toggle",
+                    "i": "av-tog",
+                    "p": {
+                     "Pressed": "False",
+                     "Text": "False",
+                     "State": "Default",
+                     "Size": "sm",
+                     "Hint Text": "False"
+                    }
+                   }
+                  ],
+                  "w": 40
+                 }
+                ],
+                "fill": "x",
+                "gap": "xl",
+                "align": "start"
+               },
+               {
+                "t": "row",
+                "i": "avn",
+                "children": [
+                 {
+                  "c": "section-label",
+                  "i": "avn-l",
+                  "grow": true,
+                  "ops": [
+                   {
+                    "nodes": [
+                     {
+                      "name": "clock",
+                      "nth": 0,
+                      "hide": true
+                     }
+                    ]
+                   }
+                  ],
+                  "p": {
+                   "Level": "Level 1",
+                   "Actions": "false",
+                   "Supporting text": "true"
+                  },
+                  "text": [
+                   "Version",
+                   "Assign a version to your api group."
+                  ]
+                 },
+                 {
+                  "t": "stack",
+                  "i": "avn-c",
+                  "children": [
+                   {
+                    "c": "input-field-outline",
+                    "i": "avn-i",
+                    "p": {
+                     "Size": "md",
+                     "Type": "Default",
+                     "Label": "false",
+                     "Hint text": "false",
+                     "Help icon": "false",
+                     "Leading icon": "false",
+                     "Encryption": "false",
+                     "Destructive": "False",
+                     "State": "Placeholder"
+                    },
+                    "text": [
+                     "Enter Version"
+                    ],
+                    "w": 320
+                   }
+                  ],
+                  "w": 320
+                 }
+                ],
+                "fill": "x",
+                "gap": "xl",
+                "align": "start"
+               },
+               {
+                "t": "row",
+                "i": "aex",
+                "children": [
+                 {
+                  "c": "section-label",
+                  "i": "aex-l",
+                  "grow": true,
+                  "ops": [
+                   {
+                    "nodes": [
+                     {
+                      "name": "clock",
+                      "nth": 0,
+                      "hide": true
+                     }
+                    ]
+                   }
+                  ],
+                  "p": {
+                   "Level": "Level 1",
+                   "Actions": "false",
+                   "Supporting text": "false"
+                  },
+                  "text": [
+                   "Execution Tier"
+                  ]
+                 },
+                 {
+                  "t": "stack",
+                  "i": "aex-c",
+                  "children": [
+                   {
+                    "c": "input-dropdown-outline",
+                    "i": "aex-i",
+                    "w": 320,
+                    "p": {
+                     "Size": "md",
+                     "Type": "Default",
+                     "State": "Placeholder",
+                     "Label": "false",
+                     "Hint text": "false"
+                    },
+                    "text": [
+                     "Select the tier to handle API traffic in"
+                    ]
+                   }
+                  ],
+                  "w": 320
+                 }
+                ],
+                "fill": "x",
+                "gap": "xl",
+                "align": "start"
+               }
+              ],
+              "w": 760,
+              "gap": "xl",
+              "pad": "xl",
+              "bg": "bg-workspace",
+              "border": "border-tertiary",
+              "radius": "4xl"
+             },
+             {
+              "t": "stack",
+              "i": "g-apol",
+              "children": [
+               {
+                "c": "form-header",
+                "i": "g-apol-h",
+                "fill": "x",
+                "ops": [
+                 {
+                  "nodes": [
+                   {
+                    "name": "Featured icon",
+                    "nth": 0,
+                    "hide": true
+                   },
+                   {
+                    "name": "_Header icon",
+                    "nth": 0,
+                    "hide": true
+                   }
+                  ]
+                 }
+                ],
+                "p": {
+                 "Level": "Level 2",
+                 "Actions": "false",
+                 "Supporting text": "false",
+                 "Divider": "false",
+                 "Search": "false",
+                 "Badge": "false",
+                 "Help Icon": "false",
+                 "More Horizontal": "false",
+                 "More Vertical": "false",
+                 "Toggle": "false"
+                },
+                "text": [
+                 "Policies"
+                ]
+               },
+               {
+                "t": "stack",
+                "i": "g-apol-g",
+                "children": [
+                 {
+                  "t": "row",
+                  "i": "apol",
+                  "children": [
+                   {
+                    "c": "section-label",
+                    "i": "apol-l",
+                    "grow": true,
+                    "ops": [
+                     {
+                      "nodes": [
+                       {
+                        "name": "clock",
+                        "nth": 0,
+                        "hide": true
+                       }
+                      ]
+                     }
+                    ],
+                    "p": {
+                     "Level": "Level 1",
+                     "Actions": "false",
+                     "Supporting text": "true"
+                    },
+                    "text": [
+                     "Policies",
+                     "These policies governs access to the API group"
+                    ]
+                   },
+                   {
+                    "t": "stack",
+                    "i": "apol-c",
+                    "children": [
+                     {
+                      "c": "button-neutral",
+                      "i": "add-apol",
+                      "p": {
+                       "Size": "md",
+                       "Hierarchy": "Secondary",
+                       "Icon leading": "true",
+                       "Icon leading swap": "@icon-plus",
+                       "Icon trailing": "false"
+                      },
+                      "text": [
+                       "Add Policy"
+                      ],
+                      "fill": "x"
+                     }
+                    ],
+                    "w": 320
+                   }
+                  ],
+                  "fill": "x",
+                  "gap": "xl",
+                  "align": "start"
+                 }
+                ],
+                "fill": "x",
+                "gap": "xl",
+                "pad": "xl",
+                "bg": "bg-workspace",
+                "border": "border-tertiary",
+                "radius": "4xl"
+               }
+              ],
+              "w": 760,
+              "gap": "md"
+             }
+            ],
+            "fill": "x",
+            "gap": "4xl",
+            "pb": "4xl",
+            "pt": "2xl",
+            "align": "center"
+           }
+          ],
+          "fill": "x",
+          "grow": true,
+          "gap": "none",
+          "bg": "bg-primary",
+          "border": "border-secondary",
+          "radius": "4xl",
+          "clip": true
+         }
+        ],
+        "fill": "both",
+        "grow": true
+       }
+      ],
+      "fill": "x",
+      "grow": true,
+      "gap": "md",
+      "px": "xl",
+      "pb": "xl"
+     }
+    ],
+    "grow": true,
+    "fill": "y",
+    "gap": "md",
+    "bg": "bg-workspace"
+   }
+  ],
+  "gap": "none",
+  "clip": true,
+  "bg": "bg-workspace"
+ }
+}

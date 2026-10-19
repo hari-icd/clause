@@ -1,0 +1,109 @@
+#!/usr/bin/env node
+// Generates the API Manager screens for the "Platform Tools" page of the UnifyApps Platform file (Unify2026 design system).
+// Run: node screens-src/platform-api.mjs   -> screens/papi-*.json
+import { writeFileSync } from "node:fs";
+const PIN = { ds: "ds", page: "8932:378335", height: 900 };
+const T = (i, content, style, color, x = {}) => ({ t: "text", i, content, style, color, ...x });
+const row = (i, children, x = {}) => ({ t: "row", i, children, ...x }), col = (i, children, x = {}) => ({ t: "stack", i, children, ...x });
+const nav = { c: "platform-navigation", i: "nav", text: ["99+", "T"] };
+const PH = { Actions: "false", Search: "false", "Show App Icon": "false", Badges: "false", Toggles: "false", Description: "false" };
+const header = (crumbs, title, p = {}) => ({ c: "page-header-platform", i: "head", fill: "x", p: { ...PH, ...p }, text: [...crumbs, "AI FDE", title] });
+// the content card every platform page sits in (spec from the Outbound/Inbound changeset designs)
+const card = (children, x = {}) => row("work", [col("work-in", children, { w: 1352, gap: "4xl", pb: "4xl", bg: "bg-primary", align: "center", fill: "y", ...x })], { fill: "x", grow: true, border: "border-secondary", radius: "4xl", justify: "center" });
+const page = (title, crumbs, body, ptitle, hp) => ({ title, ...PIN, tree: row("root", [nav, col("main", [header(crumbs, ptitle, hp), col("content", [body], { fill: "x", grow: true, gap: "md", px: "xl", pb: "xl" })], { grow: true, fill: "y", gap: "md", bg: "bg-workspace" })], { gap: "none", clip: true, bg: "bg-workspace" }) });
+const out = {};
+const CR = ["Global", "API Manager - API Groups", "PLAYGROUNDTestinggWX2c1kYH8c"];
+// helpers for the detail pages
+const kv = (i, k, children) => row(i, [T(i + "-k", k, "Text sm/Regular", "text-tertiary", { w: 160 }), ...children], { fill: "x", gap: "xl", align: "center", py: "md" });
+const sec = (i, title, sub) => ({ c: "section-label", i, fill: "x", p: { "Supporting text": sub ? "true" : "false", Actions: "false", Level: "Level 1" }, text: sub ? [title, sub] : [title] });
+const tag = (i, t) => ({ c: "tag", i, p: { Icon: "False", Action: "Text only", Size: "sm", Type: "Outline", State: "Default" }, text: [t] });
+const btn = (i, label, o = {}) => ({ c: o.brand ? "button-brand" : "button-neutral", i, p: { Size: o.size || "md", Hierarchy: o.h || (o.brand ? "Primary" : "Secondary"), "Icon leading": o.icon ? "true" : "false", ...(o.icon ? { "Icon leading swap": o.icon } : {}), "Icon trailing": "false" }, text: [label], ...(o.x || {}) });
+const code = (i, lines) => col(i, [row(i + "-h", [T(i + "-t", "application/json", "Text xs/Regular", "text-tertiary")], { fill: "x", px: "lg", py: "md", borderB: "border-secondary", align: "center" }), row(i + "-b", [T(i + "-n", "1", "Text xs/Regular", "text-quaternary", { w: 24 }), T(i + "-c", lines, "Text xs/Regular-Code", "text-primary")], { fill: "x", gap: "lg", pad: "lg", h: 140 })], { fill: "x", border: "border-secondary", radius: "lg", why: "code editor surface: no catalog component", clip: true });
+const HIDE_BADGE = [{ nodes: [{ name: "Pill squared", nth: 0, hide: true }] }];
+const HEAD_ACTIONS = (label) => [{ nodes: [{ name: "Pill squared", nth: 0, hide: true }, { name: "Toggle group", nth: 0, hide: true }, { name: "Buttons/Button Brand", has: "Button CTA", nth: 1, hide: true }, { name: "Buttons/Button Brand", has: "Button CTA", nth: 0, text: label }] }];
+const withOps = (h, label) => ({ ...h, ops: label ? HEAD_ACTIONS(label) : HIDE_BADGE });
+const detailBody = (extra = []) => col("body", [
+  sec("s-ep", "Endpoint Details"),
+  col("ep", [kv("r-auto", "Automation Name", [T("v-auto", "PLAYGROUNDTestingghABu446RfB", "Text sm/Medium", "text-primary"), btn("see", "See Automation", { size: "xs", h: "Tertiary" })]), kv("r-url", "URL", [T("v-url", "https://api.qa.unifyapps.com/api-endpoint/activitynYKgHdHKDn/WIiYSl", "Text sm/Medium", "text-primary"), { c: "icon-copy", i: "cp", w: 14, h: 14 }]), kv("r-type", "API Type", [row("tags", ["DELETE", "POST", "GET", "PUT", "PATCH"].map((m, k) => tag("tg" + k, m)), { gap: "md" })])], { fill: "x" }),
+  sec("s-req", "Request"), code("req", '{"definitions":{}}'),
+  sec("s-fb", "Fallback Response"), btn("add-fb", "Add Fallback Response", { icon: "@icon-plus", x: { fill: "x" } }), ...extra], { w: 840, gap: "2xl", pt: "3xl" });
+const detailHead = (p = {}) => withOps(header(CR.concat(["ogiJgOSxFEvVFWVjSFIh"]), "ogiJgOSxFEvVFWVjSFIh", { Toggles: "true", Actions: "true", ...p }), "Export");
+const pageWith = (title, head, body) => ({ title, ...PIN, tree: row("root", [nav, col("main", [head, col("content", [body], { fill: "x", grow: true, gap: "md", px: "xl", pb: "xl" })], { grow: true, fill: "y", gap: "md", bg: "bg-workspace" })], { gap: "none", clip: true, bg: "bg-workspace" }) });
+out["papi-1-endpoint-detail"] = pageWith("API Group — endpoint detail", detailHead(), card([detailBody()], { fill: "y", pt: "none" }));
+// form helpers
+const field = (i, label, hint, input, req) => row(i, [col(i + "-l", [T(i + "-t", label + (req ? " *" : ""), "Text sm/Medium", "text-primary"), ...(hint ? [T(i + "-h", hint, "Text xs/Regular", "text-tertiary")] : [])], { w: 260, gap: "xxs" }), col(i + "-v", [input], { grow: true })], { fill: "x", gap: "3xl", py: "md" });
+const dd = (i, ph, o = {}) => ({ c: "input-dropdown-outline", i, w: o.fill ? undefined : 320, fill: o.fill ? "x" : undefined, p: { Size: "md", Type: "Default", State: o.value ? "Default" : "Placeholder", Label: "false", "Hint text": "false" }, text: [ph] });
+const inp = (i, ph, o = {}) => ({ c: "input-field-outline", i, fill: "x", p: { Size: "md", Type: o.drop ? "Trailing dropdown" : "Default", Label: "false", "Hint text": "false", "Help icon": "false", "Leading icon": "false", Encryption: "false", Destructive: "False", State: o.value ? "Filled" : "Placeholder" }, text: o.drop ? [ph, " ", " "] : [ph] });
+const area = (i, ph) => ({ c: "textarea-input-field", i, fill: "x", p: { Label: "false", "Hint text": "false" }, text: [ph] });
+const tabs = (i, labels, sel) => ({ c: "horizontal-tabs", i, p: { Style: "Default", "Start Icon Style": "None", Size: "sm", "Add New Icon": "false" }, text: labels, ops: [{ nodes: [...Array.from({ length: 9 - labels.length }, (_, k) => ({ name: "Tab", nth: labels.length + k, hide: true })), { name: "Tab", nth: sel, props: { Current: "True" } }] }] });
+const formHead = (i, title, sub, ...acts) => ({ c: "form-header", i, fill: "x", p: { Level: "Level 2", "Supporting text": "true", Actions: "false", Divider: "true", "Help Icon": "false", Search: "false", "More Horizontal": "false", Badge: "false", "More Vertical": "false", Toggle: "false" }, text: [title, sub] });
+const EDIT_ACTS = (a, b2) => [{ nodes: [{ name: "Pill squared", nth: 0, hide: true }, { name: "Toggle group", nth: 0, hide: true }, { name: "Buttons/Button Brand", has: "Button CTA", nth: 1, text: b2 }, { name: "Buttons/Button Brand", has: "Button CTA", nth: 0, text: a }] }];
+// 2 fallback response modal over the detail page
+const scrim = col("scrim", [], { w: 1440, h: 900, bg: "bg-base-dark", opacity: 0.4, abs: { x: 0, y: 0 }, why: "dim and blur the page behind the dialog" });
+const modal = col("dlg", [
+  { c: "modal-header", i: "mh", fill: "x", p: { "X close button": "true", Tabs: "false", Type: "Subtext Single line", Size: "sm", back: "yes" }, text: ["Fallback Response", "The response to use when the api is not available."] },
+  col("dlg-body", [field("f-status", "HTTP Status Code", null, dd("status", "200 - Ok", { fill: true, value: true })), tabs("dtabs", ["Headers", "Response"], 0),
+    row("kvh", [T("kh1", "KEY", "Text xs/Medium", "text-tertiary", { grow: true }), T("kh2", "VALUE", "Text xs/Medium", "text-tertiary", { grow: true })], { fill: "x", gap: "lg", px: "lg", py: "md", bg: "bg-secondary", radius: "md" }),
+    row("kvr", [inp("k1", "Enter key"), inp("v1", "Enter value")], { fill: "x", gap: "lg" })], { fill: "x", gap: "xl", px: "xl", pb: "xl" }),
+  { c: "modal-actions", i: "ma", fill: "x", p: { Checkbox: "false", "Tertiary button": "false", Type: "Horizontal right aligned (checkbox)", Size: "sm", Destructive: "False" }, text: ["Cancel", "Create"] }], { w: 640, gap: "none", bg: "bg-primary", radius: "3xl", border: "border-secondary", clip: true, abs: { x: 400, y: 200 }, why: "dialog centred on the page" });
+{ const base = pageWith("API Group — fallback response", detailHead(), card([detailBody()], { fill: "y", pt: "none" })); base.tree.children.push(scrim, modal); out["papi-2-fallback-modal"] = base; }
+// 3 edit API — form pattern of the Connected environment settings screen (card head + sections with grouped panels)
+const lbl = (i, t, sub) => ({ c: "section-label", i, grow: true, ops: [{ nodes: [{ name: "clock", nth: 0, hide: true }] }], p: { Level: "Level 1", Actions: "false", "Supporting text": sub ? "true" : "false" }, text: sub ? [t, sub] : [t] });
+const frow = (i, t, sub, ctl, o = {}) => row(i, [lbl(i + "-l", t, sub), col(i + "-c", [ctl], { w: o.w || 320 })], { fill: "x", gap: "xl", align: "start" });
+const f320 = (i, ph, o = {}) => ({ ...inp(i, ph, o), fill: undefined, w: 320 });
+const group = (i, title, rows) => col(i, [{ c: "form-header", i: i + "-h", fill: "x", ops: [{ nodes: [{ name: "Featured icon", nth: 0, hide: true }, { name: "_Header icon", nth: 0, hide: true }] }], p: { Level: "Level 2", Actions: "false", "Supporting text": "false", Divider: "false", Search: "false", Badge: "false", "Help Icon": "false", "More Horizontal": "false", "More Vertical": "false", Toggle: "false" }, text: [title] }, col(i + "-g", rows, { fill: "x", gap: "xl", pad: "xl", bg: "bg-workspace", border: "border-tertiary", radius: "4xl" })], { w: 760, gap: "md" });
+const cardHead = row("card-head", [{ c: "icon-edit", i: "ch-ic", w: 16, h: 16 }, T("ch-t", "Edit API", "Display xs/Regular", "text-primary"), { t: "spacer" }, btn("b-cancel", "Cancel", { size: "sm" }), btn("b-save", "Update API", { size: "sm", brand: true })], { fill: "x", gap: "lg", px: "lg", pt: "sm", pb: "md", bg: "bg-secondary", align: "center" });
+const editHead = withOps(header(CR.concat(["Edit API"]), "ogiJgOSxFEvVFWVjSFIh", { Actions: "false" }), null);
+const editCard = col("card", [cardHead, col("card-body", [
+  group("g-details", "Details", [frow("n", "Name*", "Name of the API", f320("n-i", "ogiJgOSxFEvVFWVjSFIh", { value: true })), frow("w", "Workspace", "Select the workspace for this API", dd("w-i", "Select workspace")), frow("t", "Tags", "Add tags to organise APIs", dd("t-i", "Select tags")), frow("d", "Description", "Description of the API", { ...area("d-i", "Enter a description"), fill: undefined, w: 320 })]),
+  group("g-res", "Resources", [frow("rt", "Resource Type*", "Select the type of resource", dd("rt-i", "Callable", { value: true })), frow("ap", "API Path", "Define a path for this API. It can include path parameters", f320("ap-i", "WIiYSl", { value: true })), frow("rq", "Request Type*", "Select the request type", dd("rq-i", "REST", { value: true })), frow("au", "Automation*", "Automation this API calls", dd("au-i", "PLAYGROUNDTestingghABu446RfB", { value: true })), frow("ve", "Version", "Select the version of the automation", dd("ve-i", "Select version")), frow("hm", "Supported HTTP Methods*", "Select a HTTP method to use for this API", row("hm-t", ["DELETE", "POST", "GET", "PUT", "PATCH"].map((m, k) => tag("hm" + k, m)), { gap: "md", wrap: true, rowGap: "md" }))]),
+  group("g-pol", "Policies", [frow("pol", "Policies", "These policies govern access to the API", btn("add-pol", "Add Policy", { icon: "@icon-plus", x: { fill: "x" } }))]),
+  group("g-adv", "Advanced Settings", [frow("er", "Enable Retry", "If enabled, the API will retry on failure", { c: "toggle", i: "er-tog", p: { Pressed: "False", Text: "False", State: "Default", Size: "sm", "Hint Text": "False" } }, { w: 40 })])], { fill: "x", gap: "4xl", pb: "4xl", pt: "2xl", align: "center" })], { fill: "x", grow: true, gap: "none", bg: "bg-primary", border: "border-secondary", radius: "4xl", clip: true });
+out["papi-3-edit-api"] = pageWith("API Group — edit API", editHead, col("body", [editCard], { fill: "both", grow: true }));
+out["papi-3-edit-api"].frozen = true; // handed over: edited in Figma by the designer, never rebuild
+// 4 APIs list
+const listHead = withOps(header(CR.concat(["APIs"]), "PLAYGROUNDTestinggWX2c1kYH8c", { Actions: "true" }), null);
+listHead.ops = EDIT_ACTS("Export API Group", "New API");
+const th = (i, t, w, sz = "md") => ({ c: "col-header-cell", i, ...(w ? { w } : { grow: true }), p: { Text: "True", Checkbox: "False", Size: sz, State: "Default", "Data Icon": "Off" }, text: [t] });
+const tc = (i, t, w, o = {}) => ({ c: "table-cell", i, ...(w ? { w } : { grow: true }), p: { "Supporting Text": "false", Badge: "false", Dropdown: "false", Style: o.style || "Text", Lead: o.lead || "No", State: "Default", Size: o.size || "md" }, text: Array.isArray(t) ? t : [t] });
+const tr = (i, cells) => row(i, cells, { fill: "x", align: "center", borderB: "border-secondary" });
+const listBody = col("list", [tabs("ptabs", ["APIs", "Clients", "Activity", "Settings"], 0),
+  row("tbar", [btn("tb-main", "Main", { size: "sm", icon: "@icon-list" }), btn("tb-filter", "Filter", { size: "sm", icon: "@icon-filter-lines" }), btn("tb-sort", "Sort", { size: "sm", icon: "@icon-chevron-selector-vertical" }), btn("tb-hidden", "3 hidden columns", { size: "sm", icon: "@icon-eye" }), { t: "spacer" }, inp("search", "Search endpoints")], { fill: "x", gap: "md", align: "center", px: "xl", py: "md" }),
+  col("table", [row("thead", [th("h1", "ENDPOINT NAME", 320), th("h2", "API TYPE", 140), th("h3", "TYPE", 240), th("h4", "WORKSPACE", 140), th("h5", "TAGS", 140), th("h6", "LAST UPDATED", 200)], { fill: "x", bg: "bg-secondary" }),
+    tr("r1", [tc("c1", "ogiJgOSxFEvVFWVjSFIh", 320, { style: "Toggle", lead: "Yes" }), tc("c2", "Rest API", 140), tc("c3", ["DELETE", "POST", "GET", "+2"], 240, { style: "Badges multiple" }), tc("c4", "-", 140), tc("c5", "-", 140), tc("c6", "13 Oct 2026, 11:25", 200)])], { fill: "x", border: "border-secondary", radius: "xl", clip: true })], { fill: "x", gap: "md", pt: "md", px: "xl" });
+out["papi-4-apis-list"] = pageWith("API Group — APIs", listHead, card([listBody], { w: 1384, fill: "y", pt: "none", gap: "md", align: "start" }));
+// 6 API groups list (replaces the pasted "UnifyApps Platform SS" screenshot frame)
+const gHead = withOps(header(["Global", "API Manager", "API Groups", "List"], "API Manager", { Actions: "true" }), null);
+gHead.ops = EDIT_ACTS("Export API Groups", "New API Group");
+const GR = [["apiEndpointApiSetUpGroupTestinggLocal", "1", "/getyvoxospcci", "-"], ["apiEndpointApiSetUpGroupTestinggLocal", "1", "/getjnrvonzcwz", "-"], ["apiEndpointApiSetUpGroupTestinggLocal", "1", "/getojtzwpyngn", "-"], ["apiEndpointApiGetFallbackGroupTesting", "1", "/getcypemmuhvf", "-"], ["apimanagerTestinggLocalz3NixlzwRC", "1", "/authCodeTwoLQOCmGH", "-"], ["Automation Persistence API Group - Update", "v2", "/persistv2ldb1v0", "14 Oct 2026, 17:19"], ["Automation Persistence API Group Workspace", "-", "/Automation-Persistence", "-"], ["apiEndpointApiPostRenameGroupTesting", "1", "/getyqzuylwnon", "-"], ["apiPlcyGroupTestinggLocalI0jvPJsS1l", "1", "/getkgstlqdgdw", "-"], ["Automation Persistence API Group Testing", "v1", "/persistxvavs2", "-"], ["apiEndpointApiSetUpGroupTestinggLocal", "1", "/getdpthdtodme", "-"]];
+const gRows = GR.map((r, k) => tr("g" + k, [tc("g" + k + "a", r[0], 420, { size: "sm", lead: "Yes" }), tc("g" + k + "b", r[1], 0, r[1] === "-" ? { size: "sm" } : { style: "Badge single", size: "sm" }), tc("g" + k + "c", r[2], 0, { size: "sm" }), tc("g" + k + "d", r[1] === "-" ? "Project Level" : "-", 0, { size: "sm" }), tc("g" + k + "e", "-", 0, { size: "sm" }), tc("g" + k + "f", r[3], 0, { size: "sm" }), row("g" + k + "g", [{ c: "icon-dots-horizontal", i: "g" + k + "gi", w: 16, h: 16 }], { w: 48, justify: "center", align: "center", py: "sm" })]));
+const gBody = col("glist", [
+  tabs("gtabs", ["API Groups", "Policies", "Clients", "Insights", "Settings"], 0),
+  row("gbar", [btn("gb-main", "Main", { size: "sm", icon: "@icon-list" }), btn("gb-filter", "Filter", { size: "sm", icon: "@icon-filter-lines" }), btn("gb-sort", "Sort", { size: "sm", icon: "@icon-chevron-selector-vertical" }), btn("gb-hidden", "3 hidden columns", { size: "sm", icon: "@icon-eye" }), { t: "spacer" }, { ...inp("gsearch", "Search API groups"), fill: undefined, w: 240 }], { fill: "x", gap: "md", align: "center", px: "xl", py: "md" }),
+  col("gtable", [row("ghead", [th("gh1", "API GROUP NAME", 420, "sm"), th("gh2", "VERSION NUMBER", 0, "sm"), th("gh3", "PATH", 0, "sm"), th("gh4", "WORKSPACE", 0, "sm"), th("gh5", "TAGS", 0, "sm"), th("gh6", "LAST UPDATED", 0, "sm"), th("gh7", "", 48, "sm")], { fill: "x", bg: "bg-secondary" }), ...gRows], { fill: "x", border: "border-secondary", radius: "md", clip: true })], { fill: "x", gap: "md", pt: "md", px: "xl" });
+out["papi-6-api-groups-list"] = pageWith("API Manager — API groups", gHead, card([gBody], { w: 1384, fill: "y", pt: "none", gap: "md", align: "start" }));
+out["papi-6-api-groups-list"].frozen = true; // handed over: edited in Figma by the designer, never rebuild
+// 7 add API group (rebuilds the "Add New API Group" screenshot with the Edit API page pattern)
+const addHead = withOps(header(["Global", "API Manager - API Groups", "API Groups", "Add New API Group"], "Add New API Group", { Actions: "false" }), null);
+const addCardHead = { c: "form-header", i: "ac-head", fill: "x", p: { Level: "Level 1", Type: "Featured Icon", Style: "Default", Actions: "true", "Supporting text": "false", Divider: "false", "Help Icon": "false", Search: "false", "More Horizontal": "false", Badge: "false", "More Vertical": "false", Toggle: "false" }, text: ["Add New API Group"], ops: [{ nodes: [{ name: "Toggle group", nth: 0, hide: true }, { name: "Button", nth: 0, text: "Cancel" }, { name: "Button", nth: 1, hide: true }, { name: "Button", nth: 2, text: "Create API Group" }] }] };
+const addPanel = col("g-add-g", [
+  frow("an", "Name*", "Descriptive name for the API group; for example, 'Inventory Management System'", f320("an-i", "Enter API Group Name")),
+  frow("aw", "Workspace", null, dd("aw-i", "Select workspace")),
+  frow("at", "Tags", null, dd("at-i", "Select tags")),
+  frow("ad", "Description", "A brief description of this API group", { ...area("ad-i", "Enter API Group description..."), fill: undefined, w: 320 }),
+  frow("ap", "Path", "Enter the path for the API group", f320("ap-i", "Enter Path")),
+  frow("av", "Include version in path", "If enabled, the version will be included in the API path", { c: "toggle", i: "av-tog", p: { Pressed: "False", Text: "False", State: "Default", Size: "sm", "Hint Text": "False" } }, { w: 40 }),
+  frow("avn", "Version", "Assign a version to your api group.", f320("avn-i", "Enter Version")),
+  frow("aex", "Execution Tier", null, dd("aex-i", "Select the tier to handle API traffic in"))], { w: 760, gap: "xl", pad: "xl", bg: "bg-workspace", border: "border-tertiary", radius: "4xl" });
+const addCard = col("card", [addCardHead, col("card-body", [addPanel, group("g-apol", "Policies", [frow("apol", "Policies", "These policies governs access to the API group", btn("add-apol", "Add Policy", { icon: "@icon-plus", x: { fill: "x" } }))])], { fill: "x", gap: "4xl", pb: "4xl", pt: "2xl", align: "center" })], { fill: "x", grow: true, gap: "none", bg: "bg-primary", border: "border-secondary", radius: "4xl", clip: true });
+out["papi-7-add-api-group"] = pageWith("API Manager — add API group", addHead, col("body", [addCard], { fill: "both", grow: true }));
+// 5 settings: telemetry metrics
+const setCardHead = row("sc-head", [{ c: "icon-settings", i: "sch-ic", w: 16, h: 16 }, T("sch-t", "Settings", "Display xs/Regular", "text-primary"), { t: "spacer" }, btn("sb-cancel", "Cancel", { size: "sm" }), btn("sb-save", "Save", { size: "sm", brand: true })], { fill: "x", gap: "lg", px: "lg", pt: "sm", pb: "md", bg: "bg-secondary", align: "center" });
+const setCard = col("card", [setCardHead, col("card-body", [
+  group("g-tel", "Open Telemetry Metrics", [frow("mc", "Metric Configs", "Configure the telemetry settings for the API Group", btn("add-m", "Add Metric", { icon: "@icon-plus", x: { fill: "x" } })), frow("mn", "Metric Name", "Name published for the metric", f320("mn-i", "Enter metric name to be published")), frow("mt", "Metric", "Type of metric to record", dd("mt-i", "Api Execution Duration - Timer", { value: true })), frow("pi", "Publish If", "Event that publishes the metric", dd("pi-i", "Select Event type")), frow("tg", "Tags", "Use {{ to use input data-pill in Value", f320("tg-i", "Add a key")), frow("bk", "Buckets", "Define Bucket range (in ms) for histogram type visualization", btn("add-b", "Add Bucket", { icon: "@icon-plus", x: { fill: "x" } }))]),
+  group("g-trc", "Traceability", [frow("tr", "Enable Traceability", "If enabled, requests to the API are traced", { c: "toggle", i: "tr-tog", p: { Pressed: "False", Text: "False", State: "Default", Size: "sm", "Hint Text": "False" } }, { w: 40 })])], { fill: "x", gap: "4xl", pb: "4xl", pt: "2xl", align: "center" })], { fill: "both", grow: true, bg: "bg-primary", border: "border-secondary", radius: "4xl", clip: true });
+const setHead = withOps(header(CR.concat(["Settings"]), "PLAYGROUNDTestinggWX2c1kYH8c", { Actions: "false" }), null);
+out["papi-5-settings-telemetry"] = pageWith("API Group — settings", setHead, col("body", [setCard], { fill: "both", grow: true }));
+import { readFileSync, existsSync } from "node:fs";
+for (const [k, v] of Object.entries(out)) { const f = `screens/${k}.json`, t = JSON.stringify(v, null, 1); if (!existsSync(f) || readFileSync(f, "utf8") !== t) writeFileSync(f, t); } // only touch changed files: every write wakes the watcher
+console.log(Object.keys(out).join(" "));

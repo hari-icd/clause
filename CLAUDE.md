@@ -36,6 +36,7 @@ The SessionStart hook prints "Clause session state" and the first actions. Follo
 6. **Verify, don't claim.** Every build: `curl -s localhost:8787/result` (any warning = bug; fix before replying), screenshot the frame, compare with the reference. Say what is still different, including DS gaps (missing icons/components).
 7. **Reply short, in the pane.** One line per item: done / not done + why. Lead with the result. At most one question.
 8. **Molecules before atoms.** Search the catalog and the file's component pages (Routines, Chat…) for a ready component before composing primitives; add missing ones to `ds/components.json` by main-component id.
+8b. **Existing design = edit in place.** A request on a frame that already exists (annotation target, or anything the designer touched) is applied to that frame with `swap.mjs` ops. Never build a second copy from screens/*.json; a new frame only when asked. Handed-over screens carry `"frozen": true` (the watcher never rebuilds them). "No figma actions" means no writes at all.
 9. **Speed:** keep nav/overlays as separate top-level children (incremental rebuild reuses them). Read Figma with `scripts/inspect.mjs` or small `use_figma` returns (<20 kB).
 10. **Git:** do not commit or push unless the user asks. Never rewrite the user's DS branch from `main`.
 11. **New loophole found → one line in `docs/POWER-USE.md`** (and a tool if it repeats).

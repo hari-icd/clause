@@ -143,12 +143,13 @@ function inInst(inst, id) { return idx(inst).all.find(n => n.id === id || n.id.e
 async function applyOps(inst, ops) {
   for (const op of ops || []) {
     for (const sp of op.nodes || []) {
-      let hit;
-      if (sp.has) { const tx = idx(inst).texts.filter(n => n.characters.includes(sp.has))[sp.nth || 0]; if (tx) { hit = tx; let up = tx.parent; while (up && up !== inst) { if (up.type === "INSTANCE" && (!sp.name || up.name === sp.name)) { hit = up; break; } up = up.parent; } } }
-      else hit = (idx(inst).byName.get(sp.name) || [])[sp.nth || 0];
+      let hit, htx = null;
+      if (sp.has) { const tx = idx(inst).texts.filter(n => n.characters.includes(sp.has) && n.absoluteRenderBounds !== null)[sp.nth || 0]; if (tx) { htx = tx; hit = tx; let up = tx.parent; while (up && up !== inst) { if (up.type === "INSTANCE" && (!sp.name || up.name === sp.name)) { hit = up; break; } up = up.parent; } } }
+      else hit = (idx(inst).byName.get(sp.name) || []).filter(n => !sp.vis || n.absoluteRenderBounds !== null)[sp.nth || 0];
       if (!hit) { warnings.push("nodes: no #" + (sp.nth || 0) + " " + (sp.name || ("has:" + sp.has))); continue; }
       if (sp.hide) hit.visible = false; if (sp.show) hit.visible = true;
       if (sp.swap) { const comp = await component(sp.swap.slice(1)); try { hit.swapComponent(comp); dropIdx(inst); } catch (e) { warnings.push("nodes swap " + sp.name + ": " + e.message); } }
+      if (sp.text != null) { try { const tn = htx || (hit.type === "TEXT" ? hit : hit.findOne(n => n.type === "TEXT")); if (!tn) warnings.push("nodes text: no text layer in " + (sp.name || sp.has)); else { for (const g of tn.getStyledTextSegments(["fontName"])) await figma.loadFontAsync(g.fontName); tn.characters = String(sp.text); } } catch (e) { warnings.push("nodes text " + (sp.name || sp.has) + ": " + e.message); } }
       if (sp.props) { const tgt = hit.type === "INSTANCE" ? hit : hit.findOne(n => n.type === "INSTANCE"); try { const defs = tgt.componentProperties, out = {}; const norm = x => String(x).replace(/[^a-z0-9 ]/gi, "").trim().toLowerCase(); for (const [k, v] of Object.entries(sp.props)) { const full = Object.keys(defs).find(d => norm(d.split("#")[0]) === norm(k)) || k; const def = defs[full]; out[full] = def && def.type === "BOOLEAN" ? (v === true || v === "true") : def && def.type === "INSTANCE_SWAP" && typeof v === "string" && v.startsWith("@") ? (await component(v.slice(1))).id : v; } tgt.setProperties(out); dropIdx(inst); } catch (e) { warnings.push("nodes props " + (sp.name || "has:" + sp.has) + ": " + e.message); } }
       if (sp.maxLines) { const t = hit.type === "TEXT" ? hit : hit.findOne(n => n.type === "TEXT"); if (t) { t.textAutoResize = "HEIGHT"; try { if (t.parent.layoutMode) t.parent.layoutSizingHorizontal = "FILL"; t.layoutSizingHorizontal = "FILL"; } catch (e) { warnings.push("maxLines fill: " + e.message); } t.textTruncation = "ENDING"; t.maxLines = sp.maxLines; } }
       if (sp.style || sp.color) { const t = hit.type === "TEXT" ? hit : hit.findOne(n => n.type === "TEXT"); if (!t) warnings.push("nodes: no text in " + sp.name); else {
@@ -455,6 +456,16 @@ async function swapJobInner(spec) {
     for (const n of [...sec.children]) { try { if (n.type !== "INSTANCE" || !n.name.endsWith(R.suffix)) continue; const base = n.name.slice(0, -R.suffix.length), idx = sec.children.indexOf(n), x = n.x, y = n.y, w = n.width, h = n.height;
         const f = figma.createFrame(); f.fills = []; f.clipsContent = false; f.resize(w, h); sec.insertChild(idx, f); f.x = x; f.y = y; f.name = (R.prefix || "") + base;
         f.appendChild(n); n.x = 0; n.y = 0; n.name = R.instanceName || "MS Word Frame"; stamp(f); out.remap.push({ from: n.id, to: f.id }); out.wrapped.push(f.name); } catch (e) { warnings.push("wrap " + n.id + ": " + String((e && e.message) || e).slice(0, 100)); } }
+    return out; }
+  if (spec.slotTransplant) { // slotTransplant: [{from:<Word frame instance just built>, to:<existing Word frame instance>}] → the existing frame keeps its place, name and chrome; only the add-in panel inside its slot is replaced by the new one. The shell `from` goes to the trash frame (journaled, revertable).
+    out.transplanted = [];
+    for (const T of spec.slotTransplant) { try {
+      const a = await figma.getNodeByIdAsync(T.from), b = await figma.getNodeByIdAsync(T.to); if (!a || !b) { warnings.push("slotTransplant: missing " + (!a ? T.from : T.to)); continue; }
+      const sa = a.findOne(n => n.type === "SLOT"), sb = b.findOne(n => n.type === "SLOT"); if (!sa || !sb) { warnings.push("slotTransplant: no slot in " + (!sa ? T.from : T.to)); continue; }
+      for (const c of [...sb.children]) { try { discard(c); } catch (e) { try { c.visible = false; } catch (e2) {} } }
+      for (const c of [...sa.children]) sb.appendChild(c);
+      discard(a); out.transplanted.push(T.to);
+    } catch (e) { warnings.push("slotTransplant: " + e.message); } }
     return out; }
   if (spec.wordBoard) { // wordBoard: {section:{id}|{create:{name,fromId}}, word:<MS Word Frame instance>, ids:[top-level node ids of the source journeys section]} → same positions in a new Section; covers/labels cloned, panel screens become MS Word Frame instances whose slot holds the panel at 380 px (fit pass), other screens a TO-CREATE note
     const W = spec.wordBoard; let sec = W.section.id ? await figma.getNodeByIdAsync(W.section.id) : null;

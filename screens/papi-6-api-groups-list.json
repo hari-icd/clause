@@ -1,0 +1,1787 @@
+{
+ "title": "API Manager — API groups",
+ "ds": "ds",
+ "page": "8932:378335",
+ "height": 900,
+ "tree": {
+  "t": "row",
+  "i": "root",
+  "children": [
+   {
+    "c": "platform-navigation",
+    "i": "nav",
+    "text": [
+     "99+",
+     "T"
+    ]
+   },
+   {
+    "t": "stack",
+    "i": "main",
+    "children": [
+     {
+      "c": "page-header-platform",
+      "i": "head",
+      "fill": "x",
+      "p": {
+       "Actions": "true",
+       "Search": "false",
+       "Show App Icon": "false",
+       "Badges": "false",
+       "Toggles": "false",
+       "Description": "false"
+      },
+      "text": [
+       "Global",
+       "API Manager",
+       "API Groups",
+       "List",
+       "AI FDE",
+       "API Manager"
+      ],
+      "ops": [
+       {
+        "nodes": [
+         {
+          "name": "Pill squared",
+          "nth": 0,
+          "hide": true
+         },
+         {
+          "name": "Toggle group",
+          "nth": 0,
+          "hide": true
+         },
+         {
+          "name": "Buttons/Button Brand",
+          "has": "Button CTA",
+          "nth": 1,
+          "text": "New API Group"
+         },
+         {
+          "name": "Buttons/Button Brand",
+          "has": "Button CTA",
+          "nth": 0,
+          "text": "Export API Groups"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "t": "stack",
+      "i": "content",
+      "children": [
+       {
+        "t": "row",
+        "i": "work",
+        "children": [
+         {
+          "t": "stack",
+          "i": "work-in",
+          "children": [
+           {
+            "t": "stack",
+            "i": "glist",
+            "children": [
+             {
+              "c": "horizontal-tabs",
+              "i": "gtabs",
+              "p": {
+               "Style": "Default",
+               "Start Icon Style": "None",
+               "Size": "sm",
+               "Add New Icon": "false"
+              },
+              "text": [
+               "API Groups",
+               "Policies",
+               "Clients",
+               "Insights",
+               "Settings"
+              ],
+              "ops": [
+               {
+                "nodes": [
+                 {
+                  "name": "Tab",
+                  "nth": 5,
+                  "hide": true
+                 },
+                 {
+                  "name": "Tab",
+                  "nth": 6,
+                  "hide": true
+                 },
+                 {
+                  "name": "Tab",
+                  "nth": 7,
+                  "hide": true
+                 },
+                 {
+                  "name": "Tab",
+                  "nth": 8,
+                  "hide": true
+                 },
+                 {
+                  "name": "Tab",
+                  "nth": 0,
+                  "props": {
+                   "Current": "True"
+                  }
+                 }
+                ]
+               }
+              ]
+             },
+             {
+              "t": "row",
+              "i": "gbar",
+              "children": [
+               {
+                "c": "button-neutral",
+                "i": "gb-main",
+                "p": {
+                 "Size": "sm",
+                 "Hierarchy": "Secondary",
+                 "Icon leading": "true",
+                 "Icon leading swap": "@icon-list",
+                 "Icon trailing": "false"
+                },
+                "text": [
+                 "Main"
+                ]
+               },
+               {
+                "c": "button-neutral",
+                "i": "gb-filter",
+                "p": {
+                 "Size": "sm",
+                 "Hierarchy": "Secondary",
+                 "Icon leading": "true",
+                 "Icon leading swap": "@icon-filter-lines",
+                 "Icon trailing": "false"
+                },
+                "text": [
+                 "Filter"
+                ]
+               },
+               {
+                "c": "button-neutral",
+                "i": "gb-sort",
+                "p": {
+                 "Size": "sm",
+                 "Hierarchy": "Secondary",
+                 "Icon leading": "true",
+                 "Icon leading swap": "@icon-chevron-selector-vertical",
+                 "Icon trailing": "false"
+                },
+                "text": [
+                 "Sort"
+                ]
+               },
+               {
+                "c": "button-neutral",
+                "i": "gb-hidden",
+                "p": {
+                 "Size": "sm",
+                 "Hierarchy": "Secondary",
+                 "Icon leading": "true",
+                 "Icon leading swap": "@icon-eye",
+                 "Icon trailing": "false"
+                },
+                "text": [
+                 "3 hidden columns"
+                ]
+               },
+               {
+                "t": "spacer"
+               },
+               {
+                "c": "input-field-outline",
+                "i": "gsearch",
+                "p": {
+                 "Size": "md",
+                 "Type": "Default",
+                 "Label": "false",
+                 "Hint text": "false",
+                 "Help icon": "false",
+                 "Leading icon": "false",
+                 "Encryption": "false",
+                 "Destructive": "False",
+                 "State": "Placeholder"
+                },
+                "text": [
+                 "Search API groups"
+                ],
+                "w": 240
+               }
+              ],
+              "fill": "x",
+              "gap": "md",
+              "align": "center",
+              "px": "xl",
+              "py": "md"
+             },
+             {
+              "t": "stack",
+              "i": "gtable",
+              "children": [
+               {
+                "t": "row",
+                "i": "ghead",
+                "children": [
+                 {
+                  "c": "col-header-cell",
+                  "i": "gh1",
+                  "w": 420,
+                  "p": {
+                   "Text": "True",
+                   "Checkbox": "False",
+                   "Size": "sm",
+                   "State": "Default",
+                   "Data Icon": "Off"
+                  },
+                  "text": [
+                   "API GROUP NAME"
+                  ]
+                 },
+                 {
+                  "c": "col-header-cell",
+                  "i": "gh2",
+                  "grow": true,
+                  "p": {
+                   "Text": "True",
+                   "Checkbox": "False",
+                   "Size": "sm",
+                   "State": "Default",
+                   "Data Icon": "Off"
+                  },
+                  "text": [
+                   "VERSION NUMBER"
+                  ]
+                 },
+                 {
+                  "c": "col-header-cell",
+                  "i": "gh3",
+                  "grow": true,
+                  "p": {
+                   "Text": "True",
+                   "Checkbox": "False",
+                   "Size": "sm",
+                   "State": "Default",
+                   "Data Icon": "Off"
+                  },
+                  "text": [
+                   "PATH"
+                  ]
+                 },
+                 {
+                  "c": "col-header-cell",
+                  "i": "gh4",
+                  "grow": true,
+                  "p": {
+                   "Text": "True",
+                   "Checkbox": "False",
+                   "Size": "sm",
+                   "State": "Default",
+                   "Data Icon": "Off"
+                  },
+                  "text": [
+                   "WORKSPACE"
+                  ]
+                 },
+                 {
+                  "c": "col-header-cell",
+                  "i": "gh5",
+                  "grow": true,
+                  "p": {
+                   "Text": "True",
+                   "Checkbox": "False",
+                   "Size": "sm",
+                   "State": "Default",
+                   "Data Icon": "Off"
+                  },
+                  "text": [
+                   "TAGS"
+                  ]
+                 },
+                 {
+                  "c": "col-header-cell",
+                  "i": "gh6",
+                  "grow": true,
+                  "p": {
+                   "Text": "True",
+                   "Checkbox": "False",
+                   "Size": "sm",
+                   "State": "Default",
+                   "Data Icon": "Off"
+                  },
+                  "text": [
+                   "LAST UPDATED"
+                  ]
+                 },
+                 {
+                  "c": "col-header-cell",
+                  "i": "gh7",
+                  "w": 48,
+                  "p": {
+                   "Text": "True",
+                   "Checkbox": "False",
+                   "Size": "sm",
+                   "State": "Default",
+                   "Data Icon": "Off"
+                  },
+                  "text": [
+                   ""
+                  ]
+                 }
+                ],
+                "fill": "x",
+                "bg": "bg-secondary"
+               },
+               {
+                "t": "row",
+                "i": "g0",
+                "children": [
+                 {
+                  "c": "table-cell",
+                  "i": "g0a",
+                  "w": 420,
+                  "p": {
+                   "Supporting Text": "false",
+                   "Badge": "false",
+                   "Dropdown": "false",
+                   "Style": "Text",
+                   "Lead": "Yes",
+                   "State": "Default",
+                   "Size": "sm"
+                  },
+                  "text": [
+                   "apiEndpointApiSetUpGroupTestinggLocal"
+                  ]
+                 },
+                 {
+                  "c": "table-cell",
+                  "i": "g0b",
+                  "grow": true,
+                  "p": {
+                   "Supporting Text": "false",
+                   "Badge": "false",
+                   "Dropdown": "false",
+                   "Style": "Badge single",
+                   "Lead": "No",
+                   "State": "Default",
+                   "Size": "sm"
+                  },
+                  "text": [
+                   "1"
+                  ]
+                 },
+                 {
+                  "c": "table-cell",
+                  "i": "g0c",
+                  "grow": true,
+                  "p": {
+                   "Supporting Text": "false",
+                   "Badge": "false",
+                   "Dropdown": "false",
+                   "Style": "Text",
+                   "Lead": "No",
+                   "State": "Default",
+                   "Size": "sm"
+                  },
+                  "text": [
+                   "/getyvoxospcci"
+                  ]
+                 },
+                 {
+                  "c": "table-cell",
+                  "i": "g0d",
+                  "grow": true,
+                  "p": {
+                   "Supporting Text": "false",
+                   "Badge": "false",
+                   "Dropdown": "false",
+                   "Style": "Text",
+                   "Lead": "No",
+                   "State": "Default",
+                   "Size": "sm"
+                  },
+                  "text": [
+                   "-"
+                  ]
+                 },
+                 {
+                  "c": "table-cell",
+                  "i": "g0e",
+                  "grow": true,
+                  "p": {
+                   "Supporting Text": "false",
+                   "Badge": "false",
+                   "Dropdown": "false",
+                   "Style": "Text",
+                   "Lead": "No",
+                   "State": "Default",
+                   "Size": "sm"
+                  },
+                  "text": [
+                   "-"
+                  ]
+                 },
+                 {
+                  "c": "table-cell",
+                  "i": "g0f",
+                  "grow": true,
+                  "p": {
+                   "Supporting Text": "false",
+                   "Badge": "false",
+                   "Dropdown": "false",
+                   "Style": "Text",
+                   "Lead": "No",
+                   "State": "Default",
+                   "Size": "sm"
+                  },
+                  "text": [
+                   "-"
+                  ]
+                 },
+                 {
+                  "t": "row",
+                  "i": "g0g",
+                  "children": [
+                   {
+                    "c": "icon-dots-horizontal",
+                    "i": "g0gi",
+                    "w": 16,
+                    "h": 16
+                   }
+                  ],
+                  "w": 48,
+                  "justify": "center",
+                  "align": "center",
+                  "py": "sm"
+                 }
+                ],
+                "fill": "x",
+                "align": "center",
+                "borderB": "border-secondary"
+               },
+               {
+                "t": "row",
+                "i": "g1",
+                "children": [
+                 {
+                  "c": "table-cell",
+                  "i": "g1a",
+                  "w": 420,
+                  "p": {
+                   "Supporting Text": "false",
+                   "Badge": "false",
+                   "Dropdown": "false",
+                   "Style": "Text",
+                   "Lead": "Yes",
+                   "State": "Default",
+                   "Size": "sm"
+                  },
+                  "text": [
+                   "apiEndpointApiSetUpGroupTestinggLocal"
+                  ]
+                 },
+                 {
+                  "c": "table-cell",
+                  "i": "g1b",
+                  "grow": true,
+                  "p": {
+                   "Supporting Text": "false",
+                   "Badge": "false",
+                   "Dropdown": "false",
+                   "Style": "Badge single",
+                   "Lead": "No",
+                   "State": "Default",
+                   "Size": "sm"
+                  },
+                  "text": [
+                   "1"
+                  ]
+                 },
+                 {
+                  "c": "table-cell",
+                  "i": "g1c",
+                  "grow": true,
+                  "p": {
+                   "Supporting Text": "false",
+                   "Badge": "false",
+                   "Dropdown": "false",
+                   "Style": "Text",
+                   "Lead": "No",
+                   "State": "Default",
+                   "Size": "sm"
+                  },
+                  "text": [
+                   "/getjnrvonzcwz"
+                  ]
+                 },
+                 {
+                  "c": "table-cell",
+                  "i": "g1d",
+                  "grow": true,
+                  "p": {
+                   "Supporting Text": "false",
+                   "Badge": "false",
+                   "Dropdown": "false",
+                   "Style": "Text",
+                   "Lead": "No",
+                   "State": "Default",
+                   "Size": "sm"
+                  },
+                  "text": [
+                   "-"
+                  ]
+                 },
+                 {
+                  "c": "table-cell",
+                  "i": "g1e",
+                  "grow": true,
+                  "p": {
+                   "Supporting Text": "false",
+                   "Badge": "false",
+                   "Dropdown": "false",
+                   "Style": "Text",
+                   "Lead": "No",
+                   "State": "Default",
+                   "Size": "sm"
+                  },
+                  "text": [
+                   "-"
+                  ]
+                 },
+                 {
+                  "c": "table-cell",
+                  "i": "g1f",
+                  "grow": true,
+                  "p": {
+                   "Supporting Text": "false",
+                   "Badge": "false",
+                   "Dropdown": "false",
+                   "Style": "Text",
+                   "Lead": "No",
+                   "State": "Default",
+                   "Size": "sm"
+                  },
+                  "text": [
+                   "-"
+                  ]
+                 },
+                 {
+                  "t": "row",
+                  "i": "g1g",
+                  "children": [
+                   {
+                    "c": "icon-dots-horizontal",
+                    "i": "g1gi",
+                    "w": 16,
+                    "h": 16
+                   }
+                  ],
+                  "w": 48,
+                  "justify": "center",
+                  "align": "center",
+                  "py": "sm"
+                 }
+                ],
+                "fill": "x",
+                "align": "center",
+                "borderB": "border-secondary"
+               },
+               {
+                "t": "row",
+                "i": "g2",
+                "children": [
+                 {
+                  "c": "table-cell",
+                  "i": "g2a",
+                  "w": 420,
+                  "p": {
+                   "Supporting Text": "false",
+                   "Badge": "false",
+                   "Dropdown": "false",
+                   "Style": "Text",
+                   "Lead": "Yes",
+                   "State": "Default",
+                   "Size": "sm"
+                  },
+                  "text": [
+                   "apiEndpointApiSetUpGroupTestinggLocal"
+                  ]
+                 },
+                 {
+                  "c": "table-cell",
+                  "i": "g2b",
+                  "grow": true,
+                  "p": {
+                   "Supporting Text": "false",
+                   "Badge": "false",
+                   "Dropdown": "false",
+                   "Style": "Badge single",
+                   "Lead": "No",
+                   "State": "Default",
+                   "Size": "sm"
+                  },
+                  "text": [
+                   "1"
+                  ]
+                 },
+                 {
+                  "c": "table-cell",
+                  "i": "g2c",
+                  "grow": true,
+                  "p": {
+                   "Supporting Text": "false",
+                   "Badge": "false",
+                   "Dropdown": "false",
+                   "Style": "Text",
+                   "Lead": "No",
+                   "State": "Default",
+                   "Size": "sm"
+                  },
+                  "text": [
+                   "/getojtzwpyngn"
+                  ]
+                 },
+                 {
+                  "c": "table-cell",
+                  "i": "g2d",
+                  "grow": true,
+                  "p": {
+                   "Supporting Text": "false",
+                   "Badge": "false",
+                   "Dropdown": "false",
+                   "Style": "Text",
+                   "Lead": "No",
+                   "State": "Default",
+                   "Size": "sm"
+                  },
+                  "text": [
+                   "-"
+                  ]
+                 },
+                 {
+                  "c": "table-cell",
+                  "i": "g2e",
+                  "grow": true,
+                  "p": {
+                   "Supporting Text": "false",
+                   "Badge": "false",
+                   "Dropdown": "false",
+                   "Style": "Text",
+                   "Lead": "No",
+                   "State": "Default",
+                   "Size": "sm"
+                  },
+                  "text": [
+                   "-"
+                  ]
+                 },
+                 {
+                  "c": "table-cell",
+                  "i": "g2f",
+                  "grow": true,
+                  "p": {
+                   "Supporting Text": "false",
+                   "Badge": "false",
+                   "Dropdown": "false",
+                   "Style": "Text",
+                   "Lead": "No",
+                   "State": "Default",
+                   "Size": "sm"
+                  },
+                  "text": [
+                   "-"
+                  ]
+                 },
+                 {
+                  "t": "row",
+                  "i": "g2g",
+                  "children": [
+                   {
+                    "c": "icon-dots-horizontal",
+                    "i": "g2gi",
+                    "w": 16,
+                    "h": 16
+                   }
+                  ],
+                  "w": 48,
+                  "justify": "center",
+                  "align": "center",
+                  "py": "sm"
+                 }
+                ],
+                "fill": "x",
+                "align": "center",
+                "borderB": "border-secondary"
+               },
+               {
+                "t": "row",
+                "i": "g3",
+                "children": [
+                 {
+                  "c": "table-cell",
+                  "i": "g3a",
+                  "w": 420,
+                  "p": {
+                   "Supporting Text": "false",
+                   "Badge": "false",
+                   "Dropdown": "false",
+                   "Style": "Text",
+                   "Lead": "Yes",
+                   "State": "Default",
+                   "Size": "sm"
+                  },
+                  "text": [
+                   "apiEndpointApiGetFallbackGroupTesting"
+                  ]
+                 },
+                 {
+                  "c": "table-cell",
+                  "i": "g3b",
+                  "grow": true,
+                  "p": {
+                   "Supporting Text": "false",
+                   "Badge": "false",
+                   "Dropdown": "false",
+                   "Style": "Badge single",
+                   "Lead": "No",
+                   "State": "Default",
+                   "Size": "sm"
+                  },
+                  "text": [
+                   "1"
+                  ]
+                 },
+                 {
+                  "c": "table-cell",
+                  "i": "g3c",
+                  "grow": true,
+                  "p": {
+                   "Supporting Text": "false",
+                   "Badge": "false",
+                   "Dropdown": "false",
+                   "Style": "Text",
+                   "Lead": "No",
+                   "State": "Default",
+                   "Size": "sm"
+                  },
+                  "text": [
+                   "/getcypemmuhvf"
+                  ]
+                 },
+                 {
+                  "c": "table-cell",
+                  "i": "g3d",
+                  "grow": true,
+                  "p": {
+                   "Supporting Text": "false",
+                   "Badge": "false",
+                   "Dropdown": "false",
+                   "Style": "Text",
+                   "Lead": "No",
+                   "State": "Default",
+                   "Size": "sm"
+                  },
+                  "text": [
+                   "-"
+                  ]
+                 },
+                 {
+                  "c": "table-cell",
+                  "i": "g3e",
+                  "grow": true,
+                  "p": {
+                   "Supporting Text": "false",
+                   "Badge": "false",
+                   "Dropdown": "false",
+                   "Style": "Text",
+                   "Lead": "No",
+                   "State": "Default",
+                   "Size": "sm"
+                  },
+                  "text": [
+                   "-"
+                  ]
+                 },
+                 {
+                  "c": "table-cell",
+                  "i": "g3f",
+                  "grow": true,
+                  "p": {
+                   "Supporting Text": "false",
+                   "Badge": "false",
+                   "Dropdown": "false",
+                   "Style": "Text",
+                   "Lead": "No",
+                   "State": "Default",
+                   "Size": "sm"
+                  },
+                  "text": [
+                   "-"
+                  ]
+                 },
+                 {
+                  "t": "row",
+                  "i": "g3g",
+                  "children": [
+                   {
+                    "c": "icon-dots-horizontal",
+                    "i": "g3gi",
+                    "w": 16,
+                    "h": 16
+                   }
+                  ],
+                  "w": 48,
+                  "justify": "center",
+                  "align": "center",
+                  "py": "sm"
+                 }
+                ],
+                "fill": "x",
+                "align": "center",
+                "borderB": "border-secondary"
+               },
+               {
+                "t": "row",
+                "i": "g4",
+                "children": [
+                 {
+                  "c": "table-cell",
+                  "i": "g4a",
+                  "w": 420,
+                  "p": {
+                   "Supporting Text": "false",
+                   "Badge": "false",
+                   "Dropdown": "false",
+                   "Style": "Text",
+                   "Lead": "Yes",
+                   "State": "Default",
+                   "Size": "sm"
+                  },
+                  "text": [
+                   "apimanagerTestinggLocalz3NixlzwRC"
+                  ]
+                 },
+                 {
+                  "c": "table-cell",
+                  "i": "g4b",
+                  "grow": true,
+                  "p": {
+                   "Supporting Text": "false",
+                   "Badge": "false",
+                   "Dropdown": "false",
+                   "Style": "Badge single",
+                   "Lead": "No",
+                   "State": "Default",
+                   "Size": "sm"
+                  },
+                  "text": [
+                   "1"
+                  ]
+                 },
+                 {
+                  "c": "table-cell",
+                  "i": "g4c",
+                  "grow": true,
+                  "p": {
+                   "Supporting Text": "false",
+                   "Badge": "false",
+                   "Dropdown": "false",
+                   "Style": "Text",
+                   "Lead": "No",
+                   "State": "Default",
+                   "Size": "sm"
+                  },
+                  "text": [
+                   "/authCodeTwoLQOCmGH"
+                  ]
+                 },
+                 {
+                  "c": "table-cell",
+                  "i": "g4d",
+                  "grow": true,
+                  "p": {
+                   "Supporting Text": "false",
+                   "Badge": "false",
+                   "Dropdown": "false",
+                   "Style": "Text",
+                   "Lead": "No",
+                   "State": "Default",
+                   "Size": "sm"
+                  },
+                  "text": [
+                   "-"
+                  ]
+                 },
+                 {
+                  "c": "table-cell",
+                  "i": "g4e",
+                  "grow": true,
+                  "p": {
+                   "Supporting Text": "false",
+                   "Badge": "false",
+                   "Dropdown": "false",
+                   "Style": "Text",
+                   "Lead": "No",
+                   "State": "Default",
+                   "Size": "sm"
+                  },
+                  "text": [
+                   "-"
+                  ]
+                 },
+                 {
+                  "c": "table-cell",
+                  "i": "g4f",
+                  "grow": true,
+                  "p": {
+                   "Supporting Text": "false",
+                   "Badge": "false",
+                   "Dropdown": "false",
+                   "Style": "Text",
+                   "Lead": "No",
+                   "State": "Default",
+                   "Size": "sm"
+                  },
+                  "text": [
+                   "-"
+                  ]
+                 },
+                 {
+                  "t": "row",
+                  "i": "g4g",
+                  "children": [
+                   {
+                    "c": "icon-dots-horizontal",
+                    "i": "g4gi",
+                    "w": 16,
+                    "h": 16
+                   }
+                  ],
+                  "w": 48,
+                  "justify": "center",
+                  "align": "center",
+                  "py": "sm"
+                 }
+                ],
+                "fill": "x",
+                "align": "center",
+                "borderB": "border-secondary"
+               },
+               {
+                "t": "row",
+                "i": "g5",
+                "children": [
+                 {
+                  "c": "table-cell",
+                  "i": "g5a",
+                  "w": 420,
+                  "p": {
+                   "Supporting Text": "false",
+                   "Badge": "false",
+                   "Dropdown": "false",
+                   "Style": "Text",
+                   "Lead": "Yes",
+                   "State": "Default",
+                   "Size": "sm"
+                  },
+                  "text": [
+                   "Automation Persistence API Group - Update"
+                  ]
+                 },
+                 {
+                  "c": "table-cell",
+                  "i": "g5b",
+                  "grow": true,
+                  "p": {
+                   "Supporting Text": "false",
+                   "Badge": "false",
+                   "Dropdown": "false",
+                   "Style": "Badge single",
+                   "Lead": "No",
+                   "State": "Default",
+                   "Size": "sm"
+                  },
+                  "text": [
+                   "v2"
+                  ]
+                 },
+                 {
+                  "c": "table-cell",
+                  "i": "g5c",
+                  "grow": true,
+                  "p": {
+                   "Supporting Text": "false",
+                   "Badge": "false",
+                   "Dropdown": "false",
+                   "Style": "Text",
+                   "Lead": "No",
+                   "State": "Default",
+                   "Size": "sm"
+                  },
+                  "text": [
+                   "/persistv2ldb1v0"
+                  ]
+                 },
+                 {
+                  "c": "table-cell",
+                  "i": "g5d",
+                  "grow": true,
+                  "p": {
+                   "Supporting Text": "false",
+                   "Badge": "false",
+                   "Dropdown": "false",
+                   "Style": "Text",
+                   "Lead": "No",
+                   "State": "Default",
+                   "Size": "sm"
+                  },
+                  "text": [
+                   "-"
+                  ]
+                 },
+                 {
+                  "c": "table-cell",
+                  "i": "g5e",
+                  "grow": true,
+                  "p": {
+                   "Supporting Text": "false",
+                   "Badge": "false",
+                   "Dropdown": "false",
+                   "Style": "Text",
+                   "Lead": "No",
+                   "State": "Default",
+                   "Size": "sm"
+                  },
+                  "text": [
+                   "-"
+                  ]
+                 },
+                 {
+                  "c": "table-cell",
+                  "i": "g5f",
+                  "grow": true,
+                  "p": {
+                   "Supporting Text": "false",
+                   "Badge": "false",
+                   "Dropdown": "false",
+                   "Style": "Text",
+                   "Lead": "No",
+                   "State": "Default",
+                   "Size": "sm"
+                  },
+                  "text": [
+                   "14 Oct 2026, 17:19"
+                  ]
+                 },
+                 {
+                  "t": "row",
+                  "i": "g5g",
+                  "children": [
+                   {
+                    "c": "icon-dots-horizontal",
+                    "i": "g5gi",
+                    "w": 16,
+                    "h": 16
+                   }
+                  ],
+                  "w": 48,
+                  "justify": "center",
+                  "align": "center",
+                  "py": "sm"
+                 }
+                ],
+                "fill": "x",
+                "align": "center",
+                "borderB": "border-secondary"
+               },
+               {
+                "t": "row",
+                "i": "g6",
+                "children": [
+                 {
+                  "c": "table-cell",
+                  "i": "g6a",
+                  "w": 420,
+                  "p": {
+                   "Supporting Text": "false",
+                   "Badge": "false",
+                   "Dropdown": "false",
+                   "Style": "Text",
+                   "Lead": "Yes",
+                   "State": "Default",
+                   "Size": "sm"
+                  },
+                  "text": [
+                   "Automation Persistence API Group Workspace"
+                  ]
+                 },
+                 {
+                  "c": "table-cell",
+                  "i": "g6b",
+                  "grow": true,
+                  "p": {
+                   "Supporting Text": "false",
+                   "Badge": "false",
+                   "Dropdown": "false",
+                   "Style": "Text",
+                   "Lead": "No",
+                   "State": "Default",
+                   "Size": "sm"
+                  },
+                  "text": [
+                   "-"
+                  ]
+                 },
+                 {
+                  "c": "table-cell",
+                  "i": "g6c",
+                  "grow": true,
+                  "p": {
+                   "Supporting Text": "false",
+                   "Badge": "false",
+                   "Dropdown": "false",
+                   "Style": "Text",
+                   "Lead": "No",
+                   "State": "Default",
+                   "Size": "sm"
+                  },
+                  "text": [
+                   "/Automation-Persistence"
+                  ]
+                 },
+                 {
+                  "c": "table-cell",
+                  "i": "g6d",
+                  "grow": true,
+                  "p": {
+                   "Supporting Text": "false",
+                   "Badge": "false",
+                   "Dropdown": "false",
+                   "Style": "Text",
+                   "Lead": "No",
+                   "State": "Default",
+                   "Size": "sm"
+                  },
+                  "text": [
+                   "Project Level"
+                  ]
+                 },
+                 {
+                  "c": "table-cell",
+                  "i": "g6e",
+                  "grow": true,
+                  "p": {
+                   "Supporting Text": "false",
+                   "Badge": "false",
+                   "Dropdown": "false",
+                   "Style": "Text",
+                   "Lead": "No",
+                   "State": "Default",
+                   "Size": "sm"
+                  },
+                  "text": [
+                   "-"
+                  ]
+                 },
+                 {
+                  "c": "table-cell",
+                  "i": "g6f",
+                  "grow": true,
+                  "p": {
+                   "Supporting Text": "false",
+                   "Badge": "false",
+                   "Dropdown": "false",
+                   "Style": "Text",
+                   "Lead": "No",
+                   "State": "Default",
+                   "Size": "sm"
+                  },
+                  "text": [
+                   "-"
+                  ]
+                 },
+                 {
+                  "t": "row",
+                  "i": "g6g",
+                  "children": [
+                   {
+                    "c": "icon-dots-horizontal",
+                    "i": "g6gi",
+                    "w": 16,
+                    "h": 16
+                   }
+                  ],
+                  "w": 48,
+                  "justify": "center",
+                  "align": "center",
+                  "py": "sm"
+                 }
+                ],
+                "fill": "x",
+                "align": "center",
+                "borderB": "border-secondary"
+               },
+               {
+                "t": "row",
+                "i": "g7",
+                "children": [
+                 {
+                  "c": "table-cell",
+                  "i": "g7a",
+                  "w": 420,
+                  "p": {
+                   "Supporting Text": "false",
+                   "Badge": "false",
+                   "Dropdown": "false",
+                   "Style": "Text",
+                   "Lead": "Yes",
+                   "State": "Default",
+                   "Size": "sm"
+                  },
+                  "text": [
+                   "apiEndpointApiPostRenameGroupTesting"
+                  ]
+                 },
+                 {
+                  "c": "table-cell",
+                  "i": "g7b",
+                  "grow": true,
+                  "p": {
+                   "Supporting Text": "false",
+                   "Badge": "false",
+                   "Dropdown": "false",
+                   "Style": "Badge single",
+                   "Lead": "No",
+                   "State": "Default",
+                   "Size": "sm"
+                  },
+                  "text": [
+                   "1"
+                  ]
+                 },
+                 {
+                  "c": "table-cell",
+                  "i": "g7c",
+                  "grow": true,
+                  "p": {
+                   "Supporting Text": "false",
+                   "Badge": "false",
+                   "Dropdown": "false",
+                   "Style": "Text",
+                   "Lead": "No",
+                   "State": "Default",
+                   "Size": "sm"
+                  },
+                  "text": [
+                   "/getyqzuylwnon"
+                  ]
+                 },
+                 {
+                  "c": "table-cell",
+                  "i": "g7d",
+                  "grow": true,
+                  "p": {
+                   "Supporting Text": "false",
+                   "Badge": "false",
+                   "Dropdown": "false",
+                   "Style": "Text",
+                   "Lead": "No",
+                   "State": "Default",
+                   "Size": "sm"
+                  },
+                  "text": [
+                   "-"
+                  ]
+                 },
+                 {
+                  "c": "table-cell",
+                  "i": "g7e",
+                  "grow": true,
+                  "p": {
+                   "Supporting Text": "false",
+                   "Badge": "false",
+                   "Dropdown": "false",
+                   "Style": "Text",
+                   "Lead": "No",
+                   "State": "Default",
+                   "Size": "sm"
+                  },
+                  "text": [
+                   "-"
+                  ]
+                 },
+                 {
+                  "c": "table-cell",
+                  "i": "g7f",
+                  "grow": true,
+                  "p": {
+                   "Supporting Text": "false",
+                   "Badge": "false",
+                   "Dropdown": "false",
+                   "Style": "Text",
+                   "Lead": "No",
+                   "State": "Default",
+                   "Size": "sm"
+                  },
+                  "text": [
+                   "-"
+                  ]
+                 },
+                 {
+                  "t": "row",
+                  "i": "g7g",
+                  "children": [
+                   {
+                    "c": "icon-dots-horizontal",
+                    "i": "g7gi",
+                    "w": 16,
+                    "h": 16
+                   }
+                  ],
+                  "w": 48,
+                  "justify": "center",
+                  "align": "center",
+                  "py": "sm"
+                 }
+                ],
+                "fill": "x",
+                "align": "center",
+                "borderB": "border-secondary"
+               },
+               {
+                "t": "row",
+                "i": "g8",
+                "children": [
+                 {
+                  "c": "table-cell",
+                  "i": "g8a",
+                  "w": 420,
+                  "p": {
+                   "Supporting Text": "false",
+                   "Badge": "false",
+                   "Dropdown": "false",
+                   "Style": "Text",
+                   "Lead": "Yes",
+                   "State": "Default",
+                   "Size": "sm"
+                  },
+                  "text": [
+                   "apiPlcyGroupTestinggLocalI0jvPJsS1l"
+                  ]
+                 },
+                 {
+                  "c": "table-cell",
+                  "i": "g8b",
+                  "grow": true,
+                  "p": {
+                   "Supporting Text": "false",
+                   "Badge": "false",
+                   "Dropdown": "false",
+                   "Style": "Badge single",
+                   "Lead": "No",
+                   "State": "Default",
+                   "Size": "sm"
+                  },
+                  "text": [
+                   "1"
+                  ]
+                 },
+                 {
+                  "c": "table-cell",
+                  "i": "g8c",
+                  "grow": true,
+                  "p": {
+                   "Supporting Text": "false",
+                   "Badge": "false",
+                   "Dropdown": "false",
+                   "Style": "Text",
+                   "Lead": "No",
+                   "State": "Default",
+                   "Size": "sm"
+                  },
+                  "text": [
+                   "/getkgstlqdgdw"
+                  ]
+                 },
+                 {
+                  "c": "table-cell",
+                  "i": "g8d",
+                  "grow": true,
+                  "p": {
+                   "Supporting Text": "false",
+                   "Badge": "false",
+                   "Dropdown": "false",
+                   "Style": "Text",
+                   "Lead": "No",
+                   "State": "Default",
+                   "Size": "sm"
+                  },
+                  "text": [
+                   "-"
+                  ]
+                 },
+                 {
+                  "c": "table-cell",
+                  "i": "g8e",
+                  "grow": true,
+                  "p": {
+                   "Supporting Text": "false",
+                   "Badge": "false",
+                   "Dropdown": "false",
+                   "Style": "Text",
+                   "Lead": "No",
+                   "State": "Default",
+                   "Size": "sm"
+                  },
+                  "text": [
+                   "-"
+                  ]
+                 },
+                 {
+                  "c": "table-cell",
+                  "i": "g8f",
+                  "grow": true,
+                  "p": {
+                   "Supporting Text": "false",
+                   "Badge": "false",
+                   "Dropdown": "false",
+                   "Style": "Text",
+                   "Lead": "No",
+                   "State": "Default",
+                   "Size": "sm"
+                  },
+                  "text": [
+                   "-"
+                  ]
+                 },
+                 {
+                  "t": "row",
+                  "i": "g8g",
+                  "children": [
+                   {
+                    "c": "icon-dots-horizontal",
+                    "i": "g8gi",
+                    "w": 16,
+                    "h": 16
+                   }
+                  ],
+                  "w": 48,
+                  "justify": "center",
+                  "align": "center",
+                  "py": "sm"
+                 }
+                ],
+                "fill": "x",
+                "align": "center",
+                "borderB": "border-secondary"
+               },
+               {
+                "t": "row",
+                "i": "g9",
+                "children": [
+                 {
+                  "c": "table-cell",
+                  "i": "g9a",
+                  "w": 420,
+                  "p": {
+                   "Supporting Text": "false",
+                   "Badge": "false",
+                   "Dropdown": "false",
+                   "Style": "Text",
+                   "Lead": "Yes",
+                   "State": "Default",
+                   "Size": "sm"
+                  },
+                  "text": [
+                   "Automation Persistence API Group Testing"
+                  ]
+                 },
+                 {
+                  "c": "table-cell",
+                  "i": "g9b",
+                  "grow": true,
+                  "p": {
+                   "Supporting Text": "false",
+                   "Badge": "false",
+                   "Dropdown": "false",
+                   "Style": "Badge single",
+                   "Lead": "No",
+                   "State": "Default",
+                   "Size": "sm"
+                  },
+                  "text": [
+                   "v1"
+                  ]
+                 },
+                 {
+                  "c": "table-cell",
+                  "i": "g9c",
+                  "grow": true,
+                  "p": {
+                   "Supporting Text": "false",
+                   "Badge": "false",
+                   "Dropdown": "false",
+                   "Style": "Text",
+                   "Lead": "No",
+                   "State": "Default",
+                   "Size": "sm"
+                  },
+                  "text": [
+                   "/persistxvavs2"
+                  ]
+                 },
+                 {
+                  "c": "table-cell",
+                  "i": "g9d",
+                  "grow": true,
+                  "p": {
+                   "Supporting Text": "false",
+                   "Badge": "false",
+                   "Dropdown": "false",
+                   "Style": "Text",
+                   "Lead": "No",
+                   "State": "Default",
+                   "Size": "sm"
+                  },
+                  "text": [
+                   "-"
+                  ]
+                 },
+                 {
+                  "c": "table-cell",
+                  "i": "g9e",
+                  "grow": true,
+                  "p": {
+                   "Supporting Text": "false",
+                   "Badge": "false",
+                   "Dropdown": "false",
+                   "Style": "Text",
+                   "Lead": "No",
+                   "State": "Default",
+                   "Size": "sm"
+                  },
+                  "text": [
+                   "-"
+                  ]
+                 },
+                 {
+                  "c": "table-cell",
+                  "i": "g9f",
+                  "grow": true,
+                  "p": {
+                   "Supporting Text": "false",
+                   "Badge": "false",
+                   "Dropdown": "false",
+                   "Style": "Text",
+                   "Lead": "No",
+                   "State": "Default",
+                   "Size": "sm"
+                  },
+                  "text": [
+                   "-"
+                  ]
+                 },
+                 {
+                  "t": "row",
+                  "i": "g9g",
+                  "children": [
+                   {
+                    "c": "icon-dots-horizontal",
+                    "i": "g9gi",
+                    "w": 16,
+                    "h": 16
+                   }
+                  ],
+                  "w": 48,
+                  "justify": "center",
+                  "align": "center",
+                  "py": "sm"
+                 }
+                ],
+                "fill": "x",
+                "align": "center",
+                "borderB": "border-secondary"
+               },
+               {
+                "t": "row",
+                "i": "g10",
+                "children": [
+                 {
+                  "c": "table-cell",
+                  "i": "g10a",
+                  "w": 420,
+                  "p": {
+                   "Supporting Text": "false",
+                   "Badge": "false",
+                   "Dropdown": "false",
+                   "Style": "Text",
+                   "Lead": "Yes",
+                   "State": "Default",
+                   "Size": "sm"
+                  },
+                  "text": [
+                   "apiEndpointApiSetUpGroupTestinggLocal"
+                  ]
+                 },
+                 {
+                  "c": "table-cell",
+                  "i": "g10b",
+                  "grow": true,
+                  "p": {
+                   "Supporting Text": "false",
+                   "Badge": "false",
+                   "Dropdown": "false",
+                   "Style": "Badge single",
+                   "Lead": "No",
+                   "State": "Default",
+                   "Size": "sm"
+                  },
+                  "text": [
+                   "1"
+                  ]
+                 },
+                 {
+                  "c": "table-cell",
+                  "i": "g10c",
+                  "grow": true,
+                  "p": {
+                   "Supporting Text": "false",
+                   "Badge": "false",
+                   "Dropdown": "false",
+                   "Style": "Text",
+                   "Lead": "No",
+                   "State": "Default",
+                   "Size": "sm"
+                  },
+                  "text": [
+                   "/getdpthdtodme"
+                  ]
+                 },
+                 {
+                  "c": "table-cell",
+                  "i": "g10d",
+                  "grow": true,
+                  "p": {
+                   "Supporting Text": "false",
+                   "Badge": "false",
+                   "Dropdown": "false",
+                   "Style": "Text",
+                   "Lead": "No",
+                   "State": "Default",
+                   "Size": "sm"
+                  },
+                  "text": [
+                   "-"
+                  ]
+                 },
+                 {
+                  "c": "table-cell",
+                  "i": "g10e",
+                  "grow": true,
+                  "p": {
+                   "Supporting Text": "false",
+                   "Badge": "false",
+                   "Dropdown": "false",
+                   "Style": "Text",
+                   "Lead": "No",
+                   "State": "Default",
+                   "Size": "sm"
+                  },
+                  "text": [
+                   "-"
+                  ]
+                 },
+                 {
+                  "c": "table-cell",
+                  "i": "g10f",
+                  "grow": true,
+                  "p": {
+                   "Supporting Text": "false",
+                   "Badge": "false",
+                   "Dropdown": "false",
+                   "Style": "Text",
+                   "Lead": "No",
+                   "State": "Default",
+                   "Size": "sm"
+                  },
+                  "text": [
+                   "-"
+                  ]
+                 },
+                 {
+                  "t": "row",
+                  "i": "g10g",
+                  "children": [
+                   {
+                    "c": "icon-dots-horizontal",
+                    "i": "g10gi",
+                    "w": 16,
+                    "h": 16
+                   }
+                  ],
+                  "w": 48,
+                  "justify": "center",
+                  "align": "center",
+                  "py": "sm"
+                 }
+                ],
+                "fill": "x",
+                "align": "center",
+                "borderB": "border-secondary"
+               }
+              ],
+              "fill": "x",
+              "border": "border-secondary",
+              "radius": "md",
+              "clip": true
+             }
+            ],
+            "fill": "x",
+            "gap": "md",
+            "pt": "md",
+            "px": "xl"
+           }
+          ],
+          "w": 1384,
+          "gap": "md",
+          "pb": "4xl",
+          "bg": "bg-primary",
+          "align": "start",
+          "fill": "y",
+          "pt": "none"
+         }
+        ],
+        "fill": "x",
+        "grow": true,
+        "border": "border-secondary",
+        "radius": "4xl",
+        "justify": "center"
+       }
+      ],
+      "fill": "x",
+      "grow": true,
+      "gap": "md",
+      "px": "xl",
+      "pb": "xl"
+     }
+    ],
+    "grow": true,
+    "fill": "y",
+    "gap": "md",
+    "bg": "bg-workspace"
+   }
+  ],
+  "gap": "none",
+  "clip": true,
+  "bg": "bg-workspace"
+ },
+ "frozen": true
+}

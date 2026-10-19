@@ -141,3 +141,16 @@ Living list of the tricks that make the loop fast. Every time we find a loophole
 - Open dropdown/overlay inside a form: make it the LAST child of the scroll container (card-body) with abs x/y, or sibling sections paint over it. Input Menu Dropdown added to ds/components.json (key input-menu-dropdown).
 - Journey states missing: clone nearest screen with variant.mjs (texts + hide by layer name), then moveTo the journey Section + setProps x/y at the end of the row (x=457+1560*n, y=260+1400*row+368). scripts/variants/clients-missing-states.json.
 - reply.mjs --pill "Label=<nodeId>" (repeatable): clickable chips under the reply that locate the frame. Server restart needed after changing serve/messages.
+- Existing design: edit in place, no new frames. Recipe: inspect the live frame (`inspect.mjs <id> --raw`), then one swap.mjs spec on those node ids ({target, edit:[{id,text|visible|compProps|moveInto}]}, setProps, compProps, replaceLib, insert). Screens/*.json with "frozen": true are never rebuilt by the watcher (serve.mjs rebuild()).
+- Chat bubbles: hover copy icon in the bubble header (data-cp, MSG_TEXT map), inside the bubble so never clipped; hidden until hover.
+- Collapsed done overlay: logo spins once beside the tick. Revert: DONE_LOGO = false in scripts/plugin/ui.html, rebuild.
+- slotTransplant {from,to}: refresh an existing Word frame with a new panel (build temp with wordBoard, move its slot content into the existing frame, shell to trash). Keeps the designer's frame, name and position.
+- scripts/seq.sh <screen…>: build screens one at a time and print result, roots, warnings (imported-from-donor notes filtered).
+- scripts/shot.sh <screen> [w]: build + snapshot through the plugin to /tmp/shot-<screen>.png (one step, no id juggling).
+- Generators must only write screens whose content changed (every write wakes the watcher and queues a build; latest-wins then drops seq.sh's wait).
+- Closed select/dropdown fields use catalog `input-dropdown-outline` (Size/Type/State; Filled = State Default); `input-menu-dropdown` is the open list panel.
+- Plugin Preferences (Settings page switches: collapse on send, expand on complete, always open expanded) live in scripts/plugin/ui.html (`getPrefs`, localStorage "prefs"); add a new switch = one `.pref[data-pref]` row + a `getPrefs().x` check where it matters.
+- Plugin iframe: localStorage is blocked in some contexts; persist user prefs via main thread figma.clientStorage (msg type "prefs"), keep an in-memory copy in ui.html.
+- Plugin window resize is animated in code.js (msg.anim: 9 eased figma.ui.resize+reposition steps, ~16ms each); ui.html setCollapsed sets anim:true.
+- inbox.mjs --watch retries transient fetch failures (server restart, ECONNRESET) for ~2 min instead of dying.
+- Plugin "locate" (chip click) fallback searches only page children + section children by name; never page.findAll on the big file (freezes the plugin).

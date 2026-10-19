@@ -3014,7 +3014,16 @@
     "More Horizontal": "BOOLEAN",
     "Badge": "BOOLEAN",
     "More Vertical": "BOOLEAN",
-    "Toggle": "BOOLEAN"
+    "Toggle": "BOOLEAN",
+    "Type": [
+     "Featured Icon",
+     "Back Button",
+     "Tabs"
+    ],
+    "Style": [
+     "Default",
+     "Toggle"
+    ]
    },
    "texts": [
     "Title",
@@ -5024,6 +5033,89 @@
    ],
    "setKey": "6b0c7c2af450141e3aa2ef094dcb0fbe61594ae1",
    "default": "Type=Multi Select, Size=md, Search=Default"
+  },
+  {
+   "key": "page-header-platform",
+   "name": "Page Header",
+   "lib": true,
+   "variantKey": "90a95f3bd0db932bdabc01790c293f28498fc14d",
+   "variant": "Type=With Back Button, Divider=No, Style=Toggle",
+   "props": {
+    "Type": [
+     "With Back Button"
+    ],
+    "Divider": [
+     "No"
+    ],
+    "Style": [
+     "Toggle"
+    ],
+    "Actions": "BOOLEAN",
+    "Search": "BOOLEAN",
+    "Show App Icon": "BOOLEAN",
+    "Badges": "BOOLEAN",
+    "Toggles": "BOOLEAN",
+    "Description": "BOOLEAN"
+   },
+   "texts": [
+    "Workspace Name 1",
+    "Connected Environments",
+    "changeset-tenant.qa.unifyapps.com",
+    "Projects",
+    "AI FDE",
+    "changeset-tenant.qa.unifyapps.com"
+   ],
+   "size": [
+    1384,
+    68
+   ],
+   "setKey": "05c7817d19672a6aea95eae4ed829aaff48dd65a",
+   "default": "Type=With Back Button, Divider=No, Style=Toggle"
+  },
+  {
+   "key": "input-dropdown-outline",
+   "name": "Input dropdown_outline",
+   "lib": true,
+   "setKey": "fd1971baf0e0e8f96212ab3bc989acce09c21739",
+   "variantKey": "f1d6d03de058b6ea83ad80044e21cd43e637d36c",
+   "variant": "Size=lg, Type=Default, State=Placeholder",
+   "default": "Size=lg, Type=Default, State=Placeholder",
+   "props": {
+    "Label": "BOOLEAN",
+    "Hint text": "BOOLEAN",
+    "Supporting text": "BOOLEAN",
+    "Icon swap": "INSTANCE_SWAP",
+    "Close": "BOOLEAN",
+    "Size": [
+     "lg",
+     "md",
+     "sm",
+     "xs"
+    ],
+    "Type": [
+     "Default",
+     "Icon leading",
+     "Avatar leading",
+     "Dot leading",
+     "Tags"
+    ],
+    "State": [
+     "Placeholder",
+     "Default",
+     "Focused",
+     "Open",
+     "Disabled",
+     "Read Only"
+    ]
+   },
+   "texts": [
+    "Select team member",
+    "This is a hint text to help user."
+   ],
+   "size": [
+    320,
+    84
+   ]
   }
  ]
 }

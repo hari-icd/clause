@@ -78,6 +78,9 @@ function mergeIdMap(list) { if (!Array.isArray(list) || !list.length) return; co
 
 function rebuild(name) {
   try {
+    // handed-over screens ("frozen": true in the JSON): the designer's frame is the source of truth, so a save never builds a second copy.
+    // Changes to it are applied in place (swap.mjs ops on the live frame). A deliberate side-by-side build: set "frozen": false first.
+    try { const j = JSON.parse(readFileSync(resolve(root, "screens", name + ".json"), "utf8")); if (j && j.frozen) { console.log(`[${stamp()}] ${name} frozen — not rebuilt`); return; } } catch {}
     // an editor may fire the watcher mid-write (half-written JSON): re-lint once after a short wait before calling it a failure
     const lintOnce = () => { try { execFileSync("node", [resolve(root, "scripts/lint.mjs"), name], { encoding: "utf8", stdio: "pipe" }); return null; } catch (e) { return String(e.stderr || e.stdout || e.message).trim(); } };
     let lintErr = lintOnce();

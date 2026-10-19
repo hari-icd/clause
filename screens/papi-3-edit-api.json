@@ -1,0 +1,1125 @@
+{
+ "title": "API Group — edit API",
+ "ds": "ds",
+ "page": "8932:378335",
+ "height": 900,
+ "tree": {
+  "t": "row",
+  "i": "root",
+  "children": [
+   {
+    "c": "platform-navigation",
+    "i": "nav",
+    "text": [
+     "99+",
+     "T"
+    ]
+   },
+   {
+    "t": "stack",
+    "i": "main",
+    "children": [
+     {
+      "c": "page-header-platform",
+      "i": "head",
+      "fill": "x",
+      "p": {
+       "Actions": "false",
+       "Search": "false",
+       "Show App Icon": "false",
+       "Badges": "false",
+       "Toggles": "false",
+       "Description": "false"
+      },
+      "text": [
+       "Global",
+       "API Manager - API Groups",
+       "PLAYGROUNDTestinggWX2c1kYH8c",
+       "Edit API",
+       "AI FDE",
+       "ogiJgOSxFEvVFWVjSFIh"
+      ],
+      "ops": [
+       {
+        "nodes": [
+         {
+          "name": "Pill squared",
+          "nth": 0,
+          "hide": true
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "t": "stack",
+      "i": "content",
+      "children": [
+       {
+        "t": "stack",
+        "i": "body",
+        "children": [
+         {
+          "t": "stack",
+          "i": "card",
+          "children": [
+           {
+            "t": "row",
+            "i": "card-head",
+            "children": [
+             {
+              "c": "icon-edit",
+              "i": "ch-ic",
+              "w": 16,
+              "h": 16
+             },
+             {
+              "t": "text",
+              "i": "ch-t",
+              "content": "Edit API",
+              "style": "Display xs/Regular",
+              "color": "text-primary"
+             },
+             {
+              "t": "spacer"
+             },
+             {
+              "c": "button-neutral",
+              "i": "b-cancel",
+              "p": {
+               "Size": "sm",
+               "Hierarchy": "Secondary",
+               "Icon leading": "false",
+               "Icon trailing": "false"
+              },
+              "text": [
+               "Cancel"
+              ]
+             },
+             {
+              "c": "button-brand",
+              "i": "b-save",
+              "p": {
+               "Size": "sm",
+               "Hierarchy": "Primary",
+               "Icon leading": "false",
+               "Icon trailing": "false"
+              },
+              "text": [
+               "Update API"
+              ]
+             }
+            ],
+            "fill": "x",
+            "gap": "lg",
+            "px": "lg",
+            "pt": "sm",
+            "pb": "md",
+            "bg": "bg-secondary",
+            "align": "center"
+           },
+           {
+            "t": "stack",
+            "i": "card-body",
+            "children": [
+             {
+              "t": "stack",
+              "i": "g-details",
+              "children": [
+               {
+                "c": "form-header",
+                "i": "g-details-h",
+                "fill": "x",
+                "ops": [
+                 {
+                  "nodes": [
+                   {
+                    "name": "Featured icon",
+                    "nth": 0,
+                    "hide": true
+                   },
+                   {
+                    "name": "_Header icon",
+                    "nth": 0,
+                    "hide": true
+                   }
+                  ]
+                 }
+                ],
+                "p": {
+                 "Level": "Level 2",
+                 "Actions": "false",
+                 "Supporting text": "false",
+                 "Divider": "false",
+                 "Search": "false",
+                 "Badge": "false",
+                 "Help Icon": "false",
+                 "More Horizontal": "false",
+                 "More Vertical": "false",
+                 "Toggle": "false"
+                },
+                "text": [
+                 "Details"
+                ]
+               },
+               {
+                "t": "stack",
+                "i": "g-details-g",
+                "children": [
+                 {
+                  "t": "row",
+                  "i": "n",
+                  "children": [
+                   {
+                    "c": "section-label",
+                    "i": "n-l",
+                    "grow": true,
+                    "ops": [
+                     {
+                      "nodes": [
+                       {
+                        "name": "clock",
+                        "nth": 0,
+                        "hide": true
+                       }
+                      ]
+                     }
+                    ],
+                    "p": {
+                     "Level": "Level 1",
+                     "Actions": "false",
+                     "Supporting text": "true"
+                    },
+                    "text": [
+                     "Name*",
+                     "Name of the API"
+                    ]
+                   },
+                   {
+                    "t": "stack",
+                    "i": "n-c",
+                    "children": [
+                     {
+                      "c": "input-field-outline",
+                      "i": "n-i",
+                      "p": {
+                       "Size": "md",
+                       "Type": "Default",
+                       "Label": "false",
+                       "Hint text": "false",
+                       "Help icon": "false",
+                       "Leading icon": "false",
+                       "Encryption": "false",
+                       "Destructive": "False",
+                       "State": "Filled"
+                      },
+                      "text": [
+                       "ogiJgOSxFEvVFWVjSFIh"
+                      ],
+                      "w": 320
+                     }
+                    ],
+                    "w": 320
+                   }
+                  ],
+                  "fill": "x",
+                  "gap": "xl",
+                  "align": "start"
+                 },
+                 {
+                  "t": "row",
+                  "i": "w",
+                  "children": [
+                   {
+                    "c": "section-label",
+                    "i": "w-l",
+                    "grow": true,
+                    "ops": [
+                     {
+                      "nodes": [
+                       {
+                        "name": "clock",
+                        "nth": 0,
+                        "hide": true
+                       }
+                      ]
+                     }
+                    ],
+                    "p": {
+                     "Level": "Level 1",
+                     "Actions": "false",
+                     "Supporting text": "true"
+                    },
+                    "text": [
+                     "Workspace",
+                     "Select the workspace for this API"
+                    ]
+                   },
+                   {
+                    "t": "stack",
+                    "i": "w-c",
+                    "children": [
+                     {
+                      "c": "input-dropdown-outline",
+                      "i": "w-i",
+                      "w": 320,
+                      "p": {
+                       "Size": "md",
+                       "Type": "Default",
+                       "State": "Placeholder",
+                       "Label": "false",
+                       "Hint text": "false"
+                      },
+                      "text": [
+                       "Select workspace"
+                      ]
+                     }
+                    ],
+                    "w": 320
+                   }
+                  ],
+                  "fill": "x",
+                  "gap": "xl",
+                  "align": "start"
+                 },
+                 {
+                  "t": "row",
+                  "i": "t",
+                  "children": [
+                   {
+                    "c": "section-label",
+                    "i": "t-l",
+                    "grow": true,
+                    "ops": [
+                     {
+                      "nodes": [
+                       {
+                        "name": "clock",
+                        "nth": 0,
+                        "hide": true
+                       }
+                      ]
+                     }
+                    ],
+                    "p": {
+                     "Level": "Level 1",
+                     "Actions": "false",
+                     "Supporting text": "true"
+                    },
+                    "text": [
+                     "Tags",
+                     "Add tags to organise APIs"
+                    ]
+                   },
+                   {
+                    "t": "stack",
+                    "i": "t-c",
+                    "children": [
+                     {
+                      "c": "input-dropdown-outline",
+                      "i": "t-i",
+                      "w": 320,
+                      "p": {
+                       "Size": "md",
+                       "Type": "Default",
+                       "State": "Placeholder",
+                       "Label": "false",
+                       "Hint text": "false"
+                      },
+                      "text": [
+                       "Select tags"
+                      ]
+                     }
+                    ],
+                    "w": 320
+                   }
+                  ],
+                  "fill": "x",
+                  "gap": "xl",
+                  "align": "start"
+                 },
+                 {
+                  "t": "row",
+                  "i": "d",
+                  "children": [
+                   {
+                    "c": "section-label",
+                    "i": "d-l",
+                    "grow": true,
+                    "ops": [
+                     {
+                      "nodes": [
+                       {
+                        "name": "clock",
+                        "nth": 0,
+                        "hide": true
+                       }
+                      ]
+                     }
+                    ],
+                    "p": {
+                     "Level": "Level 1",
+                     "Actions": "false",
+                     "Supporting text": "true"
+                    },
+                    "text": [
+                     "Description",
+                     "Description of the API"
+                    ]
+                   },
+                   {
+                    "t": "stack",
+                    "i": "d-c",
+                    "children": [
+                     {
+                      "c": "textarea-input-field",
+                      "i": "d-i",
+                      "p": {
+                       "Label": "false",
+                       "Hint text": "false"
+                      },
+                      "text": [
+                       "Enter a description"
+                      ],
+                      "w": 320
+                     }
+                    ],
+                    "w": 320
+                   }
+                  ],
+                  "fill": "x",
+                  "gap": "xl",
+                  "align": "start"
+                 }
+                ],
+                "fill": "x",
+                "gap": "xl",
+                "pad": "xl",
+                "bg": "bg-workspace",
+                "border": "border-tertiary",
+                "radius": "4xl"
+               }
+              ],
+              "w": 760,
+              "gap": "md"
+             },
+             {
+              "t": "stack",
+              "i": "g-res",
+              "children": [
+               {
+                "c": "form-header",
+                "i": "g-res-h",
+                "fill": "x",
+                "ops": [
+                 {
+                  "nodes": [
+                   {
+                    "name": "Featured icon",
+                    "nth": 0,
+                    "hide": true
+                   },
+                   {
+                    "name": "_Header icon",
+                    "nth": 0,
+                    "hide": true
+                   }
+                  ]
+                 }
+                ],
+                "p": {
+                 "Level": "Level 2",
+                 "Actions": "false",
+                 "Supporting text": "false",
+                 "Divider": "false",
+                 "Search": "false",
+                 "Badge": "false",
+                 "Help Icon": "false",
+                 "More Horizontal": "false",
+                 "More Vertical": "false",
+                 "Toggle": "false"
+                },
+                "text": [
+                 "Resources"
+                ]
+               },
+               {
+                "t": "stack",
+                "i": "g-res-g",
+                "children": [
+                 {
+                  "t": "row",
+                  "i": "rt",
+                  "children": [
+                   {
+                    "c": "section-label",
+                    "i": "rt-l",
+                    "grow": true,
+                    "ops": [
+                     {
+                      "nodes": [
+                       {
+                        "name": "clock",
+                        "nth": 0,
+                        "hide": true
+                       }
+                      ]
+                     }
+                    ],
+                    "p": {
+                     "Level": "Level 1",
+                     "Actions": "false",
+                     "Supporting text": "true"
+                    },
+                    "text": [
+                     "Resource Type*",
+                     "Select the type of resource"
+                    ]
+                   },
+                   {
+                    "t": "stack",
+                    "i": "rt-c",
+                    "children": [
+                     {
+                      "c": "input-dropdown-outline",
+                      "i": "rt-i",
+                      "w": 320,
+                      "p": {
+                       "Size": "md",
+                       "Type": "Default",
+                       "State": "Default",
+                       "Label": "false",
+                       "Hint text": "false"
+                      },
+                      "text": [
+                       "Callable"
+                      ]
+                     }
+                    ],
+                    "w": 320
+                   }
+                  ],
+                  "fill": "x",
+                  "gap": "xl",
+                  "align": "start"
+                 },
+                 {
+                  "t": "row",
+                  "i": "ap",
+                  "children": [
+                   {
+                    "c": "section-label",
+                    "i": "ap-l",
+                    "grow": true,
+                    "ops": [
+                     {
+                      "nodes": [
+                       {
+                        "name": "clock",
+                        "nth": 0,
+                        "hide": true
+                       }
+                      ]
+                     }
+                    ],
+                    "p": {
+                     "Level": "Level 1",
+                     "Actions": "false",
+                     "Supporting text": "true"
+                    },
+                    "text": [
+                     "API Path",
+                     "Define a path for this API. It can include path parameters"
+                    ]
+                   },
+                   {
+                    "t": "stack",
+                    "i": "ap-c",
+                    "children": [
+                     {
+                      "c": "input-field-outline",
+                      "i": "ap-i",
+                      "p": {
+                       "Size": "md",
+                       "Type": "Default",
+                       "Label": "false",
+                       "Hint text": "false",
+                       "Help icon": "false",
+                       "Leading icon": "false",
+                       "Encryption": "false",
+                       "Destructive": "False",
+                       "State": "Filled"
+                      },
+                      "text": [
+                       "WIiYSl"
+                      ],
+                      "w": 320
+                     }
+                    ],
+                    "w": 320
+                   }
+                  ],
+                  "fill": "x",
+                  "gap": "xl",
+                  "align": "start"
+                 },
+                 {
+                  "t": "row",
+                  "i": "rq",
+                  "children": [
+                   {
+                    "c": "section-label",
+                    "i": "rq-l",
+                    "grow": true,
+                    "ops": [
+                     {
+                      "nodes": [
+                       {
+                        "name": "clock",
+                        "nth": 0,
+                        "hide": true
+                       }
+                      ]
+                     }
+                    ],
+                    "p": {
+                     "Level": "Level 1",
+                     "Actions": "false",
+                     "Supporting text": "true"
+                    },
+                    "text": [
+                     "Request Type*",
+                     "Select the request type"
+                    ]
+                   },
+                   {
+                    "t": "stack",
+                    "i": "rq-c",
+                    "children": [
+                     {
+                      "c": "input-dropdown-outline",
+                      "i": "rq-i",
+                      "w": 320,
+                      "p": {
+                       "Size": "md",
+                       "Type": "Default",
+                       "State": "Default",
+                       "Label": "false",
+                       "Hint text": "false"
+                      },
+                      "text": [
+                       "REST"
+                      ]
+                     }
+                    ],
+                    "w": 320
+                   }
+                  ],
+                  "fill": "x",
+                  "gap": "xl",
+                  "align": "start"
+                 },
+                 {
+                  "t": "row",
+                  "i": "au",
+                  "children": [
+                   {
+                    "c": "section-label",
+                    "i": "au-l",
+                    "grow": true,
+                    "ops": [
+                     {
+                      "nodes": [
+                       {
+                        "name": "clock",
+                        "nth": 0,
+                        "hide": true
+                       }
+                      ]
+                     }
+                    ],
+                    "p": {
+                     "Level": "Level 1",
+                     "Actions": "false",
+                     "Supporting text": "true"
+                    },
+                    "text": [
+                     "Automation*",
+                     "Automation this API calls"
+                    ]
+                   },
+                   {
+                    "t": "stack",
+                    "i": "au-c",
+                    "children": [
+                     {
+                      "c": "input-dropdown-outline",
+                      "i": "au-i",
+                      "w": 320,
+                      "p": {
+                       "Size": "md",
+                       "Type": "Default",
+                       "State": "Default",
+                       "Label": "false",
+                       "Hint text": "false"
+                      },
+                      "text": [
+                       "PLAYGROUNDTestingghABu446RfB"
+                      ]
+                     }
+                    ],
+                    "w": 320
+                   }
+                  ],
+                  "fill": "x",
+                  "gap": "xl",
+                  "align": "start"
+                 },
+                 {
+                  "t": "row",
+                  "i": "ve",
+                  "children": [
+                   {
+                    "c": "section-label",
+                    "i": "ve-l",
+                    "grow": true,
+                    "ops": [
+                     {
+                      "nodes": [
+                       {
+                        "name": "clock",
+                        "nth": 0,
+                        "hide": true
+                       }
+                      ]
+                     }
+                    ],
+                    "p": {
+                     "Level": "Level 1",
+                     "Actions": "false",
+                     "Supporting text": "true"
+                    },
+                    "text": [
+                     "Version",
+                     "Select the version of the automation"
+                    ]
+                   },
+                   {
+                    "t": "stack",
+                    "i": "ve-c",
+                    "children": [
+                     {
+                      "c": "input-dropdown-outline",
+                      "i": "ve-i",
+                      "w": 320,
+                      "p": {
+                       "Size": "md",
+                       "Type": "Default",
+                       "State": "Placeholder",
+                       "Label": "false",
+                       "Hint text": "false"
+                      },
+                      "text": [
+                       "Select version"
+                      ]
+                     }
+                    ],
+                    "w": 320
+                   }
+                  ],
+                  "fill": "x",
+                  "gap": "xl",
+                  "align": "start"
+                 },
+                 {
+                  "t": "row",
+                  "i": "hm",
+                  "children": [
+                   {
+                    "c": "section-label",
+                    "i": "hm-l",
+                    "grow": true,
+                    "ops": [
+                     {
+                      "nodes": [
+                       {
+                        "name": "clock",
+                        "nth": 0,
+                        "hide": true
+                       }
+                      ]
+                     }
+                    ],
+                    "p": {
+                     "Level": "Level 1",
+                     "Actions": "false",
+                     "Supporting text": "true"
+                    },
+                    "text": [
+                     "Supported HTTP Methods*",
+                     "Select a HTTP method to use for this API"
+                    ]
+                   },
+                   {
+                    "t": "stack",
+                    "i": "hm-c",
+                    "children": [
+                     {
+                      "t": "row",
+                      "i": "hm-t",
+                      "children": [
+                       {
+                        "c": "tag",
+                        "i": "hm0",
+                        "p": {
+                         "Icon": "False",
+                         "Action": "Text only",
+                         "Size": "sm",
+                         "Type": "Outline",
+                         "State": "Default"
+                        },
+                        "text": [
+                         "DELETE"
+                        ]
+                       },
+                       {
+                        "c": "tag",
+                        "i": "hm1",
+                        "p": {
+                         "Icon": "False",
+                         "Action": "Text only",
+                         "Size": "sm",
+                         "Type": "Outline",
+                         "State": "Default"
+                        },
+                        "text": [
+                         "POST"
+                        ]
+                       },
+                       {
+                        "c": "tag",
+                        "i": "hm2",
+                        "p": {
+                         "Icon": "False",
+                         "Action": "Text only",
+                         "Size": "sm",
+                         "Type": "Outline",
+                         "State": "Default"
+                        },
+                        "text": [
+                         "GET"
+                        ]
+                       },
+                       {
+                        "c": "tag",
+                        "i": "hm3",
+                        "p": {
+                         "Icon": "False",
+                         "Action": "Text only",
+                         "Size": "sm",
+                         "Type": "Outline",
+                         "State": "Default"
+                        },
+                        "text": [
+                         "PUT"
+                        ]
+                       },
+                       {
+                        "c": "tag",
+                        "i": "hm4",
+                        "p": {
+                         "Icon": "False",
+                         "Action": "Text only",
+                         "Size": "sm",
+                         "Type": "Outline",
+                         "State": "Default"
+                        },
+                        "text": [
+                         "PATCH"
+                        ]
+                       }
+                      ],
+                      "gap": "md",
+                      "wrap": true,
+                      "rowGap": "md"
+                     }
+                    ],
+                    "w": 320
+                   }
+                  ],
+                  "fill": "x",
+                  "gap": "xl",
+                  "align": "start"
+                 }
+                ],
+                "fill": "x",
+                "gap": "xl",
+                "pad": "xl",
+                "bg": "bg-workspace",
+                "border": "border-tertiary",
+                "radius": "4xl"
+               }
+              ],
+              "w": 760,
+              "gap": "md"
+             },
+             {
+              "t": "stack",
+              "i": "g-pol",
+              "children": [
+               {
+                "c": "form-header",
+                "i": "g-pol-h",
+                "fill": "x",
+                "ops": [
+                 {
+                  "nodes": [
+                   {
+                    "name": "Featured icon",
+                    "nth": 0,
+                    "hide": true
+                   },
+                   {
+                    "name": "_Header icon",
+                    "nth": 0,
+                    "hide": true
+                   }
+                  ]
+                 }
+                ],
+                "p": {
+                 "Level": "Level 2",
+                 "Actions": "false",
+                 "Supporting text": "false",
+                 "Divider": "false",
+                 "Search": "false",
+                 "Badge": "false",
+                 "Help Icon": "false",
+                 "More Horizontal": "false",
+                 "More Vertical": "false",
+                 "Toggle": "false"
+                },
+                "text": [
+                 "Policies"
+                ]
+               },
+               {
+                "t": "stack",
+                "i": "g-pol-g",
+                "children": [
+                 {
+                  "t": "row",
+                  "i": "pol",
+                  "children": [
+                   {
+                    "c": "section-label",
+                    "i": "pol-l",
+                    "grow": true,
+                    "ops": [
+                     {
+                      "nodes": [
+                       {
+                        "name": "clock",
+                        "nth": 0,
+                        "hide": true
+                       }
+                      ]
+                     }
+                    ],
+                    "p": {
+                     "Level": "Level 1",
+                     "Actions": "false",
+                     "Supporting text": "true"
+                    },
+                    "text": [
+                     "Policies",
+                     "These policies govern access to the API"
+                    ]
+                   },
+                   {
+                    "t": "stack",
+                    "i": "pol-c",
+                    "children": [
+                     {
+                      "c": "button-neutral",
+                      "i": "add-pol",
+                      "p": {
+                       "Size": "md",
+                       "Hierarchy": "Secondary",
+                       "Icon leading": "true",
+                       "Icon leading swap": "@icon-plus",
+                       "Icon trailing": "false"
+                      },
+                      "text": [
+                       "Add Policy"
+                      ],
+                      "fill": "x"
+                     }
+                    ],
+                    "w": 320
+                   }
+                  ],
+                  "fill": "x",
+                  "gap": "xl",
+                  "align": "start"
+                 }
+                ],
+                "fill": "x",
+                "gap": "xl",
+                "pad": "xl",
+                "bg": "bg-workspace",
+                "border": "border-tertiary",
+                "radius": "4xl"
+               }
+              ],
+              "w": 760,
+              "gap": "md"
+             },
+             {
+              "t": "stack",
+              "i": "g-adv",
+              "children": [
+               {
+                "c": "form-header",
+                "i": "g-adv-h",
+                "fill": "x",
+                "ops": [
+                 {
+                  "nodes": [
+                   {
+                    "name": "Featured icon",
+                    "nth": 0,
+                    "hide": true
+                   },
+                   {
+                    "name": "_Header icon",
+                    "nth": 0,
+                    "hide": true
+                   }
+                  ]
+                 }
+                ],
+                "p": {
+                 "Level": "Level 2",
+                 "Actions": "false",
+                 "Supporting text": "false",
+                 "Divider": "false",
+                 "Search": "false",
+                 "Badge": "false",
+                 "Help Icon": "false",
+                 "More Horizontal": "false",
+                 "More Vertical": "false",
+                 "Toggle": "false"
+                },
+                "text": [
+                 "Advanced Settings"
+                ]
+               },
+               {
+                "t": "stack",
+                "i": "g-adv-g",
+                "children": [
+                 {
+                  "t": "row",
+                  "i": "er",
+                  "children": [
+                   {
+                    "c": "section-label",
+                    "i": "er-l",
+                    "grow": true,
+                    "ops": [
+                     {
+                      "nodes": [
+                       {
+                        "name": "clock",
+                        "nth": 0,
+                        "hide": true
+                       }
+                      ]
+                     }
+                    ],
+                    "p": {
+                     "Level": "Level 1",
+                     "Actions": "false",
+                     "Supporting text": "true"
+                    },
+                    "text": [
+                     "Enable Retry",
+                     "If enabled, the API will retry on failure"
+                    ]
+                   },
+                   {
+                    "t": "stack",
+                    "i": "er-c",
+                    "children": [
+                     {
+                      "c": "toggle",
+                      "i": "er-tog",
+                      "p": {
+                       "Pressed": "False",
+                       "Text": "False",
+                       "State": "Default",
+                       "Size": "sm",
+                       "Hint Text": "False"
+                      }
+                     }
+                    ],
+                    "w": 40
+                   }
+                  ],
+                  "fill": "x",
+                  "gap": "xl",
+                  "align": "start"
+                 }
+                ],
+                "fill": "x",
+                "gap": "xl",
+                "pad": "xl",
+                "bg": "bg-workspace",
+                "border": "border-tertiary",
+                "radius": "4xl"
+               }
+              ],
+              "w": 760,
+              "gap": "md"
+             }
+            ],
+            "fill": "x",
+            "gap": "4xl",
+            "pb": "4xl",
+            "pt": "2xl",
+            "align": "center"
+           }
+          ],
+          "fill": "x",
+          "grow": true,
+          "gap": "none",
+          "bg": "bg-primary",
+          "border": "border-secondary",
+          "radius": "4xl",
+          "clip": true
+         }
+        ],
+        "fill": "both",
+        "grow": true
+       }
+      ],
+      "fill": "x",
+      "grow": true,
+      "gap": "md",
+      "px": "xl",
+      "pb": "xl"
+     }
+    ],
+    "grow": true,
+    "fill": "y",
+    "gap": "md",
+    "bg": "bg-workspace"
+   }
+  ],
+  "gap": "none",
+  "clip": true,
+  "bg": "bg-workspace"
+ },
+ "frozen": true
+}
