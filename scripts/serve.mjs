@@ -78,6 +78,9 @@ function mergeIdMap(list) { if (!Array.isArray(list) || !list.length) return; co
 
 function rebuild(name) {
   try {
+    // handed-over screens ("frozen": true in the JSON): the designer's frame is the source of truth, so a save never builds a second copy.
+    // Changes to it are applied in place (swap.mjs ops on the live frame). A deliberate side-by-side build: set "frozen": false first.
+    try { const j = JSON.parse(readFileSync(resolve(root, "screens", name + ".json"), "utf8")); if (j && j.frozen) { console.log(`[${stamp()}] ${name} frozen — not rebuilt`); return; } } catch {}
     // an editor may fire the watcher mid-write (half-written JSON): re-lint once after a short wait before calling it a failure
     const lintOnce = () => { try { execFileSync("node", [resolve(root, "scripts/lint.mjs"), name], { encoding: "utf8", stdio: "pipe" }); return null; } catch (e) { return String(e.stderr || e.stdout || e.message).trim(); } };
     let lintErr = lintOnce();
@@ -237,8 +240,8 @@ http.createServer(async (req, res) => {
     else if (p === "/term/edit") out.ok = store.edit(b.id, b.text);
     else if (p === "/term/remove") out.ok = store.remove(b.id);
     else if (p === "/term/send") out.sent = b.id ? store.sendOne(b.id) : store.send();
-    else if (p === "/term/reply") { out.message = store.reply(b.text || ""); if (b.working) setAgent("thinking", b.working === true ? "Still working…" : String(b.working), true); else setAgent(null); }
-    else if (p === "/term/status") { if (b.state === "idle" || b.state === "done") setAgent(null); else setAgent(b.state || "thinking", b.text || "", true); }
+    else if (p === "/term/reply") { out.message = store.reply(b.text || "", b.targets, b.ask); if (b.working && agent && agent.state === "stopped") { /* still stopping */ } else if (b.working) setAgent("thinking", b.working === true ? "Still working…" : String(b.working), true); else setAgent(null); }
+    else if (p === "/term/status") { if (b.state === "idle" || b.state === "done") setAgent(null); else if (agent && agent.state === "stopped" && Date.now() - agent.at < 10 * 60e3) { /* stop requested: keep showing "Stopping…" until Claude's final reply clears it, whatever status updates arrive meanwhile */ } else setAgent(b.state || "thinking", b.text || "", true); }
     else if (p === "/term/stop") { if (agent) { store.addSystem({ title: "STOP", text: "The user pressed Stop in the plugin. Abandon the current task now, leave files in a consistent state, and reply with one line saying where you stopped." }); setAgent("stopped", "Stopping…", false); } }
     else if (p === "/term/discard") out.removed = store.discardQueued();
     else if (p === "/term/new") out.session = store.newSession();

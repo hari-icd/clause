@@ -37,6 +37,7 @@ export function esCompile(cat, screen, name, screenIdx) {
     for (const f of ["gap", "rowGap", "pad", "px", "py", "pt", "pb", "pl", "pr"]) { const v = n[f]; if (typeof v === "number" && !n.why) errors.push(where + "." + f + ': raw ' + v + ' needs a "why"'); else addVar(v, where, f); }
     if (typeof n.radius === "number" && !n.why) errors.push(where + '.radius: raw number needs a "why"'); else addVar(n.radius, where, "radius");
     for (const f of ["bg", "border", "borderB", "borderL", "borderT", "borderR", "color", "tint"]) if (!(f === "bg" && n[f] === "none")) addVar(n[f], where, f);
+    for (const op of n.ops || []) for (const sp of op.nodes || []) { if (sp.gap != null) addVar(sp.gap, where + ".ops", "gap"); if (sp.padx != null) addVar(sp.padx, where + ".ops", "padx"); } // token used by an ops layout tweak
     if (n.abs && !n.why) errors.push(where + ': "abs" needs a "why"');
     if (n.t === "text") {
       if (!n.content && !(n.runs && n.runs.length)) errors.push(where + ": text without content");

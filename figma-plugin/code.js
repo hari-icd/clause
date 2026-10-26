@@ -3,8 +3,8 @@ figma.showUI(__html__, { width: 320, height: 520, visible: figma.command === "pa
 figma.ui.postMessage({ type: "cmd", command: figma.command });
 // Re-running the plugin from the menu / the "run last plugin" shortcut while it is already open toggles collapse/expand (ignored during start-up)
 // ⌘⌥P ("Run last plugin") works from the canvas, so each run flips the saved collapsed/expanded state (first run: expanded) and shows the window.
-let __collapsed = false;
-(async () => { if (figma.command === "start") return; /* silent start keeps the window hidden and the saved state as it is */ let next = false; try { const prev = await figma.clientStorage.getAsync("clause-ui"); next = typeof prev === "boolean" ? !prev : false; await figma.clientStorage.setAsync("clause-ui", next); } catch (e) {}
+let __collapsed = false; let __rzGen = 0;
+(async () => { if (figma.command === "start") return; /* silent start keeps the window hidden and the saved state as it is */ let next = false; let __prefs = {}; try { __prefs = (await figma.clientStorage.getAsync("clause-prefs")) || {}; } catch (e) {} try { const prev = await figma.clientStorage.getAsync("clause-ui"); next = typeof prev === "boolean" ? !prev : false; if (__prefs.openExpanded) next = false; await figma.clientStorage.setAsync("clause-ui", next); } catch (e) {} figma.ui.postMessage({ type: "prefs", value: __prefs });
   __collapsed = next; try { figma.ui.show(); } catch (e) {} figma.ui.postMessage({ type: "startState", collapsed: next }); })();
 figma.ui.postMessage({ type: "file", name: figma.root.name, key: (function () { try { return figma.fileKey || null; } catch (e) { return null; } })() });
 
@@ -53,7 +53,7 @@ async function annMessage(msg) {
   if (msg.type === "locate") { let n = await figma.getNodeByIdAsync(msg.id);
     if (!n && msg.name) { // the frame was rebuilt/replaced and its old id is gone: find the best same-named node on this page (most path elements in common wins, newest on ties)
       const want = String(msg.path || "").split("\u203a").filter(Boolean); let best = null, bs = -1;
-      for (const c of figma.currentPage.findAll(x => x.name === msg.name)) { let sc = 0; for (let a = c.parent; a && a.type !== "PAGE"; a = a.parent) if (want.includes(a.name)) sc++; if (sc >= bs) { bs = sc; best = c; } }
+      const pool = []; for (const t of figma.currentPage.children) { pool.push(t); if (t.type === "SECTION") for (const u of t.children) pool.push(u); } /* two levels only: findAll over the whole page froze the plugin on a 100k-node file */ for (const c of pool.filter(x => x.name === msg.name)) { let sc = 0; for (let a = c.parent; a && a.type !== "PAGE"; a = a.parent) if (want.includes(a.name)) sc++; if (sc >= bs) { bs = sc; best = c; } }
       n = best; }
     if (n) { figma.currentPage.selection = [n]; figma.viewport.scrollAndZoomIntoView([n]); } return true; }
   if (msg.type === "prompt") { PAGE_ID = pageIdNow(); figma.ui.postMessage({ type: "prompt", text: clPrompt(msg.items, figma.root.name, figma.currentPage.name), n: msg.items.length }); return true; }
@@ -147,6 +147,31 @@ async function dsExtract(opts, emit, progress) {
 const AF = Object.getPrototypeOf(async function () {}).constructor;
 let CACHE = {}, CACHE_HASH = null, exTimer = null; let UI_SIZE = { w: 320, h: 520 }; const PAGE_OF = {}, RT_FN = { hash: null, fn: null }; // screen name → page id (skips the all-pages walk on rebuilds)
 
+// ---- plugin window placement: resize (optionally eased) keeping the bottom-right corner put, always inside the visible canvas
+const WIN_MARGIN = 12, WIN_MARGIN_BOTTOM = 12; // bottom edge sits level with the bottom of Figma's floating toolbar (tune if off)
+async function windowPos() { try { const p = await figma.ui.getPosition(); return p && p.windowSpace && p.canvasSpace ? { wx: p.windowSpace.x, wy: p.windowSpace.y, cx: p.canvasSpace.x, cy: p.canvasSpace.y } : null; } catch (e) { return null; } }
+function visibleRect(pos) { const z = figma.viewport.zoom || 1, b = figma.viewport.bounds; return { z: z, l: pos.wx + z * (b.x - pos.cx), r: pos.wx + z * (b.x + b.width - pos.cx), t: pos.wy + z * (b.y - pos.cy), b: pos.wy + z * (b.y + b.height - pos.cy) }; }
+function clampTo(v, lo, hi) { return hi < lo ? lo : Math.max(lo, Math.min(v, hi)); }
+function moveWindowTo(pos, z, wx, wy) { try { figma.ui.reposition(pos.cx + (wx - pos.wx) / z, pos.cy + (wy - pos.wy) / z); } catch (e) {} }
+async function placeWindow(w, h, anchorBR, anim) {
+  const gen = ++__rzGen, cw = UI_SIZE.w, ch = UI_SIZE.h;
+  const pos = anchorBR ? await windowPos() : null;
+  if (!pos) { figma.ui.resize(w, h); UI_SIZE = { w: w, h: h }; return; }
+  const v = visibleRect(pos);
+  const toX = clampTo(pos.wx + cw - w, v.l + WIN_MARGIN, v.r - WIN_MARGIN - w), toY = clampTo(pos.wy + ch - h, v.t + WIN_MARGIN, v.b - WIN_MARGIN_BOTTOM - h);
+  const steps = anim && (cw !== w || ch !== h) ? 9 : 1;
+  for (let k = 1; k <= steps; k++) {
+    if (gen !== __rzGen) return; // a newer resize took over; UI_SIZE already holds the last size applied
+    const t = 1 - Math.pow(1 - k / steps, 3), sw = Math.round(cw + (w - cw) * t), sh = Math.round(ch + (h - ch) * t);
+    figma.ui.resize(sw, sh); UI_SIZE = { w: sw, h: sh };
+    moveWindowTo(pos, v.z, pos.wx + (toX - pos.wx) * t, pos.wy + (toY - pos.wy) * t);
+    if (steps > 1) await new Promise(function (r) { setTimeout(r, 16); });
+  }
+  await new Promise(function (r) { setTimeout(r, 60); });
+  if (gen !== __rzGen) return;
+  const after = await windowPos();
+  if (after && (Math.abs(after.wx - toX) > 2 || Math.abs(after.wy - toY) > 2)) moveWindowTo(after, v.z, toX, toY); // correct drift once
+}
 figma.ui.onmessage = async (msg) => {
   if (await annMessage(msg)) return;
   if (msg.type === "notify") { if (!msg.error) figma.notify(msg.text, { timeout: 1500 }); return; } // errors are shown in the pane, not as red toasts
@@ -156,39 +181,13 @@ figma.ui.onmessage = async (msg) => {
     catch (e) { figma.ui.postMessage({ type: "ds-done", error: String((e && e.message) || e) }); }
     return;
   }
+  if (msg.type === "prefs") { try { figma.clientStorage.setAsync("clause-prefs", msg.value); } catch (e) {} return; }
   if (msg.type === "collapsedState") { __collapsed = !!msg.on; try { figma.clientStorage.setAsync("clause-ui", __collapsed); } catch (e) {} return; }
   if (msg.type === "goto") {
     try { const pg = await figma.getNodeByIdAsync(msg.pageId); if (pg) await figma.setCurrentPageAsync(pg); const n = msg.nodeId ? await figma.getNodeByIdAsync(msg.nodeId) : null; if (n) { figma.currentPage.selection = [n]; figma.viewport.scrollAndZoomIntoView([n]); } } catch (e) {}
     return;
   }
-  if (msg.type === "resize") {
-    // reposition() takes CANVAS coordinates while the window size is in screen px (measured: windowSpace = origin + zoom × canvas).
-    // So: read the window position, resize (anchors top-left), then move by the size delta converted px → canvas units (÷ zoom); verify and correct once.
-    const w = Math.round(msg.w), h = Math.round(msg.h), cw = UI_SIZE.w, ch = UI_SIZE.h;
-    const getPos = async () => { try { const p = await figma.ui.getPosition(); return p && p.windowSpace && p.canvasSpace ? { wx: p.windowSpace.x, wy: p.windowSpace.y, cx: p.canvasSpace.x, cy: p.canvasSpace.y } : null; } catch (e) { return null; } };
-    const before = msg.anchor === "br" ? await getPos() : null;
-    figma.ui.resize(w, h); UI_SIZE = { w, h };
-    if (before) {
-      const z = figma.viewport.zoom || 1, dbg = { z, before, cw, ch, w, h };
-      // anchor the bottom-right corner, then clamp the window inside the visible canvas (never over the side panels)
-      const vb = figma.viewport.bounds, M = 12;
-      const toWx = c => before.wx + z * (c - before.cx), toWy = c => before.wy + z * (c - before.cy);
-      const vl = toWx(vb.x), vr = toWx(vb.x + vb.width), vt = toWy(vb.y), vbm = toWy(vb.y + vb.height);
-      let wantWx = before.wx + (cw - w), wantWy = before.wy + (ch - h);
-      wantWx = Math.max(vl + M, Math.min(wantWx, vr - M - w)); wantWy = Math.max(vt + M, Math.min(wantWy, vbm - M - h));
-      dbg.view = { vl, vr, vt, vbm };
-      const tx = before.cx + (wantWx - before.wx) / z, ty = before.cy + (wantWy - before.wy) / z;
-      try { figma.ui.reposition(tx, ty); } catch (e) { dbg.err = String(e && e.message || e); }
-      await new Promise(r => setTimeout(r, 60));
-      let after = await getPos(); dbg.target = { tx, ty }; dbg.after = after;
-      if (after && (Math.abs(after.wx - wantWx) > 2 || Math.abs(after.wy - wantWy) > 2)) {
-        const fx = tx + (wantWx - after.wx) / z, fy = ty + (wantWy - after.wy) / z;
-        try { figma.ui.reposition(fx, fy); } catch (e) {} await new Promise(r => setTimeout(r, 60)); dbg.fix = { fx, fy }; dbg.final = await getPos();
-      }
-      figma.ui.postMessage({ type: "pos-debug", dbg });
-    }
-    return;
-  }
+  if (msg.type === "resize") { await placeWindow(Math.round(msg.w), Math.round(msg.h), msg.anchor === "br", !!msg.anim); return; }
   if (msg.type !== "build") return;
   if (msg.rtHash !== CACHE_HASH) { CACHE = {}; CACHE_HASH = msg.rtHash; }
   clearTimeout(exTimer);

@@ -143,12 +143,13 @@ function inInst(inst, id) { return idx(inst).all.find(n => n.id === id || n.id.e
 async function applyOps(inst, ops) {
   for (const op of ops || []) {
     for (const sp of op.nodes || []) {
-      let hit;
-      if (sp.has) { const tx = idx(inst).texts.filter(n => n.characters.includes(sp.has))[sp.nth || 0]; if (tx) { hit = tx; let up = tx.parent; while (up && up !== inst) { if (up.type === "INSTANCE" && (!sp.name || up.name === sp.name)) { hit = up; break; } up = up.parent; } } }
-      else hit = (idx(inst).byName.get(sp.name) || [])[sp.nth || 0];
+      let hit, htx = null;
+      if (sp.has) { const tx = idx(inst).texts.filter(n => n.characters.includes(sp.has) && n.absoluteRenderBounds !== null)[sp.nth || 0]; if (tx) { htx = tx; hit = tx; let up = tx.parent; while (up && up !== inst) { if (up.type === "INSTANCE" && (!sp.name || up.name === sp.name)) { hit = up; break; } up = up.parent; } } }
+      else hit = (idx(inst).byName.get(sp.name) || []).filter(n => !sp.vis || n.absoluteRenderBounds !== null)[sp.nth || 0];
       if (!hit) { warnings.push("nodes: no #" + (sp.nth || 0) + " " + (sp.name || ("has:" + sp.has))); continue; }
       if (sp.hide) hit.visible = false; if (sp.show) hit.visible = true;
       if (sp.swap) { const comp = await component(sp.swap.slice(1)); try { hit.swapComponent(comp); dropIdx(inst); } catch (e) { warnings.push("nodes swap " + sp.name + ": " + e.message); } }
+      if (sp.text != null) { try { const tn = htx || (hit.type === "TEXT" ? hit : hit.findOne(n => n.type === "TEXT")); if (!tn) warnings.push("nodes text: no text layer in " + (sp.name || sp.has)); else { for (const g of tn.getStyledTextSegments(["fontName"])) await figma.loadFontAsync(g.fontName); tn.characters = String(sp.text); } } catch (e) { warnings.push("nodes text " + (sp.name || sp.has) + ": " + e.message); } }
       if (sp.props) { const tgt = hit.type === "INSTANCE" ? hit : hit.findOne(n => n.type === "INSTANCE"); try { const defs = tgt.componentProperties, out = {}; const norm = x => String(x).replace(/[^a-z0-9 ]/gi, "").trim().toLowerCase(); for (const [k, v] of Object.entries(sp.props)) { const full = Object.keys(defs).find(d => norm(d.split("#")[0]) === norm(k)) || k; const def = defs[full]; out[full] = def && def.type === "BOOLEAN" ? (v === true || v === "true") : def && def.type === "INSTANCE_SWAP" && typeof v === "string" && v.startsWith("@") ? (await component(v.slice(1))).id : v; } tgt.setProperties(out); dropIdx(inst); } catch (e) { warnings.push("nodes props " + (sp.name || "has:" + sp.has) + ": " + e.message); } }
       if (sp.maxLines) { const t = hit.type === "TEXT" ? hit : hit.findOne(n => n.type === "TEXT"); if (t) { t.textAutoResize = "HEIGHT"; try { if (t.parent.layoutMode) t.parent.layoutSizingHorizontal = "FILL"; t.layoutSizingHorizontal = "FILL"; } catch (e) { warnings.push("maxLines fill: " + e.message); } t.textTruncation = "ENDING"; t.maxLines = sp.maxLines; } }
       if (sp.style || sp.color) { const t = hit.type === "TEXT" ? hit : hit.findOne(n => n.type === "TEXT"); if (!t) warnings.push("nodes: no text in " + sp.name); else {
@@ -156,6 +157,9 @@ async function applyOps(inst, ops) {
         if (sp.color) await bindFill(t, sp.color, "fill"); } }
       if (sp.align) { const t = hit.type === "TEXT" ? hit : hit.findOne(n => n.type === "TEXT"); if (t) { await loadNodeFonts(t); t.textAlignHorizontal = String(sp.align).toUpperCase(); try { if (t.parent && t.parent.layoutMode) { t.parent.layoutSizingHorizontal = "FILL"; t.parent.primaryAxisAlignItems = sp.align === "right" ? "MAX" : sp.align === "center" ? "CENTER" : "MIN"; } t.layoutSizingHorizontal = "FILL"; } catch (e) {} } }
       if (sp.tint) await tintNode(hit, sp.tint);
+      if (sp.padx != null && "paddingLeft" in hit) { await bindNum(hit, "paddingLeft", sp.padx); await bindNum(hit, "paddingRight", sp.padx); } // horizontal padding override on a layer inside an instance
+      if (sp.gap != null && "itemSpacing" in hit) await bindNum(hit, "itemSpacing", sp.gap); // layout tweaks on a layer inside an instance
+      if (sp.cross && "counterAxisAlignItems" in hit) hit.counterAxisAlignItems = ({ start: "MIN", center: "CENTER", end: "MAX" })[sp.cross] || "MIN";
       if (sp.icon) { const ic = hit.findOne(n => n.type === "INSTANCE"); const comp = await component(sp.icon.slice(1)); if (ic) { ic.swapComponent(comp); dropIdx(inst); } else warnings.push("nodes: no icon inside " + sp.name); }
     }
     for (const nm of op.hideNames || []) for (const t of (idx(inst).byName.get(nm) || [])) t.visible = false;
@@ -204,7 +208,7 @@ async function applyBox(f, n) {
   await bindNum(f, "paddingTop", pad.pt); await bindNum(f, "paddingBottom", pad.pb); await bindNum(f, "paddingLeft", pad.pl); await bindNum(f, "paddingRight", pad.pr);
   if (n.radius != null) for (const c of ["topLeftRadius", "topRightRadius", "bottomLeftRadius", "bottomRightRadius"]) await bindNum(f, c, n.radius);
   if (n.bg && n.bg !== "none") await bindFill(f, n.bg, "fill");
-  if (n.border) await bindFill(f, n.border, "stroke");
+  if (n.border && n.border !== "none") await bindFill(f, n.border, "stroke");
   if (n.borderB) { await bindFill(f, n.borderB, "stroke"); f.strokeTopWeight = 0; f.strokeLeftWeight = 0; f.strokeRightWeight = 0; f.strokeBottomWeight = 1; }
   if (n.borderT) { await bindFill(f, n.borderT, "stroke"); f.strokeLeftWeight = 0; f.strokeBottomWeight = 0; f.strokeRightWeight = 0; f.strokeTopWeight = 1; }
   if (n.borderR) { await bindFill(f, n.borderR, "stroke"); f.strokeLeftWeight = 0; f.strokeBottomWeight = 0; f.strokeTopWeight = 0; f.strokeRightWeight = 1; }
@@ -246,6 +250,7 @@ async function buildText(n, parent) {
     node.characters = runs ? runs.map(x => x.x).join("") : String(n.content);
     try { await node.setTextStyleIdAsync((await S(st)).id); } catch (e) { warnings.push("style " + st + ": " + e.message); }
     if (n.size) { node.fontSize = n.size; if (n.lh) node.lineHeight = { unit: "PIXELS", value: n.lh }; }
+    if (n.tracking != null) node.letterSpacing = { unit: "PERCENT", value: n.tracking };
     if (runs) {
       const fam = (font && font[0]) || "Geist"; let pos = 0;
       for (const run of runs) {
@@ -456,6 +461,16 @@ async function swapJobInner(spec) {
         const f = figma.createFrame(); f.fills = []; f.clipsContent = false; f.resize(w, h); sec.insertChild(idx, f); f.x = x; f.y = y; f.name = (R.prefix || "") + base;
         f.appendChild(n); n.x = 0; n.y = 0; n.name = R.instanceName || "MS Word Frame"; stamp(f); out.remap.push({ from: n.id, to: f.id }); out.wrapped.push(f.name); } catch (e) { warnings.push("wrap " + n.id + ": " + String((e && e.message) || e).slice(0, 100)); } }
     return out; }
+  if (spec.slotTransplant) { // slotTransplant: [{from:<Word frame instance just built>, to:<existing Word frame instance>}] → the existing frame keeps its place, name and chrome; only the add-in panel inside its slot is replaced by the new one. The shell `from` goes to the trash frame (journaled, revertable).
+    out.transplanted = [];
+    for (const T of spec.slotTransplant) { try {
+      const a = await figma.getNodeByIdAsync(T.from), b = await figma.getNodeByIdAsync(T.to); if (!a || !b) { warnings.push("slotTransplant: missing " + (!a ? T.from : T.to)); continue; }
+      const sa = a.findOne(n => n.type === "SLOT"), sb = b.findOne(n => n.type === "SLOT"); if (!sa || !sb) { warnings.push("slotTransplant: no slot in " + (!sa ? T.from : T.to)); continue; }
+      for (const c of [...sb.children]) { try { discard(c); } catch (e) { try { c.visible = false; } catch (e2) {} } }
+      for (const c of [...sa.children]) sb.appendChild(c);
+      discard(a); out.transplanted.push(T.to);
+    } catch (e) { warnings.push("slotTransplant: " + e.message); } }
+    return out; }
   if (spec.wordBoard) { // wordBoard: {section:{id}|{create:{name,fromId}}, word:<MS Word Frame instance>, ids:[top-level node ids of the source journeys section]} → same positions in a new Section; covers/labels cloned, panel screens become MS Word Frame instances whose slot holds the panel at 380 px (fit pass), other screens a TO-CREATE note
     const W = spec.wordBoard; let sec = W.section.id ? await figma.getNodeByIdAsync(W.section.id) : null;
     if (!sec) { const src = await figma.getNodeByIdAsync(W.section.create.fromId); sec = figma.createSection(); sec.name = W.section.create.name; sec.x = src.x + src.width + 800; sec.y = src.y; sec.resizeWithoutConstraints(400, 400); (src.parent || figma.currentPage).appendChild(sec); out.section = sec.id; }
@@ -518,6 +533,12 @@ async function swapJobInner(spec) {
           const t2 = figma.createText(); note.appendChild(t2); t2.fontName = { family: "Geist", style: "Regular" }; t2.characters = "Design this step as the add-in task pane (380 px wide): same components and rules as the web screen, no horizontal overflow."; t2.fontSize = 13; t2.layoutSizingHorizontal = "FILL"; t2.textAutoResize = "HEIGHT"; }
         stamp(wf); out.placed.push(wf.id);
       } catch (e) { warnings.push("word " + id + ": " + String((e && e.message) || e).slice(0, 120)); } }
+    return out; }
+  if (spec.fileInfo) { // fileInfo: libraries available to this file, page names, local component/variable counts (read-only)
+    out.file = figma.root.name; try { const cols = await figma.teamLibrary.getAvailableLibraryVariableCollectionsAsync(); out.libs = [...new Set(cols.map(c => c.libraryName))]; out.collections = cols.length; } catch (e) { out.libs = ["error: " + String((e && e.message) || e).slice(0, 80)]; }
+    try { out.localCollections = (await figma.variables.getLocalVariableCollectionsAsync()).map(c => c.name); } catch (e) {}
+    out.pages = figma.root.children.map(p => p.name); out.fileKey = figma.fileKey || null;
+    if (spec.fileInfo === "counts") try { await figma.loadAllPagesAsync(); out.localComponentSets = figma.root.findAllWithCriteria({ types: ["COMPONENT_SET"] }).length; out.localComponents = figma.root.findAllWithCriteria({ types: ["COMPONENT"] }).length; } catch (e) {}
     return out; }
   if (spec.textProps) { const n = await figma.getNodeByIdAsync(spec.textProps); out.texts = n.findAll(x => x.type === "TEXT").map(t => ({ id: t.id, n: t.name, w: Math.round(t.width), auto: t.textAutoResize, sh: t.layoutSizingHorizontal, al: t.textAlignHorizontal, parent: t.parent && t.parent.name, pw: t.parent && Math.round(t.parent.width), plm: t.parent && t.parent.layoutMode, psh: t.parent && t.parent.layoutSizingHorizontal, pmax: t.parent && t.parent.maxWidth })); out.self = { w: Math.round(n.width), sh: n.layoutSizingHorizontal, max: n.maxWidth, min: n.minWidth, lm: n.layoutMode }; return out; }
   if (spec.setByName) { // setByName: {roots, inst, child, props:{k:v}} → set (journaled) node properties on children named `child` inside every node named `inst`
@@ -660,7 +681,7 @@ async function swapJobInner(spec) {
           n.appendChild(f); if (F.center) { f.primaryAxisAlignItems = "CENTER"; f.counterAxisAlignItems = "CENTER"; }
           if (F.w) { f.layoutSizingHorizontal = "FIXED"; f.resize(F.w, F.h || 10); } else f.layoutSizingHorizontal = "FILL"; if (F.h) { f.layoutSizingVertical = "FIXED"; f.resize(F.w || f.width, F.h); } else f.layoutSizingVertical = "HUG";
           out.swapped.push({ id: f.id, name: F.name }); } continue; }
-      if (w.remove) { if (editedSince(n) && !w.force) { warnings.push("not removed, edited since build: " + n.name + " " + n.id); continue; } discard(n); out.swapped.push({ id: w.target, removed: true }); continue; } // remove the target node
+      if (w.remove) { if ((editedSince(n) || !n.getPluginData("clause-sig")) && !w.force) /* no fingerprint = cannot prove the designer left it alone: never remove */ { warnings.push("not removed (edited or not provably mine): " + n.name + " " + n.id); continue; } discard(n); out.swapped.push({ id: w.target, removed: true }); continue; } // remove the target node
       if (w.moveTo) { const par = await figma.getNodeByIdAsync(w.moveTo.parent); if (par) { par.insertChild(w.moveTo.index === -1 ? par.children.length : w.moveTo.index, n); out.swapped.push({ id: n.id, moved: true }); } continue; } // reorder: move target to an index in a parent (-1 = end)
       if (w.compProps) { const norm = x => String(x).replace(/[^a-z0-9 ]/gi, "").trim().toLowerCase(); const defs = n.componentProperties, o = {}; for (const [k, v] of Object.entries(w.compProps)) { const full = Object.keys(defs).find(d => norm(d.split("#")[0]) === norm(k)) || k; o[full] = defs[full] && defs[full].type === "BOOLEAN" ? (v === true || v === "true") : v; } try { n.setProperties(o); out.swapped.push({ id: n.id, props: Object.keys(o).length }); } catch (e) { warnings.push("compProps " + n.id + ": " + e.message); } continue; } // set component properties of an existing instance
       if (w.copyFill) { const d = await figma.getNodeByIdAsync(w.copyFill); n.fills = d.fills; if (w.strokes) { n.strokes = d.strokes; for (const k of ["strokeWeight","strokeAlign","strokeTopWeight","strokeBottomWeight","strokeLeftWeight","strokeRightWeight"]) try { if (d[k] !== figma.mixed) n[k] = d[k]; } catch (e) {} } out.swapped.push({ id: n.id, fill: "copied" }); continue; } // copy fills (+strokes) incl. bound variables from a redesigned layer
@@ -857,6 +878,9 @@ async function build0(n, parent) {
     await tm("ops", applyOps(node, n.ops));
     await tm("texts", setTexts(node, n.text));
     if (n.tint) await tintNode(node, n.tint);
+    if (n.bg && n.bg !== "none" && "fills" in node) await bindFill(node, n.bg, "fill"); // fill override on the instance itself (spec: setting list item header)
+    if (n.border === "none" && "strokes" in node) node.strokes = []; // drop the instance's own border when the outer container has one
+    if (n.radius != null && "topLeftRadius" in node) for (const c of ["topLeftRadius", "topRightRadius", "bottomLeftRadius", "bottomRightRadius"]) await bindNum(node, c, n.radius);
   } else if (n.t === "text") {
     const T_T = Date.now(); try { node = await buildText(n, parent); } finally { TM.text = (TM.text || 0) + (Date.now() - T_T); }
   } else if (n.t === "spacer") {

@@ -13,3 +13,29 @@ Read an entry: `sed -n '<line>p' docs/POWER-USE.md`. Add new learnings to POWER-
 - 42: Incremental rebuild
 - 48: Layer naming
 - 49: Failed builds never leave frames behind
+- 53: Announcements build session — what cost time, and the fix (read before building a multi-sc
+- 54: Regenerating screens (gen.mjs) triggers the file watcher for ALL screens
+- 55: Verify a build by the Designs tree, not only `/result
+- 56: Lint "clean" does not check text styles for alternate catalogs
+- 57: Icons for the "-2" file
+- 58: Layers inside an instance
+- 59: Delete a Clause-built frame
+- 60: Bisect a failing screen
+- 62: Listening indicator
+- 63: Designer-made components without auto-layout (e.g. "Small Tabs")
+- 64: Real pictures
+- 65: Silent mode
+- 66: Never wait with an unbounded `until [ lines >= N ]` loop
+- 67: Multiple design systems
+- 68: Add states to a design that was NOT built by Clause
+- 70: Several Figma files open with the plugin
+- 71: Swap library components in place
+- 72: Library dedupe
+- 73: Desktop → mobile (360)
+- 76: Redesign propagation on hand-made (non-Clause) frames
+- 79: Context budget
+- 80: Swap catalog components into non-Clause frames
+- 81: Editing layers inside a swapped instance
+- 84: Chat chips follow replaced nodes
+- 85: Swap icons inside an instance
+- 132: Programmatic revert (tested, not assumed)

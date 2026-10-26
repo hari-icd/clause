@@ -62,7 +62,7 @@ function walk(n, path) {
   };
   for (const f of ["gap", "rowGap", "pad", "px", "py", "pt", "pb", "pl", "pr", "m", "mx", "my", "mt", "mb", "ml", "mr"]) tok(f, spacing, "spacing");
   tok("radius", radius, "radius");
-  for (const f of ["bg", "border", "borderB", "borderL", "borderT", "borderR", "color", "tint"]) if (n[f] !== undefined && !colors.has(n[f]) && !(f === "bg" && n[f] === "none")) errors.push(`${where}.${f}: "${n[f]}" not a color variable`);
+  for (const f of ["bg", "border", "borderB", "borderL", "borderT", "borderR", "color", "tint"]) if (n[f] !== undefined && !colors.has(n[f]) && !((f === "bg" || f === "border") && n[f] === "none")) errors.push(`${where}.${f}: "${n[f]}" not a color variable`);
   if (n.abs && !n.why) errors.push(`${where}: "abs" positioning needs a "why"`);
   // text primitive
   if (n.t === "text" && !n.content && !(n.runs && n.runs.length)) errors.push(`${where}: text without content`);
