@@ -145,6 +145,7 @@ async function dsExtract(opts, emit, progress) {
 
 
 const AF = Object.getPrototypeOf(async function () {}).constructor;
+const WP = { before: null, page: null, t: null }; // web-capture paste bookkeeping
 let CACHE = {}, CACHE_HASH = null, exTimer = null; let UI_SIZE = { w: 320, h: 520 }; const PAGE_OF = {}, RT_FN = { hash: null, fn: null }; // screen name → page id (skips the all-pages walk on rebuilds)
 
 // ---- plugin window placement: resize (optionally eased) keeping the bottom-right corner put, always inside the visible canvas
@@ -186,6 +187,24 @@ figma.ui.onmessage = async (msg) => {
   if (msg.type === "goto") {
     try { const pg = await figma.getNodeByIdAsync(msg.pageId); if (pg) await figma.setCurrentPageAsync(pg); const n = msg.nodeId ? await figma.getNodeByIdAsync(msg.nodeId) : null; if (n) { figma.currentPage.selection = [n]; figma.viewport.scrollAndZoomIntoView([n]); } } catch (e) {}
     return;
+  }
+  // ---- web captures pasted by the Chrome "Copy to Figma" extension (server presses ⌘V; see scripts/webpaste.mjs)
+  if (msg.type === "webpaste-before") { try { WP.before = new Set(figma.currentPage.children.map(function (n) { return n.id; })); WP.page = figma.currentPage.id; figma.currentPage.selection = []; } catch (e) { WP.before = null; }
+    // the plugin pane would keep the keyboard and swallow the ⌘V: hide it for the paste so the canvas is the focused thing (it comes back right after)
+    try { figma.ui.hide(); clearTimeout(WP.t); WP.t = setTimeout(function () { try { figma.ui.show(); } catch (e) {} }, 20000); } catch (e) {}
+    return; }
+  if (msg.type === "webpaste-restore") { clearTimeout(WP.t); try { figma.ui.show(); } catch (e) {} return; }
+  if (msg.type === "webpaste-after") {
+    clearTimeout(WP.t); try { figma.ui.show(); } catch (e) {}
+    // Figma imports asynchronously: poll for up to ~4 s for new top-level layers on the page that was current
+    const pg = figma.currentPage; const was = WP.before && WP.page === pg.id ? WP.before : null; if (!was) return;
+    let fresh = [];
+    for (let i = 0; i < 14 && !fresh.length; i++) { await new Promise(function (r) { setTimeout(r, 300); }); fresh = pg.children.filter(function (n) { return !was.has(n.id); }); }
+    if (!fresh.length) return;
+    try { pg.selection = fresh; figma.viewport.scrollAndZoomIntoView(fresh); } catch (e) {}
+    figma.notify("Pasted " + fresh.length + " layer" + (fresh.length > 1 ? "s" : "") + " from the web", { timeout: 2500 });
+    figma.ui.postMessage({ type: "webpaste-done", count: fresh.length, names: fresh.map(function (n) { return n.name; }) });
+    WP.before = null; return;
   }
   if (msg.type === "resize") { await placeWindow(Math.round(msg.w), Math.round(msg.h), msg.anchor === "br", !!msg.anim); return; }
   if (msg.type !== "build") return;

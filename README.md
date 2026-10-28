@@ -37,6 +37,23 @@ That is the whole setup. Every later Claude Code session in this folder starts t
 
 ---
 
+## Web captures → Figma (Chrome “Copy to Figma” extension)
+
+Copy a web page with the Chrome extension and it lands in the Figma file you have open — no switching windows, no paste.
+
+```
+Chrome: copy (⌘⌥O)  ──▶  Clause server  ──▶  Figma comes forward, ⌘V, focus returns to Chrome
+                               └──▶ Clause Assist: deselects before, selects + zooms to the new layers after
+```
+
+- Needs `npm run live` running and **Clause Assist** open in Figma (Settings → **Paste web captures**, on by default).
+- macOS only. The first time, allow the app that runs the server (Terminal, iTerm, Claude…) under System Settings → Privacy & Security → **Accessibility** (and **Automation** → Figma / System Events if asked). If it is blocked, the plugin shows the exact fix.
+- The page is already on your clipboard (the extension puts it there), so Figma's own importer builds the layers: full fidelity. It lands in whatever file/page is open, at the top level (the plugin clears the selection first).
+- Safety: the server only accepts the paste request from the extension (`chrome-extension://` origin + `x-clause` header), only while the plugin has it switched on, one paste at a time. Web pages cannot trigger it.
+- **Connection chip** (Clause Assist, bottom bar, next to Settings): a link icon with a live dot (green = extension, Clause and plugin are on the same line; amber pulsing = waiting for the extension; grey = paused; red = problem) and a counter of frames pasted so far. Click it for the connection card: Extension ⇄ Clause ⇄ Figma, last capture, frames and captures count (kept across restarts in `.clause/capture-stats.json`, Reset button), and the on/off switch. When the pane is collapsed the count rides on the corner icon.
+- **In the web page itself**: the extension (`~/Code/Copy to Figma`) shows a toast in the captured page: *Sending to Figma…* → *3 frames pasted to Figma · 12 so far* (or the exact problem and fix). It also pings `POST /capture/ping` so the plugin knows the extension is alive. Figma still comes forward for about a second: its importer only reads the clipboard on ⌘V in the focused canvas.
+- Turn it off in the plugin (Settings) or in the extension's Options. Server code: `scripts/webpaste.mjs`.
+
 ## Every day
 
 | You want | Do this | What happens |

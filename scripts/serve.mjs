@@ -12,6 +12,7 @@ import { execFileSync, execFile, spawn } from "node:child_process";
 import { loadCatalog as loadCatalogFn } from "./compile.mjs";
 import { resolve, dirname } from "node:path";
 import { createStore } from "./messages.mjs";
+import { createWebPaste } from "./webpaste.mjs";
 import { fileURLToPath } from "node:url";
 const cli = resolve(dirname(fileURLToPath(import.meta.url)), "cli.mjs");
 const run = (...args) => { try { return JSON.parse(execFileSync("node", [cli, ...args], { encoding: "utf8", stdio: ["ignore", "pipe", "pipe"], maxBuffer: 1 << 28 })); } catch (e) { throw new Error(String(e.stderr || e.message).trim().split("\n").filter(l => !/^\s+at /.test(l)).join("\n")); } };
@@ -119,6 +120,7 @@ const rtInfo = () => { const t = readFileSync(rtPath, "utf8"), e = readFileSync(
 const cors = { "access-control-allow-origin": "*", "access-control-allow-headers": "content-type,x-clause", "access-control-allow-methods": "GET,POST,OPTIONS" };
 const json = (res, code, b) => { res.writeHead(code, { "content-type": "application/json", ...cors }); res.end(JSON.stringify(b)); };
 const body = req => new Promise(r => { let b = ""; req.on("data", d => b += d); req.on("end", () => r(b)); });
+const webPaste = createWebPaste({ broadcast, pluginCount: () => clients.size, statsFile: resolve(root, ".clause/capture-stats.json"), log: m => console.error(`[${stamp()}] ${m}`) }); // Chrome "Copy to Figma" → paste into Figma (see webpaste.mjs)
 
 function listExports() {
   return readdirSync(EXPORTS).filter(f => f.endsWith(".html")).map(f => {
@@ -134,7 +136,13 @@ function listExports() {
 
 http.createServer(async (req, res) => {
   const url = new URL(req.url, "http://x"); const p = url.pathname;
-  if (req.method === "OPTIONS") { if ((p.startsWith("/term") || p === "/inbox" || p.startsWith("/extract")) && req.headers.origin && req.headers.origin !== "null") { res.writeHead(403); return res.end(); } res.writeHead(204, cors); return res.end(); }
+  if (req.method === "OPTIONS") {
+    const o = req.headers.origin;
+    if ((p.startsWith("/term") || p === "/inbox" || p.startsWith("/extract") || p === "/capture/settings" || p === "/capture/result" || p === "/capture/reset") && o && o !== "null") { res.writeHead(403); return res.end(); }
+    if ((p === "/capture/paste" || p === "/capture/ping") && o && !o.startsWith("chrome-extension://")) { res.writeHead(403); return res.end(); } // only the extension may ask for a paste
+    res.writeHead(204, cors); return res.end();
+  }
+  if (await webPaste(req, res, p, { json, body })) return;
   if (p === "/") { res.writeHead(200, { "content-type": "text/html; charset=utf-8" }); return res.end(readFileSync(resolve(root, "scripts/listing.html"), "utf8")); }
   if (p === "/tokens.css") { res.writeHead(200, { "content-type": "text/css" }); return res.end(readFileSync(resolve(root, "ds/tokens.css"))); }
   if (p === "/exports.json") return json(res, 200, listExports());
