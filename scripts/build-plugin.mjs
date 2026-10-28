@@ -45,7 +45,7 @@ ${annGlue}
 ${dsExtractSrc}
 
 const AF = Object.getPrototypeOf(async function () {}).constructor;
-const WP = { before: null, page: null, t: null }; // web-capture paste bookkeeping
+const WP = { before: null, page: null, t: null, row: null }; // web-capture paste bookkeeping
 let CACHE = {}, CACHE_HASH = null, exTimer = null; let UI_SIZE = { w: 320, h: 520 }; const PAGE_OF = {}, RT_FN = { hash: null, fn: null }; // screen name → page id (skips the all-pages walk on rebuilds)
 
 // ---- plugin window placement: resize (optionally eased) keeping the bottom-right corner put, always inside the visible canvas
@@ -93,6 +93,7 @@ figma.ui.onmessage = async (msg) => {
     // the plugin pane would keep the keyboard and swallow the ⌘V: hide it for the paste so the canvas is the focused thing (it comes back right after)
     try { figma.ui.hide(); clearTimeout(WP.t); WP.t = setTimeout(function () { try { figma.ui.show(); } catch (e) {} }, 20000); } catch (e) {}
     return; }
+  if (msg.type === "webpaste-batch") { WP.row = msg.on ? { x: null, y: null } : null; if (!msg.on) { clearTimeout(WP.t); try { figma.ui.show(); } catch (e) {} } return; } // staged pages pasted in one go: lay them out in a row
   if (msg.type === "webpaste-restore") { clearTimeout(WP.t); try { figma.ui.show(); } catch (e) {} return; }
   if (msg.type === "webpaste-after") {
     clearTimeout(WP.t); try { figma.ui.show(); } catch (e) {}
@@ -101,6 +102,7 @@ figma.ui.onmessage = async (msg) => {
     let fresh = [];
     for (let i = 0; i < 14 && !fresh.length; i++) { await new Promise(function (r) { setTimeout(r, 300); }); fresh = pg.children.filter(function (n) { return !was.has(n.id); }); }
     if (!fresh.length) return;
+    if (WP.row) { try { fresh.sort(function (a, b) { return a.x - b.x; }); if (WP.row.x === null) { WP.row.x = Math.min.apply(null, fresh.map(function (n) { return n.x; })); WP.row.y = Math.min.apply(null, fresh.map(function (n) { return n.y; })); } fresh.forEach(function (n) { n.x = WP.row.x; n.y = WP.row.y; WP.row.x += n.width + 160; }); } catch (e) {} }
     try { pg.selection = fresh; figma.viewport.scrollAndZoomIntoView(fresh); } catch (e) {}
     figma.notify("Pasted " + fresh.length + " layer" + (fresh.length > 1 ? "s" : "") + " from the web", { timeout: 2500 });
     figma.ui.postMessage({ type: "webpaste-done", count: fresh.length, names: fresh.map(function (n) { return n.name; }) });

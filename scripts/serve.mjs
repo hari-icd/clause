@@ -138,8 +138,8 @@ http.createServer(async (req, res) => {
   const url = new URL(req.url, "http://x"); const p = url.pathname;
   if (req.method === "OPTIONS") {
     const o = req.headers.origin;
-    if ((p.startsWith("/term") || p === "/inbox" || p.startsWith("/extract") || p === "/capture/settings" || p === "/capture/result" || p === "/capture/reset") && o && o !== "null") { res.writeHead(403); return res.end(); }
-    if ((p === "/capture/paste" || p === "/capture/ping") && o && !o.startsWith("chrome-extension://")) { res.writeHead(403); return res.end(); } // only the extension may ask for a paste
+    if ((p.startsWith("/term") || p === "/inbox" || p.startsWith("/extract") || p === "/capture/settings" || p === "/capture/result" || p === "/capture/reset" || p.startsWith("/capture/queue")) && o && o !== "null") { res.writeHead(403); return res.end(); }
+    if ((p === "/capture/paste" || p === "/capture/ping" || p === "/capture/stage") && o && !o.startsWith("chrome-extension://")) { res.writeHead(403); return res.end(); } // only the extension may ask for a paste
     res.writeHead(204, cors); return res.end();
   }
   if (await webPaste(req, res, p, { json, body })) return;

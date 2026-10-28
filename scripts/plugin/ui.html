@@ -137,6 +137,12 @@
   #linkCard .wire.busy { background:var(--ok) } #linkCard .wire.busy::after { content:""; position:absolute; top:0; left:-30%; width:30%; height:2px; background:#fff; opacity:.85; animation:lkrun .9s linear infinite } @keyframes lkrun { to { left:100% } }
   #linkCard .stat { display:flex; align-items:flex-end; gap:18px; padding:10px 0 8px; border-top:1px solid var(--line) } #linkCard .big { font:600 20px/22px Inter, system-ui, sans-serif } #linkCard .stat .rs { margin-left:auto }
   #linkCard .lklast { color:var(--fg2); padding:0 0 8px; min-height:14px } #linkCard .lklast.bad { color:var(--warn) } #linkCard .mi { padding:6px 2px; border-top:1px solid var(--line); border-radius:0 }
+
+  #linkCard .seg { display:flex; gap:2px; padding:2px; border-radius:8px; background:var(--bg2); margin:2px 0 8px } #linkCard .seg button { flex:1; height:22px; border:0; border-radius:6px; background:none; color:var(--fg2); font:inherit; font-weight:500; cursor:pointer } #linkCard .seg button.on { background:var(--bg); color:var(--fg); box-shadow:0 1px 2px rgb(0 0 0 / .12) }
+  #lkQ { border-top:1px solid var(--line); padding:8px 0 4px } #lkQ .qhd { display:flex; align-items:center; gap:6px; margin-bottom:6px } #lkQ .qhd b { font-weight:600 } #lkQ .qhd .grow { flex:1 }
+  #lkQ button.pri { background:var(--fg); color:var(--bg); border-color:var(--fg) } #lkQ button:disabled { opacity:.4; cursor:default }
+  #lkQList { display:flex; flex-direction:column; gap:2px; max-height:132px; overflow:auto } #lkQList .qx { display:flex; align-items:center; gap:8px; padding:4px 6px; border-radius:6px; background:var(--bg2) } #lkQList .qx .t { flex:1; min-width:0; overflow:hidden } #lkQList .qx .t b { display:block; font-weight:500; white-space:nowrap; overflow:hidden; text-overflow:ellipsis } #lkQList .qx .t span { display:block; white-space:nowrap; overflow:hidden; text-overflow:ellipsis } #lkQList .qx.cur { outline:1.5px solid var(--acc) } #lkQList .qx .ib { width:20px; height:20px }
+  #dkLink .q { height:16px; padding:0 6px; border-radius:8px; background:var(--acc); color:#fff; font:600 10px/16px Inter, system-ui, sans-serif } #dkLink .q:empty { display:none }
 </style>
 <button class="ib corner float" id="collapse" title="Collapse"><span class="ic" id="collapseIc"><svg viewBox="0 0 16 16"><path d="M13.5 6.5h-4v-4M9.5 6.5L14 2M2.5 9.5h4v4M6.5 9.5L2 14"/></svg></span></button>
 <div id="doneOv"><img id="doneLogo" alt=""><svg viewBox="0 0 16 16"><path pathLength="1" d="M3.5 8.5l3 3 6-7"/></svg><span>Done</span></div>
@@ -197,8 +203,8 @@
     </div>
   </div>
 </div>
-<div id="dock"><button class="dk" id="dkNew" title="New chat"><svg viewBox="0 0 16 16"><path d="M8 3v10M3 8h10"/></svg><span>New chat</span></button><button class="dk" id="dkChats" title="Chat history"><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="5.5"/><path d="M8 5v3.2l2 1.3"/></svg><span>History</span></button><span style="flex:1"></span><button class="dk wait" id="dkLink" title="Web captures"><span class="lk"><svg viewBox="0 0 16 16"><path d="M6.5 9.5l3-3M5 8L3.7 9.3a2.3 2.3 0 003.3 3.3L8.3 11M11 8l1.3-1.3A2.3 2.3 0 009 3.4L7.7 4.7"/></svg><i class="st"></i></span><span class="n" id="dkLinkN"></span></button><button class="dk" id="dkSettings" title="Settings" style="padding:4px 6px"><svg viewBox="0 0 16 16"><path d="M6.79 2.94L7.04 0.86L8.96 0.86L9.21 2.94L11.77 4.42L13.70 3.60L14.66 5.26L12.99 6.52L12.99 9.48L14.66 10.74L13.70 12.40L11.77 11.58L9.21 13.06L8.96 15.14L7.04 15.14L6.79 13.06L4.23 11.58L2.30 12.40L1.34 10.74L3.01 9.48L3.01 6.52L1.34 5.26L2.30 3.60L4.23 4.42Z"/><circle cx="8" cy="8" r="2"/></svg></button></div>
-<div id="linkCard" class="wait"><div class="lkh"><span class="vd"></span><div class="grow"><div class="lkt" id="lkTitle">Web captures</div><div class="m sm" id="lkSub"></div></div><button class="ib" id="lkClose" title="Close"><svg viewBox="0 0 16 16"><path d="M4 4l8 8M12 4l-8 8"/></svg></button></div><div class="chain"><div class="node" id="nExt"><div class="c"><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="5.5"/><path d="M2.5 8h11M8 2.5c2 2 2 9 0 11M8 2.5c-2 2-2 9 0 11"/></svg></div><b>Extension</b><span class="s sm" id="nExtS"></span></div><div class="wire" id="w1"></div><div class="node" id="nSrv"><div class="c"><svg viewBox="0 0 16 16"><rect x="2.5" y="3" width="11" height="4" rx="1"/><rect x="2.5" y="9" width="11" height="4" rx="1"/><path d="M5 5h.01M5 11h.01"/></svg></div><b>Clause</b><span class="s sm" id="nSrvS"></span></div><div class="wire" id="w2"></div><div class="node" id="nPl"><div class="c"><svg viewBox="0 0 16 16"><rect x="2.5" y="2.5" width="4.5" height="4.5" rx="1"/><rect x="9" y="2.5" width="4.5" height="4.5" rx="1"/><rect x="2.5" y="9" width="4.5" height="4.5" rx="1"/><rect x="9" y="9" width="4.5" height="4.5" rx="1"/></svg></div><b>Figma</b><span class="s sm" id="nPlS"></span></div></div><div class="stat"><div><div class="big" id="lkFrames">0</div><div class="s sm">frames pasted</div></div><div><div class="big" id="lkCaps">0</div><div class="s sm">captures</div></div><button class="b rs" id="lkReset" title="Start the count again">Reset</button></div><div class="lklast sm" id="lkLast"></div><div class="mi pref" data-pref="webPaste"><div class="grow"><b>Paste web captures</b><div class="s sm">⌘⌥O in Chrome sends the page here</div></div><span class="sw"></span></div></div>
+<div id="dock"><button class="dk" id="dkNew" title="New chat"><svg viewBox="0 0 16 16"><path d="M8 3v10M3 8h10"/></svg><span>New chat</span></button><button class="dk" id="dkChats" title="Chat history"><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="5.5"/><path d="M8 5v3.2l2 1.3"/></svg><span>History</span></button><span style="flex:1"></span><button class="dk wait" id="dkLink" title="Web captures"><span class="lk"><svg viewBox="0 0 16 16"><path d="M6.5 9.5l3-3M5 8L3.7 9.3a2.3 2.3 0 003.3 3.3L8.3 11M11 8l1.3-1.3A2.3 2.3 0 009 3.4L7.7 4.7"/></svg><i class="st"></i></span><span class="n" id="dkLinkN"></span><span class="q" id="dkLinkQ"></span></button><button class="dk" id="dkSettings" title="Settings" style="padding:4px 6px"><svg viewBox="0 0 16 16"><path d="M6.79 2.94L7.04 0.86L8.96 0.86L9.21 2.94L11.77 4.42L13.70 3.60L14.66 5.26L12.99 6.52L12.99 9.48L14.66 10.74L13.70 12.40L11.77 11.58L9.21 13.06L8.96 15.14L7.04 15.14L6.79 13.06L4.23 11.58L2.30 12.40L1.34 10.74L3.01 9.48L3.01 6.52L1.34 5.26L2.30 3.60L4.23 4.42Z"/><circle cx="8" cy="8" r="2"/></svg></button></div>
+<div id="linkCard" class="wait"><div class="lkh"><span class="vd"></span><div class="grow"><div class="lkt" id="lkTitle">Web captures</div><div class="m sm" id="lkSub"></div></div><button class="ib" id="lkClose" title="Close"><svg viewBox="0 0 16 16"><path d="M4 4l8 8M12 4l-8 8"/></svg></button></div><div class="chain"><div class="node" id="nExt"><div class="c"><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="5.5"/><path d="M2.5 8h11M8 2.5c2 2 2 9 0 11M8 2.5c-2 2-2 9 0 11"/></svg></div><b>Extension</b><span class="s sm" id="nExtS"></span></div><div class="wire" id="w1"></div><div class="node" id="nSrv"><div class="c"><svg viewBox="0 0 16 16"><rect x="2.5" y="3" width="11" height="4" rx="1"/><rect x="2.5" y="9" width="11" height="4" rx="1"/><path d="M5 5h.01M5 11h.01"/></svg></div><b>Clause</b><span class="s sm" id="nSrvS"></span></div><div class="wire" id="w2"></div><div class="node" id="nPl"><div class="c"><svg viewBox="0 0 16 16"><rect x="2.5" y="2.5" width="4.5" height="4.5" rx="1"/><rect x="9" y="2.5" width="4.5" height="4.5" rx="1"/><rect x="2.5" y="9" width="4.5" height="4.5" rx="1"/><rect x="9" y="9" width="4.5" height="4.5" rx="1"/></svg></div><b>Figma</b><span class="s sm" id="nPlS"></span></div></div><div class="lklast sm" id="lkLast"></div><div class="seg" id="lkSeg"><button data-mode="now">Paste now</button><button data-mode="stage">Stage, paste all</button></div><div id="lkQ" hidden><div class="qhd"><b id="lkQn">Queue</b><span class="grow"></span><button class="b" id="lkQClear">Clear all</button><button class="b pri" id="lkQPaste">Paste all</button></div></div><div class="mi pref" data-pref="webPaste"><div class="grow"><b>Paste web captures</b><div class="s sm">⌘⌥O in Chrome sends the page here</div></div><span class="sw"></span></div></div>
 <textarea id="clip" style="position:absolute;left:-9999px;top:0;height:1px"></textarea>
 <div id="toast"></div>
 <div id="tip"></div>
@@ -259,12 +265,12 @@ document.addEventListener("mousedown", tipHide); document.addEventListener("scro
 const setTip = (id, t) => { const el = $(id); if (!el) return; el.dataset.tip = t; el.removeAttribute("title"); if (tipFor === el) tipShow(el); };
 
 // ---- preferences: switches on the Settings page (kept in localStorage; each one is read at the moment it matters)
-const PREF_DEFAULTS = { collapseOnSend: false, expandOnComplete: false, openExpanded: false, webPaste: true };
+const PREF_DEFAULTS = { collapseOnSend: false, expandOnComplete: false, openExpanded: false, webPaste: true, stage: false };
 let PREFS = Object.assign({}, PREF_DEFAULTS); /* kept in memory and stored by the main thread (figma.clientStorage): localStorage is blocked inside the plugin iframe */
 function getPrefs() { return PREFS; }
 function renderPrefs() { const p = getPrefs(); for (const el of document.querySelectorAll(".pref")) el.classList.toggle("on", !!p[el.dataset.pref]); }
 // web captures: the server only auto-pastes while this plugin says it is on (it starts off after every server restart)
-function syncWebPaste() { try { api("/capture/settings", { enabled: !!getPrefs().webPaste }).catch(() => {}); } catch (e) {} }
+function syncWebPaste() { try { api("/capture/settings", { enabled: !!getPrefs().webPaste, mode: getPrefs().stage ? "stage" : "now" }).catch(() => {}); } catch (e) {} }
 document.addEventListener("click", e => { const el = e.target.closest(".pref"); if (!el) return; PREFS = Object.assign({}, PREFS, { [el.dataset.pref]: !PREFS[el.dataset.pref] }); post({ type: "prefs", value: PREFS }); renderPrefs(); if (el.dataset.pref === "webPaste") syncWebPaste(); });
 renderPrefs();
 // ---- web capture connection: extension ⇄ Clause server ⇄ this plugin, live, with a running count of frames pasted
@@ -283,7 +289,7 @@ function capBadge() { return CAP && CAP.totals && CAP.totals.frames > 0 ? '<i cl
 function renderCap() {
   const st = capState(), c = CAP, f = c ? c.totals.frames : 0;
   const chip = $("dkLink"); chip.className = "dk " + (st === "paused" ? "" : st); $("dkLinkN").textContent = f > 0 ? (f > 99 ? "99+" : String(f)) : "";
-  const T = { srvoff: ["Clause server is offline", "Start it with npm run live. Nothing can be pasted until then."], err: ["The last paste didn’t land", (c && c.last && c.last.error) || "Check Accessibility permission for the app running the server."], paused: ["Paused", "Turn on Paste web captures to receive pages from Chrome."], busy: ["Pasting into Figma…", "Figma comes forward for a moment, then focus goes back to Chrome."], live: ["Connected — same line", "Extension, Clause and this plugin are in sync. Copy a page with ⌘⌥O."], ready: ["Ready — same line", "Extension seen " + (c ? capAgo(c.extension.at) : "") + ". Copy a page with ⌘⌥O whenever you like."], wait: ["Waiting for the extension", "Copy a page with ⌘⌥O. It appears here the first time the extension talks to Clause."] }[st];
+  const T = { srvoff: ["Clause server is offline", "Start it with npm run live. Nothing can be pasted until then."], err: ["The last paste didn’t land", (c && c.last && c.last.error) || "Check Accessibility permission for the app running the server."], paused: ["Paused", "Turn on Paste web captures to receive pages from Chrome."], busy: [c && c.batch ? "Pasting " + c.batch.i + " of " + c.batch.n + "…" : "Pasting into Figma…", c && c.batch ? (c.batch.title || "Staged pages go onto the canvas in a row.") : "Figma comes forward for a moment, then focus goes back to Chrome."], live: ["Connected — same line", "Extension, Clause and this plugin are in sync. Copy a page with ⌘⌥O."], ready: ["Ready — same line", "Extension seen " + (c ? capAgo(c.extension.at) : "") + ". Copy a page with ⌘⌥O whenever you like."], wait: ["Waiting for the extension", "Copy a page with ⌘⌥O. It appears here the first time the extension talks to Clause."] }[st];
   $("linkCard").className = (st === "paused" ? "" : st) + ($("linkCard").classList.contains("on") ? " on" : ""); $("lkTitle").textContent = T[0]; $("lkSub").textContent = T[1];
   chip.title = "Web captures — " + T[0] + (f ? " · " + f + " frame" + (f === 1 ? "" : "s") + " pasted" : "");
   const off = st === "paused", srv = online, ext = c && c.extension.seen, extLive = c && c.extension.live;
@@ -292,9 +298,9 @@ function renderCap() {
   set("nSrv", srv ? "live" : "bad", srv ? "localhost:__PORT__" : "Offline");
   set("nPl", srv && c && c.enabled ? "live" : off ? "off" : srv ? "wait" : "bad", c && c.enabled ? "Listening here" : off ? "Paused" : "Connecting…");
   $("w1").className = "wire " + (st === "busy" ? "busy" : srv && ext && !off ? "live" : "wait"); $("w2").className = "wire " + (st === "busy" ? "busy" : srv && c && c.enabled ? "live" : "wait");
-  $("lkFrames").textContent = f; $("lkCaps").textContent = c ? c.totals.captures : 0;
   const l = c && c.last, bad = l && l.ok === false; $("lkLast").className = "lklast sm" + (bad ? " bad" : "");
-  $("lkLast").textContent = bad ? l.error : l && l.count ? "Last: " + (l.names && l.names[0] ? l.names[0] + (l.count > 1 ? " + " + (l.count - 1) + " more" : "") : l.count + " frames") + " · " + capAgo(l.at) : "No captures yet";
+  $("lkLast").textContent = bad ? l.error : (f ? f + " frame" + (f === 1 ? "" : "s") + " pasted" + (l && l.count ? " · " : "") : "") + (l && l.count ? "Last: " + (l.names && l.names[0] ? l.names[0] + (l.count > 1 ? " + " + (l.count - 1) + " more" : "") : l.count + " frames") + " · " + capAgo(l.at) : "") || "No captures yet";
+  renderQueue();
   if (typeof renderMini === "function") renderMini();
 }
 function setCap(s) {
@@ -305,8 +311,20 @@ function setCap(s) {
 async function fetchCap() { try { setCap(await (await fetch(BASE + "/capture/status")).json()); } catch (e) { renderCap(); } }
 $("dkLink").onclick = e => { e.stopPropagation(); $("linkCard").classList.toggle("on"); renderCap(); };
 $("lkClose").onclick = () => $("linkCard").classList.remove("on");
-$("lkReset").onclick = () => { api("/capture/reset", {}).catch(() => {}); };
 document.addEventListener("click", e => { if (!e.target.closest("#linkCard") && !e.target.closest("#dkLink")) $("linkCard").classList.remove("on"); });
+
+function renderQueue() {
+  const c = CAP, q = c && c.queue ? c.queue : [], stage = c && c.mode === "stage";
+  for (const b of $("lkSeg").children) b.classList.toggle("on", (b.dataset.mode === "stage") === !!stage);
+  $("lkQ").hidden = !(stage || q.length);
+  const batch = c && c.batch, busy = c && c.busy;
+  $("lkQn").textContent = batch ? "Pasting " + batch.i + " of " + batch.n + "…" : q.length ? q.length + " staged" : "Nothing staged";
+  $("lkQPaste").textContent = q.length ? "Paste all (" + q.length + ")" : "Paste all"; $("lkQPaste").disabled = !q.length || !!busy || !(c && c.enabled); $("lkQClear").disabled = !q.length || !!busy;
+  const nq = $("dkLinkQ"); nq.textContent = q.length && !batch ? q.length + " queued" : "";
+}
+$("lkSeg").onclick = e => { const b = e.target.closest("button"); if (!b) return; PREFS = Object.assign({}, PREFS, { stage: b.dataset.mode === "stage" }); post({ type: "prefs", value: PREFS }); syncWebPaste(); if (CAP) CAP.mode = b.dataset.mode; renderCap(); };
+$("lkQPaste").onclick = () => { api("/capture/queue/paste", {}).catch(() => {}); };
+$("lkQClear").onclick = () => { api("/capture/queue/clear", {}).catch(() => {}); };
 setInterval(renderCap, 10000);
 // ---- collapse: window shrinks to just the two corner icons
 let collapsed = false;
@@ -408,6 +426,8 @@ es.onmessage = async e => {
   else if (m.type === "webpaste") {
     if (m.phase === "before") { try { if (document.activeElement) document.activeElement.blur(); window.blur(); } catch (e) {} post({ type: "webpaste-before" }); } // give the canvas the keyboard, deselect so the paste lands top-level
     else if (m.phase === "after") post({ type: "webpaste-after" });
+    else if (m.phase === "batch-start") post({ type: "webpaste-batch", on: true });
+    else if (m.phase === "batch-end") post({ type: "webpaste-batch", on: false });
     else if (m.phase === "error") { post({ type: "webpaste-restore" }); toast(m.text || "Web capture paste failed"); }
   }
   else if (m.type === "capture") setCap(m.status);
