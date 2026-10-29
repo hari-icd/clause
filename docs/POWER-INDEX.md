@@ -39,3 +39,4 @@ Read an entry: `sed -n '<line>p' docs/POWER-USE.md`. Add new learnings to POWER-
 - 84: Chat chips follow replaced nodes
 - 85: Swap icons inside an instance
 - 132: Programmatic revert (tested, not assumed)
+- 169: Slash commands (pane)

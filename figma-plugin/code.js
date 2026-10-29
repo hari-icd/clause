@@ -145,7 +145,7 @@ async function dsExtract(opts, emit, progress) {
 
 
 const AF = Object.getPrototypeOf(async function () {}).constructor;
-const WP = { before: null, page: null, t: null, row: null }; // web-capture paste bookkeeping
+const WP = { before: null, page: null, t: null, row: null, sel: null, cursor: null }; // web-capture paste bookkeeping
 let CACHE = {}, CACHE_HASH = null, exTimer = null; let UI_SIZE = { w: 320, h: 520 }; const PAGE_OF = {}, RT_FN = { hash: null, fn: null }; // screen name → page id (skips the all-pages walk on rebuilds)
 
 // ---- plugin window placement: resize (optionally eased) keeping the bottom-right corner put, always inside the visible canvas
@@ -189,12 +189,14 @@ figma.ui.onmessage = async (msg) => {
     return;
   }
   // ---- web captures pasted by the Chrome "Copy to Figma" extension (server presses ⌘V; see scripts/webpaste.mjs)
-  if (msg.type === "webpaste-before") { try { WP.before = new Set(figma.currentPage.children.map(function (n) { return n.id; })); WP.page = figma.currentPage.id; figma.currentPage.selection = []; } catch (e) { WP.before = null; }
-    // the plugin pane would keep the keyboard and swallow the ⌘V: hide it for the paste so the canvas is the focused thing (it comes back right after)
-    try { figma.ui.hide(); clearTimeout(WP.t); WP.t = setTimeout(function () { try { figma.ui.show(); } catch (e) {} }, 20000); } catch (e) {}
+  if (msg.type === "webpaste-await") { // the overlay is up: note the selected frame(s), the paste goes to their right
+    try { WP.sel = null; WP.cursor = null; var sn = figma.currentPage.selection, l = null, t = null, r = null; sn.forEach(function (n) { var b = n.absoluteBoundingBox; if (!b) return; l = l === null ? b.x : Math.min(l, b.x); t = t === null ? b.y : Math.min(t, b.y); r = r === null ? b.x + b.width : Math.max(r, b.x + b.width); }); if (l !== null) WP.sel = { x: r + 160, y: t }; } catch (e) { WP.sel = null; }
+    return; }
+  if (msg.type === "webpaste-before") { try { WP.before = new Set(figma.currentPage.children.map(function (n) { return n.id; })); WP.page = figma.currentPage.id; try { var cu = figma.activeUsers && figma.activeUsers[0]; if (cu && cu.position) WP.cursor = { x: cu.position.x, y: cu.position.y }; } catch (e) {} figma.currentPage.selection = []; } catch (e) { WP.before = null; }
+    // the pane stays open (m952: closing and reopening it on every paste looked broken); the server clicks the canvas first, so the canvas already holds the keyboard
     return; }
   if (msg.type === "webpaste-batch") { WP.row = msg.on ? { x: null, y: null } : null; if (!msg.on) { clearTimeout(WP.t); try { figma.ui.show(); } catch (e) {} } return; } // staged pages pasted in one go: lay them out in a row
-  if (msg.type === "webpaste-restore") { clearTimeout(WP.t); try { figma.ui.show(); } catch (e) {} return; }
+  if (msg.type === "webpaste-restore") { clearTimeout(WP.t); WP.sel = null; WP.cursor = null; try { figma.ui.show(); } catch (e) {} return; }
   if (msg.type === "webpaste-after") {
     clearTimeout(WP.t); try { figma.ui.show(); } catch (e) {}
     // Figma imports asynchronously: poll for up to ~4 s for new top-level layers on the page that was current
@@ -202,7 +204,9 @@ figma.ui.onmessage = async (msg) => {
     let fresh = [];
     for (let i = 0; i < 14 && !fresh.length; i++) { await new Promise(function (r) { setTimeout(r, 300); }); fresh = pg.children.filter(function (n) { return !was.has(n.id); }); }
     if (!fresh.length) return;
-    if (WP.row) { try { fresh.sort(function (a, b) { return a.x - b.x; }); if (WP.row.x === null) { WP.row.x = Math.min.apply(null, fresh.map(function (n) { return n.x; })); WP.row.y = Math.min.apply(null, fresh.map(function (n) { return n.y; })); } fresh.forEach(function (n) { n.x = WP.row.x; n.y = WP.row.y; WP.row.x += n.width + 160; }); } catch (e) {} }
+    { var anchor = WP.sel || WP.cursor || null, single = false; if (!WP.row && anchor) { WP.row = { x: null, y: null }; single = true; }
+      if (WP.row) { try { fresh.sort(function (a, b) { return a.x - b.x; }); if (WP.row.x === null) { if (anchor) { WP.row.x = anchor.x; WP.row.y = anchor.y; } else { WP.row.x = Math.min.apply(null, fresh.map(function (n) { return n.x; })); WP.row.y = Math.min.apply(null, fresh.map(function (n) { return n.y; })); } } fresh.forEach(function (n) { n.x = WP.row.x; n.y = WP.row.y; WP.row.x += n.width + 160; }); } catch (e) {} if (single) WP.row = null; }
+      WP.sel = null; WP.cursor = null; }
     try { pg.selection = fresh; figma.viewport.scrollAndZoomIntoView(fresh); } catch (e) {}
     figma.notify("Pasted " + fresh.length + " layer" + (fresh.length > 1 ? "s" : "") + " from the web", { timeout: 2500 });
     figma.ui.postMessage({ type: "webpaste-done", count: fresh.length, names: fresh.map(function (n) { return n.name; }) });

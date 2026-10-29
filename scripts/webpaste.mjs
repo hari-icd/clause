@@ -20,31 +20,6 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { dirname } from "node:path";
 
-const SCRIPT = `
-tell application "System Events"
-  if not (exists application process "Figma") then error "Figma is not running"
-  set prevProc to first application process whose frontmost is true
-end tell
-tell application "Figma" to activate
-tell application "System Events"
-  repeat 40 times
-    if frontmost of application process "Figma" then exit repeat
-    delay 0.05
-  end repeat
-  delay 0.2
-  key code 53 -- Esc: leave any text box / panel that has the keyboard so ⌘V reaches the canvas
-  delay 0.15
-  keystroke "v" using command down
-end tell
-delay 0.9
-tell application "System Events"
-  try
-    set frontmost of prevProc to true
-  end try
-end tell
-`;
-
-
 // ---- staged captures: several pages queued in Clause, pasted into Figma in one visit ----
 // focus   : bring Figma forward once, clear whatever has the keyboard, return the app that was in front
 // paste   : ⌘V into the canvas
@@ -61,13 +36,52 @@ on run
       if frontmost of application process "Figma" then exit repeat
       delay 0.05
     end repeat
-    delay 0.2
-    key code 53
-    delay 0.15
+    delay 0.12
   end tell
   return prevName
 end run`;
+// Figma's windows are not visible to System Events, so read the window bounds from the window server instead
+const BOUNDS = `ObjC.import('CoreGraphics'); ObjC.import('Foundation');
+function find(opt) {
+  var list = ObjC.deepUnwrap(ObjC.castRefToObject($.CGWindowListCopyWindowInfo(opt, 0)));
+  return list.filter(function (x) { return x.kCGWindowOwnerName === 'Figma' && x.kCGWindowBounds.Width > 600 && x.kCGWindowBounds.Height > 400; })
+    .sort(function (a, b) { return b.kCGWindowBounds.Width * b.kCGWindowBounds.Height - a.kCGWindowBounds.Width * a.kCGWindowBounds.Height; })[0];
+}
+function run() {
+  var w = find($.kCGWindowListOptionOnScreenOnly | $.kCGWindowListExcludeDesktopElements) || find($.kCGWindowListOptionAll);
+  if (!w) return '';
+  var r = w.kCGWindowBounds; return [r.X, r.Y, r.Width, r.Height].join(',');
+}`;
+
+const CLICK = `ObjC.import('CoreGraphics'); ObjC.import('Foundation');
+function find(opt) {
+  var list = ObjC.deepUnwrap(ObjC.castRefToObject($.CGWindowListCopyWindowInfo(opt, 0)));
+  return list.filter(function (x) { return x.kCGWindowOwnerName === 'Figma' && x.kCGWindowBounds.Width > 600 && x.kCGWindowBounds.Height > 400; })
+    .sort(function (a, b) { return b.kCGWindowBounds.Width * b.kCGWindowBounds.Height - a.kCGWindowBounds.Width * a.kCGWindowBounds.Height; })[0];
+}
+function key(code, down) { $.CGEventPost($.kCGHIDEventTap, $.CGEventCreateKeyboardEvent(null, code, down)); }
+function run() {
+  var w = find($.kCGWindowListOptionOnScreenOnly | $.kCGWindowListExcludeDesktopElements) || find($.kCGWindowListOptionAll);
+  if (!w) return 'nowindow';
+  var r = w.kCGWindowBounds, pt = $.CGPointMake(r.X + r.Width * 0.55, r.Y + r.Height * 0.5);
+  $.CGEventPost($.kCGHIDEventTap, $.CGEventCreateMouseEvent(null, $.kCGEventLeftMouseDown, pt, $.kCGMouseButtonLeft));
+  $.NSThread.sleepForTimeInterval(0.03);
+  $.CGEventPost($.kCGHIDEventTap, $.CGEventCreateMouseEvent(null, $.kCGEventLeftMouseUp, pt, $.kCGMouseButtonLeft));
+  $.NSThread.sleepForTimeInterval(0.06);
+  key(53, true); key(53, false); // Esc: drop the selection the click made
+  $.NSThread.sleepForTimeInterval(0.03);
+  return 'ok';
+}`;
 const PASTE = `tell application "System Events" to keystroke "v" using command down`;
+const PASTE_BACK = `on run argv
+  tell application "System Events"
+    keystroke "v" using command down
+    delay 0.15
+    try
+      set frontmost of application process (item 1 of argv) to true
+    end try
+  end tell
+end run`;
 const RESTORE = `on run argv
   tell application "System Events"
     try
@@ -90,15 +104,23 @@ const osa = (args, extra = []) => new Promise((res, rej) => {
 });
 const defaultSteps = {
   focus: () => osa(["-e", FOCUS]),
+  bounds: async () => { const r = (await osa(["-l", "JavaScript", "-e", BOUNDS])).split(",").map(Number); return r.length === 4 && r.every((n) => isFinite(n)) ? r : null; },
+  // click into the middle of the canvas so it (not a panel or the plugin pane) holds the keyboard, then Esc to drop the selection that click made
+  canvas: async () => (await osa(["-l", "JavaScript", "-e", CLICK])) === "ok",
+  escape: () => osa(["-e", 'tell application "System Events" to key code 53']),
   paste: () => osa(["-e", PASTE]),
+  pasteBack: (prev) => osa(["-e", PASTE_BACK], [prev || ""]), // ⌘V and straight back to the browser: Figma imports on its own
   restore: (prev) => osa(["-e", RESTORE], [prev || ""]),
   clip: async (html) => { const f = join(tmpdir(), "clause-clip-" + process.pid + "-" + Date.now() + ".html"); writeFileSync(f, html); try { await osa(["-l", "JavaScript", "-e", CLIP], [f]); } finally { try { unlinkSync(f); } catch {} } }
 };
+export const _steps = defaultSteps; // for local diagnostics
 const MAX_QUEUE = 40, MAX_BYTES = 300 * 1024 * 1024;
 
 const hintFor = (msg) => {
+  if (/^Command failed/.test(msg)) { const lines = msg.split("\n").map((l) => l.trim()).filter(Boolean); msg = lines.length > 1 ? lines[lines.length - 1] : "macOS refused the keypress or click. Check Accessibility permission for the app running the server."; }
   if (/not allowed to send keystrokes|1002/i.test(msg)) return "macOS blocked the keypress: System Settings → Privacy & Security → Accessibility → allow the app that runs the Clause server (Terminal, iTerm, Claude…), then try again.";
   if (/not running/i.test(msg)) return "Open Figma first.";
+  if (/NOLAND/.test(msg)) return "Figma did not take the paste. Click once on the canvas and try again.";
   if (/not authori[sz]ed|-1743/i.test(msg)) return "macOS asked to let this app control Figma / System Events: System Settings → Privacy & Security → Automation → allow it.";
   return msg.split("\n")[0].slice(0, 200);
 };
@@ -107,67 +129,83 @@ const EXT_LIVE_MS = 90 * 1000; // the extension counts as "live" for this long a
 
 export function createWebPaste({ broadcast, pluginCount, log = () => {}, runner = null, statsFile = null, steps = {} }) {
   const S = Object.assign({}, defaultSteps, steps);
-  const st = { mode: "now", queue: [], batch: null, waiters: [], enabled: false, busy: false, lastAt: 0, last: null, extAt: 0, startedAt: Date.now(), totals: { captures: 0, frames: 0, since: Date.now() } };
+  const st = { mode: "now", queue: [], batch: null, awaiting: null, gate: null, waiters: [], enabled: false, busy: false, lastAt: 0, last: null, extAt: 0, startedAt: Date.now(), totals: { captures: 0, frames: 0, since: Date.now() } };
   // the counter survives server restarts: it is only reset on purpose
   if (statsFile) { try { const t = JSON.parse(readFileSync(statsFile, "utf8")); if (t && typeof t.captures === "number") st.totals = { captures: t.captures | 0, frames: t.frames | 0, since: t.since || Date.now() }; } catch {} }
   const saveTotals = () => { if (!statsFile) return; try { mkdirSync(dirname(statsFile), { recursive: true }); writeFileSync(statsFile, JSON.stringify(st.totals)); } catch {} };
   // one snapshot for everyone (the plugin pane, curl): what is connected and how many frames came across
-  const snapshot = () => ({ enabled: st.enabled, busy: st.busy, plugin: pluginCount() > 0, extension: { seen: st.extAt > 0, live: st.extAt > 0 && Date.now() - st.extAt < EXT_LIVE_MS, at: st.extAt || null }, last: st.last, totals: st.totals, mode: st.mode, queue: st.queue.map((q) => ({ id: q.id, title: q.title, url: q.url, at: q.at, kb: Math.round(q.html.length / 1024) })), batch: st.batch, now: Date.now() });
+  const snapshot = () => ({ enabled: st.enabled, busy: st.busy, plugin: pluginCount() > 0, extension: { seen: st.extAt > 0, live: st.extAt > 0 && Date.now() - st.extAt < EXT_LIVE_MS, at: st.extAt || null }, last: st.last, totals: st.totals, mode: st.mode, queue: st.queue.map((q) => ({ id: q.id, title: q.title, url: q.url, at: q.at, kb: Math.round(q.html.length / 1024) })), batch: st.batch, awaiting: st.awaiting, now: Date.now() });
   const emit = () => { try { broadcast({ type: "capture", status: snapshot() }); } catch {} };
   const seen = (req) => { const o = req.headers.origin; if (o && o.startsWith("chrome-extension://")) { st.extAt = Date.now(); } };
-  const runPaste = runner || (() => new Promise((res, rej) => {
-    if (process.platform !== "darwin") return rej(new Error("Auto-paste is macOS only for now"));
-    execFile("osascript", ["-e", SCRIPT], { timeout: 15000 }, (err, _out, stderr) => err ? rej(new Error(String(stderr || err.message))) : res());
-  }));
   const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
-
-  async function paste() {
-    st.busy = true; st.lastAt = Date.now(); emit();
-    try {
-      if (pluginCount() > 0) { broadcast({ type: "webpaste", phase: "before" }); await sleep(450); } // let the plugin deselect first
-      await runPaste();
-      broadcast({ type: "webpaste", phase: "after" });
-      st.last = { ok: true, at: Date.now() };
-      log("web capture pasted into Figma");
-    } catch (e) {
-      const hint = hintFor(String(e && e.message || e));
-      st.last = { ok: false, at: Date.now(), error: hint };
-      broadcast({ type: "webpaste", phase: "error", text: hint });
-      log("web capture paste failed: " + hint);
-    } finally { st.busy = false; emit(); }
-  }
 
   // wait until the plugin reports what landed (or give up): the next page must not be pasted on top of one that is still being imported
   const waitResult = (ms) => new Promise((res) => { const t = setTimeout(() => { st.waiters = st.waiters.filter((w) => w !== done); res(false); }, ms); const done = () => { clearTimeout(t); res(true); }; st.waiters.push(done); });
   const bytesOf = () => st.queue.reduce((n, q) => n + q.html.length, 0);
 
-  async function pasteBatch() {
-    if (st.busy || !st.queue.length) return;
-    const items = st.queue.slice(); let prev = "", ok = 0, failed = null;
-    st.busy = true; st.lastAt = Date.now(); st.batch = { i: 0, n: items.length, title: "" }; emit();
+  // The click gate. Figma comes forward and the plugin pane covers itself with an overlay: "click on the canvas". The pane notices when the user clicks
+  // out of it (its window loses focus: the canvas has the keyboard now) and tells us /capture/go. If the pane is not holding the focus there is nothing to wait for.
+  // Resolves 'clicked' | 'cancel' | 'timeout' | 'skip' (no plugin connected).
+  function clickGate(n) {
+    if (pluginCount() === 0) return Promise.resolve("skip");
+    st.awaiting = { n, since: Date.now() }; broadcast({ type: "webpaste", phase: "await", n }); emit();
+    return new Promise((resolve) => {
+      const finish = (how) => { clearTimeout(t); st.gate = null; st.awaiting = null; emit(); resolve(how); };
+      const t = setTimeout(() => finish("timeout"), 120000);
+      st.gate = finish;
+    });
+  }
+
+  // items = null: paste whatever is on the clipboard now (one capture); items = [...]: staged pages, each put on the clipboard in turn
+  async function run(items) {
+    const batch = !!items, n = batch ? items.length : 1, real = !runner || batch;
+    let prev = "", ok = 0, restored = false;
+    // back to the browser as soon as the ⌘V has gone out: the plugin imports and verifies in the background
+    const back = async () => { if (real && !restored) { restored = true; try { await S.restore(prev); } catch {} } };
+    st.busy = true; st.lastAt = Date.now(); if (batch) st.batch = { i: 0, n, title: "" }; emit();
+    const t0 = Date.now(); const marks = []; const T = (name) => marks.push(name + " " + (Date.now() - t0) + "ms");
     try {
-      if (pluginCount() > 0) { broadcast({ type: "webpaste", phase: "batch-start" }); await sleep(300); }
-      prev = await S.focus();
-      for (let k = 0; k < items.length; k++) {
-        st.batch = { i: k + 1, n: items.length, title: items[k].title }; emit();
-        await S.clip(items[k].html);
-        broadcast({ type: "webpaste", phase: "before", batch: true }); await sleep(350);
-        await S.paste();
-        await sleep(600);
-        broadcast({ type: "webpaste", phase: "after", batch: true });
-        await waitResult(9000);
-        st.queue = st.queue.filter((q) => q.id !== items[k].id); ok++; emit();
+      if (pluginCount() > 0) broadcast({ type: "webpaste", phase: batch ? "batch-start" : "start" });
+      if (real) {
+        prev = await S.focus(); T("focus");
+        // Clause clicks the canvas itself (a click in the plugin pane and a click on the canvas cost the user the same).
+        // Only when that click cannot be made does the plugin ask the user to click the canvas.
+        let clicked = false;
+        try { clicked = await S.canvas(); T("click"); } catch (e) { log("canvas click failed: " + String(e && e.message || e).split("\n").map((l) => l.trim()).filter(Boolean).pop().slice(0, 160)); }
+        if (!clicked) {
+          const gate = await clickGate(n);
+          if (gate === "cancel") throw new Error("CANCEL");
+          if (gate === "timeout") throw new Error("No click on the canvas for two minutes, so nothing was pasted.");
+          await sleep(100); try { await S.escape(); } catch {} // their click may have selected a frame
+        }
       }
-      st.last = Object.assign({}, st.last, { ok: true, at: Date.now(), batch: ok });
-      log("pasted " + ok + " staged capture(s) into Figma");
+      for (let k = 0; k < n; k++) {
+        const last = k === n - 1;
+        if (batch) { st.batch = { i: k + 1, n, title: items[k].title }; emit(); await S.clip(items[k].html); }
+        if (pluginCount() > 0) broadcast({ type: "webpaste", phase: "before", batch }); // no wait: the import takes longer than the plugin needs to note the page
+        if (real && last) { await S.pasteBack(prev); restored = true; T("paste+back"); } // trigger the paste and switch back, do not wait for Figma
+        else if (real) { await S.paste(); await sleep(500); }
+        else await runner();
+        broadcast({ type: "webpaste", phase: "after", batch });
+        // the plugin reports what landed: nothing within a few seconds means Figma did not take the ⌘V
+        if (pluginCount() > 0 && !(await waitResult(9000))) throw new Error("NOLAND");
+        if (batch) { st.queue = st.queue.filter((q) => q.id !== items[k].id); emit(); }
+        ok++;
+      }
+      st.last = Object.assign({}, st.last, { ok: true, at: Date.now() }, batch ? { batch: ok } : {});
+      log((batch ? "pasted " + ok + " staged capture(s) into Figma" : "web capture pasted into Figma") + " [" + marks.join(", ") + "]");
     } catch (e) {
-      failed = hintFor(String(e && e.message || e));
-      st.last = { ok: false, at: Date.now(), error: failed + (ok ? " (" + ok + " of " + items.length + " pasted)" : "") };
-      broadcast({ type: "webpaste", phase: "error", text: st.last.error });
-      log("staged paste failed: " + failed);
+      const raw = String(e && e.message || e);
+      if (raw === "CANCEL") { log("paste cancelled"); }
+      else {
+        const hint = hintFor(raw);
+        st.last = { ok: false, at: Date.now(), error: hint + (batch && ok ? " (" + ok + " of " + n + " pasted)" : "") };
+        broadcast({ type: "webpaste", phase: "error", text: st.last.error });
+        log("paste failed: " + hint);
+      }
     } finally {
-      try { await S.restore(prev); } catch {}
-      broadcast({ type: "webpaste", phase: "batch-end" });
+      await back();
+      broadcast({ type: "webpaste", phase: batch ? "batch-end" : "end" });
       st.batch = null; st.busy = false; emit();
     }
   }
@@ -190,6 +228,11 @@ export function createWebPaste({ broadcast, pluginCount, log = () => {}, runner 
       if (!originOk(req, (o) => o === "null")) { json(res, 403, { error: "plugin only" }); return true; }
       try { const b = JSON.parse(await body(req) || "{}"); const n = Math.max(0, b.count | 0); st.last = Object.assign({}, st.last, { count: n, names: Array.isArray(b.names) ? b.names.slice(0, 20) : [] }); if (n) { st.totals.captures += 1; st.totals.frames += n; saveTotals(); } } catch {}
       st.waiters.splice(0).forEach((w) => w()); emit(); json(res, 200, { ok: true }); return true;
+    }
+    if (p === "/capture/go" || p === "/capture/cancel") { // the plugin only: the user clicked onto the canvas / gave up
+      if (!originOk(req, (o) => o === "null")) { json(res, 403, { error: "plugin only" }); return true; }
+      let how = p === "/capture/go" ? "clicked" : "cancel"; if (how === "clicked") { try { const b = JSON.parse(await body(req) || "{}"); if (b.auto) how = "auto"; } catch {} }
+      if (st.gate) st.gate(how); json(res, 200, { ok: true, waiting: !!st.gate }); return true;
     }
     if (p === "/capture/reset") { // the plugin only: start the counter again
       if (!originOk(req, (o) => o === "null")) { json(res, 403, { error: "plugin only" }); return true; }
@@ -218,14 +261,14 @@ export function createWebPaste({ broadcast, pluginCount, log = () => {}, runner 
       if (!st.enabled) { json(res, 409, { ok: false, reason: "off" }); return true; }
       if (st.busy) { json(res, 200, { ok: true, skipped: "busy" }); return true; }
       if (!st.queue.length) { json(res, 200, { ok: true, empty: true }); return true; }
-      pasteBatch(); json(res, 202, { ok: true, started: true, n: st.queue.length }); return true;
+      run(st.queue.slice()); json(res, 202, { ok: true, started: true, n: st.queue.length }); return true;
     }
     if (p === "/capture/paste") { // the Chrome extension (or a local tool)
       if (!originOk(req, (o) => o.startsWith("chrome-extension://"))) { json(res, 403, { error: "extension only" }); return true; }
       seen(req); emit();
       if (!st.enabled) { json(res, 409, { ok: false, reason: "off", hint: "Open Clause Assist in Figma and turn on “Paste web captures” (Settings)." }); return true; }
       if (st.busy || Date.now() - st.lastAt < 1500) { json(res, 200, { ok: true, skipped: "busy" }); return true; }
-      paste(); // runs in the background: the extension must not wait for Figma
+      run(null); // runs in the background: the extension must not wait for Figma
       json(res, 202, { ok: true, started: true }); return true;
     }
     json(res, 404, { error: "unknown capture route" }); return true;

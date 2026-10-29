@@ -120,11 +120,11 @@
 
   /* ---- connection chip (dock) + card: extension ⇄ Clause ⇄ Figma plugin, with a running count of pasted frames */
   #dkLink { position:relative; padding:4px 7px; gap:5px } #dkLink .lk { position:relative; width:14px; height:14px; flex:none } #dkLink .lk svg { width:14px; height:14px }
-  #dkLink .st { position:absolute; right:-3px; top:-3px; width:7px; height:7px; border-radius:50%; background:var(--fg3); border:1.5px solid var(--bg) }
-  #dkLink.live .st, #dkLink.ready .st { background:var(--ok) } #dkLink.wait .st { background:#f5a623; animation:lkpl 1.6s ease-in-out infinite } #dkLink.err .st, #dkLink.srvoff .st { background:var(--warn) } #dkLink.busy .st { background:var(--acc); animation:lkpl .6s ease-in-out infinite }
+  #dkLink .st { display:none; position:absolute; right:-3px; top:-3px; width:7px; height:7px; border-radius:50%; background:var(--fg3); border:1.5px solid var(--bg) }
+  #dkLink.wait .st, #dkLink.staged .st, #dkLink.err .st, #dkLink.srvoff .st, #dkLink.busy .st { display:block } #dkLink.wait .st { background:#f5a623; animation:lkpl 1.6s ease-in-out infinite } #dkLink.staged .st { background:var(--ok); animation:none } #dkLink.err .st, #dkLink.srvoff .st { background:var(--warn); animation:none } #dkLink.busy .st { background:var(--acc); animation:lkpl .6s ease-in-out infinite }
   #dkLink.live, #dkLink.ready, #dkLink.busy { color:var(--fg) } #dkLink .n { min-width:16px; height:16px; padding:0 5px; border-radius:8px; background:var(--bg3); color:var(--fg); font:600 10px/16px Inter, system-ui, sans-serif; text-align:center } #dkLink .n:empty { display:none } #dkLink .n.pop { animation:lkpop .6s ease-out }
   @keyframes lkpl { 0%,100% { opacity:1; transform:scale(1) } 50% { opacity:.45; transform:scale(.8) } } @keyframes lkpop { 0% { transform:scale(1); background:var(--ok); color:#fff } 40% { transform:scale(1.35); background:var(--ok); color:#fff } 100% { transform:scale(1) } }
-  .capb { position:absolute; left:-4px; top:-5px; min-width:14px; height:14px; padding:0 4px; border-radius:7px; background:var(--ok); color:#fff; font:600 9px/14px Inter, system-ui, sans-serif; font-style:normal; text-align:center; z-index:2 }
+  .capb { position:absolute; left:3px; bottom:3px; min-width:14px; height:14px; padding:0 4px; border-radius:7px; background:var(--ok); color:#fff; font:600 9px/14px Inter, system-ui, sans-serif; font-style:normal; text-align:center; z-index:2 }
   #linkCard { position:fixed; left:8px; right:8px; bottom:44px; z-index:10; background:var(--bg); border:1px solid var(--line); border-radius:12px; padding:12px; display:none; box-shadow:0 8px 24px rgb(0 0 0 / .16) } #linkCard.on { display:block }
   #linkCard .lkh { display:flex; align-items:flex-start; gap:8px } #linkCard .vd { flex:none; width:8px; height:8px; border-radius:50%; background:var(--fg3); margin-top:4px } #linkCard .grow { flex:1; min-width:0 } #linkCard .lkt { font-weight:600; font-size:12px; line-height:16px }
   #linkCard.live .vd, #linkCard.ready .vd { background:var(--ok) } #linkCard.wait .vd { background:#f5a623 } #linkCard.err .vd, #linkCard.srvoff .vd { background:var(--warn) } #linkCard.busy .vd { background:var(--acc); animation:lkpl .6s ease-in-out infinite }
@@ -143,6 +143,16 @@
   #lkQ button.pri { background:var(--fg); color:var(--bg); border-color:var(--fg) } #lkQ button:disabled { opacity:.4; cursor:default }
   #lkQList { display:flex; flex-direction:column; gap:2px; max-height:132px; overflow:auto } #lkQList .qx { display:flex; align-items:center; gap:8px; padding:4px 6px; border-radius:6px; background:var(--bg2) } #lkQList .qx .t { flex:1; min-width:0; overflow:hidden } #lkQList .qx .t b { display:block; font-weight:500; white-space:nowrap; overflow:hidden; text-overflow:ellipsis } #lkQList .qx .t span { display:block; white-space:nowrap; overflow:hidden; text-overflow:ellipsis } #lkQList .qx.cur { outline:1.5px solid var(--acc) } #lkQList .qx .ib { width:20px; height:20px }
   #dkLink .q { height:16px; padding:0 6px; border-radius:8px; background:var(--acc); color:#fff; font:600 10px/16px Inter, system-ui, sans-serif } #dkLink .q:empty { display:none }
+  #linkCard .lkawait { display:flex; align-items:center; gap:10px; padding:8px 10px; margin:2px 0 8px; border-radius:8px; background:var(--accbg); color:var(--fg) } #linkCard .lkawait[hidden] { display:none } #linkCard .lkawait .sm { flex:1 }
+
+  /* full-pane "click on the canvas" overlay while a capture waits for the canvas to take the keyboard */
+  #capOverlay { position:fixed; inset:0; z-index:60; display:flex; align-items:center; justify-content:center; text-align:center; padding:24px; background:rgb(18 18 20 / .94); color:#fff }
+  #capOverlay[hidden] { display:none }
+  #capOverlay .cap-ic { position:relative; width:56px; height:56px; margin:0 auto 14px; display:flex; align-items:center; justify-content:center }
+  #capOverlay .cap-ic svg { width:26px; height:26px; fill:#fff; stroke:none } #capOverlay .cap-ic::before, #capOverlay .cap-ic::after { content:""; position:absolute; inset:0; border-radius:50%; border:1.5px solid rgb(255 255 255 / .55); animation:capring 1.8s ease-out infinite } #capOverlay .cap-ic::after { animation-delay:.9s }
+  @keyframes capring { 0% { transform:scale(.55); opacity:.9 } 100% { transform:scale(1.25); opacity:0 } }
+  #capOverlay .cap-t { font:600 15px/20px Inter, system-ui, sans-serif; margin-bottom:6px } #capOverlay .cap-s { color:rgb(255 255 255 / .72); font-size:12px; line-height:17px; max-width:300px; margin:0 auto 14px }
+  #capOverlay button.b { background:transparent; color:#fff; border-color:rgb(255 255 255 / .35) } #capOverlay .cap-row { display:flex; gap:8px; justify-content:center } #capOverlay .cap-h { color:rgb(255 255 255 / .45); margin-top:8px }
 </style>
 <button class="ib corner float" id="collapse" title="Collapse"><span class="ic" id="collapseIc"><svg viewBox="0 0 16 16"><path d="M13.5 6.5h-4v-4M9.5 6.5L14 2M2.5 9.5h4v4M6.5 9.5L2 14"/></svg></span></button>
 <div id="doneOv"><img id="doneLogo" alt=""><svg viewBox="0 0 16 16"><path pathLength="1" d="M3.5 8.5l3 3 6-7"/></svg><span>Done</span></div>
@@ -196,6 +206,7 @@
       
       <button class="ib" id="silent" title="Follow builds: the canvas scrolls to each built frame"><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="4.5"/><path d="M8 1v2.5M8 12.5V15M1 8h2.5M12.5 8H15"/></svg></button>
       <button class="ib" id="dsSel" title="Design system" style="width:auto;padding:0 4px;gap:1px"><svg viewBox="0 0 16 16"><path d="M8 2l6 3-6 3-6-3 6-3zM2 8l6 3 6-3M2 11l6 3 6-3"/></svg><svg viewBox="0 0 16 16" style="width:10px;height:10px"><path d="M4 6l4 4 4-4"/></svg></button>
+      <div id="slashMenu" hidden style="position:fixed;left:10px;right:10px;bottom:76px;max-height:40vh;overflow:auto;background:var(--bg);color:var(--fg);border:1px solid var(--line,rgba(128,128,128,.3));border-radius:8px;padding:3px;z-index:9;font-size:11px;box-shadow:0 4px 14px rgba(0,0,0,.18)"></div>
       <div id="dsMenu" hidden style="position:fixed;left:10px;bottom:70px;min-width:200px;max-width:290px;background:var(--bg);color:var(--fg);border:1px solid var(--line,rgba(128,128,128,.3));border-radius:8px;padding:4px;z-index:8;font-size:11px;box-shadow:0 4px 14px rgba(0,0,0,.18)"></div>
       <span class="grow" id="hint"></span><span class="srv" id="srv" title="Connecting to the Clause server…"><span class="dot3" id="dot3"></span><code>:__PORT__</code></span>
       <button class="ib" id="queue" title="Add to queue [⌘⏎]"><svg viewBox="0 0 16 16"><path d="M2.5 4h7M2.5 8h5M2.5 12h4M12 7.5v5M9.5 10h5"/></svg></button>
@@ -203,8 +214,9 @@
     </div>
   </div>
 </div>
-<div id="dock"><button class="dk" id="dkNew" title="New chat"><svg viewBox="0 0 16 16"><path d="M8 3v10M3 8h10"/></svg><span>New chat</span></button><button class="dk" id="dkChats" title="Chat history"><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="5.5"/><path d="M8 5v3.2l2 1.3"/></svg><span>History</span></button><span style="flex:1"></span><button class="dk wait" id="dkLink" title="Web captures"><span class="lk"><svg viewBox="0 0 16 16"><path d="M6.5 9.5l3-3M5 8L3.7 9.3a2.3 2.3 0 003.3 3.3L8.3 11M11 8l1.3-1.3A2.3 2.3 0 009 3.4L7.7 4.7"/></svg><i class="st"></i></span><span class="n" id="dkLinkN"></span><span class="q" id="dkLinkQ"></span></button><button class="dk" id="dkSettings" title="Settings" style="padding:4px 6px"><svg viewBox="0 0 16 16"><path d="M6.79 2.94L7.04 0.86L8.96 0.86L9.21 2.94L11.77 4.42L13.70 3.60L14.66 5.26L12.99 6.52L12.99 9.48L14.66 10.74L13.70 12.40L11.77 11.58L9.21 13.06L8.96 15.14L7.04 15.14L6.79 13.06L4.23 11.58L2.30 12.40L1.34 10.74L3.01 9.48L3.01 6.52L1.34 5.26L2.30 3.60L4.23 4.42Z"/><circle cx="8" cy="8" r="2"/></svg></button></div>
-<div id="linkCard" class="wait"><div class="lkh"><span class="vd"></span><div class="grow"><div class="lkt" id="lkTitle">Web captures</div><div class="m sm" id="lkSub"></div></div><button class="ib" id="lkClose" title="Close"><svg viewBox="0 0 16 16"><path d="M4 4l8 8M12 4l-8 8"/></svg></button></div><div class="chain"><div class="node" id="nExt"><div class="c"><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="5.5"/><path d="M2.5 8h11M8 2.5c2 2 2 9 0 11M8 2.5c-2 2-2 9 0 11"/></svg></div><b>Extension</b><span class="s sm" id="nExtS"></span></div><div class="wire" id="w1"></div><div class="node" id="nSrv"><div class="c"><svg viewBox="0 0 16 16"><rect x="2.5" y="3" width="11" height="4" rx="1"/><rect x="2.5" y="9" width="11" height="4" rx="1"/><path d="M5 5h.01M5 11h.01"/></svg></div><b>Clause</b><span class="s sm" id="nSrvS"></span></div><div class="wire" id="w2"></div><div class="node" id="nPl"><div class="c"><svg viewBox="0 0 16 16"><rect x="2.5" y="2.5" width="4.5" height="4.5" rx="1"/><rect x="9" y="2.5" width="4.5" height="4.5" rx="1"/><rect x="2.5" y="9" width="4.5" height="4.5" rx="1"/><rect x="9" y="9" width="4.5" height="4.5" rx="1"/></svg></div><b>Figma</b><span class="s sm" id="nPlS"></span></div></div><div class="lklast sm" id="lkLast"></div><div class="seg" id="lkSeg"><button data-mode="now">Paste now</button><button data-mode="stage">Stage, paste all</button></div><div id="lkQ" hidden><div class="qhd"><b id="lkQn">Queue</b><span class="grow"></span><button class="b" id="lkQClear">Clear all</button><button class="b pri" id="lkQPaste">Paste all</button></div></div><div class="mi pref" data-pref="webPaste"><div class="grow"><b>Paste web captures</b><div class="s sm">⌘⌥O in Chrome sends the page here</div></div><span class="sw"></span></div></div>
+<div id="dock"><button class="dk" id="dkNew" title="New chat"><svg viewBox="0 0 16 16"><path d="M8 3v10M3 8h10"/></svg><span>New chat</span></button><button class="dk" id="dkChats" title="Chat history"><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="5.5"/><path d="M8 5v3.2l2 1.3"/></svg><span>History</span></button><span style="flex:1"></span><button class="dk wait" id="dkLink" title="Web captures"><span class="lk"><svg viewBox="0 0 16 16"><path d="M6.5 9.5l3-3M5 8L3.7 9.3a2.3 2.3 0 003.3 3.3L8.3 11M11 8l1.3-1.3A2.3 2.3 0 009 3.4L7.7 4.7"/></svg><i class="st"></i></span></button><button class="dk" id="dkSettings" title="Settings" style="padding:4px 6px"><svg viewBox="0 0 16 16"><path d="M6.79 2.94L7.04 0.86L8.96 0.86L9.21 2.94L11.77 4.42L13.70 3.60L14.66 5.26L12.99 6.52L12.99 9.48L14.66 10.74L13.70 12.40L11.77 11.58L9.21 13.06L8.96 15.14L7.04 15.14L6.79 13.06L4.23 11.58L2.30 12.40L1.34 10.74L3.01 9.48L3.01 6.52L1.34 5.26L2.30 3.60L4.23 4.42Z"/><circle cx="8" cy="8" r="2"/></svg></button></div>
+<div id="capOverlay" hidden><div><div class="cap-ic"><svg viewBox="0 0 16 16"><path d="M3 2l9.5 4.2-4 1.6-1.6 4z"/></svg></div><div class="cap-t" id="capT">Click on the canvas to paste</div><div class="cap-s">Clause could not click the canvas for you. Click anywhere on the Figma canvas: the page lands next to the frame you have selected, or where you click.</div><button class="b" id="capCancel">Cancel</button><div class="cap-h sm">or press Esc</div></div></div>
+<div id="linkCard" class="wait"><div class="lkh"><span class="vd"></span><div class="grow"><div class="lkt" id="lkTitle">Web captures</div><div class="m sm" id="lkSub"></div></div><button class="ib" id="lkClose" title="Close"><svg viewBox="0 0 16 16"><path d="M4 4l8 8M12 4l-8 8"/></svg></button></div><div class="chain"><div class="node" id="nExt"><div class="c"><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="5.5"/><path d="M2.5 8h11M8 2.5c2 2 2 9 0 11M8 2.5c-2 2-2 9 0 11"/></svg></div><b>Extension</b><span class="s sm" id="nExtS"></span></div><div class="wire" id="w1"></div><div class="node" id="nSrv"><div class="c"><svg viewBox="0 0 16 16"><rect x="2.5" y="3" width="11" height="4" rx="1"/><rect x="2.5" y="9" width="11" height="4" rx="1"/><path d="M5 5h.01M5 11h.01"/></svg></div><b>Clause</b><span class="s sm" id="nSrvS"></span></div><div class="wire" id="w2"></div><div class="node" id="nPl"><div class="c"><svg viewBox="0 0 16 16"><rect x="2.5" y="2.5" width="4.5" height="4.5" rx="1"/><rect x="9" y="2.5" width="4.5" height="4.5" rx="1"/><rect x="2.5" y="9" width="4.5" height="4.5" rx="1"/><rect x="9" y="9" width="4.5" height="4.5" rx="1"/></svg></div><b>Figma</b><span class="s sm" id="nPlS"></span></div></div><div class="lkawait" id="lkAwait" hidden><div class="sm">Figma shows a dim overlay. <b>Click anywhere on the canvas</b> and the paste goes out. Pages land next to the frame you have selected, or where you click.</div><button class="b" id="lkCancel">Cancel</button></div><div class="lklast sm" id="lkLast"></div><div class="seg" id="lkSeg"><button data-mode="now">Paste now</button><button data-mode="stage">Stage, paste all</button></div><div id="lkQ" hidden><div class="qhd"><b id="lkQn">Queue</b><span class="grow"></span><button class="b" id="lkQClear">Clear all</button><button class="b pri" id="lkQPaste">Paste all</button></div></div><div class="mi pref" data-pref="webPaste"><div class="grow"><b>Paste web captures</b><div class="s sm">⌘⌥O in Chrome sends the page here</div></div><span class="sw"></span></div></div>
 <textarea id="clip" style="position:absolute;left:-9999px;top:0;height:1px"></textarea>
 <div id="toast"></div>
 <div id="tip"></div>
@@ -281,16 +293,17 @@ function capState() {
   if (!CAP) return "wait";
   if (CAP.last && CAP.last.ok === false && Date.now() - CAP.last.at < 90000) return "err";
   if (!CAP.enabled) return "paused";
+  if (CAP.awaiting) return "await";
   if (CAP.busy) return "busy";
   if (CAP.extension.live) return "live";
   return CAP.extension.seen ? "ready" : "wait";
 }
-function capBadge() { return CAP && CAP.totals && CAP.totals.frames > 0 ? '<i class="capb">' + (CAP.totals.frames > 99 ? "99+" : CAP.totals.frames) + "</i>" : ""; }
+function capBadge() { const n = CAP && CAP.queue ? CAP.queue.length : 0; return n > 0 ? '<i class="capb">' + (n > 99 ? "99+" : n) + "</i>" : ""; } // green count = pages staged, waiting for Paste all
 function renderCap() {
   const st = capState(), c = CAP, f = c ? c.totals.frames : 0;
-  const chip = $("dkLink"); chip.className = "dk " + (st === "paused" ? "" : st); $("dkLinkN").textContent = f > 0 ? (f > 99 ? "99+" : String(f)) : "";
+  const chip = $("dkLink"); chip.className = "dk " + (st === "paused" ? "" : st === "await" ? "busy" : st) + (c && c.queue && c.queue.length ? " staged" : ""); 
   const T = { srvoff: ["Clause server is offline", "Start it with npm run live. Nothing can be pasted until then."], err: ["The last paste didn’t land", (c && c.last && c.last.error) || "Check Accessibility permission for the app running the server."], paused: ["Paused", "Turn on Paste web captures to receive pages from Chrome."], busy: [c && c.batch ? "Pasting " + c.batch.i + " of " + c.batch.n + "…" : "Pasting into Figma…", c && c.batch ? (c.batch.title || "Staged pages go onto the canvas in a row.") : "Figma comes forward for a moment, then focus goes back to Chrome."], live: ["Connected — same line", "Extension, Clause and this plugin are in sync. Copy a page with ⌘⌥O."], ready: ["Ready — same line", "Extension seen " + (c ? capAgo(c.extension.at) : "") + ". Copy a page with ⌘⌥O whenever you like."], wait: ["Waiting for the extension", "Copy a page with ⌘⌥O. It appears here the first time the extension talks to Clause."] }[st];
-  $("linkCard").className = (st === "paused" ? "" : st) + ($("linkCard").classList.contains("on") ? " on" : ""); $("lkTitle").textContent = T[0]; $("lkSub").textContent = T[1];
+  $("linkCard").className = (st === "paused" ? "" : st === "await" ? "busy" : st) + ($("linkCard").classList.contains("on") ? " on" : ""); $("lkAwait").hidden = st !== "await"; $("lkTitle").textContent = T[0]; $("lkSub").textContent = T[1];
   chip.title = "Web captures — " + T[0] + (f ? " · " + f + " frame" + (f === 1 ? "" : "s") + " pasted" : "");
   const off = st === "paused", srv = online, ext = c && c.extension.seen, extLive = c && c.extension.live;
   const set = (id, cls, sub) => { $(id).className = "node " + cls; $(id + "S").textContent = sub; };
@@ -300,12 +313,14 @@ function renderCap() {
   $("w1").className = "wire " + (st === "busy" ? "busy" : srv && ext && !off ? "live" : "wait"); $("w2").className = "wire " + (st === "busy" ? "busy" : srv && c && c.enabled ? "live" : "wait");
   const l = c && c.last, bad = l && l.ok === false; $("lkLast").className = "lklast sm" + (bad ? " bad" : "");
   $("lkLast").textContent = bad ? l.error : (f ? f + " frame" + (f === 1 ? "" : "s") + " pasted" + (l && l.count ? " · " : "") : "") + (l && l.count ? "Last: " + (l.names && l.names[0] ? l.names[0] + (l.count > 1 ? " + " + (l.count - 1) + " more" : "") : l.count + " frames") + " · " + capAgo(l.at) : "") || "No captures yet";
+  const on = !!(c && c.enabled);
+  for (const el of document.querySelectorAll("#linkCard .chain, #lkSeg, #lkQ, #lkLast, #lkAwait")) el.style.display = on ? "" : "none"; // switched off: just the status and the switch
   renderQueue();
   if (typeof renderMini === "function") renderMini();
 }
 function setCap(s) {
   const prev = CAP; CAP = s;
-  if (prev && s.totals.frames > prev.totals.frames) { const n = $("dkLinkN"); n.classList.remove("pop"); void n.offsetWidth; n.classList.add("pop"); }
+  if (prev && s.totals.frames > prev.totals.frames) {  }
   renderCap();
 }
 async function fetchCap() { try { setCap(await (await fetch(BASE + "/capture/status")).json()); } catch (e) { renderCap(); } }
@@ -320,11 +335,34 @@ function renderQueue() {
   const batch = c && c.batch, busy = c && c.busy;
   $("lkQn").textContent = batch ? "Pasting " + batch.i + " of " + batch.n + "…" : q.length ? q.length + " staged" : "Nothing staged";
   $("lkQPaste").textContent = q.length ? "Paste all (" + q.length + ")" : "Paste all"; $("lkQPaste").disabled = !q.length || !!busy || !(c && c.enabled); $("lkQClear").disabled = !q.length || !!busy;
-  const nq = $("dkLinkQ"); nq.textContent = q.length && !batch ? q.length + " queued" : "";
+  
 }
 $("lkSeg").onclick = e => { const b = e.target.closest("button"); if (!b) return; PREFS = Object.assign({}, PREFS, { stage: b.dataset.mode === "stage" }); post({ type: "prefs", value: PREFS }); syncWebPaste(); if (CAP) CAP.mode = b.dataset.mode; renderCap(); };
 $("lkQPaste").onclick = () => { api("/capture/queue/paste", {}).catch(() => {}); };
+$("lkCancel").onclick = () => { api("/capture/cancel", {}).catch(() => {}); };
 $("lkQClear").onclick = () => { api("/capture/queue/clear", {}).catch(() => {}); };
+
+// ---- capture waiting for the canvas: cover the pane, and release the paste when the user clicks out of it (the pane loses focus = the canvas has the keyboard)
+let capWait = null, capPoll = null;
+function capHide() { $("capOverlay").hidden = true; capWait = null; clearInterval(capPoll); capPoll = null; }
+function capGo(auto) { capHide(); api("/capture/go", auto ? { auto: true } : {}).catch(() => {}); }
+function capShow(n) {
+  if (collapsed) setCollapsed(false); // the overlay needs the room
+  $("capT").textContent = n > 1 ? "Click on the canvas to paste " + n + " pages" : "Click on the canvas to paste";
+  $("capOverlay").hidden = false; capWait = { armed: false, since: 0 };
+  try { window.focus(); $("capCancel").focus(); } catch (e) {}
+  // the pane holds the keyboard until the user clicks out of it: when it loses focus after having had it, they clicked the canvas
+  clearInterval(capPoll);
+  capPoll = setInterval(() => {
+    if (!capWait) return;
+    const f = document.hasFocus();
+    if (f) { if (!capWait.since) capWait.since = Date.now(); else if (Date.now() - capWait.since > 700) capWait.armed = true; }
+    else if (capWait.armed) capGo(false);
+    else capWait.since = 0;
+  }, 100);
+}
+$("capCancel").onclick = () => { capHide(); api("/capture/cancel", {}).catch(() => {}); };
+document.addEventListener("keydown", e => { if (e.key === "Escape" && capWait) { capHide(); api("/capture/cancel", {}).catch(() => {}); } });
 setInterval(renderCap, 10000);
 // ---- collapse: window shrinks to just the two corner icons
 let collapsed = false;
@@ -424,11 +462,13 @@ es.onmessage = async e => {
   else if (m.type === "term" || m.type === "agent") loadMsgs();
   else if (m.type === "goto") { if (!m.file || !fileName || m.file === fileName) post({ type: "goto", pageId: m.pageId, nodeId: m.nodeId }); }
   else if (m.type === "webpaste") {
-    if (m.phase === "before") { try { if (document.activeElement) document.activeElement.blur(); window.blur(); } catch (e) {} post({ type: "webpaste-before" }); } // give the canvas the keyboard, deselect so the paste lands top-level
+    if (m.phase === "before") { capHide(); try { if (document.activeElement) document.activeElement.blur(); window.blur(); } catch (e) {} post({ type: "webpaste-before" }); } // give the canvas the keyboard, deselect so the paste lands top-level
     else if (m.phase === "after") post({ type: "webpaste-after" });
+    else if (m.phase === "await") { post({ type: "webpaste-await" }); capShow(m.n || 1); }
+    else if (m.phase === "end") { capHide(); post({ type: "webpaste-restore" }); }
     else if (m.phase === "batch-start") post({ type: "webpaste-batch", on: true });
-    else if (m.phase === "batch-end") post({ type: "webpaste-batch", on: false });
-    else if (m.phase === "error") { post({ type: "webpaste-restore" }); toast(m.text || "Web capture paste failed"); }
+    else if (m.phase === "batch-end") { capHide(); post({ type: "webpaste-batch", on: false }); }
+    else if (m.phase === "error") { capHide(); post({ type: "webpaste-restore" }); toast(m.text || "Web capture paste failed"); }
   }
   else if (m.type === "capture") setCap(m.status);
   else if (m.type === "extract") { if (m.ignoreSections && m.ignoreSections.length) $("dsIgnore").value = m.ignoreSections.join(", "); dsRun(); }
@@ -531,8 +571,28 @@ document.addEventListener("keydown", e => {
   if (comboOf(e) === getKey() || ((e.metaKey || e.ctrlKey) && e.altKey && !e.shiftKey && e.code === "KeyP")) { e.preventDefault(); e.stopPropagation(); setCollapsed(!collapsed); } }, true); // ⌘⌥P inside the window too (Figma never sees it while the plugin has focus) // user-set shortcut: collapse or expand (expanding focuses the message box)
 $("miKey").onclick = () => { recordingKey = true; $("keyHint").textContent = "Press keys…"; }; renderKey();
 document.addEventListener("keydown", e => { if (e.key === "Escape" && working() && !$("menu").classList.contains("on")) { e.preventDefault(); $("send").click(); } });
-$("box").oninput = () => { const b = $("box"); b.style.height = ""; b.style.height = Math.min(96, b.scrollHeight) + "px"; renderComposer(); };
-$("box").onkeydown = e => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); if (e.metaKey || e.ctrlKey) submit(false); else sendAllWithDraft(); } };
+$("box").oninput = () => { const b = $("box"); b.style.height = ""; b.style.height = Math.min(96, b.scrollHeight) + "px"; renderComposer(); slashI = 0; slashRender(); };
+// slash commands: "/" at the start of the message opens the list; Clause reads the command's instruction when the message arrives
+let slashCmds = [], slashShown = [], slashI = 0;
+fetch(BASE + "/term/commands").then(r => r.json()).then(j => { slashCmds = j.commands || []; }).catch(() => {});
+function slashRender() {
+  const m = $("slashMenu"), v = $("box").value, q = /^\/([a-z0-9-]*)$/.exec(v);
+  slashShown = q ? slashCmds.filter(c => c.name.startsWith(q[1])) : [];
+  if (!slashShown.length) { m.hidden = true; return; }
+  slashI = Math.min(slashI, slashShown.length - 1);
+  m.innerHTML = slashShown.map((c, i) => '<div class="si" data-i="' + i + '" style="display:flex;flex-direction:column;align-items:flex-start;gap:1px;padding:3px 7px;border-radius:5px;cursor:pointer;line-height:1.3;' + (i === slashI ? "background:rgba(128,128,128,.18)" : "") + '"><div style="font-weight:600">/' + c.name + '</div><div style="opacity:.6;font-size:10px">' + c.hint + '</div></div>').join("");
+  m.hidden = false;
+  m.style.bottom = Math.round(innerHeight - $("box").getBoundingClientRect().top + 6) + "px"; // sits right above the text box, never over it
+  for (const el of m.querySelectorAll(".si")) el.onmousedown = ev => { ev.preventDefault(); slashPick(+el.dataset.i); };
+}
+function slashPick(i) { const c = slashShown[i]; if (!c) return; $("box").value = "/" + c.name + " "; $("slashMenu").hidden = true; $("box").focus(); renderComposer(); }
+$("box").onkeydown = e => {
+  if (!$("slashMenu").hidden && slashShown.length) {
+    if (e.key === "ArrowDown" || e.key === "ArrowUp") { e.preventDefault(); slashI = (slashI + (e.key === "ArrowDown" ? 1 : slashShown.length - 1)) % slashShown.length; slashRender(); return; }
+    if (e.key === "Tab" || (e.key === "Enter" && !e.metaKey && !e.ctrlKey)) { e.preventDefault(); slashPick(slashI); return; }
+    if (e.key === "Escape") { e.preventDefault(); e.stopPropagation(); $("slashMenu").hidden = true; return; }
+  }
+  if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); if (e.metaKey || e.ctrlKey) submit(false); else sendAllWithDraft(); } };
 async function sendAllWithDraft() { if ($("box").value.trim()) { const b = await build(); if (!b) return; try { await api("/term/add", b); } catch (e) { return toast("Server offline — npm run live"); } $("box").value = ""; $("box").style.height = ""; dropped = new Set(sel.map(n => n.id)); } if (!queued && !msgs.some(m => m.status === "queued")) { await loadMsgs(); } const r = await api("/term/send"); toast(r.sent ? "Sent " + r.sent : "Nothing to send"); loadMsgs(); if (r.sent && getPrefs().collapseOnSend) setCollapsed(true); }
 
 onmessage = async (e) => {

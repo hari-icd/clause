@@ -4,6 +4,7 @@
 //   • receives the extracted DOM back from the plugin (/dom/<name>) → writes exports/<name>.html (real, token-driven website)
 //   • serves the exports listing at /
 //   node scripts/serve.mjs [screen-name]
+import { createCommands } from "./commands.mjs";
 import http from "node:http";
 import { loadRegistry } from "./registry.mjs";
 import { watch, readdirSync, readFileSync, writeFileSync, mkdirSync, existsSync, statSync, copyFileSync } from "node:fs";
@@ -22,6 +23,7 @@ const freshToHtml = async () => (await import("./to-html.mjs?v=" + statSync(toHt
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const PORT = Number(process.env.PORT || 8787);
 const store = createStore(root);
+const commands = createCommands(root);
 // agent presence for the plugin pane: reading → thinking/custom → building → built → (reply clears). Auto-clears after 15 min.
 let agent = null, agentT = null, lastPoll = 0; // lastPoll = last time the inbox watcher asked for messages (Claude is listening while it keeps polling)
 function setAgent(state, text, busy) { clearTimeout(agentT); if (!state) agent = null; else { const keep = agent ? agent.busy : false; agent = { state, text: text || "", at: Date.now(), busy: busy === undefined ? keep : busy }; agentT = setTimeout(() => { agent = null; broadcast({ type: "agent" }); }, 45 * 60e3); } broadcast({ type: "agent" }); }
@@ -138,7 +140,7 @@ http.createServer(async (req, res) => {
   const url = new URL(req.url, "http://x"); const p = url.pathname;
   if (req.method === "OPTIONS") {
     const o = req.headers.origin;
-    if ((p.startsWith("/term") || p === "/inbox" || p.startsWith("/extract") || p === "/capture/settings" || p === "/capture/result" || p === "/capture/reset" || p.startsWith("/capture/queue")) && o && o !== "null") { res.writeHead(403); return res.end(); }
+    if ((p.startsWith("/term") || p === "/inbox" || p.startsWith("/extract") || p === "/capture/settings" || p === "/capture/result" || p === "/capture/reset" || p === "/capture/go" || p === "/capture/cancel" || p.startsWith("/capture/queue")) && o && o !== "null") { res.writeHead(403); return res.end(); }
     if ((p === "/capture/paste" || p === "/capture/ping" || p === "/capture/stage") && o && !o.startsWith("chrome-extension://")) { res.writeHead(403); return res.end(); } // only the extension may ask for a paste
     res.writeHead(204, cors); return res.end();
   }
@@ -239,8 +241,9 @@ http.createServer(async (req, res) => {
     // message pane: only the plugin iframe (Origin "null") or a local script (no Origin) may talk to it; a custom header forces a CORS preflight for web pages.
     const o = req.headers.origin;
     if (o && o !== "null") { res.writeHead(403); return res.end(); }
+    if (req.method === "GET" && p === "/term/commands") return json(res, 200, { commands: commands.list() });
     if (req.method === "GET" && p === "/term") return json(res, 200, { messages: store.list(), queued: store.queued(), agent, ...store.state() });
-    if (req.method === "GET" && p === "/inbox") { const peek = url.searchParams.get("peek"); if (!peek) lastPoll = Date.now(); const u = peek ? store.unread() : store.markRead(); if (!peek && u.length) { broadcast({ type: "term" }); setAgent("thinking", "Reading your " + (u.length === 1 ? "message" : u.length + " messages"), true); } return json(res, 200, { count: u.length, messages: u.map(m => ({ id: m.id, kind: m.kind, title: m.title, text: m.text })) }); }
+    if (req.method === "GET" && p === "/inbox") { const peek = url.searchParams.get("peek"); if (!peek) lastPoll = Date.now(); const u = peek ? store.unread() : store.markRead(); if (!peek && u.length) { broadcast({ type: "term" }); setAgent("thinking", "Reading your " + (u.length === 1 ? "message" : u.length + " messages"), true); } return json(res, 200, { count: u.length, messages: u.map(m => ({ id: m.id, kind: m.kind, title: m.title, text: commands.expand(m.text) })) }); }
     if (req.method !== "POST" || req.headers["x-clause"] !== "1") return json(res, 403, { error: "POST with header x-clause: 1" });
     let b = {}; try { b = JSON.parse(await body(req)); } catch {}
     let out = { ok: true };
